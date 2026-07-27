@@ -344,7 +344,6 @@
   .club-chip span{ font-size:0.78rem; font-weight:600; color:var(--ink); text-align:center; line-height:1.2; }
   .club-chip:hover .club-badge-slot{ transform:translateY(-3px); box-shadow:0 6px 14px rgba(0,0,0,0.2); }
 
-  /* Fluid Grid for Zero Phone Cut-offs */
   .products{ position:relative; z-index:2; display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:1.4rem; }
 
   .product-card{
@@ -371,7 +370,6 @@
   }
   .photo-placeholder .upload-icon{ font-size:1.5rem; line-height:1; opacity:0.85; }
 
-  /* Safe Word-Wrapping for Long Team Names */
   .product-info{ padding:1.1rem 1.2rem 1.3rem; display:flex; flex-direction:column; flex:1; overflow:hidden; }
   .product-title{ font-size:1rem; font-weight:600; margin-bottom:0.25rem; color:var(--ink); display:flex; align-items:center; gap:0.4rem; overflow-wrap:anywhere; word-break:break-word; }
   .product-meta{ font-size:0.78rem; color:var(--ink-soft); margin-bottom:0.8rem; }
@@ -398,7 +396,6 @@
   .footer-links a:hover{ color:var(--gold-bright); }
   .copyright{ font-size:0.8rem; opacity:0.7; font-family:'Roboto Mono',monospace; position:relative; z-index:2; }
 
-  /* ---------- Floating Right-Side Socials ---------- */
   .floating-socials{ position:fixed; right:1rem; bottom:1.5rem; z-index:90; display:flex; flex-direction:column; gap:0.75rem; pointer-events:none; }
   .floating-socials a{ pointer-events:auto; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(20,24,27,0.85); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); border:1px solid rgba(94,234,212,0.4); color:var(--chalk); box-shadow:0 8px 20px rgba(0,0,0,0.3); transition:transform 0.2s, background 0.2s, border-color:0.2s; text-decoration:none; }
   .floating-socials a:hover{ transform:scale(1.1) translateX(-2px); background:var(--pitch-dark); border-color:var(--gold-bright); color:var(--gold-bright); }
@@ -433,7 +430,6 @@
 
   .nowrap-label { white-space: nowrap; display: block; font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.04em; }
 
-  /* ---------- Size Chart Table in Modal ---------- */
   .size-chart-box { display:none; margin:1rem 0; padding:1rem; background:rgba(255,255,255,0.95); border:1.5px solid #ddd8ca; border-radius:10px; font-size:0.92rem; animation:fadeIn 0.3s ease; overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%; }
   .size-chart-box.active { display:block; }
   .size-chart-table { width:100%; min-width:360px; border-collapse:collapse; text-align:center; }
@@ -442,7 +438,6 @@
   .size-chart-table tr:nth-child(even) { background:rgba(240,245,246,0.6); }
   .size-chart-btn { background:none; border:none; color:var(--crimson); font-size:0.78rem; font-weight:600; cursor:pointer; text-decoration:underline; padding:0; margin-left:auto; display:inline-block; }
 
-  /* ---------- Dedicated product page ---------- */
   .product-page-container{ padding-top:2rem; padding-bottom:3rem; }
   .back-link{ display:inline-block; font-family:'Bebas Neue',sans-serif; letter-spacing:0.04em; font-size:1rem; color:var(--crimson); text-decoration:none; margin-bottom:1.4rem; }
   .back-link:hover{ text-decoration:underline; }
@@ -471,14 +466,13 @@
     .product-page-grid{ grid-template-columns:1fr; gap:1.4rem; }
   }
 
-  /* ---------- STRICT MOBILE PHONE OPTIMIZATIONS (ZERO CUT-OFFS) ---------- */
+  /* ---------- STRICT MOBILE PHONE OPTIMIZATIONS (ZERO CUT-OFFS & STICKY CTA) ---------- */
   @media (max-width: 860px){
     .hero-inner{ grid-template-columns:1fr; gap:2.2rem; }
     .hero-pitch-lines{ display:none; }
     nav ul li a{ padding:0.75rem 0.9rem; font-size:0.95rem; }
     .floating-socials{ right:0.75rem; bottom:1rem; }
     
-    /* Ensure Mega-Menu stacks safely on mobile viewports */
     .mega-menu{
       flex-direction:column; gap:1rem; width:calc(100vw - 2rem);
       max-width:320px; white-space:normal; left:50%;
@@ -488,13 +482,11 @@
   }
 
   @media (max-width: 600px){
-    /* 1. Switch grids to fluid minmax(0, 1fr) to guarantee two items fit without cutting */
     .products{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.75rem; }
     .fan-zone-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.75rem; }
     .hero-stats-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.6rem; }
     .home-trust-grid{ grid-template-columns:1fr; gap:0.6rem; }
 
-    /* 2. Compact Navigation and Full-Width Search Alignment */
     .nav-inner{ gap:0.5rem; padding:0.5rem; justify-content:center; }
     nav ul{ gap:0.1rem; }
     nav ul li a{ padding:0.5rem 0.6rem; font-size:0.85rem; }
@@ -503,7 +495,6 @@
     .nav-search input{ width:100%; flex:1; }
     .search-suggestions{ width:calc(100% - 1rem); left:0.5rem; right:0.5rem; top:calc(100% + 4px); max-height:280px; }
 
-    /* 3. Safe horizontal swipe bars for tabs & chips */
     .segmented-wrap{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; justify-content:flex-start; padding:0.2rem 0.75rem 0.6rem; margin-bottom:1rem; }
     .segmented-wrap::-webkit-scrollbar{ height:4px; }
     .segmented-wrap::-webkit-scrollbar-thumb{ background:var(--gold); border-radius:4px; }
@@ -511,7 +502,6 @@
     .tab{ font-size:0.95rem; padding:0.45rem 0.85rem; flex-shrink:0; }
     .sbc-row{ padding:0.5rem 0.75rem 1.2rem; }
 
-    /* 4. Ergonomic Bottom-Sheet Modal with iOS Safe-Area Padding */
     .modal-overlay{ padding:0; align-items:flex-end; }
     .modal-panel{ padding:1.8rem 1rem calc(1.5rem + env(safe-area-inset-bottom)); max-height:90vh; width:100%; border-radius:20px 20px 0 0; overflow-y:auto; overflow-x:hidden; }
     .modal-close{ top:0.7rem; right:0.7rem; width:32px; height:32px; font-size:1.2rem; }
@@ -521,7 +511,16 @@
     .version-toggle{ grid-template-columns:1fr; gap:0.5rem; }
     .patch-photo-row{ display:grid; grid-template-columns:repeat(2, 1fr); gap:0.5rem; }
 
-    /* 5. Stack actions and ensure cards remain legible */
+    /* Sticky Bottom Action Bar for Phone Screens so users never have to hunt for Add to Cart */
+    #modalAddBtn, #ppAddBtn {
+      position: sticky;
+      bottom: -1.25rem;
+      z-index: 50;
+      box-shadow: 0 -12px 25px rgba(20,24,27,0.35);
+      margin-top: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
     .hero-ctas{ flex-direction:column; width:100%; }
     .hero-ctas .btn{ width:100%; text-align:center; }
     .care-grid{ grid-template-columns:1fr; gap:1rem; }
@@ -548,7 +547,6 @@
   }
 
   @media (max-width: 360px){
-    /* Narrow Phone Safety: Stack product cards 1-wide so they never become illegibly tiny */
     .products{ grid-template-columns:1fr; }
     .fan-zone-grid{ grid-template-columns:1fr; }
   }
@@ -562,7 +560,6 @@
 <div class="bg-blobs" aria-hidden="true"><span class="b1"></span><span class="b2"></span></div>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- Floating Right-Side Socials -->
 <div class="floating-socials" aria-label="Social media quick links">
   <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" title="WhatsApp Us">
     <svg viewBox="0 0 24 24"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
@@ -856,7 +853,7 @@
       <span class="modal-eyebrow" id="ppEyebrow">Product</span>
       <div class="pp-title-row">
         <h2 class="modal-title" id="ppTitle" style="font-size:2rem;"></h2>
-        <button class="card-btn pp-add-btn-top" id="ppAddBtn" onclick="ppAddToCart()">Order via WhatsApp — ₹600</button>
+        <button class="card-btn pp-add-btn-top" id="ppAddBtn" onclick="ppAddToCart()">Add to cart — ₹600</button>
       </div>
       <p class="product-meta" id="ppMeta"></p>
 
@@ -1117,7 +1114,7 @@
         </div>
         
         <p class="modal-note">Most used names come pre-set with that player's number. Custom kits ship 2–3 days later than stock kits.</p>
-        <button class="card-btn" id="modalAddBtn" onclick="addCustomizedToCart()">Order via WhatsApp — ₹600</button>
+        <button class="card-btn" id="modalAddBtn" onclick="addCustomizedToCart()">Add to cart — ₹600</button>
       </div>
     </div>
   </div>
@@ -1743,7 +1740,7 @@
         if (max === 1){
           row.querySelectorAll('.patch-photo-item').forEach(item => item.classList.remove('active'));
         } else {
-          return;
+          return; // already at the 2-patch limit
         }
       }
       el.classList.add('active');
@@ -1806,7 +1803,7 @@
     if (patchKeys.length){ total += PATCH_PRICE * patchKeys.length; parts.push(`${patchKeys.length} patch${patchKeys.length > 1 ? 'es' : ''} +₹${PATCH_PRICE * patchKeys.length}`); }
     document.getElementById('modalPrice').textContent = `₹${total}`;
     document.getElementById('modalBreakdown').textContent = parts.join(' · ') + (parts.length > 1 ? '' : ' · shipping included');
-    document.getElementById('modalAddBtn').textContent = `Order via WhatsApp — ₹${total}`;
+    document.getElementById('modalAddBtn').textContent = `Add to cart — ₹${total}`;
   }
 
   document.getElementById('custom-number').addEventListener('input', renderModalVisual);
@@ -1823,7 +1820,7 @@
     if (e.key === 'Escape') closeCustomize();
   });
 
-  /* UPDATED: Direct WhatsApp order generator from Modal */
+  /* Direct WhatsApp order generator from Modal */
   function addCustomizedToCart(){
     if (!activeProduct) return;
     const nameChoice = document.getElementById('custom-nameselect').value;
@@ -1936,12 +1933,12 @@
     if (patchKeys.length){ total += PATCH_PRICE * patchKeys.length; parts.push(`${patchKeys.length} patch${patchKeys.length > 1 ? 'es' : ''} +₹${PATCH_PRICE * patchKeys.length}`); }
     document.getElementById('ppPrice').textContent = `₹${total}`;
     document.getElementById('ppBreakdown').textContent = parts.join(' · ') + (parts.length > 1 ? '' : ' · shipping included');
-    document.getElementById('ppAddBtn').textContent = `Order via WhatsApp — ₹${total}`;
+    document.getElementById('ppAddBtn').textContent = `Add to cart — ₹${total}`;
   }
 
   document.getElementById('pp-name').addEventListener('input', ppUpdatePricing);
 
-  /* UPDATED: Direct WhatsApp order generator from Dedicated Product Page */
+  /* Direct WhatsApp order generator from Dedicated Product Page */
   function ppAddToCart(){
     if (!ppProduct) return;
     const nameChoice = document.getElementById('pp-nameselect').value;
