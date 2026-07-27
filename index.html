@@ -31,10 +31,8 @@
     --glass-blur: blur(20px) saturate(180%);
   }
 
-  /* Global Reset & Strict Viewport Safeguards */
   *{margin:0;padding:0;box-sizing:border-box;}
-  html, body{max-width:100vw;overflow-x:hidden;scroll-behavior:smooth;}
-  img, svg, video{max-width:100%;height:auto;display:block;}
+  html{scroll-behavior:smooth;}
 
   body{
     font-family:'Inter',sans-serif;
@@ -42,6 +40,7 @@
     color:var(--ink);
     line-height:1.6;
     position:relative;
+    overflow-x:hidden;
   }
 
   h1,h2,h3,.display{ font-family:'Bebas Neue',sans-serif; letter-spacing:0.04em; font-weight:400; }
@@ -72,6 +71,7 @@
   }
   .brand-mark{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:0.2rem; margin-bottom:0.4rem; }
 
+  /* UPDATED PRO BADGE: Freestanding Corner Flag + Football Jersey with CFJ text below (no circle/shield) */
   .brand-mark .crest{
     width:112px; height:112px; display:flex; align-items:center; justify-content:center;
     filter: drop-shadow(0 10px 18px rgba(0,0,0,0.55));
@@ -105,11 +105,11 @@
 
   .search-wrapper{ position:relative; display:flex; align-items:center; }
   .nav-search{ display:flex; align-items:center; gap:0.3rem; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25); border-radius:999px; padding:0.3rem 0.3rem 0.3rem 0.9rem; margin:0.5rem 0; }
-  .nav-search input{ background:transparent; border:none; outline:none; color:var(--chalk); font-family:'Inter',sans-serif; font-size:0.85rem; width:160px; }
+  .nav-search input{ background:transparent; border:none; outline:none; color:var(--chalk); font-family:'Inter',sans-serif; font-size:0.85rem; width:150px; }
   .nav-search input::placeholder{ color:rgba(247,245,239,0.65); }
   .nav-search button{ background:var(--gold); color:var(--pitch-dark); border:none; width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:0.85rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background 0.2s; }
   .nav-search button:hover{ background:var(--gold-bright); }
-  
+
   .search-suggestions{
     position:absolute; top:calc(100% + 6px); right:0; width:290px;
     background:var(--forest); border:1px solid rgba(255,255,255,0.2);
@@ -127,15 +127,15 @@
   .suggestion-info{ display:flex; flex-direction:column; line-height:1.2; overflow:hidden; }
   .suggestion-title{ font-size:0.82rem; font-weight:600; color:var(--chalk); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .suggestion-meta{ font-size:0.7rem; color:var(--gold-bright); margin-top:0.15rem; }
-
   .search-status{ text-align:center; font-family:'Inter',sans-serif; font-size:0.78rem; color:var(--chalk-dim); background:rgba(0,0,0,0.2); padding:0.4rem; }
   @keyframes searchFlash{ 0%,100%{ box-shadow:0 0 0 0 rgba(20,184,166,0); } 20%,60%{ box-shadow:0 0 0 6px rgba(20,184,166,0.45); } }
   .search-highlight{ animation:searchFlash 1.4s ease; border-radius:14px; }
 
+  /* ---------- Home / Products page switching ---------- */
   .page{ display:none; }
   .page.active{ display:block; }
 
-  /* UPDATED: Responsive Mega-Menu base styles */
+  /* ---------- Products mega-menu (hover to reveal type/league branches) ---------- */
   .has-dropdown{ position:relative; }
   .mega-menu{
     position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(8px);
@@ -159,6 +159,7 @@
   }
   .mega-col a:hover{ color:var(--forest-bright); }
 
+  /* ---------- Banner carousel (placeholder — swap slide backgrounds for real promo art) ---------- */
   .banner-carousel{ position:relative; max-width:1200px; margin:2rem auto 0; padding:0 1.25rem; }
   .banner-logo-slot{
     position:absolute; top:14px; left:14px; z-index:5; width:84px; height:84px;
@@ -201,33 +202,7 @@
   }
   .carousel-dots button.active{ background:var(--gold); transform:scale(1.2); }
 
-  .badge-sections-wrap{ max-width:1200px; margin:2.5rem auto 1rem; padding:0 1.25rem; }
-  .badge-block{ text-align:center; margin-bottom:2.5rem; }
-  .badge-block h2{ font-size:2.2rem; color:var(--pitch-dark); margin-bottom:0.1rem; }
-  .badge-block p.sub{ font-size:0.85rem; color:var(--ink-soft); font-weight:500; margin-bottom:1.2rem; }
-  
-  .badge-scroll-row{
-    display:flex; gap:1.8rem; overflow-x:auto; padding:0.5rem 0.5rem 1.2rem;
-    scroll-behavior:smooth; -webkit-overflow-scrolling:touch; justify-content:flex-start; align-items:center;
-  }
-  .badge-scroll-row::-webkit-scrollbar { height: 6px; }
-  .badge-scroll-row::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
-  .badge-scroll-row::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
-
-  .badge-card{
-    display:flex; flex-direction:column; align-items:center; gap:0.45rem;
-    cursor:pointer; flex-shrink:0; transition:transform 0.2s; text-decoration:none;
-  }
-  .badge-card:hover{ transform:translateY(-4px) scale(1.06); }
-  .badge-icon-wrap{
-    width:72px; height:72px; border-radius:50%; background:#ffffff;
-    box-shadow: 0 8px 20px -4px rgba(20,24,27,0.15); border:1.5px solid rgba(226,221,208,0.8);
-    display:flex; align-items:center; justify-content:center; overflow:hidden; padding:10px;
-  }
-  .badge-icon-wrap img{ width:100%; height:100%; object-fit:contain; }
-  .badge-icon-wrap:empty::before{ content:'🛡️'; font-size:2rem; }
-  .badge-card span{ font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; color:var(--ink); white-space:nowrap; }
-
+  /* ---------- Hero & Prominent Large Stat Blocks ---------- */
   .hero{ position:relative; background:linear-gradient(160deg, var(--pitch-mid), var(--pitch-dark)); color:var(--chalk); overflow:hidden; padding:3.5rem 0 4rem; }
   .hero-inner{ position:relative; z-index:2; display:grid; grid-template-columns:1.1fr 0.9fr; gap:2.5rem; align-items:center; max-width:1200px; margin:0 auto; padding:0 1.25rem; }
   
@@ -251,6 +226,7 @@
   .btn-ghost{ background:rgba(255,255,255,0.06); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); color:var(--chalk); border:1.5px solid rgba(247,245,239,0.35); }
   .btn-ghost:hover{ border-color:var(--gold-bright); color:var(--gold-bright); transform:translateY(-2px); }
 
+  /* RESTORED: Prominent Large Stat Cards Grid */
   .hero-stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; margin-bottom:1.2rem; }
   .stat-card{
     background:rgba(255,255,255,0.035); backdrop-filter:blur(8px) saturate(160%); -webkit-backdrop-filter:blur(8px) saturate(160%);
@@ -262,6 +238,7 @@
   .stat-card .num{ font-family:'Bebas Neue',sans-serif; font-size:2.1rem; color:var(--gold-bright); display:block; line-height:1; margin-bottom:0.2rem; }
   .stat-card .label{ font-size:0.82rem; color:var(--chalk-dim); font-weight:500; line-height:1.3; }
 
+  /* Trust feature blocks below stat cards */
   .home-trust-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
   .trust-block-card {
     background:rgba(255,255,255,0.04); border:1px solid rgba(247,245,239,0.12); border-radius:10px;
@@ -270,6 +247,8 @@
   .tb-icon { font-size:1.25rem; line-height:1; }
   .tb-title { font-family:'Inter',sans-serif; font-size:0.78rem; font-weight:600; color:var(--chalk); display:block; line-height:1.2; }
 
+  /* Penalty box lines up EXACTLY with bottom edge of dark home section (top: 0 of main) */
+  /* ---------- Fan Zone (home page) ---------- */
   .fan-zone-section{ max-width:1200px; margin:3.5rem auto 4rem; padding:0 1.25rem; }
   .fan-zone-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:1.4rem; }
   .fan-card{
@@ -287,12 +266,12 @@
   .fan-photo-slot img{ width:100%; height:100%; object-fit:cover; }
   .fan-tag{ font-family:'Roboto Mono',monospace; font-size:0.78rem; color:var(--crimson); font-weight:600; margin-top:0.6rem; display:block; text-align:center; }
 
+  /* ---------- Jersey Care page ---------- */
   .care-eyebrow{
     display:inline-block; font-family:'Roboto Mono', monospace; font-size:0.75rem; letter-spacing:0.12em;
     text-transform:uppercase; color:var(--crimson); background:rgba(15,118,110,0.08);
     border:1px solid rgba(15,118,110,0.35); padding:0.35rem 0.8rem; border-radius:999px; font-weight:600;
   }
-
   .care-container{ max-width:960px; margin:0 auto; padding:3.5rem 1.25rem 5rem; }
   .care-hero{ text-align:center; margin-bottom:3rem; }
   .care-hero h2{ font-size:clamp(2.2rem, 5vw, 3.6rem); color:var(--pitch-dark); margin-bottom:0.4rem; }
@@ -340,18 +319,39 @@
   .tab-content.active{ display:block; }
   @keyframes fadeIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
 
-  .league-section{ margin-bottom:2.5rem; position:relative; }
-  .league-header{ position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; margin-bottom:1.1rem; border-bottom:2px solid #e2ddd0; padding-bottom:0.6rem; }
-  .league-header-left{ display:flex; align-items:baseline; gap:0.75rem; }
-  .league-header h3{ font-size:1.5rem; color:var(--pitch-dark); }
-  .league-header .count{ font-family:'Roboto Mono',monospace; font-size:0.78rem; color:var(--ink-soft); background:rgba(0,0,0,0.05); padding:0.2rem 0.6rem; border-radius:999px; }
+  .league-section{ margin-bottom:2.2rem; position:relative; }
+  .league-header{ position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.6rem; margin-bottom:0.9rem; border-bottom:1px solid #e2ddd0; padding-bottom:0.4rem; }
+  .league-header h3{ font-size:1.4rem; color:var(--pitch-dark); display:flex; align-items:center; gap:0.5rem; }
+  .league-header .count{ font-family:'Roboto Mono',monospace; font-size:0.78rem; color:var(--ink-soft); }
+  .league-header-right{ display:flex; align-items:center; gap:0.75rem; }
 
-  .sort-control{ display:inline-flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:600; color:var(--ink-soft); }
-  .sort-control select{
-    padding:0.4rem 0.8rem; border-radius:8px; border:1.5px solid #ddd8ca; background:rgba(255,255,255,0.9);
-    font-family:'Inter',sans-serif; font-size:0.8rem; color:var(--ink); cursor:pointer; outline:none; transition:border-color 0.2s;
+  .sort-label{ display:flex; align-items:center; gap:0.5rem; font-size:0.8rem; font-weight:600; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.03em; }
+  .sort-label select{
+    font-family:'Roboto Mono',monospace; font-size:0.82rem; text-transform:none; letter-spacing:normal; font-weight:400;
+    padding:0.4rem 0.5rem; border:1.5px solid #ddd8ca; border-radius:8px; background:rgba(255,255,255,0.95); color:var(--ink);
   }
-  .sort-control select:focus{ border-color:var(--gold); }
+
+  .league-badge{
+    display:inline-flex; align-items:center; justify-content:center; border-radius:50%; flex-shrink:0;
+    color:#fff; font-family:'Bebas Neue',sans-serif; letter-spacing:0.02em;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.25);
+    text-shadow:0 1px 1px rgba(0,0,0,0.35);
+  }
+
+  .club-badge-slot{
+    display:inline-flex; align-items:center; justify-content:center; border-radius:50%; flex-shrink:0; overflow:hidden;
+    background:rgba(240,245,246,0.9); border:1.5px solid #e2ddd0; transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .club-badge-slot img{ width:100%; height:100%; object-fit:contain; }
+  .club-badge-slot.badge-missing::before{ content:'🛡️'; line-height:1; opacity:0.55; }
+
+  .shop-by-club{ padding:2.5rem 0 1rem; }
+  .sbc-heading{ text-align:center; font-size:clamp(1.6rem, 4.5vw, 2rem); color:var(--pitch-dark); }
+  .sbc-sub{ text-align:center; font-size:0.85rem; color:var(--ink-soft); margin-bottom:1.3rem; }
+  .sbc-row{ display:flex; gap:1.4rem; overflow-x:auto; padding:0.5rem 1.25rem 1.2rem; scrollbar-width:thin; }
+  .club-chip{ display:flex; flex-direction:column; align-items:center; gap:0.5rem; background:none; border:none; cursor:pointer; flex-shrink:0; width:84px; }
+  .club-chip span{ font-size:0.78rem; font-weight:600; color:var(--ink); text-align:center; line-height:1.2; }
+  .club-chip:hover .club-badge-slot{ transform:translateY(-3px); box-shadow:0 6px 14px rgba(0,0,0,0.2); }
 
   .products{ position:relative; z-index:2; display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:1.4rem; }
 
@@ -379,9 +379,8 @@
   }
   .photo-placeholder .upload-icon{ font-size:1.5rem; line-height:1; opacity:0.85; }
 
-  /* UPDATED: Word wrapping to prevent long club names from pushing card widths out */
-  .product-info{ padding:1.1rem 1.2rem 1.3rem; display:flex; flex-direction:column; flex:1; overflow:hidden; }
-  .product-title{ font-size:1rem; font-weight:600; margin-bottom:0.25rem; color:var(--ink); overflow-wrap:anywhere; }
+  .product-info{ padding:1.1rem 1.2rem 1.3rem; display:flex; flex-direction:column; flex:1; }
+  .product-title{ font-size:1rem; font-weight:600; margin-bottom:0.25rem; color:var(--ink); display:flex; align-items:center; gap:0.4rem; }
   .product-meta{ font-size:0.78rem; color:var(--ink-soft); margin-bottom:0.8rem; }
   .product-price{ font-family:'Roboto Mono',monospace; font-weight:500; color:var(--crimson); font-size:1.1rem; margin-bottom:1rem; margin-top:auto; }
   .ship-note{ font-size:0.72rem; color:var(--ink-soft); font-family:'Inter',sans-serif; font-weight:400; display:block; margin-top:0.1rem; }
@@ -406,29 +405,31 @@
   .footer-links a:hover{ color:var(--gold-bright); }
   .copyright{ font-size:0.8rem; opacity:0.7; font-family:'Roboto Mono',monospace; position:relative; z-index:2; }
 
+  /* ---------- Floating Right-Side Socials ---------- */
   .floating-socials{ position:fixed; right:1rem; bottom:1.5rem; z-index:90; display:flex; flex-direction:column; gap:0.75rem; pointer-events:none; }
   .floating-socials a{ pointer-events:auto; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(20,24,27,0.85); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); border:1px solid rgba(94,234,212,0.4); color:var(--chalk); box-shadow:0 8px 20px rgba(0,0,0,0.3); transition:transform 0.2s, background 0.2s, border-color:0.2s; text-decoration:none; }
   .floating-socials a:hover{ transform:scale(1.1) translateX(-2px); background:var(--pitch-dark); border-color:var(--gold-bright); color:var(--gold-bright); }
   .floating-socials svg{ width:24px; height:24px; }
 
+  /* ---------- Customize modal ---------- */
   .modal-overlay{ position:fixed; inset:0; background:rgba(10,20,15,0.65); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; z-index:1000; padding:1rem; }
   .modal-overlay[hidden]{ display:none; }
   .modal-panel{ position:relative; max-width:680px; width:100%; max-height:92vh; overflow-y:auto; background:rgba(255,255,255,0.95); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); border-radius:20px; border:1px solid rgba(255,255,255,0.8); box-shadow:0 30px 80px -20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.9); padding:1.75rem; }
   .modal-close{ position:absolute; top:1rem; right:1rem; background:rgba(0,0,0,0.06); border:none; width:36px; height:36px; border-radius:50%; font-size:1.4rem; line-height:1; cursor:pointer; color:var(--ink); display:flex; align-items:center; justify-content:center; z-index:10; }
   .modal-close:hover{ background:rgba(0,0,0,0.12); }
   .modal-eyebrow{ font-family:'Roboto Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--crimson); margin-bottom:0.2rem; display:block; }
-  .modal-grid{ display:grid; grid-template-columns:220px 1fr; gap:1.5rem; margin-top:0.4rem; }
-  .modal-visual-col{ display:flex; flex-direction:column; gap:0.85rem; }
+  .modal-grid{ display:grid; grid-template-columns:200px 1fr; gap:1.5rem; margin-top:0.4rem; }
   .modal-visual{ background:linear-gradient(160deg, rgba(255,255,255,0.6), rgba(232,228,215,0.6)); border-radius:16px; display:flex; align-items:center; justify-content:center; padding:1rem; min-height:200px; height:fit-content; }
   .modal-visual svg{ width:140px; filter:drop-shadow(0 10px 14px rgba(0,0,0,0.18)); }
   .modal-visual .kit-photo{ width:100%; height:auto; max-height:240px; object-fit:cover; border-radius:12px; }
   .modal-title{ font-size:1.4rem; color:var(--pitch-dark); margin-bottom:0.15rem; line-height:1.1; }
   .modal-price{ font-family:'Roboto Mono',monospace; color:var(--crimson); font-size:1.15rem; margin-bottom:1rem; font-weight:600; }
   .modal-note{ font-size:0.8rem; color:var(--ink-soft); margin:-0.7rem 0 1.1rem; }
-  
-  .fabric-note{ font-size:0.78rem; color:var(--ink-soft); background:rgba(240,245,246,0.85); border:1px solid #ddd8ca; border-radius:10px; padding:0.75rem 0.85rem; line-height:1.45; }
-  .fabric-note strong{ color:var(--ink); font-weight:600; }
-  
+  .fabric-note{ font-size:0.8rem; color:var(--ink-soft); background:rgba(240,245,246,0.7); border:1px solid #e2ddd0; border-radius:8px; padding:0.7rem 0.85rem; margin-top:1.1rem; margin-bottom:1.1rem; line-height:1.45; }
+  .fabric-note strong{ color:var(--ink); }
+  .pp-title-row{ display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+  .pp-title-row .modal-title{ margin:0; flex:1; min-width:200px; }
+  .pp-add-btn-top{ width:auto; flex-shrink:0; padding:1rem 2rem; font-size:1.15rem; min-height:56px; margin-top:0.2rem; }
   .modal-row{ display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; }
   .version-toggle{ display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; }
   .version-btn{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.15rem; padding:0.65rem 0.5rem; border-radius:8px; border:1.5px solid #ddd8ca; background:rgba(255,255,255,0.8); cursor:pointer; font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.03em; color:var(--ink); transition:all 0.2s; min-height:50px; }
@@ -439,29 +440,20 @@
 
   .nowrap-label { white-space: nowrap; display: block; font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.04em; }
 
-  .patch-checkbox-group { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; }
-  .patch-checkbox-label {
-    display:flex; align-items:center; gap:0.5rem; font-size:0.78rem; color:var(--ink);
-    background:rgba(255,255,255,0.8); border:1.5px solid #ddd8ca; padding:0.5rem 0.6rem;
-    border-radius:6px; cursor:pointer; transition:border-color 0.2s; user-select:none;
-  }
-  .patch-checkbox-label:hover { border-color:var(--gold); }
-  .patch-checkbox-label input { width:16px; height:16px; accent-color:var(--crimson); cursor:pointer; }
-  .patch-helper-text { font-size:0.72rem; color:var(--crimson); font-weight:600; margin-bottom:0.35rem; display:block; }
-
-  .size-chart-box { display:none; margin:1rem 0; padding:0.8rem; background:rgba(255,255,255,0.95); border:1.5px solid #ddd8ca; border-radius:10px; font-size:0.92rem; animation:fadeIn 0.3s ease; overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%; }
+  /* ---------- Size Chart Table in Modal ---------- */
+  .size-chart-box { display:none; margin:1rem 0; padding:1rem; background:rgba(255,255,255,0.95); border:1.5px solid #ddd8ca; border-radius:10px; font-size:0.92rem; animation:fadeIn 0.3s ease; }
   .size-chart-box.active { display:block; }
-  .size-chart-table { width:100%; min-width:380px; border-collapse:collapse; text-align:center; }
+  .size-chart-table { width:100%; border-collapse:collapse; text-align:center; }
   .size-chart-table th { background:var(--pitch-dark); color:var(--chalk); padding:0.6rem 0.4rem; font-weight:600; font-size:0.88rem; letter-spacing:0.02em; border:1px solid var(--pitch-mid); }
   .size-chart-table td { padding:0.55rem 0.4rem; border:1px solid #ddd8ca; font-family:'Roboto Mono',monospace; font-size:0.92rem; color:var(--ink); }
   .size-chart-table tr:nth-child(even) { background:rgba(240,245,246,0.6); }
   .size-chart-btn { background:none; border:none; color:var(--crimson); font-size:0.78rem; font-weight:600; cursor:pointer; text-decoration:underline; padding:0; margin-left:auto; display:inline-block; }
 
+  /* ---------- Dedicated product page ---------- */
   .product-page-container{ padding-top:2rem; padding-bottom:3rem; }
   .back-link{ display:inline-block; font-family:'Bebas Neue',sans-serif; letter-spacing:0.04em; font-size:1rem; color:var(--crimson); text-decoration:none; margin-bottom:1.4rem; }
   .back-link:hover{ text-decoration:underline; }
   .product-page-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; }
-  .product-photo-col{ display:flex; flex-direction:column; gap:1.2rem; }
   .product-photo-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0.9rem; }
   .photo-slot{
     aspect-ratio:1; border-radius:14px; border:2px dashed rgba(20,24,27,0.25);
@@ -476,92 +468,54 @@
   .patch-photo-row{ display:flex; gap:0.6rem; margin-top:0.4rem; }
   .patch-photo-item{ flex:1; text-align:center; cursor:pointer; }
   .patch-photo-thumb{
-    aspect-ratio:1; border-radius:99px; border:2px dashed #ddd8ca; background:rgba(240,245,246,0.6);
+    aspect-ratio:1; border-radius:9px; border:2px dashed #ddd8ca; background:rgba(240,245,246,0.6);
     display:flex; align-items:center; justify-content:center; margin-bottom:0.3rem;
     font-size:0.62rem; line-height:1.25; color:var(--ink-soft); padding:0.3rem;
   }
-  .patch-photo-thumb img{ width:100%; height:100%; object-fit:cover; border-radius:50%; }
+  .patch-photo-thumb img{ width:100%; height:100%; object-fit:cover; border-radius:7px; }
   .patch-photo-item.active .patch-photo-thumb{ border-style:solid; border-color:var(--gold); background:rgba(20,184,166,0.08); }
+  @media (max-width:760px){
+    .product-page-grid{ grid-template-columns:1fr; gap:1.4rem; }
+  }
 
-  /* ---------- FULL MOBILE RESPONSIVE OPTIMIZATIONS (ZERO CUT-OFFS) ---------- */
-  @media (max-width:860px){
+  /* ---------- Responsive Phone Optimizations ---------- */
+  @media (max-width: 860px){
     .hero-inner{ grid-template-columns:1fr; gap:2.2rem; }
     .hero-pitch-lines{ display:none; }
     nav ul li a{ padding:0.75rem 0.9rem; font-size:0.95rem; }
     .floating-socials{ right:0.75rem; bottom:1rem; }
-    
-    /* Safely stack Mega-Menu vertically on tablets and phones so it never goes off-screen */
-    .mega-menu{
-      flex-direction: column; gap: 1rem; width: calc(100vw - 2rem);
-      max-width: 320px; white-space: normal; left: 50%;
-      transform: translateX(-50%) translateY(8px); padding: 1rem;
-    }
-    .mega-col{ min-width: auto; width: 100%; }
   }
 
   @media (max-width: 600px){
-    /* 1. Eliminate horizontal cut-offs by switching grids to fluid minmax(0, 1fr) */
-    .products{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.75rem; }
-    .fan-zone-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.75rem; }
-    .hero-stats-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.6rem; }
-    .home-trust-grid{ grid-template-columns:1fr; gap:0.6rem; }
-
-    /* 2. Compact navigation and 100% full-width search alignment */
-    .nav-inner{ gap:0.5rem; padding:0.5rem; justify-content:center; }
-    nav ul{ gap:0.1rem; }
-    nav ul li a{ padding:0.5rem 0.6rem; font-size:0.85rem; }
-    .search-wrapper{ width:100%; max-width:100%; padding:0 0.5rem; justify-content:center; margin:0.2rem auto; }
-    .nav-search{ width:100%; justify-content:space-between; }
-    .nav-search input{ width:100%; flex:1; }
-    .search-suggestions{ width:calc(100% - 1rem); left:0.5rem; right:0.5rem; top:calc(100% + 4px); max-height:280px; }
-
-    /* 3. Horizontal swipe bars with safe padding so first/last items never clip */
-    .segmented-wrap{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; justify-content:flex-start; padding:0.2rem 0.75rem 0.6rem; margin-bottom:1rem; }
-    .segmented-wrap::-webkit-scrollbar{ height:4px; }
-    .segmented-wrap::-webkit-scrollbar-thumb{ background:var(--gold); border-radius:4px; }
-    .segmented-control{ flex-wrap:nowrap; width:max-content; margin:0; }
-    .tab{ font-size:0.95rem; padding:0.45rem 0.85rem; flex-shrink:0; }
-
-    /* 4. Ergonomic bottom-sheet modal that accounts for iOS home bars */
-    .modal-overlay{ padding:0; align-items:flex-end; }
-    .modal-panel{ padding:1.8rem 1rem calc(1.5rem + env(safe-area-inset-bottom)); max-height:90vh; width:100%; border-radius:20px 20px 0 0; overflow-y:auto; overflow-x:hidden; }
-    .modal-close{ top:0.7rem; right:0.7rem; width:32px; height:32px; font-size:1.2rem; }
-    .modal-grid{ grid-template-columns:1fr; gap:1rem; }
-    .modal-visual{ min-height:150px; padding:0.75rem; }
-    .modal-visual svg{ width:110px; }
+    .modal-panel{ padding:1.25rem 1rem; max-height:88vh; }
+    .modal-grid{ grid-template-columns:1fr; gap:1.1rem; }
+    .modal-visual{ min-height:160px; padding:0.75rem; }
+    .modal-visual svg{ width:120px; }
+    .modal-row{ grid-template-columns:1fr; gap:0.75rem; }
     .version-toggle{ grid-template-columns:1fr; gap:0.5rem; }
-    .patch-checkbox-group{ grid-template-columns:1fr; gap:0.4rem; }
-    .patch-photo-row{ display:grid; grid-template-columns:repeat(2, 1fr); gap:0.5rem; }
-
-    /* 5. Stack call-to-actions and care alert sections */
-    .hero-ctas{ flex-direction:column; width:100%; }
-    .hero-ctas .btn{ width:100%; text-align:center; }
-    .care-grid{ grid-template-columns:1fr; gap:1rem; }
-    .care-alert{ padding:1.25rem; flex-direction:column; text-align:center; gap:0.8rem; }
+    .hero-stats-grid{ grid-template-columns:1fr 1fr; gap:0.6rem; }
     .stat-card{ padding:1rem 0.75rem; }
     .stat-card .num{ font-size:1.75rem; }
-    .kit-visual{ height:150px; }
-    .kit-visual svg{ width:84px; }
-    .product-info{ padding:0.85rem 0.75rem 1rem; }
-    .product-title{ font-size:0.92rem; }
+    .home-trust-grid{ grid-template-columns:1fr; gap:0.6rem; }
+    .products{ grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:0.9rem; }
+    .kit-visual{ height:160px; }
+    .kit-visual svg{ width:92px; }
+    .product-info{ padding:0.9rem 0.8rem 1rem; }
+    .product-title{ font-size:0.95rem; }
     .contact-form{ padding:1.5rem 1.1rem; }
-    .penalty-box-top{ width:220px; }
-    .league-header{ flex-direction:column; align-items:flex-start; gap:0.5rem; }
-    .sort-control{ width:100%; justify-content:space-between; }
-    .sort-control select{ flex:1; }
+    .penalty-box-top { width: 220px; }
 
+    /* Tighter, proportional spacing for phone */
     header.site-header{ padding:1.8rem 1rem 1.6rem; }
     main > .container{ padding-top:5rem; }
     .section-heading{ padding-top:1rem; margin-bottom:1rem; }
+    .segmented-wrap{ margin-bottom:1.2rem; }
+    .league-section{ margin-bottom:1.6rem; }
+    .league-header{ margin-bottom:0.7rem; padding-bottom:0.3rem; }
     .banner-logo-slot{ width:60px; height:60px; }
-    .product-page-container{ padding-top:1.2rem; padding-bottom:calc(2.5rem + env(safe-area-inset-bottom)); }
-    .product-page-grid{ grid-template-columns:1fr; gap:1.4rem; }
-  }
-
-  @media (max-width: 360px){
-    /* Extra narrow phone safety: stack product cards 1-wide so they remain legible */
-    .products{ grid-template-columns:1fr; }
-    .fan-zone-grid{ grid-template-columns:1fr; }
+    .product-page-container{ padding-top:1.2rem; padding-bottom:2rem; }
+    .patch-photo-row{ flex-wrap:wrap; }
+    .patch-photo-item{ flex:1 1 calc(50% - 0.3rem); }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -573,6 +527,7 @@
 <div class="bg-blobs" aria-hidden="true"><span class="b1"></span><span class="b2"></span></div>
 <a class="skip-link" href="#main">Skip to content</a>
 
+<!-- Floating Right-Side Socials -->
 <div class="floating-socials" aria-label="Social media quick links">
   <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" title="WhatsApp Us">
     <svg viewBox="0 0 24 24"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
@@ -595,6 +550,7 @@
 
 <header class="site-header">
   <div class="brand-mark">
+    <!-- Logo slot: reserved 112x112 space. Add your <img src="your-logo.png" alt="Corner Flag Jerseys logo"> inside this span when ready. -->
     <span class="crest" aria-hidden="true"></span>
   </div>
   <h1>Corner Flag Jerseys</h1>
@@ -629,7 +585,6 @@
       <li><a href="#" onclick="goToContact(event)">Contact</a></li>
       <li><a href="#" onclick="showPage('care', event)" id="nav-care">Jersey Care</a></li>
     </ul>
-
     <div class="search-wrapper">
       <form class="nav-search" role="search" onsubmit="return runSearch(event)">
         <input type="text" id="siteSearchInput" placeholder="Search jerseys…" aria-label="Search jerseys" autocomplete="off" oninput="handleSearchInput(event)" onfocus="handleSearchInput(event)">
@@ -642,8 +597,11 @@
 </nav>
 
 <div id="page-home" class="page active">
+
+<!-- Banner carousel: swap slide backgrounds/copy for real promo banners -->
 <section class="banner-carousel" aria-label="Promotions">
   <div class="carousel-track" id="carouselTrack">
+    <!-- Logo slot: reserved 84x84 space, top-left of banner. Add your <img src="..."> here when ready. -->
     <div class="banner-logo-slot" aria-hidden="true"></div>
     <div class="carousel-slide slide-a active">
       <span class="slide-kicker">Slide 1 · Replace me</span>
@@ -666,43 +624,6 @@
   <div class="carousel-dots" id="carouselDots"></div>
 </section>
 
-<div class="badge-sections-wrap">
-  <div class="badge-block">
-    <h2>SHOP BY CLUB</h2>
-    <p class="sub">Scroll Right To Explore</p>
-    <div class="badge-scroll-row">
-      <a class="badge-card" onclick="scrollToTeam('Barcelona')"><div class="badge-icon-wrap"></div><span>Barcelona</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Real Madrid')"><div class="badge-icon-wrap"></div><span>Real Madrid</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Manchester United')"><div class="badge-icon-wrap"></div><span>Man United</span></a>
-      <a class="badge-card" onclick="scrollToTeam('AC Milan')"><div class="badge-icon-wrap"></div><span>AC Milan</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Manchester City')"><div class="badge-icon-wrap"></div><span>Man City</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Liverpool')"><div class="badge-icon-wrap"></div><span>Liverpool</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Bayern Munich')"><div class="badge-icon-wrap"></div><span>Bayern Munich</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Arsenal')"><div class="badge-icon-wrap"></div><span>Arsenal</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Al Nassr')"><div class="badge-icon-wrap"></div><span>Al Nassr</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Inter Miami')"><div class="badge-icon-wrap"></div><span>Inter Miami</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Chelsea')"><div class="badge-icon-wrap"></div><span>Chelsea</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Juventus')"><div class="badge-icon-wrap"></div><span>Juventus</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Borussia Dortmund')"><div class="badge-icon-wrap"></div><span>Dortmund</span></a>
-    </div>
-  </div>
-
-  <div class="badge-block">
-    <h2>SHOP BY NATION</h2>
-    <p class="sub">Scroll Right To Explore</p>
-    <div class="badge-scroll-row">
-      <a class="badge-card" onclick="scrollToTeam('Argentina')"><div class="badge-icon-wrap"></div><span>Argentina</span></a>
-      <a class="badge-card" onclick="scrollToTeam('France')"><div class="badge-icon-wrap"></div><span>France</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Brazil')"><div class="badge-icon-wrap"></div><span>Brazil</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Spain')"><div class="badge-icon-wrap"></div><span>Spain</span></a>
-      <a class="badge-card" onclick="scrollToTeam('England')"><div class="badge-icon-wrap"></div><span>England</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Belgium')"><div class="badge-icon-wrap"></div><span>Belgium</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Norway')"><div class="badge-icon-wrap"></div><span>Norway</span></a>
-      <a class="badge-card" onclick="scrollToTeam('Mexico')"><div class="badge-icon-wrap"></div><span>Mexico</span></a>
-    </div>
-  </div>
-</div>
-
 <section class="hero" id="home">
   <div class="hero-pitch-lines" aria-hidden="true">
     <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg">
@@ -722,6 +643,7 @@
       </div>
     </div>
     
+    <!-- Prominent Large Stat Tabs Grid + Trust Features -->
     <div>
       <div class="hero-stats-grid">
         <div class="stat-card"><span class="num">50+</span><span class="label">Kits in Stock</span></div>
@@ -731,12 +653,40 @@
       </div>
       
       <div class="home-trust-grid">
-        <div class="trust-block-card"><span class="tb-icon">📏</span><span class="tb-title">Match-fit sizing charts</span></div>
-        <div class="trust-block-card"><span class="tb-icon">🧵</span><span class="tb-title">Quality-checked stitching</span></div>
-        <div class="trust-block-card"><span class="tb-icon">🔄</span><span class="tb-title">Easy 7-day exchange</span></div>
-        <div class="trust-block-card"><span class="tb-icon">📦</span><span class="tb-title">Inspected before dispatch</span></div>
+        <div class="trust-block-card">
+          <span class="tb-icon">📏</span>
+          <span class="tb-title">Match-fit sizing charts</span>
+        </div>
+        <div class="trust-block-card">
+          <span class="tb-icon">🧵</span>
+          <span class="tb-title">Quality-checked stitching</span>
+        </div>
+        <div class="trust-block-card">
+          <span class="tb-icon">🔄</span>
+          <span class="tb-title">Easy 7-day exchange</span>
+        </div>
+        <div class="trust-block-card">
+          <span class="tb-icon">📦</span>
+          <span class="tb-title">Inspected before dispatch</span>
+        </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="shop-by-club">
+  <div class="container">
+    <h2 class="sbc-heading">Shop by Club</h2>
+    <p class="sbc-sub">Scroll right to explore</p>
+    <div class="sbc-row" id="shopByClubRow"></div>
+  </div>
+</section>
+
+<section class="shop-by-club">
+  <div class="container">
+    <h2 class="sbc-heading">Shop by National Team</h2>
+    <p class="sbc-sub">Scroll right to explore</p>
+    <div class="sbc-row" id="shopByNationRow"></div>
   </div>
 </section>
 
@@ -746,7 +696,7 @@
     <span>Fan Zone · In Real Life</span>
   </h2>
   <p style="text-align:center; color:var(--ink-soft); font-size:0.9rem; max-width:520px; margin:-0.8rem auto 1.8rem; font-weight:500;">Tag us on Instagram wearing your matchday fit to get featured on our community wall.</p>
-  
+
   <div class="fan-zone-grid">
     <div class="fan-card">
       <div class="fan-photo-slot"><span>📷 Customer Fit 1</span></div>
@@ -774,6 +724,7 @@
 
 <div id="page-products" class="page">
 <main id="main">
+<!-- Penalty box, drawn top-down with real pitch proportions (~44m x 18m box) -->
 <svg class="penalty-box-top" viewBox="0 0 220 90" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
   <line x1="20" y1="2" x2="200" y2="2" stroke-width="2.5"/>
   <path d="M40,2 L40,74 L180,74 L180,2" stroke-width="2"/>
@@ -783,7 +734,10 @@
 </svg>
 
 <div class="container">
-  <h2 class="section-heading" id="products"><span>Shop Jerseys</span></h2>
+
+  <h2 class="section-heading" id="products">
+    <span>Shop Jerseys</span>
+  </h2>
 
   <div class="segmented-wrap">
     <div class="segmented-control" role="tablist" aria-label="Jersey collections">
@@ -814,6 +768,7 @@
   <div id="full-sleeves" class="tab-content" role="tabpanel" aria-labelledby="tab-full-sleeves">
     <div id="full-sleeves-leagues"></div>
   </div>
+
 </div>
 
 <section class="contact-section" id="contact">
@@ -831,8 +786,8 @@
           <input type="email" id="email" name="email" placeholder="you@example.com" required>
         </div>
         <div class="field">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" placeholder="e.g. 98765 43210">
         </div>
         <div class="field">
           <label for="message">Message</label>
@@ -843,6 +798,129 @@
     </div>
   </div>
 </section>
+
+</main>
+</div>
+
+<div id="page-product" class="page">
+<main>
+<div class="container product-page-container">
+  <a href="#" class="back-link" onclick="showPage('products', event)">&larr; Back to Shop Jerseys</a>
+
+  <div class="product-page-grid">
+    <div>
+      <div class="product-photo-grid">
+        <div class="photo-slot" id="pp-photo-front">
+          <span>Front photo</span>
+          <small>Upload jersey front here</small>
+        </div>
+        <div class="photo-slot" id="pp-photo-back">
+          <span>Back photo</span>
+          <small>Upload jersey back here</small>
+        </div>
+      </div>
+      <p class="fabric-note"><strong>Master/Fan version:</strong> 150gsm brushed polyester, breathable and durable for everyday wear — embroidered club crest and embroidered manufacturer logo; sponsor badges are rubberized (heat-pressed).<br><strong>Player version:</strong> 130gsm micro-mesh, a lighter athletic-fit fabric with a sweat-wicking finish — crest, manufacturer logo, and sponsor badges are all rubberized (heat-pressed).</p>
+    </div>
+
+    <div>
+      <span class="modal-eyebrow" id="ppEyebrow">Product</span>
+      <div class="pp-title-row">
+        <h2 class="modal-title" id="ppTitle" style="font-size:2rem;"></h2>
+        <button class="card-btn pp-add-btn-top" id="ppAddBtn" onclick="ppAddToCart()">Add to cart — ₹600</button>
+      </div>
+      <p class="product-meta" id="ppMeta"></p>
+
+      <div class="field">
+        <label>Version</label>
+        <div class="version-toggle" role="radiogroup" aria-label="Kit version">
+          <button type="button" class="version-btn active" id="pp-version-master" onclick="ppSelectVersion('master')">Master / Fan version<span>₹600, shipping included</span></button>
+          <button type="button" class="version-btn" id="pp-version-player" onclick="ppSelectVersion('player')">Player version<span>₹650, athletic slim fit</span></button>
+        </div>
+      </div>
+
+      <div class="field">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.35rem;">
+          <label for="pp-size" style="margin-bottom:0;">Select Size</label>
+          <button type="button" class="size-chart-btn" onclick="ppToggleSizeChart()">📏 View Size Chart</button>
+        </div>
+        <select id="pp-size">
+          <option value="XS">XS (Extra Small)</option>
+          <option value="S">S (Small)</option>
+          <option value="M" selected>M (Medium)</option>
+          <option value="L">L (Large)</option>
+          <option value="XL">XL (Extra Large)</option>
+          <option value="XXL">XXL (Double XL)</option>
+          <option value="XXXL">XXXL (Triple XL)</option>
+        </select>
+      </div>
+
+      <div class="size-chart-box" id="ppSizeChartBox">
+        <table class="size-chart-table">
+          <thead>
+            <tr><th>SIZE</th><th>Player Version<br>Chest Size (inches)</th><th>Fan Version<br>Chest Size (inches)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>XS</strong></td><td>34</td><td>36</td></tr>
+            <tr><td><strong>S</strong></td><td>36</td><td>38</td></tr>
+            <tr><td><strong>M</strong></td><td>38</td><td>40</td></tr>
+            <tr><td><strong>L</strong></td><td>40</td><td>42</td></tr>
+            <tr><td><strong>XL</strong></td><td>42</td><td>44</td></tr>
+            <tr><td><strong>XXL</strong></td><td>44</td><td>46</td></tr>
+            <tr><td><strong>XXXL</strong></td><td>46</td><td>48</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="modal-price" id="ppPrice">₹600</p>
+      <p class="modal-note" id="ppBreakdown" style="margin-top:-0.9rem;">Master kit ₹600 · shipping included</p>
+
+      <div class="field">
+        <label for="pp-nameselect">Name on jersey</label>
+        <select id="pp-nameselect" onchange="onPpNameSelectChange()">
+          <option value="none">No name</option>
+          <optgroup label="Most used names — ₹120" id="pp-popular-group"></optgroup>
+          <option value="custom">Custom name &amp; number — ₹220</option>
+        </select>
+      </div>
+
+      <div class="modal-row" id="pp-name-row" style="display:none;">
+        <div class="field">
+          <label for="pp-name" class="nowrap-label">Your name</label>
+          <input type="text" id="pp-name" maxlength="12" placeholder="e.g. SHARMA">
+        </div>
+        <div class="field">
+          <label for="pp-number">Number</label>
+          <input type="number" id="pp-number" min="0" max="99" placeholder="10">
+        </div>
+      </div>
+
+      <div class="photo-slot name-preview-slot" id="pp-name-preview">
+        <span>Name &amp; number preview</span>
+        <small>Photo of the printed name/number will appear here</small>
+      </div>
+
+      <div class="field">
+        <label id="ppPatchLabel">Sleeve patch (+₹40)</label>
+        <div class="patch-photo-row" id="ppPatchRow">
+          <div class="patch-photo-item active" data-patch="none" onclick="ppSelectPatch('none', this)">
+            <div class="patch-photo-thumb"><span>No patch</span></div>
+          </div>
+          <div class="patch-photo-item" data-patch="comp" onclick="ppSelectPatch('comp', this)">
+            <div class="patch-photo-thumb"><span>Competition<br>photo</span></div>
+          </div>
+          <div class="patch-photo-item" data-patch="anniv" onclick="ppSelectPatch('anniv', this)">
+            <div class="patch-photo-thumb"><span>Anniversary<br>photo</span></div>
+          </div>
+          <div class="patch-photo-item" data-patch="armband" onclick="ppSelectPatch('armband', this)">
+            <div class="patch-photo-thumb"><span>Captain's armband<br>photo</span></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="modal-note">Most used names come pre-set with that player's number. Custom kits ship 2–3 days later than stock kits.</p>
+    </div>
+  </div>
+</div>
 </main>
 </div>
 
@@ -899,122 +977,24 @@
 </main>
 </div>
 
-<div id="page-product" class="page">
-<main>
-<div class="container product-page-container">
-  <a href="#" class="back-link" onclick="showPage('products', event)">&larr; Back to Shop Jerseys</a>
-
-  <div class="product-page-grid">
-    <div class="product-photo-col">
-      <div class="product-photo-grid">
-        <div class="photo-slot" id="pp-photo-front">
-          <span>Front photo</span><small>Upload jersey front here</small>
-        </div>
-        <div class="photo-slot" id="pp-photo-back">
-          <span>Back photo</span><small>Upload jersey back here</small>
-        </div>
-      </div>
-
-      <p class="fabric-note">Fabric: The <strong>Master/Fan version</strong> is crafted from 150gsm brushed polyester, offering a breathable, durable weave built for everyday comfort. It comes finished with a classic embroidered club crest alongside sleek, heat-pressed rubberized sponsor badges just like the player kit. The <strong>Player version</strong> is tailored for the pitch using an ultra-light 130gsm micro-mesh with a sweat-wicking athletic fit, finished entirely with heat-pressed rubberized crests and sponsors for an authentic match-day feel.</p>
-    </div>
-
-    <div>
-      <span class="modal-eyebrow" id="ppEyebrow">Product</span>
-      <h2 class="modal-title" id="ppTitle" style="font-size:2rem;"></h2>
-      <p class="product-meta" id="ppMeta"></p>
-
-      <div class="field">
-        <label>Version</label>
-        <div class="version-toggle" role="radiogroup" aria-label="Kit version">
-          <button type="button" class="version-btn active" id="pp-version-master" onclick="ppSelectVersion('master')">Master / Fan version<span>₹600, shipping included</span></button>
-          <button type="button" class="version-btn" id="pp-version-player" onclick="ppSelectVersion('player')">Player version<span>₹650, athletic slim fit</span></button>
-        </div>
-      </div>
-
-      <div class="field">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.35rem;">
-          <label for="pp-size" style="margin-bottom:0;">Select Size</label>
-          <button type="button" class="size-chart-btn" onclick="ppToggleSizeChart()">📏 View Size Chart</button>
-        </div>
-        <select id="pp-size">
-          <option value="XS">XS (Extra Small)</option><option value="S">S (Small)</option>
-          <option value="M" selected>M (Medium)</option><option value="L">L (Large)</option>
-          <option value="XL">XL (Extra Large)</option><option value="XXL">XXL (Double XL)</option>
-          <option value="XXXL">XXXL (Triple XL)</option>
-        </select>
-      </div>
-
-      <div class="size-chart-box" id="ppSizeChartBox">
-        <table class="size-chart-table">
-          <thead><tr><th>SIZE</th><th>Player Version<br>Chest Size (inches)</th><th>Fan Version<br>Chest Size (inches)</th></tr></thead>
-          <tbody>
-            <tr><td><strong>XS</strong></td><td>34</td><td>36</td></tr><tr><td><strong>S</strong></td><td>36</td><td>38</td></tr>
-            <tr><td><strong>M</strong></td><td>38</td><td>40</td></tr><tr><td><strong>L</strong></td><td>40</td><td>42</td></tr>
-            <tr><td><strong>XL</strong></td><td>42</td><td>44</td></tr><tr><td><strong>XXL</strong></td><td>44</td><td>46</td></tr>
-            <tr><td><strong>XXXL</strong></td><td>46</td><td>48</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="modal-price" id="ppPrice">₹600</p>
-      <p class="modal-note" id="ppBreakdown" style="margin-top:-0.9rem;">Master kit ₹600 · shipping included</p>
-
-      <div class="field">
-        <label for="pp-nameselect">Name on jersey</label>
-        <select id="pp-nameselect" onchange="onPpNameSelectChange()">
-          <option value="none">No name</option>
-          <optgroup label="Most used names — ₹120" id="pp-popular-group"></optgroup>
-          <option value="custom">Custom name &amp; number — ₹220</option>
-        </select>
-      </div>
-
-      <div class="modal-row" id="pp-name-row" style="display:none;">
-        <div class="field">
-          <label for="pp-name" class="nowrap-label">Your name</label>
-          <input type="text" id="pp-name" maxlength="12" placeholder="e.g. SHARMA">
-        </div>
-        <div class="field">
-          <label for="pp-number">Number</label>
-          <input type="number" id="pp-number" min="0" max="99" placeholder="10">
-        </div>
-      </div>
-
-      <div class="photo-slot name-preview-slot" id="pp-name-preview">
-        <span>Name &amp; number preview</span><small>Photo of the printed name/number will appear here</small>
-      </div>
-
-      <div class="field">
-        <div id="ppPatchContainer"></div>
-      </div>
-
-      <p class="modal-note">Most used names come pre-set with that player's number. Custom kits ship 2–3 days later than stock kits.</p>
-      <button class="card-btn" id="ppAddBtn" onclick="ppAddToCart()">Add to cart — ₹600</button>
-    </div>
-  </div>
-</div>
-</main>
-</div>
-
+<!-- UPDATED FOOTER: Removed giant boot graphics completely -->
 <footer>
   <div class="footer-links">
+    <a href="#" onclick="showPage('care', event)">Jersey Care</a>
     <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-    <a href="#" onclick="showPage('care', event)">Jersey Care</a>
     <a href="mailto:hello@cornerflagjerseys.com">Email</a>
   </div>
   <p class="copyright">© 2026 CORNER FLAG JERSEYS — ALL RIGHTS RESERVED</p>
 </footer>
 
+<!-- Customize modal -->
 <div class="modal-overlay" id="customizeModal" hidden>
   <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="modal-close" onclick="closeCustomize()" aria-label="Close customization panel">&times;</button>
     <span class="modal-eyebrow">Customize your kit</span>
     <div class="modal-grid">
-      <div class="modal-visual-col">
-        <div class="modal-visual" id="modalVisual"></div>
-        <p class="fabric-note">Fabric: The <strong>Master/Fan version</strong> is crafted from 150gsm brushed polyester, offering a breathable, durable weave built for everyday comfort. It comes finished with a classic embroidered club crest alongside sleek, heat-pressed rubberized sponsor badges just like the player kit. The <strong>Player version</strong> is tailored for the pitch using an ultra-light 130gsm micro-mesh with a sweat-wicking athletic fit, finished entirely with heat-pressed rubberized crests and sponsors for an authentic match-day feel.</p>
-      </div>
-
+      <div class="modal-visual" id="modalVisual"></div>
       <div>
         <h3 class="modal-title" id="modalTitle"></h3>
         <p class="product-meta" id="modalMeta"></p>
@@ -1027,26 +1007,40 @@
           </div>
         </div>
 
+        <p class="fabric-note"><strong>Master/Fan version:</strong> 150gsm brushed polyester, breathable and durable for everyday wear — embroidered club crest and embroidered manufacturer logo; sponsor badges are rubberized (heat-pressed).<br><strong>Player version:</strong> 130gsm micro-mesh, a lighter athletic-fit fabric with a sweat-wicking finish — crest, manufacturer logo, and sponsor badges are all rubberized (heat-pressed).</p>
+
         <div class="field">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.35rem;">
             <label for="custom-size" style="margin-bottom:0;">Select Size</label>
             <button type="button" class="size-chart-btn" onclick="toggleSizeChart()">📏 View Size Chart</button>
           </div>
           <select id="custom-size">
-            <option value="XS">XS (Extra Small)</option><option value="S">S (Small)</option>
-            <option value="M" selected>M (Medium)</option><option value="L">L (Large)</option>
-            <option value="XL">XL (Extra Large)</option><option value="XXL">XXL (Double XL)</option>
+            <option value="XS">XS (Extra Small)</option>
+            <option value="S">S (Small)</option>
+            <option value="M" selected>M (Medium)</option>
+            <option value="L">L (Large)</option>
+            <option value="XL">XL (Extra Large)</option>
+            <option value="XXL">XXL (Double XL)</option>
             <option value="XXXL">XXXL (Triple XL)</option>
           </select>
         </div>
 
         <div class="size-chart-box" id="sizeChartBox">
           <table class="size-chart-table">
-            <thead><tr><th>SIZE</th><th>Player Version<br>Chest Size (inches)</th><th>Fan Version<br>Chest Size (inches)</th></tr></thead>
+            <thead>
+              <tr>
+                <th>SIZE</th>
+                <th>Player Version<br>Chest Size (inches)</th>
+                <th>Fan Version<br>Chest Size (inches)</th>
+              </tr>
+            </thead>
             <tbody>
-              <tr><td><strong>XS</strong></td><td>34</td><td>36</td></tr><tr><td><strong>S</strong></td><td>36</td><td>38</td></tr>
-              <tr><td><strong>M</strong></td><td>38</td><td>40</td></tr><tr><td><strong>L</strong></td><td>40</td><td>42</td></tr>
-              <tr><td><strong>XL</strong></td><td>42</td><td>44</td></tr><tr><td><strong>XXL</strong></td><td>44</td><td>46</td></tr>
+              <tr><td><strong>XS</strong></td><td>34</td><td>36</td></tr>
+              <tr><td><strong>S</strong></td><td>36</td><td>38</td></tr>
+              <tr><td><strong>M</strong></td><td>38</td><td>40</td></tr>
+              <tr><td><strong>L</strong></td><td>40</td><td>42</td></tr>
+              <tr><td><strong>XL</strong></td><td>42</td><td>44</td></tr>
+              <tr><td><strong>XXL</strong></td><td>44</td><td>46</td></tr>
               <tr><td><strong>XXXL</strong></td><td>46</td><td>48</td></tr>
             </tbody>
           </table>
@@ -1076,7 +1070,21 @@
         </div>
         
         <div class="field">
-          <div id="modalPatchContainer"></div>
+          <label id="customPatchLabel">Sleeve patch (+₹40)</label>
+          <div class="patch-photo-row" id="customPatchRow">
+            <div class="patch-photo-item active" data-patch="none" onclick="selectPatch('none', this)">
+              <div class="patch-photo-thumb"><span>No patch</span></div>
+            </div>
+            <div class="patch-photo-item" data-patch="comp" onclick="selectPatch('comp', this)">
+              <div class="patch-photo-thumb"><span>Competition<br>photo</span></div>
+            </div>
+            <div class="patch-photo-item" data-patch="anniv" onclick="selectPatch('anniv', this)">
+              <div class="patch-photo-thumb"><span>Anniversary<br>photo</span></div>
+            </div>
+            <div class="patch-photo-item" data-patch="armband" onclick="selectPatch('armband', this)">
+              <div class="patch-photo-thumb"><span>Captain's armband<br>photo</span></div>
+            </div>
+          </div>
         </div>
         
         <p class="modal-note">Most used names come pre-set with that player's number. Custom kits ship 2–3 days later than stock kits.</p>
@@ -1090,18 +1098,26 @@
   function showTab(tabName, el){
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-    document.getElementById(tabName).classList.add('active');
-    el.classList.add('active');
-    el.setAttribute('aria-selected','true');
+    const target = document.getElementById(tabName);
+    if (target) target.classList.add('active');
+    if (el){
+      el.classList.add('active');
+      el.setAttribute('aria-selected','true');
+    }
   }
 
+  // ---------- Home / Products page switching ----------
   function showPage(name, evt){
     if (evt) evt.preventDefault();
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page-' + name).classList.add('active');
-    document.getElementById('nav-home').classList.toggle('active-link', name === 'home');
-    document.getElementById('nav-products').classList.toggle('active-link', name === 'products');
-    document.getElementById('nav-care').classList.toggle('active-link', name === 'care');
+    const target = document.getElementById('page-' + name);
+    if (target) target.classList.add('active');
+    const navHome = document.getElementById('nav-home');
+    const navProducts = document.getElementById('nav-products');
+    const navCare = document.getElementById('nav-care');
+    if (navHome) navHome.classList.toggle('active-link', name === 'home');
+    if (navProducts) navProducts.classList.toggle('active-link', name === 'products');
+    if (navCare) navCare.classList.toggle('active-link', name === 'care');
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
@@ -1114,6 +1130,7 @@
     }, 60);
   }
 
+  // Mega-menu: jump to Products, activate the right tab, and scroll to a specific league if given
   function slugify(str){
     return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   }
@@ -1124,15 +1141,30 @@
     if (btn) showTab(tabContentId, btn);
     if (leagueSlug){
       setTimeout(() => {
-        const el = document.getElementById('lg-' + leagueSlug);
+        const el = document.querySelector(`#${tabContentId}-leagues [data-league-slug="${leagueSlug}"]`);
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 120);
     }
   }
 
-  function scrollToTeam(teamQuery) {
-    const match = PRODUCTS.find(p => p.name.toLowerCase().includes(teamQuery.toLowerCase()) || p.league.toLowerCase().includes(teamQuery.toLowerCase()));
-    if (!match) return;
+  // ---------- Search ----------
+  function runSearch(evt){
+    if (evt) evt.preventDefault();
+    const input = document.getElementById('siteSearchInput');
+    const q = input.value.trim().toLowerCase();
+    const statusBox = document.getElementById('searchStatus');
+    if (!q){ statusBox.hidden = true; return false; }
+
+    const match = PRODUCTS.find(p => p.name.toLowerCase().includes(q) || p.league.toLowerCase().includes(q));
+
+    if (!match){
+      statusBox.textContent = `No jerseys found for "${input.value.trim()}" — try a club or league name.`;
+      statusBox.hidden = false;
+      return false;
+    }
+
+    statusBox.hidden = true;
+    document.getElementById('searchSuggestions').hidden = true;
     showPage('products');
     const btn = document.getElementById(match.tabBtnId);
     if (btn) showTab(match.tabContentId, btn);
@@ -1148,24 +1180,26 @@
           cardEl.classList.add('search-highlight');
           setTimeout(() => cardEl.classList.remove('search-highlight'), 1500);
         }
-      }, 300);
+      }, 350);
     }, 120);
+
+    return false;
   }
 
-  function handleSearchInput(evt) {
+  function handleSearchInput(evt){
     const input = evt.target;
     const q = input.value.trim().toLowerCase();
     const box = document.getElementById('searchSuggestions');
-    if (!q || q.length < 1) { box.hidden = true; return; }
-    
+    if (!q || q.length < 1){ box.hidden = true; return; }
+
     const matches = PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || p.league.toLowerCase().includes(q)).slice(0, 6);
-    
-    if (matches.length === 0) {
+
+    if (matches.length === 0){
       box.innerHTML = `<div style="padding:0.8rem; color:var(--chalk-dim); font-size:0.8rem; text-align:center;">No kits found for "${input.value}"</div>`;
       box.hidden = false;
       return;
     }
-    
+
     box.innerHTML = matches.map(p => {
       const idx = PRODUCTS.indexOf(p);
       const thumb = p.image ? `<img src="${p.image}" alt="${p.name}">` : `<span>📷</span>`;
@@ -1174,48 +1208,31 @@
         <div class="suggestion-thumb">${thumb}</div>
         <div class="suggestion-info">
           <span class="suggestion-title">${p.name}</span>
-          <span class="suggestion-meta">${p.league} · ${p.type} kit · ₹${p.price || 600}</span>
+          <span class="suggestion-meta">${p.league} · ${p.type} kit · ₹${p.basePrice || 600}</span>
         </div>
       </div>`;
     }).join('');
     box.hidden = false;
   }
-  
-  function selectSuggestion(id) {
+
+  function selectSuggestion(id){
     document.getElementById('searchSuggestions').hidden = true;
     document.getElementById('siteSearchInput').value = '';
     openProductPage(id);
   }
-  
-  document.addEventListener('click', function(e) {
+
+  document.addEventListener('click', function(e){
     const wrapper = document.querySelector('.search-wrapper');
-    if (wrapper && !wrapper.contains(e.target)) {
+    if (wrapper && !wrapper.contains(e.target)){
       const box = document.getElementById('searchSuggestions');
       if (box) box.hidden = true;
     }
   });
 
-  function runSearch(evt){
-    if (evt) evt.preventDefault();
-    const input = document.getElementById('siteSearchInput');
-    const q = input.value.trim().toLowerCase();
-    document.getElementById('searchSuggestions').hidden = true;
-    const statusBox = document.getElementById('searchStatus');
-    if (!q){ statusBox.hidden = true; return false; }
+  // ---------- Banner carousel ----------
+  let carouselIndex = 0;
+  let carouselTimer = null;
 
-    const match = PRODUCTS.find(p => p.name.toLowerCase().includes(q) || p.league.toLowerCase().includes(q));
-    if (!match){
-      statusBox.textContent = `No jerseys found for "${input.value.trim()}" — try a club or league name.`;
-      statusBox.hidden = false;
-      return false;
-    }
-
-    statusBox.hidden = true;
-    scrollToTeam(q);
-    return false;
-  }
-
-  let carouselIndex = 0; let carouselTimer = null;
   function carouselShow(i){
     const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.carousel-dots button');
@@ -1223,17 +1240,32 @@
     slides.forEach((s, idx) => s.classList.toggle('active', idx === carouselIndex));
     dots.forEach((d, idx) => d.classList.toggle('active', idx === carouselIndex));
   }
-  function carouselMove(delta){ carouselShow(carouselIndex + delta); resetCarouselTimer(); }
-  function resetCarouselTimer(){ clearInterval(carouselTimer); carouselTimer = setInterval(() => carouselShow(carouselIndex + 1), 5000); }
+
+  function carouselMove(delta){
+    carouselShow(carouselIndex + delta);
+    resetCarouselTimer();
+  }
+
+  function resetCarouselTimer(){
+    clearInterval(carouselTimer);
+    carouselTimer = setInterval(() => carouselShow(carouselIndex + 1), 5000);
+  }
+
   function initCarousel(){
     const slides = document.querySelectorAll('.carousel-slide');
     const dotsWrap = document.getElementById('carouselDots');
-    dotsWrap.innerHTML = Array.from(slides).map((_, i) => `<button aria-label="Go to slide ${i + 1}" onclick="carouselShow(${i}); resetCarouselTimer();"></button>`).join('');
-    carouselShow(0); resetCarouselTimer();
+    dotsWrap.innerHTML = Array.from(slides).map((_, i) =>
+      `<button aria-label="Go to slide ${i + 1}" onclick="carouselShow(${i}); resetCarouselTimer();"></button>`
+    ).join('');
+    carouselShow(0);
+    resetCarouselTimer();
   }
   initCarousel();
 
-  function toggleSizeChart(){ document.getElementById('sizeChartBox').classList.toggle('active'); }
+  function toggleSizeChart(){
+    const box = document.getElementById('sizeChartBox');
+    box.classList.toggle('active');
+  }
 
   function jerseyIcon(primary, secondary, number){
     const uid = 'u' + Math.random().toString(36).slice(2,9);
@@ -1264,214 +1296,369 @@
 
   function kitPair(clubName, home, away, popular){
     return [
-      { name:`${clubName} Jersey 2026-27`, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, popular:popular||[], price:home.price||600, popularity:home.pop||85 },
-      { name:`${clubName} Jersey 2026-27`, type:"Away", primary:away.p, secondary:away.s, number:away.n, image:away.img, popular:popular||[], price:away.price||600, popularity:away.pop||80 },
+      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, popular:popular||[] },
+      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Away", primary:away.p, secondary:away.s, number:away.n, image:away.img, popular:popular||[] },
     ];
   }
   function kitHomeOnly(clubName, home, popular){
-    return [{ name:`${clubName} Jersey 2026-27`, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, popular:popular||[], price:home.price||600, popularity:home.pop||75 }];
+    return [{ name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, popular:popular||[] }];
   }
 
   const currentSeason = [
     { league:"La Liga", teams:[
-      ...kitPair("Real Madrid", {p:"#f5f5f5",s:"#5a2d8c",n:9,price:650,pop:99}, {p:"#1a1a1a",s:"#c9a227",n:9,price:650,pop:95},
+      ...kitPair("Real Madrid", {p:"#f5f5f5",s:"#5a2d8c",n:9}, {p:"#1a1a1a",s:"#c9a227",n:9},
         [{name:"Vinicius Jr", number:7}, {name:"Bellingham", number:5}, {name:"Mbappe", number:9}]),
-      ...kitPair("Barcelona", {p:"#a50044",s:"#004d98",n:10,price:650,pop:98}, {p:"#f5f5f5",s:"#a50044",n:10,price:600,pop:90},
+      ...kitPair("Barcelona", {p:"#a50044",s:"#004d98",n:10}, {p:"#f5f5f5",s:"#a50044",n:10},
         [{name:"Lewandowski", number:9}, {name:"Pedri", number:8}, {name:"Yamal", number:19}]),
-      ...kitHomeOnly("Atletico Madrid", {p:"#c8102e",s:"#0b2265",n:7,price:580,pop:82},
+      ...kitHomeOnly("Atletico Madrid", {p:"#c8102e",s:"#0b2265",n:7},
         [{name:"Griezmann", number:7}, {name:"Alvarez", number:19}]),
     ]},
     { league:"Premier League", teams:[
-      ...kitPair("Manchester United", {p:"#da020e",s:"#111111",n:7,price:620,pop:96}, {p:"#111111",s:"#da020e",n:7,price:600,pop:88},
+      ...kitPair("Manchester United", {p:"#da020e",s:"#111111",n:7}, {p:"#111111",s:"#da020e",n:7},
         [{name:"Bruno Fernandes", number:8}, {name:"Rashford", number:10}, {name:"Garnacho", number:17}]),
-      ...kitPair("Liverpool", {p:"#c8102e",s:"#0a1d33",n:11,price:650,pop:94}, {p:"#22c1a4",s:"#0a1d33",n:11,price:600,pop:85},
+      ...kitPair("Liverpool", {p:"#c8102e",s:"#0a1d33",n:11}, {p:"#22c1a4",s:"#0a1d33",n:11},
         [{name:"Salah", number:11}, {name:"Van Dijk", number:4}, {name:"Nunez", number:9}]),
-      ...kitPair("Arsenal", {p:"#ef0107",s:"#f5f5f5",n:9,price:620,pop:93}, {p:"#063672",s:"#f5c400",n:9,price:620,pop:87},
+      ...kitPair("Arsenal", {p:"#ef0107",s:"#f5f5f5",n:9}, {p:"#063672",s:"#f5c400",n:9},
         [{name:"Saka", number:7}, {name:"Odegaard", number:8}, {name:"Havertz", number:29}]),
-      ...kitPair("Tottenham Hotspur", {p:"#f5f5f5",s:"#132257",n:10,price:580,pop:80}, {p:"#132257",s:"#f5f5f5",n:10,price:580,pop:76},
+      ...kitPair("Tottenham Hotspur", {p:"#f5f5f5",s:"#132257",n:10}, {p:"#132257",s:"#f5f5f5",n:10},
         [{name:"Son", number:7}, {name:"Maddison", number:10}]),
-      ...kitPair("Manchester City", {p:"#6cabdd",s:"#1c2c5b",n:17,price:650,pop:95}, {p:"#2c2c54",s:"#6cabdd",n:17,price:600,pop:84},
+      ...kitPair("Manchester City", {p:"#6cabdd",s:"#1c2c5b",n:17}, {p:"#2c2c54",s:"#6cabdd",n:17},
         [{name:"Haaland", number:9}, {name:"De Bruyne", number:17}, {name:"Foden", number:47}]),
-      ...kitPair("Chelsea", {p:"#034694",s:"#f5f5f5",n:10,price:600,pop:86}, {p:"#f5f5f5",s:"#034694",n:10,price:580,pop:81},
+      ...kitPair("Chelsea", {p:"#034694",s:"#f5f5f5",n:10}, {p:"#f5f5f5",s:"#034694",n:10},
         [{name:"Palmer", number:10}, {name:"Jackson", number:15}]),
     ]},
     { league:"Serie A", teams:[
-      ...kitPair("Inter Milan", {p:"#0c1f4a",s:"#0068a8",n:9,price:600,pop:89}, {p:"#f5f5f5",s:"#0c1f4a",n:9,price:580,pop:82},
+      ...kitPair("Inter Milan", {p:"#0c1f4a",s:"#0068a8",n:9}, {p:"#f5f5f5",s:"#0c1f4a",n:9},
         [{name:"Lautaro Martinez", number:10}, {name:"Barella", number:23}]),
-      ...kitPair("Juventus", {p:"#111111",s:"#f5f5f5",n:7,price:600,pop:88}, {p:"#ffb400",s:"#111111",n:7,price:580,pop:80},
+      ...kitPair("Juventus", {p:"#111111",s:"#f5f5f5",n:7}, {p:"#ffb400",s:"#111111",n:7},
         [{name:"Vlahovic", number:9}, {name:"Chiesa", number:7}]),
-      ...kitPair("AC Milan", {p:"#fb090b",s:"#111111",n:11,price:600,pop:90}, {p:"#f5f5f5",s:"#fb090b",n:11,price:580,pop:83},
+      ...kitPair("AC Milan", {p:"#fb090b",s:"#111111",n:11}, {p:"#f5f5f5",s:"#fb090b",n:11},
         [{name:"Leao", number:10}, {name:"Giroud", number:9}]),
-      ...kitPair("Napoli", {p:"#12a0d7",s:"#003c71",n:77,price:580,pop:85}, {p:"#f5f5f5",s:"#12a0d7",n:77,price:550,pop:78},
+      ...kitPair("Napoli", {p:"#12a0d7",s:"#003c71",n:77}, {p:"#f5f5f5",s:"#12a0d7",n:77},
         [{name:"Kvaratskhelia", number:77}, {name:"Lukaku", number:11}, {name:"Di Lorenzo", number:22}]),
     ]},
     { league:"Bundesliga", teams:[
-      ...kitPair("Bayern Munich", {p:"#dc052d",s:"#0a2240",n:25,price:650,pop:92}, {p:"#f5f5f5",s:"#dc052d",n:25,price:600,pop:85},
+      ...kitPair("Bayern Munich", {p:"#dc052d",s:"#0a2240",n:25}, {p:"#f5f5f5",s:"#dc052d",n:25},
         [{name:"Kane", number:9}, {name:"Musiala", number:42}]),
-      ...kitPair("Borussia Dortmund", {p:"#fde100",s:"#111111",n:11,price:600,pop:88}, {p:"#111111",s:"#fde100",n:11,price:580,pop:82},
+      ...kitPair("Borussia Dortmund", {p:"#fde100",s:"#111111",n:11}, {p:"#111111",s:"#fde100",n:11},
         [{name:"Sancho", number:7}, {name:"Reus", number:11}]),
-      ...kitPair("Bayer Leverkusen", {p:"#e2001a",s:"#111111",n:14,price:620,pop:90}, {p:"#f5f5f5",s:"#e2001a",n:14,price:600,pop:84},
+      ...kitPair("Bayer Leverkusen", {p:"#e2001a",s:"#111111",n:14}, {p:"#f5f5f5",s:"#e2001a",n:14},
         [{name:"Wirtz", number:10}, {name:"Boniface", number:19}]),
     ]},
     { league:"Ligue 1", teams:[
-      ...kitPair("PSG", {p:"#04225c",s:"#da291c",n:30,price:650,pop:91}, {p:"#f5f5f5",s:"#04225c",n:30,price:600,pop:83},
+      ...kitPair("PSG", {p:"#04225c",s:"#da291c",n:30}, {p:"#f5f5f5",s:"#04225c",n:30},
         [{name:"Dembele", number:10}, {name:"Vitinha", number:17}]),
     ]},
     { league:"Rest of the World", teams:[
-      ...kitPair("Al Nassr", {p:"#ffd400",s:"#0b1f4a",n:7,price:680,pop:97}, {p:"#0b1f4a",s:"#ffd400",n:7,price:650,pop:93},
+      ...kitPair("Al Nassr", {p:"#ffd400",s:"#0b1f4a",n:7}, {p:"#0b1f4a",s:"#ffd400",n:7},
         [{name:"Ronaldo", number:7}, {name:"Mane", number:10}]),
-      ...kitPair("Inter Miami", {p:"#f7b5cd",s:"#111111",n:10,price:680,pop:98}, {p:"#111111",s:"#f7b5cd",n:10,price:650,pop:94},
+      ...kitPair("Inter Miami", {p:"#f7b5cd",s:"#111111",n:10}, {p:"#111111",s:"#f7b5cd",n:10},
         [{name:"Messi", number:10}, {name:"Suarez", number:9}]),
-      ...kitPair("Ajax", {p:"#f5f5f5",s:"#d2122e",n:14,price:580,pop:82}, {p:"#111111",s:"#d2122e",n:14,price:550,pop:75},
+      ...kitPair("Ajax", {p:"#f5f5f5",s:"#d2122e",n:14}, {p:"#111111",s:"#d2122e",n:14},
         [{name:"Berghuis", number:23}, {name:"Brobbey", number:9}]),
     ]},
   ];
 
   const retroClub = [
     { league:"Retro Clubs", teams:[
-      { name:"1990s Manchester United Jersey", type:"Retro", primary:"#da020e", secondary:"#111111", number:9, price:700, popularity:98,
-        popular:[{name:"Cantona", number:7}, {name:"Giggs", number:11}] },
-      { name:"1970s Ajax Jersey", type:"Retro", primary:"#f5f5f5", secondary:"#c8102e", number:14, price:650, popularity:89,
-        popular:[{name:"Cruyff", number:14}] },
-      { name:"1980s Liverpool Jersey", type:"Retro", primary:"#c8102e", secondary:"#f5f5f5", number:7, price:680, popularity:92,
-        popular:[{name:"Dalglish", number:7}, {name:"Rush", number:9}] },
-      { name:"2002-03 Sporting CP Home Jersey", type:"Retro", primary:"#1a7a3c", secondary:"#f5f5f5", number:28, price:720, popularity:96,
+      { name:"2002-03 Sporting CP Home Jersey", club:"Sporting CP", type:"Retro", primary:"#1a7a3c", secondary:"#f5f5f5", number:28,
         popular:[{name:"Ronaldo", number:28}] },
-      { name:"2008-09 Barcelona Home Jersey", type:"Retro", primary:"#a50044", secondary:"#004d98", number:10, price:750, popularity:99,
+      { name:"2008-09 Barcelona Home Jersey", club:"Barcelona", type:"Retro", primary:"#a50044", secondary:"#004d98", number:10,
         popular:[{name:"Messi", number:10}] },
-      { name:"2014-15 Barcelona Home Jersey", type:"Retro", primary:"#a50044", secondary:"#004d98", number:10, price:720, popularity:97,
+      { name:"2014-15 Barcelona Home Jersey", club:"Barcelona", type:"Retro", primary:"#a50044", secondary:"#004d98", number:10,
         popular:[{name:"Messi", number:10}, {name:"Suarez", number:9}, {name:"Neymar", number:11}] },
-      { name:"1996-97 Barcelona Away Jersey", type:"Retro", primary:"#00a99d", secondary:"#1a1a1a", number:9, price:700, popularity:95,
+      { name:"1996-97 Barcelona Away Jersey", club:"Barcelona", type:"Retro", primary:"#00a99d", secondary:"#1a1a1a", number:9,
         popular:[{name:"R9", number:9}] },
-      { name:"2015-16 Barcelona Home Jersey", type:"Retro", primary:"#a50044", secondary:"#004d98", number:11, price:680, popularity:93,
+      { name:"2015-16 Barcelona Home Jersey", club:"Barcelona", type:"Retro", primary:"#a50044", secondary:"#004d98", number:11,
         popular:[{name:"Neymar", number:11}] },
+      { name:"2005-06 Arsenal Home Jersey", club:"Arsenal", type:"Retro", primary:"#9c2b3d", secondary:"#f5f5f5", number:14,
+        popular:[{name:"Henry", number:14}] },
+      { name:"1995-96 Arsenal Away Jersey", club:"Arsenal", type:"Retro", primary:"#1b2a4a", secondary:"#c8102e", number:10,
+        popular:[{name:"Bergkamp", number:10}, {name:"Wright", number:8}] },
+      { name:"1990-92 Arsenal Jersey (Re-released)", club:"Arsenal", type:"Retro", primary:"#0f9b8e", secondary:"#ffe500", number:9,
+        popular:[{name:"Smith", number:9}] },
+      { name:"2024-25 Arsenal Away Jersey", club:"Arsenal", type:"Retro", primary:"#f0e6d2", secondary:"#0b1f4a", number:7,
+        popular:[{name:"Saka", number:7}, {name:"Odegaard", number:8}] },
+      { name:"2002-03 Ajax Jersey", club:"Ajax", type:"Retro", primary:"#f5f5f5", secondary:"#c8102e", number:9,
+        popular:[{name:"Ibrahimovic", number:9}] },
+      { name:"2011-12 Real Madrid Home Jersey", club:"Real Madrid", type:"Retro", primary:"#f5f5f5", secondary:"#c9a227", number:7,
+        popular:[{name:"Ronaldo", number:7}, {name:"Benzema", number:9}] },
+      { name:"2011-12 Real Madrid Away Jersey", club:"Real Madrid", type:"Retro", primary:"#0b1f4a", secondary:"#f5a623", number:7,
+        popular:[{name:"Ronaldo", number:7}, {name:"Ozil", number:10}] },
+      { name:"2016-17 Real Madrid Away Jersey", club:"Real Madrid", type:"Retro", primary:"#00c2b2", secondary:"#111111", number:7,
+        popular:[{name:"Ronaldo", number:7}, {name:"Bale", number:11}] },
+      { name:"2017-18 Real Madrid Third Jersey", club:"Real Madrid", type:"Retro", primary:"#1a1a1a", secondary:"#c9a227", number:7,
+        popular:[{name:"Ronaldo", number:7}, {name:"Modric", number:10}] },
+      { name:"2024-25 Real Madrid Third Jersey", club:"Real Madrid", type:"Retro", primary:"#f0d264", secondary:"#1a1a1a", number:9,
+        popular:[{name:"Mbappe", number:9}, {name:"Vinicius Jr", number:7}] },
+      { name:"2025-26 Real Madrid Away Jersey", club:"Real Madrid", type:"Retro", primary:"#0b1f4a", secondary:"#c8102e", number:9,
+        popular:[{name:"Mbappe", number:9}, {name:"Bellingham", number:5}] },
+      { name:"Liverpool Away 1993-95 Jersey (Re-released)", club:"Liverpool", type:"Retro", primary:"#8a8f94", secondary:"#111111", number:9,
+        popular:[{name:"Fowler", number:9}] },
+      { name:"Liverpool Away 1995-96 Jersey", club:"Liverpool", type:"Retro", primary:"#e8dcc0", secondary:"#4a4a4a", number:9,
+        popular:[{name:"Fowler", number:9}, {name:"McManaman", number:7}] },
+      { name:"2009-10 Inter Milan Jersey", club:"Inter Milan", type:"Retro", primary:"#0c1f4a", secondary:"#0068a8", number:9,
+        popular:[{name:"Eto'o", number:9}, {name:"Milito", number:22}] },
     ]},
   ];
 
   const retroIntl = [
     { league:"Retro International", teams:[
-      { name:"1980s Brazil Jersey", type:"Retro", primary:"#ffdf00", secondary:"#009739", number:10, price:720, popularity:97,
-        popular:[{name:"Zico", number:10}, {name:"Socrates", number:8}] },
-      { name:"1986 Argentina Jersey", type:"Retro", primary:"#75aadb", secondary:"#f5f5f5", number:10, price:750, popularity:99,
+      { name:"1986 Argentina Jersey", club:"Argentina", type:"Retro", primary:"#75aadb", secondary:"#f5f5f5", number:10,
         popular:[{name:"Maradona", number:10}] },
-      { name:"1998 France Jersey", type:"Retro", primary:"#002654", secondary:"#f5f5f5", number:9, price:700, popularity:95,
+      { name:"1998 France Jersey", club:"France", type:"Retro", primary:"#002654", secondary:"#f5f5f5", number:9,
         popular:[{name:"Zidane", number:10}, {name:"Henry", number:12}] },
-    ]},
+    ].map(t => ({ ...t, multiPatch:true })) },
   ];
 
   const international = [
     { league:"International Teams", teams:[
-      ...kitPair("Argentina", {p:"#75aadb",s:"#f5f5f5",n:10,price:680,pop:99}, {p:"#1a2b4c",s:"#75aadb",n:10,price:650,pop:95},
+      ...kitPair("Argentina", {p:"#75aadb",s:"#f5f5f5",n:10}, {p:"#1a2b4c",s:"#75aadb",n:10},
         [{name:"Messi", number:10}, {name:"Alvarez", number:9}]),
-      ...kitPair("Spain", {p:"#c60b1e",s:"#f5c400",n:19,price:650,pop:96}, {p:"#0b1f4a",s:"#c60b1e",n:19,price:620,pop:90},
+      ...kitPair("Spain", {p:"#c60b1e",s:"#f5c400",n:19}, {p:"#0b1f4a",s:"#c60b1e",n:19},
         [{name:"Yamal", number:19}, {name:"Pedri", number:26}]),
-      ...kitPair("France", {p:"#002654",s:"#ed2939",n:7,price:650,pop:94}, {p:"#f5f5f5",s:"#002654",n:7,price:600,pop:88},
+      ...kitPair("France", {p:"#002654",s:"#ed2939",n:7}, {p:"#f5f5f5",s:"#002654",n:7},
         [{name:"Mbappe", number:10}, {name:"Griezmann", number:7}]),
-      ...kitPair("England", {p:"#f5f5f5",s:"#0b1f4a",n:9,price:650,pop:93}, {p:"#c8102e",s:"#0b1f4a",n:9,price:600,pop:86},
+      ...kitPair("England", {p:"#f5f5f5",s:"#0b1f4a",n:9}, {p:"#c8102e",s:"#0b1f4a",n:9},
         [{name:"Kane", number:9}, {name:"Bellingham", number:5}, {name:"Saka", number:7}]),
-      ...kitPair("Belgium", {p:"#e30613",s:"#111111",n:7,price:600,pop:85}, {p:"#111111",s:"#e30613",n:7,price:580,pop:80},
+      ...kitPair("Belgium", {p:"#e30613",s:"#111111",n:7}, {p:"#111111",s:"#e30613",n:7},
         [{name:"De Bruyne", number:7}]),
-      ...kitPair("Norway", {p:"#ba0c2f",s:"#00205b",n:9,price:620,pop:89}, {p:"#f5f5f5",s:"#ba0c2f",n:9,price:580,pop:82},
+      ...kitPair("Norway", {p:"#ba0c2f",s:"#00205b",n:9}, {p:"#f5f5f5",s:"#ba0c2f",n:9},
         [{name:"Haaland", number:9}]),
-      ...kitPair("Brazil", {p:"#ffdf00",s:"#009739",n:9,price:680,pop:98}, {p:"#002776",s:"#ffdf00",n:9,price:650,pop:92},
+      ...kitPair("Brazil", {p:"#ffdf00",s:"#009739",n:9}, {p:"#002776",s:"#ffdf00",n:9},
         [{name:"Vinicius Jr", number:20}, {name:"Rodrygo", number:19}]),
-      ...kitPair("Mexico", {p:"#006847",s:"#f5f5f5",n:20,price:600,pop:83}, {p:"#f5f5f5",s:"#006847",n:20,price:580,pop:78},
+      ...kitPair("Mexico", {p:"#006847",s:"#f5f5f5",n:20}, {p:"#f5f5f5",s:"#006847",n:20},
         [{name:"Gimenez", number:20}]),
-    ]},
+      ...kitPair("Germany", {p:"#f5f5f5",s:"#111111",n:10}, {p:"#043927",s:"#f5f5f5",n:10},
+        [{name:"Musiala", number:10}, {name:"Wirtz", number:17}]),
+      ...kitPair("Netherlands", {p:"#ff6c00",s:"#12305e",n:7}, {p:"#f5f5f5",s:"#12305e",n:7},
+        [{name:"Xavi Simons", number:7}, {name:"Gakpo", number:8}]),
+      ...kitPair("Portugal", {p:"#c8102e",s:"#046a38",n:7}, {p:"#f5f5f5",s:"#046a38",n:7},
+        [{name:"Ronaldo", number:7}, {name:"Bruno Fernandes", number:8}]),
+    ].map(t => ({ ...t, multiPatch:true })) },
   ];
 
   const fullSleeves = [
     { league:"Full Sleeve Jerseys", teams:[
-      { name:"Real Madrid Full Sleeve Jersey 2026-27", type:"Home", primary:"#f5f5f5", secondary:"#5a2d8c", number:9, price:700, popularity:98,
+      { name:"Real Madrid Full Sleeve Jersey 2026-27", club:"Real Madrid", type:"Home", primary:"#f5f5f5", secondary:"#5a2d8c", number:9,
         popular:[{name:"Vinicius Jr", number:7}, {name:"Bellingham", number:5}, {name:"Mbappe", number:9}] },
-      { name:"Barcelona Full Sleeve Jersey 2026-27", type:"Home", primary:"#a50044", secondary:"#004d98", number:10, price:700, popularity:97,
-        popular:[{name:"Lewandowski", number:9}, {name:"Pedri", number:8}, {name:"Yamal", number:19}] },
-      { name:"Manchester United Full Sleeve Jersey 2026-27", type:"Home", primary:"#da020e", secondary:"#111111", number:7, price:680, popularity:95,
+      { name:"Manchester United Full Sleeve Jersey 2026-27", club:"Manchester United", type:"Home", primary:"#da020e", secondary:"#111111", number:7,
         popular:[{name:"Bruno Fernandes", number:8}, {name:"Rashford", number:10}, {name:"Garnacho", number:17}] },
-      { name:"Liverpool Full Sleeve Jersey 2026-27", type:"Home", primary:"#c8102e", secondary:"#0a1d33", number:11, price:680, popularity:93,
-        popular:[{name:"Salah", number:11}, {name:"Van Dijk", number:4}, {name:"Nunez", number:9}] },
-      { name:"Manchester City Full Sleeve Jersey 2026-27", type:"Home", primary:"#6cabdd", secondary:"#1c2c5b", number:17, price:700, popularity:94,
-        popular:[{name:"Haaland", number:9}, {name:"De Bruyne", number:17}, {name:"Foden", number:47}] },
-      { name:"Bayern Munich Full Sleeve Jersey 2026-27", type:"Home", primary:"#dc052d", secondary:"#0a2240", number:25, price:680, popularity:90,
+      { name:"Bayern Munich Full Sleeve Jersey 2026-27", club:"Bayern Munich", type:"Home", primary:"#dc052d", secondary:"#0a2240", number:25,
         popular:[{name:"Kane", number:9}, {name:"Musiala", number:42}] },
+      { name:"Manchester United 1998 Full Sleeve Jersey", club:"Manchester United", type:"Retro", primary:"#da020e", secondary:"#111111", number:7,
+        popular:[{name:"Beckham", number:7}, {name:"Scholes", number:18}] },
+      { name:"Germany Full Sleeve Jersey 2026-27", club:"Germany", type:"Home", primary:"#f5f5f5", secondary:"#111111", number:10,
+        popular:[{name:"Musiala", number:10}, {name:"Wirtz", number:17}] },
+      { name:"AC Milan 2000-01 Away Full Sleeve Jersey", club:"AC Milan", type:"Retro", primary:"#f5f5f5", secondary:"#fb090b", number:7,
+        popular:[{name:"Shevchenko", number:7}] },
+      { name:"AC Milan 2006-07 Home Full Sleeve Jersey", club:"AC Milan", type:"Retro", primary:"#fb090b", secondary:"#111111", number:22,
+        popular:[{name:"Kaka", number:22}, {name:"Pirlo", number:21}] },
+      { name:"Real Madrid 2016-17 Away Full Sleeve Jersey", club:"Real Madrid", type:"Retro", primary:"#00c2b2", secondary:"#111111", number:7,
+        popular:[{name:"Ronaldo", number:7}] },
+      { name:"Real Madrid 2012-13 Full Sleeve Jersey", club:"Real Madrid", type:"Retro", primary:"#f5f5f5", secondary:"#5a2d8c", number:7,
+        popular:[{name:"Ronaldo", number:7}, {name:"Ozil", number:10}] },
     ]},
   ];
 
+  const POPULARITY = {
+    "Real Madrid":99, "Barcelona":98, "Manchester United":96, "Liverpool":95, "Brazil":95, "Argentina":94,
+    "Bayern Munich":90, "Chelsea":88, "Manchester City":88, "Juventus":87, "PSG":87, "France":89, "Germany":86, "Arsenal":85,
+    "Inter Milan":80, "AC Milan":80, "Borussia Dortmund":78, "Tottenham Hotspur":77, "Portugal":83, "Netherlands":79, "Spain":82, "England":84,
+    "Atletico Madrid":74, "Napoli":72, "Ajax":73, "Al Nassr":76, "Inter Miami":75, "Bayer Leverkusen":68, "Belgium":70,
+    "Mexico":62, "Norway":60, "Sporting CP":58
+  };
+  function popularityOf(team){ return POPULARITY[team.club] ?? 50; }
+
   const PRODUCTS = [];
 
-  function renderLeagues(data, containerId, tabBtnId, tabContentId){
-    const container = document.getElementById(containerId);
-    container.innerHTML = data.map((group, idx) => {
-      const lgSlug = slugify(group.league);
+  const COLLECTIONS = {};
+
+  const LEAGUE_META = {
+    "La Liga": {abbr:"LL", primary:"#ff4b44", secondary:"#1a1a1a"},
+    "Premier League": {abbr:"PL", primary:"#38003c", secondary:"#00ff85"},
+    "Serie A": {abbr:"SA", primary:"#0068a8", secondary:"#0a1a2a"},
+    "Bundesliga": {abbr:"BL", primary:"#d3010c", secondary:"#1a1a1a"},
+    "Ligue 1": {abbr:"L1", primary:"#0a1e63", secondary:"#dae036"},
+    "Rest of the World": {abbr:"RoW", primary:"#14b8a6", secondary:"#0e4d38"},
+    "Retro Clubs": {abbr:"RC", primary:"#8c6d1f", secondary:"#3a2e0d"},
+    "Retro International": {abbr:"RI", primary:"#8c6d1f", secondary:"#3a2e0d"},
+    "International Teams": {abbr:"INT", primary:"#0e4d38", secondary:"#d4af37"},
+    "Full Sleeve Jerseys": {abbr:"FS", primary:"#0e4d38", secondary:"#14b8a6"},
+  };
+
+  function initials(name){
+    const words = (name || '').trim().split(/\s+/);
+    if (words.length === 1) return words[0].slice(0, 3).toUpperCase();
+    return (words[0][0] + words[1][0]).toUpperCase();
+  }
+
+  function clubBadgeHTML(clubName, size, extraClass){
+    size = size || 26;
+    const slug = slugify(clubName);
+    const fontSize = Math.round(size * 0.5);
+    return `<span class="club-badge-slot ${extraClass || ''}" style="width:${size}px;height:${size}px;font-size:${fontSize}px;" data-club-slug="${slug}" title="${clubName}">` +
+      `<img src="badges/${slug}.png" alt="${clubName} badge" loading="lazy" onerror="this.remove(); this.parentElement.classList.add('badge-missing')">` +
+      `</span>`;
+  }
+
+  function leagueBadgeHTML(leagueName, size){
+    size = size || 28;
+    const meta = LEAGUE_META[leagueName] || { abbr: initials(leagueName), primary: '#0e4d38', secondary: '#14b8a6' };
+    const fontSize = Math.round(size * 0.34);
+    return `<span class="league-badge" style="width:${size}px;height:${size}px;font-size:${fontSize}px;background:linear-gradient(135deg, ${meta.primary}, ${meta.secondary});" title="${leagueName}" aria-hidden="true">${meta.abbr}</span>`;
+  }
+
+  function buildCollection(data, containerId, tabBtnId, tabContentId){
+    const container = document.getElementById(`${containerId}-leagues`);
+    if (!container) return;
+    container.innerHTML = data.map(group => {
+      const groupId = `${containerId}__${slugify(group.league)}`;
       return `
-      <div class="league-section" id="lg-${lgSlug}">
+      <div class="league-section" id="lg-${slugify(group.league)}">
         <div class="league-header">
-          <div class="league-header-left">
-            <h3>${group.league}</h3>
-            <span class="count mono">${group.teams.length} kits</span>
-          </div>
-          <div class="sort-control">
-            <label for="sort-${lgSlug}">Sort by:</label>
-            <select id="sort-${lgSlug}" onchange="sortLeagueSection('${lgSlug}', this.value)">
-              <option value="alpha">Alphabetically (Default)</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="popular">Popularity</option>
-            </select>
+          <h3>${leagueBadgeHTML(group.league)} ${group.league}</h3>
+          <div class="league-header-right">
+            <span class="count mono" id="${groupId}-count"></span>
+            <label class="sort-label">Sort by
+              <select id="sort-${groupId}" onchange="renderGroupSorted('${groupId}')">
+                <option value="popularity">Popularity</option>
+                <option value="alpha">A–Z</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+              </select>
+            </label>
           </div>
         </div>
-        <div class="products">
-          ${group.teams.map(team => {
-            const id = PRODUCTS.length;
-            PRODUCTS.push({ ...team, league: group.league, tabBtnId, tabContentId, slug: lgSlug });
-            const tagClass = team.type === 'Away' ? 'kit-tag away' : team.type === 'Retro' ? 'kit-tag retro' : 'kit-tag';
-            return `
-            <div class="product-card" id="prod-${id}" data-id="${id}" tabindex="0" role="button" aria-label="View ${team.name} ${team.type}"
-                 onclick="openProductPage(${id})" onkeydown="if(event.key==='Enter'){openProductPage(${id})}">
-              <div class="kit-visual">
-                <span class="${tagClass}">${team.type}</span>
-                ${team.image ? `<img src="${team.image}" alt="${team.name}, ${team.type}" class="kit-photo">` : `<div class="photo-placeholder"><span class="upload-icon">📷</span><span class="ph-label">Add kit photo</span></div>`}
-              </div>
-              <div class="product-info">
-                <h4 class="product-title">${team.name}</h4>
-                <p class="product-meta">${group.league} · ${team.type} kit</p>
-                <p class="product-price">₹${team.price || 600}<span class="ship-note">Shipping included</span></p>
-                <button class="card-btn" onclick="event.stopPropagation(); openCustomize(${id})">Customize &amp; add</button>
-              </div>
-            </div>`;
-          }).join('')}
-        </div>
+        <div class="products" id="${groupId}-grid"></div>
       </div>`;
     }).join('');
-  }
 
-  function sortLeagueSection(leagueSlug, sortBy) {
-    const sectionEl = document.getElementById('lg-' + leagueSlug);
-    if (!sectionEl) return;
-    const productsContainer = sectionEl.querySelector('.products');
-    const cards = Array.from(productsContainer.children);
-
-    cards.sort((a, b) => {
-      const prodA = PRODUCTS[a.dataset.id];
-      const prodB = PRODUCTS[b.dataset.id];
-      if (sortBy === 'alpha') return prodA.name.localeCompare(prodB.name);
-      if (sortBy === 'price-asc') return prodA.price - prodB.price;
-      if (sortBy === 'price-desc') return prodB.price - prodA.price;
-      if (sortBy === 'popular') return prodB.popularity - prodA.popularity;
-      return 0;
+    data.forEach(group => {
+      const groupId = `${containerId}__${slugify(group.league)}`;
+      const items = group.teams.map(team => {
+        const id = PRODUCTS.length;
+        const item = { ...team, league: group.league, tabBtnId, tabContentId, slug: slugify(group.league), id };
+        PRODUCTS.push(item);
+        return item;
+      });
+      COLLECTIONS[groupId] = items;
+      renderGroupSorted(groupId);
     });
-
-    cards.forEach(card => productsContainer.appendChild(card));
   }
 
-  renderLeagues(currentSeason, 'current-season-leagues', 'tab-current', 'current-season');
-  renderLeagues(fullSleeves, 'full-sleeves-leagues', 'tab-full-sleeves', 'full-sleeves');
-  renderLeagues(retroClub, 'retro-club-leagues', 'tab-retro-club', 'retro-club');
-  renderLeagues(retroIntl, 'retro-intl-leagues', 'tab-retro-intl', 'retro-intl');
-  renderLeagues(international, 'international-leagues', 'tab-international', 'international');
+  function cardHTML(team, id){
+    const tagClass = team.type === 'Away' ? 'kit-tag away' : team.type === 'Retro' ? 'kit-tag retro' : 'kit-tag';
+    const clubLabel = team.club || team.name;
+    return `
+      <div class="product-card" id="prod-${id}" data-league-slug="${slugify(team.league)}" data-club-slug="${slugify(clubLabel)}" tabindex="0" role="button" aria-label="View ${team.name} ${team.type}"
+           onclick="openProductPage(${id})" onkeydown="if(event.key==='Enter'){openProductPage(${id})}">
+        <div class="kit-visual">
+          <span class="${tagClass}">${team.type}</span>
+          ${team.image ? `<img src="${team.image}" alt="${team.name}, ${team.type}" class="kit-photo">` : `<div class="photo-placeholder"><span class="upload-icon">📷</span><span class="ph-label">Add kit photo</span></div>`}
+        </div>
+        <div class="product-info">
+          <h4 class="product-title">${clubBadgeHTML(clubLabel, 22)}<span>${team.name}</span></h4>
+          <p class="product-meta">${team.league} · ${team.type} kit</p>
+          <p class="product-price">₹600<span class="ship-note">Shipping included</span></p>
+          <button class="card-btn" onclick="event.stopPropagation(); openCustomize(${id})">Customize &amp; add</button>
+        </div>
+      </div>`;
+  }
 
-  let activeProduct = null; let selectedVersion = 'master';
-  const POPULAR_NAME_PRICE = 120; const CUSTOM_NAME_PRICE = 220; const PATCH_PRICE = 40;
+  function renderGroupSorted(groupId){
+    const items = COLLECTIONS[groupId] || [];
+    const sortSelect = document.getElementById(`sort-${groupId}`);
+    const sortVal = sortSelect ? sortSelect.value : 'popularity';
+    const sorted = items.slice().sort((a, b) => {
+      const priceA = a.basePrice || 600, priceB = b.basePrice || 600;
+      if (sortVal === 'price-asc') return (priceA - priceB) || a.name.localeCompare(b.name);
+      if (sortVal === 'price-desc') return (priceB - priceA) || a.name.localeCompare(b.name);
+      if (sortVal === 'alpha') return a.name.localeCompare(b.name);
+      return (popularityOf(b) - popularityOf(a)) || a.name.localeCompare(b.name);
+    });
+    const grid = document.getElementById(`${groupId}-grid`);
+    if (!grid) return;
+    grid.innerHTML = sorted.map(team => cardHTML(team, team.id)).join('');
+    const countEl = document.getElementById(`${groupId}-count`);
+    if (countEl) countEl.textContent = `${items.length} kit${items.length === 1 ? '' : 's'}`;
+  }
+
+  buildCollection(currentSeason, 'current-season', 'tab-current', 'current-season');
+  buildCollection(fullSleeves, 'full-sleeves', 'tab-full-sleeves', 'full-sleeves');
+  buildCollection(retroClub, 'retro-club', 'tab-retro-club', 'retro-club');
+  buildCollection(retroIntl, 'retro-intl', 'tab-retro-intl', 'retro-intl');
+  buildCollection(international, 'international', 'tab-international', 'international');
+
+  // ---------- Shop by Club (home page) ----------
+  function renderShopByClub(){
+    const seen = new Set();
+    const clubs = [];
+    currentSeason.forEach(group => group.teams.forEach(team => {
+      if (!seen.has(team.club)){
+        seen.add(team.club);
+        clubs.push(team);
+      }
+    }));
+    const row = document.getElementById('shopByClubRow');
+    if (!row) return;
+    row.innerHTML = clubs.map(team => `
+      <button type="button" class="club-chip" onclick="goToClub('${slugify(team.club)}')">
+        ${clubBadgeHTML(team.club, 64)}
+        <span>${team.club}</span>
+      </button>
+    `).join('');
+  }
+  renderShopByClub();
+
+  // ---------- Shop by National Team (home page) ----------
+  function renderShopByNation(){
+    const seen = new Set();
+    const nations = [];
+    international.forEach(group => group.teams.forEach(team => {
+      if (!seen.has(team.club)){
+        seen.add(team.club);
+        nations.push(team);
+      }
+    }));
+    const row = document.getElementById('shopByNationRow');
+    if (!row) return;
+    row.innerHTML = nations.map(team => `
+      <button type="button" class="club-chip" onclick="goToNation('${slugify(team.club)}')">
+        ${clubBadgeHTML(team.club, 64)}
+        <span>${team.club}</span>
+      </button>
+    `).join('');
+  }
+  renderShopByNation();
+
+  function goToNation(clubSlug){
+    showPage('products');
+    const btn = document.getElementById('tab-international');
+    if (btn) showTab('international', btn);
+    setTimeout(() => {
+      const el = document.querySelector(`#international-leagues [data-club-slug="${clubSlug}"]`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 120);
+  }
+
+  function goToClub(clubSlug){
+    showPage('products');
+    const btn = document.getElementById('tab-current');
+    if (btn) showTab('current-season', btn);
+    setTimeout(() => {
+      const el = document.querySelector(`#current-season-leagues [data-club-slug="${clubSlug}"]`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 120);
+  }
+
+  let activeProduct = null;
+  let selectedVersion = 'master';
+
+  const POPULAR_NAME_PRICE = 120;
+  const CUSTOM_NAME_PRICE = 220;
+  const PATCH_PRICE = 40;
+  const VERSION_PRICES = { master: 600, player: 650 };
 
   function selectVersion(version){
     selectedVersion = version;
@@ -1482,74 +1669,59 @@
 
   function populateNameSelect(groupId, popularList){
     const group = document.getElementById(groupId);
+    if (!group) return;
     group.innerHTML = (popularList || []).map((p, i) => `<option value="popular:${i}">${p.name} #${p.number}</option>`).join('');
   }
 
-  function renderPatchSelector(isIntl, containerId, isModal) {
-    const container = document.getElementById(containerId);
-    if (isIntl) {
-      container.innerHTML = `
-        <label>Select up to 2 Sleeve Patches (+₹40 each)</label>
-        <span class="patch-helper-text">International exclusive: Pick up to 2 badges</span>
-        <div class="patch-checkbox-group">
-          <label class="patch-checkbox-label"><input type="checkbox" value="comp" class="patch-cb-${isModal ? 'modal' : 'pp'}" onchange="handleIntlPatchChange(this, ${isModal})"> Competition</label>
-          <label class="patch-checkbox-label"><input type="checkbox" value="anniv" class="patch-cb-${isModal ? 'modal' : 'pp'}" onchange="handleIntlPatchChange(this, ${isModal})"> Anniversary</label>
-          <label class="patch-checkbox-label"><input type="checkbox" value="armband" class="patch-cb-${isModal ? 'modal' : 'pp'}" onchange="handleIntlPatchChange(this, ${isModal})"> Armband</label>
-          <label class="patch-checkbox-label"><input type="checkbox" value="flag" class="patch-cb-${isModal ? 'modal' : 'pp'}" onchange="handleIntlPatchChange(this, ${isModal})"> Match Day Flag</label>
-        </div>`;
-    } else {
-      if (isModal) {
-        container.innerHTML = `
-          <label for="custom-patch">Sleeve patch (+₹40)</label>
-          <select id="custom-patch" onchange="updatePricing()">
-            <option value="none">No patch</option>
-            <option value="comp">Competition patch</option>
-            <option value="anniv">Anniversary patch</option>
-            <option value="armband">Captain's armband</option>
-          </select>`;
-      } else {
-        container.innerHTML = `
-          <label>Sleeve patch (+₹40)</label>
-          <div class="patch-photo-row" id="ppPatchRow">
-            <div class="patch-photo-item active" data-patch="none" onclick="ppSelectPatch('none', this)"><div class="patch-photo-thumb"><span>No patch</span></div></div>
-            <div class="patch-photo-item" data-patch="comp" onclick="ppSelectPatch('comp', this)"><div class="patch-photo-thumb"><span>Competition<br>photo</span></div></div>
-            <div class="patch-photo-item" data-patch="anniv" onclick="ppSelectPatch('anniv', this)"><div class="patch-photo-thumb"><span>Anniversary<br>photo</span></div></div>
-            <div class="patch-photo-item" data-patch="armband" onclick="ppSelectPatch('armband', this)"><div class="patch-photo-thumb"><span>Captain's armband<br>photo</span></div></div>
-          </div>`;
-      }
-    }
+  function patchLabelText(product){
+    return product.multiPatch ? "Sleeve patch — choose up to 2 (+₹40 each)" : "Sleeve patch (+₹40)";
   }
 
-  function handleIntlPatchChange(el, isModal) {
-    const selector = isModal ? '.patch-cb-modal:checked' : '.patch-cb-pp:checked';
-    const checked = document.querySelectorAll(selector);
-    if (checked.length > 2) {
-      el.checked = false;
-      alert("You can select a maximum of 2 patches for international jerseys.");
+  function selectedPatchKeys(rowId){
+    return Array.from(document.querySelectorAll(`#${rowId} .patch-photo-item.active`))
+      .map(el => el.dataset.patch)
+      .filter(k => k !== 'none');
+  }
+
+  function togglePatch(rowId, patchKey, el, product){
+    const row = document.getElementById(rowId);
+    if (!row) return;
+    const noneEl = row.querySelector('[data-patch="none"]');
+    if (!noneEl) return;
+    const multi = !!(product && product.multiPatch);
+
+    if (patchKey === 'none'){
+      row.querySelectorAll('.patch-photo-item').forEach(item => item.classList.remove('active'));
+      noneEl.classList.add('active');
       return;
     }
-    if (isModal) updatePricing(); else ppUpdatePricing();
+
+    noneEl.classList.remove('active');
+    const isActive = el.classList.contains('active');
+    if (isActive){
+      el.classList.remove('active');
+      if (!row.querySelector('.patch-photo-item.active')) noneEl.classList.add('active');
+    } else {
+      const activeCount = row.querySelectorAll('.patch-photo-item.active').length;
+      const max = multi ? 2 : 1;
+      if (activeCount >= max){
+        if (max === 1){
+          row.querySelectorAll('.patch-photo-item').forEach(item => item.classList.remove('active'));
+        } else {
+          return; // already at the 2-patch limit
+        }
+      }
+      el.classList.add('active');
+    }
   }
 
-  function getSelectedPatchCount(isModal) {
-    const isIntl = activeProduct && (activeProduct.tabContentId === 'international' || activeProduct.tabContentId === 'retro-intl');
-    if (isIntl) {
-      const selector = isModal ? '.patch-cb-modal:checked' : '.patch-cb-pp:checked';
-      return document.querySelectorAll(selector).length;
-    } else {
-      if (isModal) {
-        const val = document.getElementById('custom-patch')?.value || 'none';
-        return val !== 'none' ? 1 : 0;
-      } else {
-        return ppPatch !== 'none' ? 1 : 0;
-      }
-    }
+  function selectPatch(patchKey, el){
+    togglePatch('customPatchRow', patchKey, el, activeProduct);
+    updatePricing();
   }
 
   function openCustomize(id){
     activeProduct = PRODUCTS[id];
-    const isIntl = activeProduct.tabContentId === 'international' || activeProduct.tabContentId === 'retro-intl';
-    
     document.getElementById('modalTitle').textContent = `${activeProduct.name} — ${activeProduct.type}`;
     document.getElementById('modalMeta').textContent = `${activeProduct.league} · ${activeProduct.type} kit`;
     populateNameSelect('custom-popular-group', activeProduct.popular);
@@ -1557,14 +1729,14 @@
     document.getElementById('custom-name-row').style.display = 'none';
     document.getElementById('custom-number').value = activeProduct.number;
     document.getElementById('custom-name').value = '';
+    document.getElementById('customPatchLabel').textContent = patchLabelText(activeProduct);
+    document.querySelectorAll('#customPatchRow .patch-photo-item').forEach(el => el.classList.toggle('active', el.dataset.patch === 'none'));
     document.getElementById('sizeChartBox').classList.remove('active');
-    
-    renderPatchSelector(isIntl, 'modalPatchContainer', true);
     selectVersion('master');
     renderModalVisual();
     updatePricing();
-    
-    document.getElementById('customizeModal').hidden = false;
+    const overlay = document.getElementById('customizeModal');
+    overlay.hidden = false;
     document.getElementById('custom-size').focus();
   }
 
@@ -1579,33 +1751,24 @@
   function onNameSelectChange(){
     const val = document.getElementById('custom-nameselect').value;
     document.getElementById('custom-name-row').style.display = val === 'custom' ? 'grid' : 'none';
-    updatePricing(); renderModalVisual();
+    updatePricing();
+    renderModalVisual();
   }
 
   function updatePricing(){
-    if (!activeProduct) return;
     const nameChoice = document.getElementById('custom-nameselect').value;
-    const basePrice = activeProduct.price || 600;
-    const versionPrice = selectedVersion === 'player' ? basePrice + 50 : basePrice;
+    const patchKeys = selectedPatchKeys('customPatchRow');
+    const versionPrice = VERSION_PRICES[selectedVersion];
     const versionLabel = selectedVersion === 'master' ? 'Master / Fan' : 'Player';
-    
     let total = versionPrice;
     let parts = [`${versionLabel} kit ₹${versionPrice}`];
-    
     if (nameChoice === 'custom'){
       total += CUSTOM_NAME_PRICE; parts.push(`Custom name +₹${CUSTOM_NAME_PRICE}`);
     } else if (nameChoice.startsWith('popular:')){
       const p = activeProduct.popular[+nameChoice.split(':')[1]];
       total += POPULAR_NAME_PRICE; parts.push(`${p.name} name +₹${POPULAR_NAME_PRICE}`);
     }
-    
-    const patchCount = getSelectedPatchCount(true);
-    if (patchCount > 0) {
-      const patchTotal = patchCount * PATCH_PRICE;
-      total += patchTotal;
-      parts.push(`${patchCount} Patch${patchCount > 1 ? 'es' : ''} +₹${patchTotal}`);
-    }
-    
+    if (patchKeys.length){ total += PATCH_PRICE * patchKeys.length; parts.push(`${patchKeys.length} patch${patchKeys.length > 1 ? 'es' : ''} +₹${PATCH_PRICE * patchKeys.length}`); }
     document.getElementById('modalPrice').textContent = `₹${total}`;
     document.getElementById('modalBreakdown').textContent = parts.join(' · ') + (parts.length > 1 ? '' : ' · shipping included');
     document.getElementById('modalAddBtn').textContent = `Add to cart — ₹${total}`;
@@ -1614,9 +1777,16 @@
   document.getElementById('custom-number').addEventListener('input', renderModalVisual);
   document.getElementById('custom-name').addEventListener('input', updatePricing);
 
-  function closeCustomize(){ document.getElementById('customizeModal').hidden = true; }
-  document.getElementById('customizeModal').addEventListener('click', function(e){ if (e.target === this) closeCustomize(); });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeCustomize(); });
+  function closeCustomize(){
+    document.getElementById('customizeModal').hidden = true;
+  }
+
+  document.getElementById('customizeModal').addEventListener('click', function(e){
+    if (e.target === this) closeCustomize();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeCustomize();
+  });
 
   function addCustomizedToCart(){
     const btn = document.getElementById('modalAddBtn');
@@ -1625,12 +1795,13 @@
     setTimeout(() => { btn.textContent = finalText; closeCustomize(); }, 900);
   }
 
-  let ppProduct = null; let ppVersion = 'master'; let ppPatch = 'none';
+  // ---------- Dedicated product page (Current Season) ----------
+  let ppProduct = null;
+  let ppVersion = 'master';
+
   function openProductPage(id){
     ppProduct = PRODUCTS[id];
-    activeProduct = ppProduct;
-    ppVersion = 'master'; ppPatch = 'none';
-    const isIntl = ppProduct.tabContentId === 'international' || ppProduct.tabContentId === 'retro-intl';
+    ppVersion = 'master';
 
     document.getElementById('ppEyebrow').textContent = ppProduct.league;
     document.getElementById('ppTitle').textContent = `${ppProduct.name} — ${ppProduct.type}`;
@@ -1652,7 +1823,9 @@
       : `<span>Back photo</span><small>Upload jersey back here</small>`;
     document.getElementById('pp-name-preview').innerHTML = `<span>Name &amp; number preview</span><small>Photo of the printed name/number will appear here</small>`;
 
-    renderPatchSelector(isIntl, 'ppPatchContainer', false);
+    document.getElementById('ppPatchLabel').textContent = patchLabelText(ppProduct);
+    document.querySelectorAll('#ppPatchRow .patch-photo-item').forEach(el => el.classList.toggle('active', el.dataset.patch === 'none'));
+
     ppSelectVersion('master');
     showPage('product');
   }
@@ -1671,38 +1844,28 @@
   }
 
   function ppSelectPatch(patch, el){
-    ppPatch = patch;
-    document.querySelectorAll('#ppPatchRow .patch-photo-item').forEach(item => item.classList.remove('active'));
-    el.classList.add('active');
+    togglePatch('ppPatchRow', patch, el, ppProduct);
     ppUpdatePricing();
   }
 
-  function ppToggleSizeChart(){ document.getElementById('ppSizeChartBox').classList.toggle('active'); }
+  function ppToggleSizeChart(){
+    document.getElementById('ppSizeChartBox').classList.toggle('active');
+  }
 
   function ppUpdatePricing(){
-    if (!ppProduct) return;
     const nameChoice = document.getElementById('pp-nameselect').value;
-    const basePrice = ppProduct.price || 600;
-    const versionPrice = ppVersion === 'player' ? basePrice + 50 : basePrice;
+    const patchKeys = selectedPatchKeys('ppPatchRow');
+    const versionPrice = VERSION_PRICES[ppVersion];
     const versionLabel = ppVersion === 'master' ? 'Master / Fan' : 'Player';
-    
     let total = versionPrice;
     let parts = [`${versionLabel} kit ₹${versionPrice}`];
-    
     if (nameChoice === 'custom'){
       total += CUSTOM_NAME_PRICE; parts.push(`Custom name +₹${CUSTOM_NAME_PRICE}`);
     } else if (nameChoice.startsWith('popular:')){
       const p = ppProduct.popular[+nameChoice.split(':')[1]];
       total += POPULAR_NAME_PRICE; parts.push(`${p.name} name +₹${POPULAR_NAME_PRICE}`);
     }
-    
-    const patchCount = getSelectedPatchCount(false);
-    if (patchCount > 0) {
-      const patchTotal = patchCount * PATCH_PRICE;
-      total += patchTotal;
-      parts.push(`${patchCount} Patch${patchCount > 1 ? 'es' : ''} +₹${patchTotal}`);
-    }
-    
+    if (patchKeys.length){ total += PATCH_PRICE * patchKeys.length; parts.push(`${patchKeys.length} patch${patchKeys.length > 1 ? 'es' : ''} +₹${PATCH_PRICE * patchKeys.length}`); }
     document.getElementById('ppPrice').textContent = `₹${total}`;
     document.getElementById('ppBreakdown').textContent = parts.join(' · ') + (parts.length > 1 ? '' : ' · shipping included');
     document.getElementById('ppAddBtn').textContent = `Add to cart — ₹${total}`;
