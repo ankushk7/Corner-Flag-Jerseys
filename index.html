@@ -2050,7 +2050,7 @@
     const nameChoice = document.getElementById('custom-nameselect').value;
     const patchItems = selectedPatchItems('customPatchRow');
     const sizeVal = document.getElementById('custom-size').value;
-    const totalText = document.getElementById('modalPrice').textContent || document.getElementById('modalPrice').innerText;
+const totalText = document.getElementById('modalPrice').lastChild.textContent;
     const versionLabel = selectedVersion === 'master' ? 'Master / Fan Version (Standard Fit)' : 'Player Version (Athletic Slim Fit)';
 
     let printDetail = "No Name & Number";
