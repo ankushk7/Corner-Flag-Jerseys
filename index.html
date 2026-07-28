@@ -73,15 +73,15 @@
   .brand-mark{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:0.2rem; margin-bottom:0.4rem; }
 
   .brand-mark .crest{
-    width:112px; height:112px; display:flex; align-items:center; justify-content:center;
+    width:160px; height:160px; display:flex; align-items:center; justify-content:center;
     filter: drop-shadow(0 10px 18px rgba(0,0,0,0.55));
-    border-radius:50%;
+    border-radius:50%; overflow:hidden;
   }
-  .brand-mark .crest svg{ width:100%; height:100%; overflow:visible; }
-  .brand-mark .crest:empty{
+  .brand-mark .crest img{ width:100%; height:100%; object-fit:contain; }
+  .brand-mark .crest:empty, .brand-mark .crest.logo-missing{
     border:2px dashed rgba(255,255,255,0.4); background:rgba(255,255,255,0.06);
   }
-  .brand-mark .crest:empty::before{
+  .brand-mark .crest:empty::before, .brand-mark .crest.logo-missing::before{
     content:'🖼️ Logo'; font-family:'Inter',sans-serif; font-size:0.7rem; font-weight:600; color:var(--chalk-dim);
   }
   
@@ -164,22 +164,26 @@
     backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.2rem;
     font-family:'Inter',sans-serif; font-size:0.62rem; color:var(--chalk-dim); text-align:center; padding:0.3rem;
+    overflow:hidden;
   }
+  .banner-logo-slot img{ width:100%; height:100%; object-fit:contain; }
   .banner-logo-slot:empty::before{ content:'🖼️ Logo'; }
+  
   .carousel-track{
     position:relative; height:220px; border-radius:16px; overflow:hidden;
     border:1px solid rgba(255,255,255,0.12); box-shadow:var(--shadow);
   }
   .carousel-slide{
     position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; padding:1.5rem; opacity:0; transition:opacity 0.6s ease; color:var(--chalk);
+    text-align:center; padding:1.5rem; opacity:0; transition:opacity 0.6s ease; color:var(--chalk); overflow:hidden;
   }
   .carousel-slide.active{ opacity:1; }
-  .carousel-slide h3{ font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.02em; margin:0.3rem 0 0.3rem; }
-  .carousel-slide p{ font-size:0.85rem; color:var(--chalk-dim); max-width:420px; }
+  .banner-bg-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1; opacity:0.85; }
+  .carousel-slide h3{ font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.02em; margin:0.3rem 0 0.3rem; position:relative; z-index:2; text-shadow:0 2px 4px rgba(0,0,0,0.6); }
+  .carousel-slide p{ font-size:0.85rem; color:var(--chalk-dim); max-width:420px; position:relative; z-index:2; text-shadow:0 1px 3px rgba(0,0,0,0.6); }
   .slide-kicker{
     font-family:'Roboto Mono',monospace; font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase;
-    color:var(--gold-bright); border:1px solid rgba(94,234,212,0.4); padding:0.25rem 0.7rem; border-radius:999px;
+    color:var(--gold-bright); border:1px solid rgba(94,234,212,0.4); padding:0.25rem 0.7rem; border-radius:999px; position:relative; z-index:2; background:rgba(0,0,0,0.4);
   }
   .slide-a{ background:linear-gradient(135deg, var(--pitch-dark), var(--pitch-mid) 60%, var(--gold) 140%); }
   .slide-b{ background:linear-gradient(135deg, var(--pitch-dark), var(--forest) 70%); }
@@ -322,12 +326,14 @@
     padding:0.4rem 0.5rem; border:1.5px solid #ddd8ca; border-radius:8px; background:rgba(255,255,255,0.95); color:var(--ink);
   }
 
+  /* Upgraded League Badge with Auto Image Support */
   .league-badge{
     display:inline-flex; align-items:center; justify-content:center; border-radius:50%; flex-shrink:0;
     color:#fff; font-family:'Bebas Neue',sans-serif; letter-spacing:0.02em;
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.25);
-    text-shadow:0 1px 1px rgba(0,0,0,0.35);
+    text-shadow:0 1px 1px rgba(0,0,0,0.35); position:relative; overflow:hidden;
   }
+  .league-badge img{ width:100%; height:100%; object-fit:contain; position:absolute; inset:0; z-index:2; background:rgba(240,245,246,0.95); }
 
   .club-badge-slot{
     display:inline-flex; align-items:center; justify-content:center; border-radius:50%; flex-shrink:0; overflow:hidden;
@@ -357,9 +363,32 @@
   .kit-visual{ position:relative; height:190px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, var(--pitch-dark), var(--forest)); }
   .kit-visual svg{ width:112px; filter:drop-shadow(0 10px 14px rgba(0,0,0,0.18)); }
 
-  .kit-tag{ position:absolute; top:10px; left:10px; font-family:'Roboto Mono',monospace; font-size:0.65rem; letter-spacing:0.06em; background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.35); backdrop-filter:blur(8px); color:var(--chalk); padding:0.28rem 0.5rem; border-radius:4px; text-transform:uppercase; }
-  .kit-tag.away{ background:var(--crimson); }
-  .kit-tag.retro{ background:var(--forest); }
+  /* High Contrast Universal Kit Tag Overlay */
+  .kit-tag{
+    position:absolute; top:10px; left:10px; z-index:10;
+    font-family:'Roboto Mono',monospace; font-size:0.68rem; font-weight:600;
+    letter-spacing:0.08em; text-transform:uppercase;
+    background:rgba(24, 28, 31, 0.92); color:#ffffff;
+    border:1px solid rgba(255, 255, 255, 0.28);
+    padding:0.35rem 0.65rem; border-radius:6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  }
+  .kit-tag.away{ background:rgba(15, 118, 110, 0.92); border-color:rgba(94, 234, 212, 0.4); color:#ffffff; }
+  .kit-tag.retro{ background:rgba(14, 77, 56, 0.92); border-color:rgba(212, 175, 55, 0.5); color:#ffffff; }
+  
+  /* Red Sale Tag Badge for Discounted International Kits */
+  .kit-tag.sale{
+    position:absolute; top:10px; right:10px; left:auto; z-index:10;
+    font-family:'Roboto Mono',monospace; font-size:0.68rem; font-weight:700;
+    letter-spacing:0.08em; text-transform:uppercase;
+    background:#dc2626; color:#ffffff;
+    border:1px solid #f87171;
+    padding:0.35rem 0.65rem; border-radius:6px;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  }
+
   .kit-photo{ width:100%; height:100%; object-fit:cover; border-radius:8px; }
 
   .photo-placeholder{
@@ -396,6 +425,7 @@
   .footer-links a:hover{ color:var(--gold-bright); }
   .copyright{ font-size:0.8rem; opacity:0.7; font-family:'Roboto Mono',monospace; position:relative; z-index:2; }
 
+  /* ---------- Floating Right-Side Socials ---------- */
   .floating-socials{ position:fixed; right:1rem; bottom:1.5rem; z-index:90; display:flex; flex-direction:column; gap:0.75rem; pointer-events:none; }
   .floating-socials a{ pointer-events:auto; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(20,24,27,0.85); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); border:1px solid rgba(94,234,212,0.4); color:var(--chalk); box-shadow:0 8px 20px rgba(0,0,0,0.3); transition:transform 0.2s, background 0.2s, border-color:0.2s; text-decoration:none; }
   .floating-socials a:hover{ transform:scale(1.1) translateX(-2px); background:var(--pitch-dark); border-color:var(--gold-bright); color:var(--gold-bright); }
@@ -430,6 +460,18 @@
 
   .nowrap-label { white-space: nowrap; display: block; font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.04em; }
 
+  /* ---------- Clean Photo Spot Patch System (Fully Wrapped Text) ---------- */
+  .patch-photo-row{ display:flex; gap:0.6rem; margin-top:0.4rem; flex-wrap:wrap; }
+  .patch-photo-item{ flex:1; min-width:65px; text-align:center; cursor:pointer; }
+  .patch-photo-thumb{
+    aspect-ratio:1; border-radius:10px; border:2px dashed #ddd8ca; background:rgba(240,245,246,0.6);
+    display:flex; align-items:center; justify-content:center; margin-bottom:0.25rem;
+    font-size:0.72rem; color:var(--ink-soft); padding:0.2rem; position:relative; overflow:hidden;
+  }
+  .patch-photo-thumb img{ width:100%; height:100%; object-fit:cover; border-radius:7px; }
+  .patch-photo-item.active .patch-photo-thumb{ border-style:solid; border-color:var(--gold); background:rgba(20,184,166,0.1); }
+  .patch-sublabel{ font-size:0.7rem; color:var(--ink-soft); line-height:1.3; display:block; white-space:normal; overflow-wrap:anywhere; word-break:break-word; max-width:100%; margin:0.25rem auto 0; }
+
   .size-chart-box { display:none; margin:1rem 0; padding:1rem; background:rgba(255,255,255,0.95); border:1.5px solid #ddd8ca; border-radius:10px; font-size:0.92rem; animation:fadeIn 0.3s ease; overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%; }
   .size-chart-box.active { display:block; }
   .size-chart-table { width:100%; min-width:360px; border-collapse:collapse; text-align:center; }
@@ -438,6 +480,7 @@
   .size-chart-table tr:nth-child(even) { background:rgba(240,245,246,0.6); }
   .size-chart-btn { background:none; border:none; color:var(--crimson); font-size:0.78rem; font-weight:600; cursor:pointer; text-decoration:underline; padding:0; margin-left:auto; display:inline-block; }
 
+  /* ---------- Dedicated product page ---------- */
   .product-page-container{ padding-top:2rem; padding-bottom:3rem; }
   .back-link{ display:inline-block; font-family:'Bebas Neue',sans-serif; letter-spacing:0.04em; font-size:1rem; color:var(--crimson); text-decoration:none; margin-bottom:1.4rem; }
   .back-link:hover{ text-decoration:underline; }
@@ -453,20 +496,11 @@
   .photo-slot small{ font-size:0.72rem; }
   .photo-slot img{ width:100%; height:100%; object-fit:cover; border-radius:12px; }
   .name-preview-slot{ width:150px; margin:0.9rem 0 1.1rem; }
-  .patch-photo-row{ display:flex; gap:0.6rem; margin-top:0.4rem; }
-  .patch-photo-item{ flex:1; text-align:center; cursor:pointer; }
-  .patch-photo-thumb{
-    aspect-ratio:1; border-radius:9px; border:2px dashed #ddd8ca; background:rgba(240,245,246,0.6);
-    display:flex; align-items:center; justify-content:center; margin-bottom:0.3rem;
-    font-size:0.62rem; line-height:1.25; color:var(--ink-soft); padding:0.3rem;
-  }
-  .patch-photo-thumb img{ width:100%; height:100%; object-fit:cover; border-radius:7px; }
-  .patch-photo-item.active .patch-photo-thumb{ border-style:solid; border-color:var(--gold); background:rgba(20,184,166,0.08); }
   @media (max-width:760px){
     .product-page-grid{ grid-template-columns:1fr; gap:1.4rem; }
   }
 
-  /* ---------- STRICT MOBILE PHONE OPTIMIZATIONS (ZERO CUT-OFFS & STICKY CTA) ---------- */
+  /* ---------- STRICT MOBILE PHONE OPTIMIZATIONS ---------- */
   @media (max-width: 860px){
     .hero-inner{ grid-template-columns:1fr; gap:2.2rem; }
     .hero-pitch-lines{ display:none; }
@@ -482,6 +516,8 @@
   }
 
   @media (max-width: 600px){
+.brand-mark .crest{ width:130px; height:130px; }
+    .banner-logo-slot{ width:70px; height:70px; } /* Upgraded from 60px */
     .products{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.75rem; }
     .fan-zone-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.75rem; }
     .hero-stats-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.6rem; }
@@ -511,7 +547,6 @@
     .version-toggle{ grid-template-columns:1fr; gap:0.5rem; }
     .patch-photo-row{ display:grid; grid-template-columns:repeat(2, 1fr); gap:0.5rem; }
 
-    /* Sticky Bottom Action Bar for Phone Screens so users never have to hunt for Add to Cart */
     #modalAddBtn, #ppAddBtn {
       position: sticky;
       bottom: -1.25rem;
@@ -582,7 +617,7 @@
 
 <header class="site-header">
   <div class="brand-mark">
-    <span class="crest" aria-hidden="true"></span>
+    <span class="crest" aria-hidden="true"><img src="logo/logo.png" alt="Corner Flag Logo" onerror="this.remove(); this.parentElement.classList.add('logo-missing')"></span>
   </div>
   <h1>Corner Flag Jerseys</h1>
   <p>Club and country jerseys, current season and retro — sourced, checked, and shipped across India.</p>
@@ -631,18 +666,21 @@
 
 <section class="banner-carousel" aria-label="Promotions">
   <div class="carousel-track" id="carouselTrack">
-    <div class="banner-logo-slot" aria-hidden="true"></div>
+    <div class="banner-logo-slot" aria-hidden="true"><img src="logo/logo.png" alt="Logo" onerror="this.remove()"></div>
     <div class="carousel-slide slide-a active">
+      <img src="banners/banner-1.jpg" alt="Promo Banner 1" class="banner-bg-img" onerror="this.remove()">
       <span class="slide-kicker">Slide 1 · Replace me</span>
       <h3>Drop your banner artwork here</h3>
       <p>1600×500 recommended — this space cycles automatically.</p>
     </div>
     <div class="carousel-slide slide-b">
+      <img src="banners/banner-2.jpg" alt="Promo Banner 2" class="banner-bg-img" onerror="this.remove()">
       <span class="slide-kicker">Slide 2 · Replace me</span>
       <h3>Seasonal launches, offers, drops</h3>
       <p>Swap this block's background for a promo image anytime.</p>
     </div>
     <div class="carousel-slide slide-c">
+      <img src="banners/banner-3.jpg" alt="Promo Banner 3" class="banner-bg-img" onerror="this.remove()">
       <span class="slide-kicker">Slide 3 · Replace me</span>
       <h3>New collection teasers</h3>
       <p>Add as many slides as you like — the carousel loops.</p>
@@ -860,8 +898,8 @@
       <div class="field">
         <label>Version</label>
         <div class="version-toggle" role="radiogroup" aria-label="Kit version">
-          <button type="button" class="version-btn active" id="pp-version-master" onclick="ppSelectVersion('master')">Master / Fan version<span>₹600, shipping included</span></button>
-          <button type="button" class="version-btn" id="pp-version-player" onclick="ppSelectVersion('player')">Player version<span>₹650, athletic slim fit</span></button>
+          <button type="button" class="version-btn active" id="pp-version-master" onclick="ppSelectVersion('master')">Master / Fan version<span id="pp-version-master-note">₹600, shipping included</span></button>
+          <button type="button" class="version-btn" id="pp-version-player" onclick="ppSelectVersion('player')">Player version<span id="pp-version-player-note">₹650, athletic slim fit</span></button>
         </div>
       </div>
 
@@ -927,21 +965,8 @@
       </div>
 
       <div class="field">
-        <label id="ppPatchLabel">Sleeve patch (+₹40)</label>
-        <div class="patch-photo-row" id="ppPatchRow">
-          <div class="patch-photo-item active" data-patch="none" onclick="ppSelectPatch('none', this)">
-            <div class="patch-photo-thumb"><span>No patch</span></div>
-          </div>
-          <div class="patch-photo-item" data-patch="comp" onclick="ppSelectPatch('comp', this)">
-            <div class="patch-photo-thumb"><span>Competition<br>photo</span></div>
-          </div>
-          <div class="patch-photo-item" data-patch="anniv" onclick="ppSelectPatch('anniv', this)">
-            <div class="patch-photo-thumb"><span>Anniversary<br>photo</span></div>
-          </div>
-          <div class="patch-photo-item" data-patch="armband" onclick="ppSelectPatch('armband', this)">
-            <div class="patch-photo-thumb"><span>Captain's armband<br>photo</span></div>
-          </div>
-        </div>
+        <label id="ppPatchLabel">Sleeve patch (+₹40 each)</label>
+        <div class="patch-photo-row" id="ppPatchRow"></div>
       </div>
 
       <p class="modal-note">Most used names come pre-set with that player's number. Custom kits ship 2–3 days later than stock kits.</p>
@@ -1028,8 +1053,8 @@
         <div class="field">
           <label>Version</label>
           <div class="version-toggle" role="radiogroup" aria-label="Kit version">
-            <button type="button" class="version-btn active" id="version-master" data-price="600" data-label="Master" onclick="selectVersion('master')">Master / Fan version<span>₹600, shipping included</span></button>
-            <button type="button" class="version-btn" id="version-player" data-price="650" data-label="Player" onclick="selectVersion('player')">Player version<span>₹650, athletic slim fit</span></button>
+            <button type="button" class="version-btn active" id="version-master" data-price="600" data-label="Master" onclick="selectVersion('master')">Master / Fan version<span id="version-master-note">₹600, shipping included</span></button>
+            <button type="button" class="version-btn" id="version-player" data-price="650" data-label="Player" onclick="selectVersion('player')">Player version<span id="version-player-note">₹650, athletic slim fit</span></button>
           </div>
         </div>
 
@@ -1096,21 +1121,8 @@
         </div>
         
         <div class="field">
-          <label id="customPatchLabel">Sleeve patch (+₹40)</label>
-          <div class="patch-photo-row" id="customPatchRow">
-            <div class="patch-photo-item active" data-patch="none" onclick="selectPatch('none', this)">
-              <div class="patch-photo-thumb"><span>No patch</span></div>
-            </div>
-            <div class="patch-photo-item" data-patch="comp" onclick="selectPatch('comp', this)">
-              <div class="patch-photo-thumb"><span>Competition<br>photo</span></div>
-            </div>
-            <div class="patch-photo-item" data-patch="anniv" onclick="selectPatch('anniv', this)">
-              <div class="patch-photo-thumb"><span>Anniversary<br>photo</span></div>
-            </div>
-            <div class="patch-photo-item" data-patch="armband" onclick="selectPatch('armband', this)">
-              <div class="patch-photo-thumb"><span>Captain's armband<br>photo</span></div>
-            </div>
-          </div>
+          <label id="customPatchLabel">Sleeve patch (+₹40 each)</label>
+          <div class="patch-photo-row" id="customPatchRow"></div>
         </div>
         
         <p class="modal-note">Most used names come pre-set with that player's number. Custom kits ship 2–3 days later than stock kits.</p>
@@ -1289,213 +1301,311 @@
     box.classList.toggle('active');
   }
 
-  function jerseyIcon(primary, secondary, number){
-    const uid = 'u' + Math.random().toString(36).slice(2,9);
-    return `
-    <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Jersey graphic, number ${number}">
-      <defs>
-        <linearGradient id="sheen-${uid}" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="rgba(255,255,255,0.32)"/>
-          <stop offset="45%" stop-color="rgba(255,255,255,0)"/>
-          <stop offset="100%" stop-color="rgba(0,0,0,0.14)"/>
-        </linearGradient>
-      </defs>
-      <path d="M70,58 L33,50 L14,92 L44,112 L68,78 Z" fill="${primary}" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>
-      <path d="M130,58 L167,50 L186,92 L156,112 L132,78 Z" fill="${primary}" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>
-      <path d="M14,92 L44,112 L38,124 L9,103 Z" fill="${secondary}"/>
-      <path d="M186,92 L156,112 L162,124 L191,103 Z" fill="${secondary}"/>
-      <path d="M70,52 L130,52 L138,204 Q100,216 62,204 Z" fill="${primary}" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>
-      <path d="M70,52 L80,52 L76,204 L64,204 Z" fill="${secondary}" opacity="0.92"/>
-      <path d="M130,52 L120,52 L124,204 L136,204 Z" fill="${secondary}" opacity="0.92"/>
-      <path d="M83,50 Q100,66 117,50 L112,40 Q100,50 88,40 Z" fill="${secondary}"/>
-      <path d="M70,58 L33,50 L14,92 L44,112 L68,78 Z" fill="url(#sheen-${uid})"/>
-      <path d="M130,58 L167,50 L186,92 L156,112 L132,78 Z" fill="url(#sheen-${uid})"/>
-      <path d="M70,52 L130,52 L138,204 Q100,216 62,204 Z" fill="url(#sheen-${uid})"/>
-      <text x="100" y="150" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="48"
-            fill="rgba(255,255,255,0.95)" stroke="rgba(0,0,0,0.3)" stroke-width="0.6">${number}</text>
-    </svg>`;
-  }
-
   function kitPair(clubName, home, away, popular){
     return [
-      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, popular:popular||[] },
-      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Away", primary:away.p, secondary:away.s, number:away.n, image:away.img, popular:popular||[] },
+      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, imageBack:home.imgBack, popular:popular||[] },
+      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Away", primary:away.p, secondary:away.s, number:away.n, image:away.img, imageBack:away.imgBack, popular:popular||[] },
     ];
   }
   function kitHomeOnly(clubName, home, popular){
-    return [{ name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, popular:popular||[] }];
+    return [{ name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, imageBack:home.imgBack, popular:popular||[] }];
+  }
+
+  /* Dedicated Helper for International Sale Kits */
+  function intlPair(clubName, home, away, popular, price){
+    const basePrice = price || 550;
+    return [
+      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, imageBack:home.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:700, onSale:true },
+      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Away", primary:away.p, secondary:away.s, number:away.n, image:away.img, imageBack:away.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:700, onSale:true },
+    ];
+  }
+  function intlHomeOnly(clubName, home, popular, price){
+    const basePrice = price || 550;
+    return [{ name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, imageBack:home.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:700, onSale:true }];
   }
 
   const currentSeason = [
     { league:"La Liga", teams:[
-      ...kitPair("Real Madrid", {p:"#f5f5f5",s:"#5a2d8c",n:9}, {p:"#1a1a1a",s:"#c9a227",n:9},
+      ...kitPair("Real Madrid", 
+        {p:"#f5f5f5",s:"#5a2d8c",n:9,img:"jerseys/current/real-madrid-home.jpg",imgBack:"jerseys/current/real-madrid-home-back.jpg"}, 
+        {p:"#1a1a1a",s:"#c9a227",n:9,img:"jerseys/current/real-madrid-away.jpg",imgBack:"jerseys/current/real-madrid-away-back.jpg"},
         [{name:"Vinicius Jr", number:7}, {name:"Bellingham", number:5}, {name:"Mbappe", number:9}]),
-      ...kitPair("Barcelona", {p:"#a50044",s:"#004d98",n:10}, {p:"#f5f5f5",s:"#a50044",n:10},
-        [{name:"Lewandowski", number:9}, {name:"Pedri", number:8}, {name:"Yamal", number:19}]),
-      ...kitHomeOnly("Atletico Madrid", {p:"#c8102e",s:"#0b2265",n:7},
-        [{name:"Griezmann", number:7}, {name:"Alvarez", number:19}]),
+      ...kitPair("Barcelona", 
+        {p:"#a50044",s:"#004d98",n:10,img:"jerseys/current/barcelona-home.jpg",imgBack:"jerseys/current/barcelona-home-back.jpg"}, 
+        {p:"#f5f5f5",s:"#a50044",n:10,img:"jerseys/current/barcelona-away.jpg",imgBack:"jerseys/current/barcelona-away-back.jpg"},
+        [{name:"Pedri", number:8}, {name:"Yamal", number:10}]),
+      ...kitHomeOnly("Atletico Madrid", 
+        {p:"#c8102e",s:"#0b2265",n:7,img:"jerseys/current/atletico-madrid-home.jpg",imgBack:"jerseys/current/atletico-madrid-home-back.jpg"}, []),
     ]},
     { league:"Premier League", teams:[
-      ...kitPair("Manchester United", {p:"#da020e",s:"#111111",n:7}, {p:"#111111",s:"#da020e",n:7},
+      ...kitPair("Manchester United", 
+        {p:"#da020e",s:"#111111",n:7,img:"jerseys/current/man-utd-home.jpg",imgBack:"jerseys/current/man-utd-home-back.jpg"}, 
+        {p:"#111111",s:"#da020e",n:7,img:"jerseys/current/man-utd-away.jpg",imgBack:"jerseys/current/man-utd-away-back.jpg"},
         [{name:"Bruno Fernandes", number:8}, {name:"Rashford", number:10}, {name:"Garnacho", number:17}]),
-      ...kitPair("Liverpool", {p:"#c8102e",s:"#0a1d33",n:11}, {p:"#22c1a4",s:"#0a1d33",n:11},
-        [{name:"Salah", number:11}, {name:"Van Dijk", number:4}, {name:"Nunez", number:9}]),
-      ...kitPair("Arsenal", {p:"#ef0107",s:"#f5f5f5",n:9}, {p:"#063672",s:"#f5c400",n:9},
-        [{name:"Saka", number:7}, {name:"Odegaard", number:8}, {name:"Havertz", number:29}]),
-      ...kitPair("Tottenham Hotspur", {p:"#f5f5f5",s:"#132257",n:10}, {p:"#132257",s:"#f5f5f5",n:10},
-        [{name:"Son", number:7}, {name:"Maddison", number:10}]),
-      ...kitPair("Manchester City", {p:"#6cabdd",s:"#1c2c5b",n:17}, {p:"#2c2c54",s:"#6cabdd",n:17},
-        [{name:"Haaland", number:9}, {name:"De Bruyne", number:17}, {name:"Foden", number:47}]),
-      ...kitPair("Chelsea", {p:"#034694",s:"#f5f5f5",n:10}, {p:"#f5f5f5",s:"#034694",n:10},
+      ...kitPair("Liverpool", 
+        {p:"#c8102e",s:"#0a1d33",n:11,img:"jerseys/current/liverpool-home.jpg",imgBack:"jerseys/current/liverpool-home-back.jpg"}, 
+        {p:"#22c1a4",s:"#0a1d33",n:11,img:"jerseys/current/liverpool-away.jpg",imgBack:"jerseys/current/liverpool-away-back.jpg"},
+        [{name:"Van Dijk", number:4}, {name:"Mac Allister", number:10}]),
+      ...kitPair("Arsenal", 
+        {p:"#ef0107",s:"#f5f5f5",n:9,img:"jerseys/current/arsenal-home.jpg",imgBack:"jerseys/current/arsenal-home-back.jpg"}, 
+        {p:"#063672",s:"#f5c400",n:9,img:"jerseys/current/arsenal-away.jpg",imgBack:"jerseys/current/arsenal-away-back.jpg"},
+        [{name:"Saka", number:7}, {name:"Rice", number:41}]),
+      ...kitPair("Tottenham Hotspur", 
+        {p:"#f5f5f5",s:"#132257",n:10,img:"jerseys/current/spurs-home.jpg",imgBack:"jerseys/current/spurs-home-back.jpg"}, 
+        {p:"#132257",s:"#f5f5f5",n:10,img:"jerseys/current/spurs-away.jpg",imgBack:"jerseys/current/spurs-away-back.jpg"},
+        [{name:"Maddison", number:10}]),
+      ...kitPair("Manchester City", 
+        {p:"#6cabdd",s:"#1c2c5b",n:17,img:"jerseys/current/man-city-home.jpg",imgBack:"jerseys/current/man-city-home-back.jpg"}, 
+        {p:"#2c2c54",s:"#6cabdd",n:17,img:"jerseys/current/man-city-away.jpg",imgBack:"jerseys/current/man-city-away-back.jpg"},
+        [{name:"Haaland", number:9}, {name:"Foden", number:47}]),
+      ...kitPair("Chelsea", 
+        {p:"#034694",s:"#f5f5f5",n:10,img:"jerseys/current/chelsea-home.jpg",imgBack:"jerseys/current/chelsea-home-back.jpg"}, 
+        {p:"#f5f5f5",s:"#034694",n:10,img:"jerseys/current/chelsea-away.jpg",imgBack:"jerseys/current/chelsea-away-back.jpg"},
         [{name:"Palmer", number:10}, {name:"Jackson", number:15}]),
     ]},
     { league:"Serie A", teams:[
-      ...kitPair("Inter Milan", {p:"#0c1f4a",s:"#0068a8",n:9}, {p:"#f5f5f5",s:"#0c1f4a",n:9},
+      ...kitPair("Inter Milan", 
+        {p:"#0c1f4a",s:"#0068a8",n:9,img:"jerseys/current/inter-milan-home.jpg",imgBack:"jerseys/current/inter-milan-home-back.jpg"}, 
+        {p:"#f5f5f5",s:"#0c1f4a",n:9,img:"jerseys/current/inter-milan-away.jpg",imgBack:"jerseys/current/inter-milan-away-back.jpg"},
         [{name:"Lautaro Martinez", number:10}, {name:"Barella", number:23}]),
-      ...kitPair("Juventus", {p:"#111111",s:"#f5f5f5",n:7}, {p:"#ffb400",s:"#111111",n:7},
+      ...kitPair("Juventus", 
+        {p:"#111111",s:"#f5f5f5",n:7,img:"jerseys/current/juventus-home.jpg",imgBack:"jerseys/current/juventus-home-back.jpg"}, 
+        {p:"#ffb400",s:"#111111",n:7,img:"jerseys/current/juventus-away.jpg",imgBack:"jerseys/current/juventus-away-back.jpg"},
         [{name:"Vlahovic", number:9}, {name:"Chiesa", number:7}]),
-      ...kitPair("AC Milan", {p:"#fb090b",s:"#111111",n:11}, {p:"#f5f5f5",s:"#fb090b",n:11},
-        [{name:"Leao", number:10}, {name:"Giroud", number:9}]),
-      ...kitPair("Napoli", {p:"#12a0d7",s:"#003c71",n:77}, {p:"#f5f5f5",s:"#12a0d7",n:77},
-        [{name:"Kvaratskhelia", number:77}, {name:"Lukaku", number:11}, {name:"Di Lorenzo", number:22}]),
+      ...kitPair("AC Milan", 
+        {p:"#fb090b",s:"#111111",n:11,img:"jerseys/current/ac-milan-home.jpg",imgBack:"jerseys/current/ac-milan-home-back.jpg"}, 
+        {p:"#f5f5f5",s:"#fb090b",n:11,img:"jerseys/current/ac-milan-away.jpg",imgBack:"jerseys/current/ac-milan-away-back.jpg"},
+        [{name:"Leao", number:10}]),
+      ...kitPair("Napoli", 
+        {p:"#12a0d7",s:"#003c71",n:77,img:"jerseys/current/napoli-home.jpg",imgBack:"jerseys/current/napoli-home-back.jpg"}, 
+        {p:"#f5f5f5",s:"#12a0d7",n:77,img:"jerseys/current/napoli-away.jpg",imgBack:"jerseys/current/napoli-away-back.jpg"},
+        [{name:"Kvaratskhelia", number:77}, {name:"De Bruyne", number:11}, {name:"McTominay", number:8}]),
     ]},
     { league:"Bundesliga", teams:[
-      ...kitPair("Bayern Munich", {p:"#dc052d",s:"#0a2240",n:25}, {p:"#f5f5f5",s:"#dc052d",n:25},
+      ...kitPair("Bayern Munich", 
+        {p:"#dc052d",s:"#0a2240",n:25,img:"jerseys/current/bayern-home.jpg",imgBack:"jerseys/current/bayern-home-back.jpg"}, 
+        {p:"#f5f5f5",s:"#dc052d",n:25,img:"jerseys/current/bayern-away.jpg",imgBack:"jerseys/current/bayern-away-back.jpg"},
         [{name:"Kane", number:9}, {name:"Musiala", number:42}]),
-      ...kitPair("Borussia Dortmund", {p:"#fde100",s:"#111111",n:11}, {p:"#111111",s:"#fde100",n:11},
-        [{name:"Sancho", number:7}, {name:"Reus", number:11}]),
-      ...kitPair("Bayer Leverkusen", {p:"#e2001a",s:"#111111",n:14}, {p:"#f5f5f5",s:"#e2001a",n:14},
+      ...kitPair("Borussia Dortmund", 
+        {p:"#fde100",s:"#111111",n:11,img:"jerseys/current/dortmund-home.jpg",imgBack:"jerseys/current/dortmund-home-back.jpg"}, 
+        {p:"#111111",s:"#fde100",n:11,img:"jerseys/current/dortmund-away.jpg",imgBack:"jerseys/current/dortmund-away-back.jpg"}, []),
+      ...kitPair("Bayer Leverkusen", 
+        {p:"#e2001a",s:"#111111",n:14,img:"jerseys/current/leverkusen-home.jpg",imgBack:"jerseys/current/leverkusen-home-back.jpg"}, 
+        {p:"#f5f5f5",s:"#e2001a",n:14,img:"jerseys/current/leverkusen-away.jpg",imgBack:"jerseys/current/leverkusen-away-back.jpg"},
         [{name:"Wirtz", number:10}, {name:"Boniface", number:19}]),
     ]},
     { league:"Ligue 1", teams:[
-      ...kitPair("PSG", {p:"#04225c",s:"#da291c",n:30}, {p:"#f5f5f5",s:"#04225c",n:30},
+      ...kitPair("PSG", 
+        {p:"#04225c",s:"#da291c",n:30,img:"jerseys/current/psg-home.jpg",imgBack:"jerseys/current/psg-home-back.jpg"}, 
+        {p:"#f5f5f5",s:"#04225c",n:30,img:"jerseys/current/psg-away.jpg",imgBack:"jerseys/current/psg-away-back.jpg"},
         [{name:"Dembele", number:10}, {name:"Vitinha", number:17}]),
     ]},
     { league:"Rest of the World", teams:[
-      ...kitPair("Al Nassr", {p:"#ffd400",s:"#0b1f4a",n:7}, {p:"#0b1f4a",s:"#ffd400",n:7},
-        [{name:"Ronaldo", number:7}, {name:"Mane", number:10}]),
-      ...kitPair("Inter Miami", {p:"#f7b5cd",s:"#111111",n:10}, {p:"#111111",s:"#f7b5cd",n:10},
+      ...kitPair("Al Nassr", 
+        {p:"#ffd400",s:"#0b1f4a",n:7,img:"jerseys/current/al-nassr-home.jpg",imgBack:"jerseys/current/al-nassr-home-back.jpg"}, 
+        {p:"#0b1f4a",s:"#ffd400",n:7,img:"jerseys/current/al-nassr-away.jpg",imgBack:"jerseys/current/al-nassr-away-back.jpg"},
+        [{name:"Ronaldo", number:7}]),
+      ...kitPair("Inter Miami", 
+        {p:"#f7b5cd",s:"#111111",n:10,img:"jerseys/current/inter-miami-home.jpg",imgBack:"jerseys/current/inter-miami-home-back.jpg"}, 
+        {p:"#111111",s:"#f7b5cd",n:10,img:"jerseys/current/inter-miami-away.jpg",imgBack:"jerseys/current/inter-miami-away-back.jpg"},
         [{name:"Messi", number:10}, {name:"Suarez", number:9}]),
-      ...kitPair("Ajax", {p:"#f5f5f5",s:"#d2122e",n:14}, {p:"#111111",s:"#d2122e",n:14},
-        [{name:"Berghuis", number:23}, {name:"Brobbey", number:9}]),
+      ...kitPair("Ajax", 
+        {p:"#f5f5f5",s:"#d2122e",n:14,img:"jerseys/current/ajax-home.jpg",imgBack:"jerseys/current/ajax-home-back.jpg"}, 
+        {p:"#111111",s:"#d2122e",n:14,img:"jerseys/current/ajax-away.jpg",imgBack:"jerseys/current/ajax-away-back.jpg"}, []),
     ]},
   ];
 
-  /* UPDATED: Cleaned out vague names ("1970s Ajax", "1980s Liverpool", "1990s Manchester United") in favor of specific iconic kits */
   const retroClub = [
     { league:"Retro Clubs", teams:[
-      { name:"1998-99 Manchester United Treble Home Jersey", club:"Manchester United", type:"Retro", primary:"#da020e", secondary:"#111111", number:7,
-        popular:[{name:"Beckham", number:7}, {name:"Giggs", number:11}, {name:"Scholes", number:18}] },
-      { name:"1994-95 Ajax Home Jersey", club:"Ajax", type:"Retro", primary:"#f5f5f5", secondary:"#c8102e", number:10,
-        popular:[{name:"Litmanen", number:10}, {name:"Kluivert", number:9}, {name:"Seedorf", number:10}] },
-      { name:"1989-90 Liverpool Home Jersey", club:"Liverpool", type:"Retro", primary:"#c8102e", secondary:"#f5f5f5", number:9,
-        popular:[{name:"Rush", number:9}, {name:"Barnes", number:10}] },
-      { name:"2002-03 Sporting CP Home Jersey", club:"Sporting CP", type:"Retro", primary:"#1a7a3c", secondary:"#f5f5f5", number:28,
+      { name:"1998-99 Manchester United Treble Home Jersey", club:"Manchester United", type:"Retro", primary:"#da020e", secondary:"#111111", number:7, img:"jerseys/retro/man-utd-1999-treble-home.jpg",
+        popular:[{name:"Giggs", number:11}, {name:"Scholes", number:18}] },
+      { name:"2002-03 Sporting CP Home Jersey", club:"Sporting CP", type:"Retro", primary:"#1a7a3c", secondary:"#f5f5f5", number:28, img:"jerseys/retro/sporting-2002-home.jpg",
         popular:[{name:"Ronaldo", number:28}] },
-      { name:"2008-09 Barcelona Home Jersey", club:"Barcelona", type:"Retro", primary:"#a50044", secondary:"#004d98", number:10,
+      { name:"2008-09 Barcelona Home Jersey", club:"Barcelona", type:"Retro", primary:"#a50044", secondary:"#004d98", number:10, img:"jerseys/retro/barca-2008-home.jpg",
         popular:[{name:"Messi", number:10}] },
-      { name:"2014-15 Barcelona Home Jersey", club:"Barcelona", type:"Retro", primary:"#a50044", secondary:"#004d98", number:10,
+      { name:"2014-15 Barcelona Home Jersey", club:"Barcelona", type:"Retro", primary:"#a50044", secondary:"#004d98", number:10, img:"jerseys/retro/barca-2014-home.jpg",
         popular:[{name:"Messi", number:10}, {name:"Suarez", number:9}, {name:"Neymar", number:11}] },
-      { name:"1996-97 Barcelona Away Jersey", club:"Barcelona", type:"Retro", primary:"#00a99d", secondary:"#1a1a1a", number:9,
+      { name:"1996-97 Barcelona Away Jersey", club:"Barcelona", type:"Retro", primary:"#00a99d", secondary:"#1a1a1a", number:9, img:"jerseys/retro/barca-1996-away.jpg",
         popular:[{name:"R9", number:9}] },
-      { name:"2015-16 Barcelona Home Jersey", club:"Barcelona", type:"Retro", primary:"#a50044", secondary:"#004d98", number:11,
+      { name:"2015-16 Barcelona Home Jersey", club:"Barcelona", type:"Retro", primary:"#a50044", secondary:"#004d98", number:11, img:"jerseys/retro/barca-2015-home.jpg",
         popular:[{name:"Neymar", number:11}] },
-      { name:"2005-06 Arsenal Home Jersey", club:"Arsenal", type:"Retro", primary:"#9c2b3d", secondary:"#f5f5f5", number:14,
+      { name:"2025-26 Barcelona Away Jersey", club:"Barcelona", type:"Retro", primary:"#f5f5f5", secondary:"#a50044", number:19, img:"jerseys/retro/barca-2025-away.jpg",
+        popular:[{name:"Yamal", number:10}] },
+      { name:"2011-12 Barcelona Away Jersey", club:"Barcelona", type:"Retro", primary:"#f5a623", secondary:"#004d98", number:10, img:"jerseys/retro/barca-2011-away.jpg",
+        popular:[{name:"Messi", number:10}, {name:"Iniesta", number:8}] },
+      { name:"2005-06 Arsenal Home Jersey", club:"Arsenal", type:"Retro", primary:"#9c2b3d", secondary:"#f5f5f5", number:14, img:"jerseys/retro/arsenal-2005-home.jpg",
         popular:[{name:"Henry", number:14}] },
-      { name:"1995-96 Arsenal Away Jersey", club:"Arsenal", type:"Retro", primary:"#1b2a4a", secondary:"#c8102e", number:10,
+      { name:"1995-96 Arsenal Away Jersey", club:"Arsenal", type:"Retro", primary:"#1b2a4a", secondary:"#c8102e", number:10, img:"jerseys/retro/arsenal-1995-away.jpg",
         popular:[{name:"Bergkamp", number:10}, {name:"Wright", number:8}] },
-      { name:"1990-92 Arsenal Jersey (Re-released)", club:"Arsenal", type:"Retro", primary:"#0f9b8e", secondary:"#ffe500", number:9,
+      { name:"1990-92 Arsenal Jersey (Re-released)", club:"Arsenal", type:"Retro", primary:"#0f9b8e", secondary:"#ffe500", number:9, img:"jerseys/retro/arsenal-1990-home.jpg",
         popular:[{name:"Smith", number:9}] },
-      { name:"2024-25 Arsenal Away Jersey", club:"Arsenal", type:"Retro", primary:"#f0e6d2", secondary:"#0b1f4a", number:7,
-        popular:[{name:"Saka", number:7}, {name:"Odegaard", number:8}] },
-      { name:"2002-03 Ajax Home Jersey", club:"Ajax", type:"Retro", primary:"#f5f5f5", secondary:"#c8102e", number:9,
-        popular:[{name:"Ibrahimovic", number:9}] },
-      { name:"2011-12 Real Madrid Home Jersey", club:"Real Madrid", type:"Retro", primary:"#f5f5f5", secondary:"#c9a227", number:7,
+      { name:"2024-25 Arsenal Away Jersey", club:"Arsenal", type:"Retro", primary:"#f0e6d2", secondary:"#0b1f4a", number:7, img:"jerseys/retro/arsenal-2024-away.jpg",
+        popular:[{name:"Saka", number:7}, {name:"Rice", number:41}] },
+      { name:"2003-04 Arsenal Away Jersey", club:"Arsenal", type:"Retro", primary:"#4a5568", secondary:"#c8102e", number:14, img:"jerseys/retro/arsenal-2003-away.jpg",
+        popular:[{name:"Henry", number:14}] },
+      { name:"2002-03 Ajax Home Jersey", club:"Ajax", type:"Retro", primary:"#f5f5f5", secondary:"#c8102e", number:9, img:"jerseys/retro/ajax-2002-home.jpg",
+        popular:[] },
+      { name:"1994-95 Ajax Home Jersey", club:"Ajax", type:"Retro", primary:"#f5f5f5", secondary:"#c8102e", number:10, img:"jerseys/retro/ajax-1994-home.jpg",
+        popular:[] },
+      { name:"2011-12 Real Madrid Home Jersey", club:"Real Madrid", type:"Retro", primary:"#f5f5f5", secondary:"#c9a227", number:7, img:"jerseys/retro/madrid-2011-home.jpg",
         popular:[{name:"Ronaldo", number:7}, {name:"Benzema", number:9}] },
-      { name:"2011-12 Real Madrid Away Jersey", club:"Real Madrid", type:"Retro", primary:"#0b1f4a", secondary:"#f5a623", number:7,
+      { name:"2011-12 Real Madrid Away Jersey", club:"Real Madrid", type:"Retro", primary:"#0b1f4a", secondary:"#f5a623", number:7, img:"jerseys/retro/madrid-2011-away.jpg",
         popular:[{name:"Ronaldo", number:7}, {name:"Ozil", number:10}] },
-      { name:"2016-17 Real Madrid Away Jersey", club:"Real Madrid", type:"Retro", primary:"#00c2b2", secondary:"#111111", number:7,
+      { name:"2016-17 Real Madrid Away Jersey", club:"Real Madrid", type:"Retro", primary:"#00c2b2", secondary:"#111111", number:7, img:"jerseys/retro/madrid-2016-away.jpg",
         popular:[{name:"Ronaldo", number:7}, {name:"Bale", number:11}] },
-      { name:"2017-18 Real Madrid Third Jersey", club:"Real Madrid", type:"Retro", primary:"#1a1a1a", secondary:"#c9a227", number:7,
+      { name:"2017-18 Real Madrid Third Jersey", club:"Real Madrid", type:"Retro", primary:"#1a1a1a", secondary:"#c9a227", number:7, img:"jerseys/retro/madrid-2017-third.jpg",
         popular:[{name:"Ronaldo", number:7}, {name:"Modric", number:10}] },
-      { name:"2024-25 Real Madrid Third Jersey", club:"Real Madrid", type:"Retro", primary:"#f0d264", secondary:"#1a1a1a", number:9,
+      { name:"2024-25 Real Madrid Third Jersey", club:"Real Madrid", type:"Retro", primary:"#f0d264", secondary:"#1a1a1a", number:9, img:"jerseys/retro/madrid-2024-third.jpg",
         popular:[{name:"Mbappe", number:9}, {name:"Vinicius Jr", number:7}] },
-      { name:"2025-26 Real Madrid Away Jersey", club:"Real Madrid", type:"Retro", primary:"#0b1f4a", secondary:"#c8102e", number:9,
+      { name:"2025-26 Real Madrid Away Jersey", club:"Real Madrid", type:"Retro", primary:"#0b1f4a", secondary:"#c8102e", number:9, img:"jerseys/retro/madrid-2025-away.jpg",
         popular:[{name:"Mbappe", number:9}, {name:"Bellingham", number:5}] },
-      { name:"Liverpool Away 1993-95 Jersey (Re-released)", club:"Liverpool", type:"Retro", primary:"#8a8f94", secondary:"#111111", number:9,
+      { name:"Liverpool Away 1993-95 Jersey (Re-released)", club:"Liverpool", type:"Retro", primary:"#8a8f94", secondary:"#111111", number:9, img:"jerseys/retro/liverpool-1993-away.jpg",
         popular:[{name:"Fowler", number:9}] },
-      { name:"Liverpool Away 1995-96 Jersey", club:"Liverpool", type:"Retro", primary:"#e8dcc0", secondary:"#4a4a4a", number:9,
+      { name:"Liverpool Away 1995-96 Jersey", club:"Liverpool", type:"Retro", primary:"#e8dcc0", secondary:"#4a4a4a", number:9, img:"jerseys/retro/liverpool-1995-away.jpg",
         popular:[{name:"Fowler", number:9}, {name:"McManaman", number:7}] },
-      { name:"2009-10 Inter Milan Home Jersey", club:"Inter Milan", type:"Retro", primary:"#0c1f4a", secondary:"#0068a8", number:9,
+      { name:"2009-10 Inter Milan Home Jersey", club:"Inter Milan", type:"Retro", primary:"#0c1f4a", secondary:"#0068a8", number:9, img:"jerseys/retro/inter-2009-home.jpg",
         popular:[{name:"Eto'o", number:9}, {name:"Milito", number:22}] },
+      { name:"2019-20 Juventus Home Jersey", club:"Juventus", type:"Retro", primary:"#111111", secondary:"#f5f5f5", number:7, img:"jerseys/retro/juve-2019-home.jpg",
+        popular:[{name:"Ronaldo", number:7}, {name:"Dybala", number:10}] },
+      { name:"2015-16 Manchester United Home Jersey", club:"Manchester United", type:"Retro", primary:"#da020e", secondary:"#111111", number:10, img:"jerseys/retro/man-utd-2015-home.jpg",
+        popular:[{name:"Rooney", number:10}, {name:"Martial", number:9}] },
+      { name:"2013-14 Chelsea Third Jersey", club:"Chelsea", type:"Retro", primary:"#111111", secondary:"#034694", number:17, img:"jerseys/retro/chelsea-2013-third.jpg",
+        popular:[{name:"Hazard", number:17}] },
+      { name:"2007-08 Chelsea Home Jersey", club:"Chelsea", type:"Retro", primary:"#034694", secondary:"#f5f5f5", number:8, img:"jerseys/retro/chelsea-2007-home.jpg",
+        popular:[{name:"Lampard", number:8}, {name:"Drogba", number:11}] },
+      { name:"2013-14 Bayern Munich Home Jersey", club:"Bayern Munich", type:"Retro", primary:"#dc052d", secondary:"#0a2240", number:10, img:"jerseys/retro/bayern-2013-home.jpg",
+        popular:[{name:"Robben", number:10}, {name:"Ribery", number:7}] },
+      { name:"1998-99 Bayern Munich Home Jersey", club:"Bayern Munich", type:"Retro", primary:"#dc052d", secondary:"#f5f5f5", number:11, img:"jerseys/retro/bayern-1998-home.jpg",
+        popular:[{name:"Effenberg", number:11}] },
+      { name:"1987-88 Napoli Home Jersey", club:"Napoli", type:"Retro", primary:"#12a0d7", secondary:"#f5f5f5", number:10, img:"jerseys/retro/napoli-1987-home.jpg",
+        popular:[{name:"Maradona", number:10}] },
+      { name:"2000-01 AC Milan Away Jersey", club:"AC Milan", type:"Retro", primary:"#f5f5f5", secondary:"#fb090b", number:7, img:"jerseys/retro/milan-2000-away.jpg",
+        popular:[{name:"Shevchenko", number:7}] },
+      { name:"2006-07 AC Milan Home Jersey", club:"AC Milan", type:"Retro", primary:"#fb090b", secondary:"#111111", number:22, img:"jerseys/retro/milan-2006-home.jpg",
+        popular:[{name:"Kaka", number:22}, {name:"Pirlo", number:21}] },
+      { name:"2022-23 PSG Third Jersey", club:"PSG", type:"Retro", primary:"#f5f5f5", secondary:"#04225c", number:30, img:"jerseys/retro/psg-2022-third.jpg",
+        popular:[{name:"Messi", number:30}] },
+      { name:"2025-26 PSG Fourth Jersey", club:"PSG", type:"Retro", primary:"#111111", secondary:"#c9a227", number:30, img:"jerseys/retro/psg-2025-fourth.jpg",
+        popular:[] },
+      { name:"1995-96 PSG Home Jersey", club:"PSG", type:"Retro", primary:"#04225c", secondary:"#da291c", number:30, img:"jerseys/retro/psg-1995-home.jpg",
+        popular:[] },
     ]},
   ];
 
-  /* UPDATED: Removed generic "1980s Brazil" and replaced with authentic World Cup kit */
   const retroIntl = [
     { league:"Retro International", teams:[
-      { name:"1970 Brazil World Cup Home Jersey", club:"Brazil", type:"Retro", primary:"#ffdf00", secondary:"#009739", number:10,
-        popular:[{name:"Pelé", number:10}, {name:"Jairzinho", number:7}, {name:"Rivelino", number:11}] },
-      { name:"1986 Argentina World Cup Home Jersey", club:"Argentina", type:"Retro", primary:"#75aadb", secondary:"#f5f5f5", number:10,
-        popular:[{name:"Maradona", number:10}] },
-      { name:"1998 France World Cup Home Jersey", club:"France", type:"Retro", primary:"#002654", secondary:"#f5f5f5", number:10,
-        popular:[{name:"Zidane", number:10}, {name:"Henry", number:12}] },
+      { name:"1970 Brazil World Cup Home Jersey", club:"Brazil", type:"Retro", primary:"#ffdf00", secondary:"#009739", number:10, img:"jerseys/retro-intl/brazil-1970-home.jpg",
+        popular:[{name:"Pelé", number:10}, {name:"Jairzinho", number:7}, {name:"Rivelino", number:11}], basePrice:600, originalPrice:700, onSale:true },
+      { name:"2002 Brazil World Cup Home Jersey (Re-issue)", club:"Brazil", type:"Retro", primary:"#ffdf00", secondary:"#009739", number:9, img:"jerseys/retro-intl/brazil-2002-home.jpg",
+        popular:[{name:"R9", number:9}, {name:"Ronaldinho", number:11}], basePrice:600, originalPrice:700, onSale:true },
+      { name:"1986 Argentina World Cup Home Jersey", club:"Argentina", type:"Retro", primary:"#75aadb", secondary:"#f5f5f5", number:10, img:"jerseys/retro-intl/argentina-1986-home.jpg",
+        popular:[{name:"Maradona", number:10}], basePrice:600, originalPrice:700, onSale:true },
+      { name:"1998 France World Cup Home Jersey", club:"France", type:"Retro", primary:"#002654", secondary:"#f5f5f5", number:10, img:"jerseys/retro-intl/france-1998-home.jpg",
+        popular:[{name:"Zidane", number:10}], basePrice:600, originalPrice:700, onSale:true },
+      { name:"1998 France World Cup Away Jersey", club:"France", type:"Retro", primary:"#f5f5f5", secondary:"#002654", number:10, img:"jerseys/retro-intl/france-1998-away.jpg",
+        popular:[{name:"Zidane", number:10}], basePrice:600, originalPrice:700, onSale:true },
+      { name:"1998-99 England Home Jersey", club:"England", type:"Retro", primary:"#f5f5f5", secondary:"#0b1f4a", number:7, img:"jerseys/retro-intl/england-1998-home.jpg",
+        popular:[], basePrice:600, originalPrice:700, onSale:true },
+      { name:"1996 Germany Away Jersey (Re-released)", club:"Germany", type:"Retro", primary:"#0b6e4f", secondary:"#f5f5f5", number:9, img:"jerseys/retro-intl/germany-1996-away.jpg",
+        popular:[], basePrice:600, originalPrice:700, onSale:true },
+      { name:"1994 Argentina Away Jersey", club:"Argentina", type:"Retro", primary:"#1a2b4c", secondary:"#75aadb", number:10, img:"jerseys/retro-intl/argentina-1994-away.jpg",
+        popular:[{name:"Maradona", number:10}], basePrice:600, originalPrice:700, onSale:true },
+      { name:"2006 Argentina Home Jersey", club:"Argentina", type:"Retro", primary:"#75aadb", secondary:"#f5f5f5", number:19, img:"jerseys/retro-intl/argentina-2006-home.jpg",
+        popular:[{name:"Messi", number:19}], basePrice:600, originalPrice:700, onSale:true },
+      { name:"2016 Portugal Home Jersey", club:"Portugal", type:"Retro", primary:"#c8102e", secondary:"#046a38", number:7, img:"jerseys/retro-intl/portugal-2016-home.jpg",
+        popular:[{name:"Cristiano", number:7}], basePrice:600, originalPrice:700, onSale:true },
+      { name:"1994 Spain Jersey (Re-released)", club:"Spain", type:"Retro", primary:"#c60b1e", secondary:"#f5c400", number:9, img:"jerseys/retro-intl/spain-1994-home.jpg",
+        popular:[], basePrice:600, originalPrice:700, onSale:true },
     ].map(t => ({ ...t, multiPatch:true })) },
   ];
 
+  /* Updated International Section: Popular ones (Argentina, Spain, Portugal, France, England, Brazil, Germany) = ₹600, rest = ₹550 */
   const international = [
     { league:"International Teams", teams:[
-      ...kitPair("Argentina", {p:"#75aadb",s:"#f5f5f5",n:10}, {p:"#1a2b4c",s:"#75aadb",n:10},
-        [{name:"Messi", number:10}, {name:"Alvarez", number:9}]),
-      ...kitPair("Spain", {p:"#c60b1e",s:"#f5c400",n:19}, {p:"#0b1f4a",s:"#c60b1e",n:19},
-        [{name:"Yamal", number:19}, {name:"Pedri", number:26}]),
-      ...kitPair("France", {p:"#002654",s:"#ed2939",n:7}, {p:"#f5f5f5",s:"#002654",n:7},
-        [{name:"Mbappe", number:10}, {name:"Griezmann", number:7}]),
-      ...kitPair("England", {p:"#f5f5f5",s:"#0b1f4a",n:9}, {p:"#c8102e",s:"#0b1f4a",n:9},
-        [{name:"Kane", number:9}, {name:"Bellingham", number:5}, {name:"Saka", number:7}]),
-      ...kitPair("Belgium", {p:"#e30613",s:"#111111",n:7}, {p:"#111111",s:"#e30613",n:7},
-        [{name:"De Bruyne", number:7}]),
-      ...kitPair("Norway", {p:"#ba0c2f",s:"#00205b",n:9}, {p:"#f5f5f5",s:"#ba0c2f",n:9},
-        [{name:"Haaland", number:9}]),
-      ...kitPair("Brazil", {p:"#ffdf00",s:"#009739",n:9}, {p:"#002776",s:"#ffdf00",n:9},
-        [{name:"Vinicius Jr", number:20}, {name:"Rodrygo", number:19}]),
-      ...kitPair("Mexico", {p:"#006847",s:"#f5f5f5",n:20}, {p:"#f5f5f5",s:"#006847",n:20},
-        [{name:"Gimenez", number:20}]),
-      ...kitPair("Germany", {p:"#f5f5f5",s:"#111111",n:10}, {p:"#043927",s:"#f5f5f5",n:10},
-        [{name:"Musiala", number:10}, {name:"Wirtz", number:17}]),
-      ...kitPair("Netherlands", {p:"#ff6c00",s:"#12305e",n:7}, {p:"#f5f5f5",s:"#12305e",n:7},
-        [{name:"Xavi Simons", number:7}, {name:"Gakpo", number:8}]),
-      ...kitPair("Portugal", {p:"#c8102e",s:"#046a38",n:7}, {p:"#f5f5f5",s:"#046a38",n:7},
-        [{name:"Ronaldo", number:7}, {name:"Bruno Fernandes", number:8}]),
+      ...intlPair("Argentina", 
+        {p:"#75aadb",s:"#f5f5f5",n:10,img:"jerseys/intl/argentina-home.jpg",imgBack:"jerseys/intl/argentina-home-back.jpg"}, 
+        {p:"#1a2b4c",s:"#75aadb",n:10,img:"jerseys/intl/argentina-away.jpg",imgBack:"jerseys/intl/argentina-away-back.jpg"},
+        [{name:"Messi", number:10}, {name:"Alvarez", number:9}], 600),
+      ...intlPair("Spain", 
+        {p:"#c60b1e",s:"#f5c400",n:19,img:"jerseys/intl/spain-home.jpg",imgBack:"jerseys/intl/spain-home-back.jpg"}, 
+        {p:"#0b1f4a",s:"#c60b1e",n:19,img:"jerseys/intl/spain-away.jpg",imgBack:"jerseys/intl/spain-away-back.jpg"},
+        [{name:"Yamal", number:19}, {name:"Pedri", number:20}, {name:"Ferran", number:7}], 600),
+      ...intlPair("France", 
+        {p:"#002654",s:"#ed2939",n:7,img:"jerseys/intl/france-home.jpg",imgBack:"jerseys/intl/france-home-back.jpg"}, 
+        {p:"#f5f5f5",s:"#002654",n:7,img:"jerseys/intl/france-away.jpg",imgBack:"jerseys/intl/france-away-back.jpg"},
+        [{name:"Mbappe", number:10}, {name:"Dembele", number:7}, {name:"Olise", number:11}], 600),
+      ...intlPair("England", 
+        {p:"#f5f5f5",s:"#0b1f4a",n:9,img:"jerseys/intl/england-home.jpg",imgBack:"jerseys/intl/england-home-back.jpg"}, 
+        {p:"#c8102e",s:"#0b1f4a",n:9,img:"jerseys/intl/england-away.jpg",imgBack:"jerseys/intl/england-away-back.jpg"},
+        [{name:"Kane", number:9}, {name:"Bellingham", number:5}, {name:"Saka", number:7}], 600),
+      ...intlPair("Italy", 
+        {p:"#00468b",s:"#ffffff",n:10,img:"jerseys/intl/italy-home.jpg",imgBack:"jerseys/intl/italy-home-back.jpg"}, 
+        {p:"#ffffff",s:"#00468b",n:10,img:"jerseys/intl/italy-away.jpg",imgBack:"jerseys/intl/italy-away-back.jpg"}, [], 550),
+      ...intlPair("Croatia", 
+        {p:"#ffffff",s:"#ff0000",n:10,img:"jerseys/intl/croatia-home.jpg",imgBack:"jerseys/intl/croatia-home-back.jpg"}, 
+        {p:"#1a2b4c",s:"#ff0000",n:10,img:"jerseys/intl/croatia-away.jpg",imgBack:"jerseys/intl/croatia-away-back.jpg"},
+        [{name:"Modric", number:10}, {name:"Gvardiol", number:4}, {name:"Kovacic", number:8}], 550),
+      ...intlPair("Uruguay", 
+        {p:"#55b5e5",s:"#111111",n:8,img:"jerseys/intl/uruguay-home.jpg",imgBack:"jerseys/intl/uruguay-home-back.jpg"}, 
+        {p:"#ffffff",s:"#55b5e5",n:8,img:"jerseys/intl/uruguay-away.jpg",imgBack:"jerseys/intl/uruguay-away-back.jpg"},
+        [{name:"Valverde", number:8}], 550),
+      ...intlPair("Belgium", 
+        {p:"#e30613",s:"#111111",n:7,img:"jerseys/intl/belgium-home.jpg",imgBack:"jerseys/intl/belgium-home-back.jpg"}, 
+        {p:"#111111",s:"#e30613",n:7,img:"jerseys/intl/belgium-away.jpg",imgBack:"jerseys/intl/belgium-away-back.jpg"},
+        [{name:"De Bruyne", number:7}], 550),
+      ...intlPair("Norway", 
+        {p:"#ba0c2f",s:"#00205b",n:9,img:"jerseys/intl/norway-home.jpg",imgBack:"jerseys/intl/norway-home-back.jpg"}, 
+        {p:"#f5f5f5",s:"#ba0c2f",n:9,img:"jerseys/intl/norway-away.jpg",imgBack:"jerseys/intl/norway-away-back.jpg"},
+        [{name:"Haaland", number:9}], 550),
+      ...intlPair("Brazil", 
+        {p:"#ffdf00",s:"#009739",n:9,img:"jerseys/intl/brazil-home.jpg",imgBack:"jerseys/intl/brazil-home-back.jpg"}, 
+        {p:"#002776",s:"#ffdf00",n:9,img:"jerseys/intl/brazil-away.jpg",imgBack:"jerseys/intl/brazil-away-back.jpg"},
+        [{name:"Vinicius Jr", number:7}, {name:"Neymar", number:10}], 600),
+      ...intlPair("Mexico", 
+        {p:"#006847",s:"#f5f5f5",n:20,img:"jerseys/intl/mexico-home.jpg",imgBack:"jerseys/intl/mexico-home-back.jpg"}, 
+        {p:"#f5f5f5",s:"#006847",n:20,img:"jerseys/intl/mexico-away.jpg",imgBack:"jerseys/intl/mexico-away-back.jpg"},
+        [{name:"Gimenez", number:20}], 550),
+      ...intlPair("Germany", 
+        {p:"#f5f5f5",s:"#111111",n:10,img:"jerseys/intl/germany-home.jpg",imgBack:"jerseys/intl/germany-home-back.jpg"}, 
+        {p:"#043927",s:"#f5f5f5",n:10,img:"jerseys/intl/germany-away.jpg",imgBack:"jerseys/intl/germany-away-back.jpg"},
+        [{name:"Musiala", number:10}, {name:"Wirtz", number:17}], 600),
+      ...intlHomeOnly("Netherlands", 
+        {p:"#ff6c00",s:"#12305e",n:7,img:"jerseys/intl/netherlands-home.jpg",imgBack:"jerseys/intl/netherlands-home-back.jpg"}, [], 550),
+      ...intlPair("Portugal", 
+        {p:"#c8102e",s:"#046a38",n:7,img:"jerseys/intl/portugal-home.jpg",imgBack:"jerseys/intl/portugal-home-back.jpg"}, 
+        {p:"#f5f5f5",s:"#046a38",n:7,img:"jerseys/intl/portugal-away.jpg",imgBack:"jerseys/intl/portugal-away-back.jpg"},
+        [{name:"Ronaldo", number:7}], 600),
     ].map(t => ({ ...t, multiPatch:true })) },
   ];
 
   const fullSleeves = [
     { league:"Full Sleeve Jerseys", teams:[
-      { name:"Real Madrid Full Sleeve Jersey 2026-27", club:"Real Madrid", type:"Home", primary:"#f5f5f5", secondary:"#5a2d8c", number:9,
+      { name:"Real Madrid Full Sleeve Jersey 2026-27", club:"Real Madrid", type:"Home", primary:"#f5f5f5", secondary:"#5a2d8c", number:9, img:"jerseys/full-sleeves/madrid-fs-2026.jpg",
         popular:[{name:"Vinicius Jr", number:7}, {name:"Bellingham", number:5}, {name:"Mbappe", number:9}] },
-      { name:"Manchester United Full Sleeve Jersey 2026-27", club:"Manchester United", type:"Home", primary:"#da020e", secondary:"#111111", number:7,
+      { name:"Manchester United Full Sleeve Jersey 2026-27", club:"Manchester United", type:"Home", primary:"#da020e", secondary:"#111111", number:7, img:"jerseys/full-sleeves/man-utd-fs-2026.jpg",
         popular:[{name:"Bruno Fernandes", number:8}, {name:"Rashford", number:10}, {name:"Garnacho", number:17}] },
-      { name:"Bayern Munich Full Sleeve Jersey 2026-27", club:"Bayern Munich", type:"Home", primary:"#dc052d", secondary:"#0a2240", number:25,
+      { name:"Bayern Munich Full Sleeve Jersey 2026-27", club:"Bayern Munich", type:"Home", primary:"#dc052d", secondary:"#0a2240", number:25, img:"jerseys/full-sleeves/bayern-fs-2026.jpg",
         popular:[{name:"Kane", number:9}, {name:"Musiala", number:42}] },
-      { name:"Manchester United 1998 Full Sleeve Jersey", club:"Manchester United", type:"Retro", primary:"#da020e", secondary:"#111111", number:7,
-        popular:[{name:"Beckham", number:7}, {name:"Scholes", number:18}] },
-      { name:"Germany Full Sleeve Jersey 2026-27", club:"Germany", type:"Home", primary:"#f5f5f5", secondary:"#111111", number:10,
+      { name:"Manchester United 1998 Full Sleeve Jersey", club:"Manchester United", type:"Retro", primary:"#da020e", secondary:"#111111", number:7, img:"jerseys/full-sleeves/man-utd-1998-fs.jpg",
+        popular:[{name:"Giggs", number:11}, {name:"Scholes", number:18}] },
+      { name:"Germany Full Sleeve Jersey 2026-27", club:"Germany", type:"Home", primary:"#f5f5f5", secondary:"#111111", number:10, img:"jerseys/full-sleeves/germany-fs-2026.jpg",
         popular:[{name:"Musiala", number:10}, {name:"Wirtz", number:17}] },
-      { name:"AC Milan 2000-01 Away Full Sleeve Jersey", club:"AC Milan", type:"Retro", primary:"#f5f5f5", secondary:"#fb090b", number:7,
+      { name:"AC Milan 2000-01 Away Full Sleeve Jersey", club:"AC Milan", type:"Retro", primary:"#f5f5f5", secondary:"#fb090b", number:7, img:"jerseys/full-sleeves/milan-2000-away-fs.jpg",
         popular:[{name:"Shevchenko", number:7}] },
-      { name:"AC Milan 2006-07 Home Full Sleeve Jersey", club:"AC Milan", type:"Retro", primary:"#fb090b", secondary:"#111111", number:22,
+      { name:"AC Milan 2006-07 Home Full Sleeve Jersey", club:"AC Milan", type:"Retro", primary:"#fb090b", secondary:"#111111", number:22, img:"jerseys/full-sleeves/milan-2006-home-fs.jpg",
         popular:[{name:"Kaka", number:22}, {name:"Pirlo", number:21}] },
-      { name:"Real Madrid 2016-17 Away Full Sleeve Jersey", club:"Real Madrid", type:"Retro", primary:"#00c2b2", secondary:"#111111", number:7,
+      { name:"Real Madrid 2016-17 Away Full Sleeve Jersey", club:"Real Madrid", type:"Retro", primary:"#00c2b2", secondary:"#111111", number:7, img:"jerseys/full-sleeves/madrid-2016-away-fs.jpg",
         popular:[{name:"Ronaldo", number:7}] },
-      { name:"Real Madrid 2012-13 Full Sleeve Jersey", club:"Real Madrid", type:"Retro", primary:"#f5f5f5", secondary:"#5a2d8c", number:7,
+      { name:"Real Madrid 2012-13 Full Sleeve Jersey", club:"Real Madrid", type:"Retro", primary:"#f5f5f5", secondary:"#5a2d8c", number:7, img:"jerseys/full-sleeves/madrid-2012-home-fs.jpg",
         popular:[{name:"Ronaldo", number:7}, {name:"Ozil", number:10}] },
+      { name:"1998-99 England Home Full Sleeve Jersey", club:"England", type:"Retro", primary:"#f5f5f5", secondary:"#0b1f4a", number:7, img:"jerseys/full-sleeves/england-1998-home-fs.jpg",
+        popular:[] },
     ]},
   ];
 
   const POPULARITY = {
     "Real Madrid":99, "Barcelona":98, "Manchester United":96, "Liverpool":95, "Brazil":95, "Argentina":94,
-    "Bayern Munich":90, "Chelsea":88, "Manchester City":88, "Juventus":87, "PSG":87, "France":89, "Germany":86, "Arsenal":85,
+    "Bayern Munich":90, "Chelsea":88, "Manchester City":88, "Juventus":87, "PSG":87, "France":89, "Germany":86, "Italy":86, "Croatia":82, "Uruguay":81, "Arsenal":85,
     "Inter Milan":80, "AC Milan":80, "Borussia Dortmund":78, "Tottenham Hotspur":77, "Portugal":83, "Netherlands":79, "Spain":82, "England":84,
     "Atletico Madrid":74, "Napoli":72, "Ajax":73, "Al Nassr":76, "Inter Miami":75, "Bayer Leverkusen":68, "Belgium":70,
     "Mexico":62, "Norway":60, "Sporting CP":58
@@ -1503,7 +1613,6 @@
   function popularityOf(team){ return POPULARITY[team.club] ?? 50; }
 
   const PRODUCTS = [];
-
   const COLLECTIONS = {};
 
   const LEAGUE_META = {
@@ -1536,9 +1645,12 @@
 
   function leagueBadgeHTML(leagueName, size){
     size = size || 28;
+    const slug = slugify(leagueName);
     const meta = LEAGUE_META[leagueName] || { abbr: initials(leagueName), primary: '#0e4d38', secondary: '#14b8a6' };
     const fontSize = Math.round(size * 0.34);
-    return `<span class="league-badge" style="width:${size}px;height:${size}px;font-size:${fontSize}px;background:linear-gradient(135deg, ${meta.primary}, ${meta.secondary});" title="${leagueName}" aria-hidden="true">${meta.abbr}</span>`;
+    return `<span class="league-badge" style="width:${size}px;height:${size}px;font-size:${fontSize}px;background:linear-gradient(135deg, ${meta.primary}, ${meta.secondary});" title="${leagueName}" aria-hidden="true">` +
+      `<img src="league-badges/${slug}.png" alt="${leagueName} badge" loading="lazy" onerror="this.remove()">` +
+      `${meta.abbr}</span>`;
   }
 
   function buildCollection(data, containerId, tabBtnId, tabContentId){
@@ -1570,7 +1682,18 @@
       const groupId = `${containerId}__${slugify(group.league)}`;
       const items = group.teams.map(team => {
         const id = PRODUCTS.length;
-        const item = { ...team, league: group.league, tabBtnId, tabContentId, slug: slugify(group.league), id };
+        let basePrice = team.basePrice;
+        if (!basePrice) {
+          if (team.type === 'Retro') {
+            const pop = popularityOf(team);
+            basePrice = pop >= 80 ? 800 : 750;
+          } else {
+            basePrice = 600;
+          }
+        }
+        let image = team.image;
+        let imageBack = team.imageBack || (image ? image.replace('.jpg', '-back.jpg') : null);
+        const item = { ...team, basePrice, image, imageBack, league: group.league, tabBtnId, tabContentId, slug: slugify(group.league), id };
         PRODUCTS.push(item);
         return item;
       });
@@ -1581,18 +1704,25 @@
 
   function cardHTML(team, id){
     const tagClass = team.type === 'Away' ? 'kit-tag away' : team.type === 'Retro' ? 'kit-tag retro' : 'kit-tag';
+    const saleTag = team.onSale ? `<span class="kit-tag sale">SALE</span>` : '';
     const clubLabel = team.club || team.name;
+    const priceDisplay = team.basePrice || 600;
+    const priceHTML = team.originalPrice
+      ? `<span style="text-decoration:line-through; color:var(--ink-soft); opacity:0.75; font-size:0.88em; margin-right:5px;">₹${team.originalPrice}</span>₹${priceDisplay}`
+      : `₹${priceDisplay}`;
+
     return `
       <div class="product-card" id="prod-${id}" data-league-slug="${slugify(team.league)}" data-club-slug="${slugify(clubLabel)}" tabindex="0" role="button" aria-label="View ${team.name} ${team.type}"
            onclick="openProductPage(${id})" onkeydown="if(event.key==='Enter'){openProductPage(${id})}">
         <div class="kit-visual">
           <span class="${tagClass}">${team.type}</span>
-          ${team.image ? `<img src="${team.image}" alt="${team.name}, ${team.type}" class="kit-photo">` : `<div class="photo-placeholder"><span class="upload-icon">📷</span><span class="ph-label">Add kit photo</span></div>`}
+          ${saleTag}
+          ${team.image ? `<img src="${team.image}" alt="${team.name}, ${team.type}" class="kit-photo" onerror="this.outerHTML='<div class=\\'photo-placeholder\\'><span class=\\'upload-icon\\'>📁</span><span class=\\'ph-label\\' style=\\'font-size:0.6rem;word-break:break-all;\\'>${team.image}</span></div>'">` : `<div class="photo-placeholder"><span class="upload-icon">📷</span><span class="ph-label">Add kit photo</span></div>`}
         </div>
         <div class="product-info">
           <h4 class="product-title">${clubBadgeHTML(clubLabel, 22)}<span>${team.name}</span></h4>
           <p class="product-meta">${team.league} · ${team.type} kit</p>
-          <p class="product-price">₹600<span class="ship-note">Shipping included</span></p>
+          <p class="product-price">${priceHTML}<span class="ship-note">Shipping included</span></p>
           <button class="card-btn" onclick="event.stopPropagation(); openCustomize(${id})">Customize &amp; add</button>
         </div>
       </div>`;
@@ -1602,12 +1732,13 @@
     const items = COLLECTIONS[groupId] || [];
     const sortSelect = document.getElementById(`sort-${groupId}`);
     const sortVal = sortSelect ? sortSelect.value : 'popularity';
+    const sortName = (t) => (t.club || t.name);
     const sorted = items.slice().sort((a, b) => {
       const priceA = a.basePrice || 600, priceB = b.basePrice || 600;
-      if (sortVal === 'price-asc') return (priceA - priceB) || a.name.localeCompare(b.name);
-      if (sortVal === 'price-desc') return (priceB - priceA) || a.name.localeCompare(b.name);
-      if (sortVal === 'alpha') return a.name.localeCompare(b.name);
-      return (popularityOf(b) - popularityOf(a)) || a.name.localeCompare(b.name);
+      if (sortVal === 'price-asc') return (priceA - priceB) || sortName(a).localeCompare(sortName(b));
+      if (sortVal === 'price-desc') return (priceB - priceA) || sortName(a).localeCompare(sortName(b));
+      if (sortVal === 'alpha') return sortName(a).localeCompare(sortName(b));
+      return (popularityOf(b) - popularityOf(a)) || sortName(a).localeCompare(sortName(b));
     });
     const grid = document.getElementById(`${groupId}-grid`);
     if (!grid) return;
@@ -1690,7 +1821,11 @@
   const POPULAR_NAME_PRICE = 120;
   const CUSTOM_NAME_PRICE = 220;
   const PATCH_PRICE = 40;
-  const VERSION_PRICES = { master: 600, player: 650 };
+
+  function getVersionPrices(product){
+    const base = (product && product.basePrice) ? product.basePrice : 600;
+    return { master: base, player: base + 50 };
+  }
 
   function selectVersion(version){
     selectedVersion = version;
@@ -1705,51 +1840,127 @@
     group.innerHTML = (popularList || []).map((p, i) => `<option value="popular:${i}">${p.name} #${p.number}</option>`).join('');
   }
 
-  function patchLabelText(product){
-    return product.multiPatch ? "Sleeve patch — choose up to 2 (+₹40 each)" : "Sleeve patch (+₹40)";
+  /* Dynamic Patch Generator */
+  function getPatchOptions(product) {
+    if (!product) return [];
+    
+    const club = product.club || product.name || '';
+    const league = product.league || '';
+    const isIntl = product.multiPatch || product.tabContentId === 'international' || product.tabContentId === 'retro-intl';
+    
+    if (isIntl) {
+      const wcWinners = ["Argentina", "Brazil", "France", "England", "Spain", "Germany", "Italy", "Uruguay"];
+      const isWinner = wcWinners.some(w => club.toLowerCase().includes(w.toLowerCase()) || product.name.toLowerCase().includes(w.toLowerCase()));
+      
+      if (isWinner) {
+        return [
+          { key: "wc-gold", label: "World Cup Golden Patch" },
+          { key: "football-unites", label: "Football Unites The World" },
+          { key: "unite-peace", label: "Unite For Peace" }
+        ];
+      } else {
+        return [
+          { key: "wc-normal", label: "World Cup Normal Patch" },
+          { key: "football-unites", label: "Football Unites The World" },
+          { key: "unite-peace", label: "Unite For Peace" }
+        ];
+      }
+    } else {
+      let options = [];
+      if (league === "La Liga") {
+        options.push({ key: "laliga-normal", label: "La Liga Normal Patch" });
+        options.push({ key: "laliga-winners", label: "La Liga Winners Patch" });
+      } else if (league === "Premier League") {
+        options.push({ key: "pl-normal", label: "Premier League Normal Patch" });
+        options.push({ key: "pl-winners", label: "Premier League Winners Patch" });
+      } else {
+        options.push({ key: "league-normal", label: `${league} Normal Patch` });
+        options.push({ key: "league-winners", label: `${league} Winners Patch` });
+      }
+      
+      options.push({ key: "ucl-normal", label: "UCL Normal Patch" });
+      
+      if (club.includes("Real Madrid")) {
+        options.push({ key: "ucl-15", label: "UCL 15 Winners Patch" });
+      } else if (club.includes("Liverpool") || club.includes("Bayern Munich")) {
+        options.push({ key: "ucl-6", label: "UCL 6 Winners Patch" });
+      } else if (club.includes("Barcelona")) {
+        options.push({ key: "ucl-5", label: "UCL 5 Winners Patch" });
+      } else if (club.includes("AC Milan")) {
+        options.push({ key: "ucl-7", label: "UCL 7 Winners Patch" });
+      } else {
+        options.push({ key: "ucl-winners", label: "UCL Winners Patch" });
+      }
+      
+      return options;
+    }
   }
 
-  function selectedPatchKeys(rowId){
-    return Array.from(document.querySelectorAll(`#${rowId} .patch-photo-item.active`))
-      .map(el => el.dataset.patch)
-      .filter(k => k !== 'none');
+  function renderPatchUI(rowId, product){
+    const row = document.getElementById(rowId);
+    if (!row || !product) return;
+    const options = getPatchOptions(product);
+    
+    let html = `
+      <div class="patch-photo-item active" data-patch="none" data-label="No Patch" onclick="onPatchClick('${rowId}', 'none', this)">
+        <div class="patch-photo-thumb"><span class="upload-icon">❌</span></div>
+        <small class="patch-sublabel">No Patch</small>
+      </div>`;
+
+    options.forEach(opt => {
+      html += `
+        <div class="patch-photo-item" data-patch="${opt.key}" data-label="${opt.label}" title="${opt.label}" onclick="onPatchClick('${rowId}', '${opt.key}', this)">
+          <div class="patch-photo-thumb"><img src="patches/${opt.key}.png" alt="${opt.label}" onerror="this.outerHTML='<span class=\\'upload-icon\\'>📷</span>'"></div>
+          <small class="patch-sublabel">${opt.label}</small>
+        </div>`;
+    });
+
+    row.innerHTML = html;
   }
 
-  function togglePatch(rowId, patchKey, el, product){
+  function onPatchClick(rowId, patchKey, el){
     const row = document.getElementById(rowId);
     if (!row) return;
+    const isModal = (rowId === 'customPatchRow');
+    const prod = isModal ? activeProduct : ppProduct;
+    const multi = !!(prod && (prod.multiPatch || prod.tabContentId === 'international' || prod.tabContentId === 'retro-intl'));
     const noneEl = row.querySelector('[data-patch="none"]');
-    if (!noneEl) return;
-    const multi = !!(product && product.multiPatch);
 
     if (patchKey === 'none'){
       row.querySelectorAll('.patch-photo-item').forEach(item => item.classList.remove('active'));
       noneEl.classList.add('active');
-      return;
+    } else {
+      noneEl.classList.remove('active');
+      const isActive = el.classList.contains('active');
+      if (isActive){
+        el.classList.remove('active');
+        if (!row.querySelector('.patch-photo-item.active')) noneEl.classList.add('active');
+      } else {
+        const activeCount = row.querySelectorAll('.patch-photo-item.active').length;
+        const max = multi ? 2 : 1;
+        if (activeCount >= max){
+          if (max === 1){
+            row.querySelectorAll('.patch-photo-item').forEach(item => item.classList.remove('active'));
+          } else {
+            return;
+          }
+        }
+        el.classList.add('active');
+      }
     }
 
-    noneEl.classList.remove('active');
-    const isActive = el.classList.contains('active');
-    if (isActive){
-      el.classList.remove('active');
-      if (!row.querySelector('.patch-photo-item.active')) noneEl.classList.add('active');
-    } else {
-      const activeCount = row.querySelectorAll('.patch-photo-item.active').length;
-      const max = multi ? 2 : 1;
-      if (activeCount >= max){
-        if (max === 1){
-          row.querySelectorAll('.patch-photo-item').forEach(item => item.classList.remove('active'));
-        } else {
-          return; // already at the 2-patch limit
-        }
-      }
-      el.classList.add('active');
-    }
+    if (isModal) updatePricing(); else ppUpdatePricing();
   }
 
-  function selectPatch(patchKey, el){
-    togglePatch('customPatchRow', patchKey, el, activeProduct);
-    updatePricing();
+  function selectedPatchItems(rowId){
+    return Array.from(document.querySelectorAll(`#${rowId} .patch-photo-item.active`))
+      .filter(el => el.dataset.patch !== 'none')
+      .map(el => ({ key: el.dataset.patch, label: el.dataset.label || el.dataset.patch }));
+  }
+
+  function patchLabelText(product){
+    const isMulti = product && (product.multiPatch || product.tabContentId === 'international' || product.tabContentId === 'retro-intl');
+    return isMulti ? "Sleeve patch — choose up to 2 (+₹40 each)" : "Sleeve patch (+₹40)";
   }
 
   function openCustomize(id){
@@ -1762,8 +1973,14 @@
     document.getElementById('custom-number').value = activeProduct.number;
     document.getElementById('custom-name').value = '';
     document.getElementById('customPatchLabel').textContent = patchLabelText(activeProduct);
-    document.querySelectorAll('#customPatchRow .patch-photo-item').forEach(el => el.classList.toggle('active', el.dataset.patch === 'none'));
+    
+    renderPatchUI('customPatchRow', activeProduct);
     document.getElementById('sizeChartBox').classList.remove('active');
+    
+    const prices = getVersionPrices(activeProduct);
+    document.getElementById('version-master-note').textContent = `₹${prices.master}, shipping included`;
+    document.getElementById('version-player-note').textContent = `₹${prices.player}, athletic slim fit`;
+
     selectVersion('master');
     renderModalVisual();
     updatePricing();
@@ -1776,32 +1993,39 @@
     const numInput = document.getElementById('custom-number');
     const num = numInput.value !== '' ? numInput.value : activeProduct.number;
     document.getElementById('modalVisual').innerHTML = activeProduct.image
-      ? `<img src="${activeProduct.image}" alt="${activeProduct.name}" class="kit-photo">`
-      : jerseyIcon(activeProduct.primary, activeProduct.secondary, num);
+      ? `<img src="${activeProduct.image}" alt="${activeProduct.name}" class="kit-photo" onerror="this.outerHTML='<div class=\\'photo-placeholder\\'><span class=\\'upload-icon\\'>📁</span><span class=\\'ph-label\\' style=\\'font-size:0.6rem;word-break:break-all;\\'>${activeProduct.image}</span></div>'">`
+      : `<div class="photo-placeholder"><span class="upload-icon">📷</span><span class="ph-label">Add kit photo</span></div>`;
   }
 
   function onNameSelectChange(){
     const val = document.getElementById('custom-nameselect').value;
     document.getElementById('custom-name-row').style.display = val === 'custom' ? 'grid' : 'none';
-    updatePricing();
-    renderModalVisual();
+    updatePricing(); renderModalVisual();
   }
 
   function updatePricing(){
-    const nameChoice = document.getElementById('custom-nameselect').value;
-    const patchKeys = selectedPatchKeys('customPatchRow');
-    const versionPrice = VERSION_PRICES[selectedVersion];
+    const prices = getVersionPrices(activeProduct);
+    const versionPrice = prices[selectedVersion];
     const versionLabel = selectedVersion === 'master' ? 'Master / Fan' : 'Player';
     let total = versionPrice;
     let parts = [`${versionLabel} kit ₹${versionPrice}`];
+    
+    const nameChoice = document.getElementById('custom-nameselect').value;
+    const patchItems = selectedPatchItems('customPatchRow');
     if (nameChoice === 'custom'){
       total += CUSTOM_NAME_PRICE; parts.push(`Custom name +₹${CUSTOM_NAME_PRICE}`);
     } else if (nameChoice.startsWith('popular:')){
       const p = activeProduct.popular[+nameChoice.split(':')[1]];
       total += POPULAR_NAME_PRICE; parts.push(`${p.name} name +₹${POPULAR_NAME_PRICE}`);
     }
-    if (patchKeys.length){ total += PATCH_PRICE * patchKeys.length; parts.push(`${patchKeys.length} patch${patchKeys.length > 1 ? 'es' : ''} +₹${PATCH_PRICE * patchKeys.length}`); }
-    document.getElementById('modalPrice').textContent = `₹${total}`;
+    if (patchItems.length){ total += PATCH_PRICE * patchItems.length; parts.push(`${patchItems.length} patch${patchItems.length > 1 ? 'es' : ''} +₹${PATCH_PRICE * patchItems.length}`); }
+    
+    if (activeProduct && activeProduct.originalPrice) {
+      document.getElementById('modalPrice').innerHTML = `<span style="text-decoration:line-through; color:var(--ink-soft); opacity:0.75; font-size:0.85em; margin-right:6px;">₹${activeProduct.originalPrice}</span>₹${total}`;
+    } else {
+      document.getElementById('modalPrice').textContent = `₹${total}`;
+    }
+
     document.getElementById('modalBreakdown').textContent = parts.join(' · ') + (parts.length > 1 ? '' : ' · shipping included');
     document.getElementById('modalAddBtn').textContent = `Add to cart — ₹${total}`;
   }
@@ -1820,13 +2044,13 @@
     if (e.key === 'Escape') closeCustomize();
   });
 
-  /* Direct WhatsApp order generator from Modal */
+  /* Direct WhatsApp Order Link */
   function addCustomizedToCart(){
     if (!activeProduct) return;
     const nameChoice = document.getElementById('custom-nameselect').value;
-    const patchKeys = selectedPatchKeys('customPatchRow');
+    const patchItems = selectedPatchItems('customPatchRow');
     const sizeVal = document.getElementById('custom-size').value;
-    const totalText = document.getElementById('modalPrice').textContent;
+    const totalText = document.getElementById('modalPrice').textContent || document.getElementById('modalPrice').innerText;
     const versionLabel = selectedVersion === 'master' ? 'Master / Fan Version (Standard Fit)' : 'Player Version (Athletic Slim Fit)';
 
     let printDetail = "No Name & Number";
@@ -1840,8 +2064,9 @@
     }
 
     let patchDetail = "No Patches";
-    if (patchKeys.length > 0){
-      patchDetail = `${patchKeys.length}x Sleeve Patch (${patchKeys.join(', ')}) (+₹${patchKeys.length * 40})`;
+    if (patchItems.length > 0){
+      const patchNames = patchItems.map(p => p.label).join(', ');
+      patchDetail = `${patchItems.length}x Sleeve Patch (${patchNames}) (+₹${patchItems.length * 40})`;
     }
 
     const message = `⚽ *NEW JERSEY ORDER* ⚽\n` +
@@ -1860,7 +2085,7 @@
     closeCustomize();
   }
 
-  // ---------- Dedicated product page (Current Season) ----------
+  // ---------- Dedicated product page ----------
   let ppProduct = null;
   let ppVersion = 'master';
 
@@ -1880,17 +2105,21 @@
 
     const frontSlot = document.getElementById('pp-photo-front');
     frontSlot.innerHTML = ppProduct.image
-      ? `<img src="${ppProduct.image}" alt="${ppProduct.name} front">`
+      ? `<img src="${ppProduct.image}" alt="${ppProduct.name} front" onerror="this.outerHTML='<span>Front photo</span><small style=\\'word-break:break-all;\\'>Missing: ${ppProduct.image}</small>'">`
       : `<span>Front photo</span><small>Upload jersey front here</small>`;
     const backSlot = document.getElementById('pp-photo-back');
     backSlot.innerHTML = ppProduct.imageBack
-      ? `<img src="${ppProduct.imageBack}" alt="${ppProduct.name} back">`
+      ? `<img src="${ppProduct.imageBack}" alt="${ppProduct.name} back" onerror="this.outerHTML='<span>Back photo</span><small style=\\'word-break:break-all;\\'>Missing: ${ppProduct.imageBack}</small>'">`
       : `<span>Back photo</span><small>Upload jersey back here</small>`;
     document.getElementById('pp-name-preview').innerHTML = `<span>Name &amp; number preview</span><small>Photo of the printed name/number will appear here</small>`;
 
     document.getElementById('ppPatchLabel').textContent = patchLabelText(ppProduct);
-    document.querySelectorAll('#ppPatchRow .patch-photo-item').forEach(el => el.classList.toggle('active', el.dataset.patch === 'none'));
+    renderPatchUI('ppPatchRow', ppProduct);
 
+    const prices = getVersionPrices(ppProduct);
+    document.getElementById('pp-version-master-note').textContent = `₹${prices.master}, shipping included`;
+    document.getElementById('pp-version-player-note').textContent = `₹${prices.player}, athletic slim fit`;
+    
     ppSelectVersion('master');
     showPage('product');
   }
@@ -1908,30 +2137,33 @@
     ppUpdatePricing();
   }
 
-  function ppSelectPatch(patch, el){
-    togglePatch('ppPatchRow', patch, el, ppProduct);
-    ppUpdatePricing();
-  }
-
   function ppToggleSizeChart(){
     document.getElementById('ppSizeChartBox').classList.toggle('active');
   }
 
   function ppUpdatePricing(){
-    const nameChoice = document.getElementById('pp-nameselect').value;
-    const patchKeys = selectedPatchKeys('ppPatchRow');
-    const versionPrice = VERSION_PRICES[ppVersion];
+    const prices = getVersionPrices(ppProduct);
+    const versionPrice = prices[ppVersion];
     const versionLabel = ppVersion === 'master' ? 'Master / Fan' : 'Player';
     let total = versionPrice;
     let parts = [`${versionLabel} kit ₹${versionPrice}`];
+    
+    const nameChoice = document.getElementById('pp-nameselect').value;
+    const patchItems = selectedPatchItems('ppPatchRow');
     if (nameChoice === 'custom'){
       total += CUSTOM_NAME_PRICE; parts.push(`Custom name +₹${CUSTOM_NAME_PRICE}`);
     } else if (nameChoice.startsWith('popular:')){
       const p = ppProduct.popular[+nameChoice.split(':')[1]];
       total += POPULAR_NAME_PRICE; parts.push(`${p.name} name +₹${POPULAR_NAME_PRICE}`);
     }
-    if (patchKeys.length){ total += PATCH_PRICE * patchKeys.length; parts.push(`${patchKeys.length} patch${patchKeys.length > 1 ? 'es' : ''} +₹${PATCH_PRICE * patchKeys.length}`); }
-    document.getElementById('ppPrice').textContent = `₹${total}`;
+    if (patchItems.length){ total += PATCH_PRICE * patchItems.length; parts.push(`${patchItems.length} patch${patchItems.length > 1 ? 'es' : ''} +₹${PATCH_PRICE * patchItems.length}`); }
+    
+    if (ppProduct && ppProduct.originalPrice) {
+      document.getElementById('ppPrice').innerHTML = `<span style="text-decoration:line-through; color:var(--ink-soft); opacity:0.75; font-size:0.85em; margin-right:6px;">₹${ppProduct.originalPrice}</span>₹${total}`;
+    } else {
+      document.getElementById('ppPrice').textContent = `₹${total}`;
+    }
+
     document.getElementById('ppBreakdown').textContent = parts.join(' · ') + (parts.length > 1 ? '' : ' · shipping included');
     document.getElementById('ppAddBtn').textContent = `Add to cart — ₹${total}`;
   }
@@ -1942,9 +2174,9 @@
   function ppAddToCart(){
     if (!ppProduct) return;
     const nameChoice = document.getElementById('pp-nameselect').value;
-    const patchKeys = selectedPatchKeys('ppPatchRow');
+    const patchItems = selectedPatchItems('ppPatchRow');
     const sizeVal = document.getElementById('pp-size').value;
-    const totalText = document.getElementById('ppPrice').textContent;
+    const totalText = document.getElementById('ppPrice').textContent || document.getElementById('ppPrice').innerText;
     const versionLabel = ppVersion === 'master' ? 'Master / Fan Version (Standard Fit)' : 'Player Version (Athletic Slim Fit)';
 
     let printDetail = "No Name & Number";
@@ -1958,8 +2190,9 @@
     }
 
     let patchDetail = "No Patches";
-    if (patchKeys.length > 0){
-      patchDetail = `${patchKeys.length}x Sleeve Patch (${patchKeys.join(', ')}) (+₹${patchKeys.length * 40})`;
+    if (patchItems.length > 0){
+      const patchNames = patchItems.map(p => p.label).join(', ');
+      patchDetail = `${patchItems.length}x Sleeve Patch (${patchNames}) (+₹${patchItems.length * 40})`;
     }
 
     const message = `⚽ *NEW JERSEY ORDER* ⚽\n` +
