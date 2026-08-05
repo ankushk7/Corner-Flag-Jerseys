@@ -49,6 +49,75 @@
   a{ color:inherit; }
   .container{ max-width:1200px; margin:0 auto; padding:0 1.25rem; }
 
+  /* ---------- Popup Promo Banner ---------- */
+  .promo-popup-overlay {
+    position: fixed; inset: 0; background: rgba(10,20,15,0.8);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2000; padding: 1rem; animation: fadeIn 0.4s ease;
+  }
+  .promo-popup-overlay[hidden] { display: none; }
+  .promo-popup-content {
+    position: relative; max-width: 850px; width: 100%;
+    background: var(--pitch-dark); border-radius: 16px; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.15);
+  }
+  .promo-popup-close {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.25); color: #fff;
+    width: 32px; height: 32px; border-radius: 50%; font-size: 1.3rem;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: background 0.2s; z-index: 10;
+  }
+  .promo-popup-close:hover { background: rgba(0,0,0,0.8); }
+  .promo-popup-img { width: 100%; height: auto; display: block; object-fit: cover; max-height: 85vh; }
+  .promo-popup-placeholder {
+    padding: 6rem 2rem; text-align: center; color: var(--chalk-dim);
+    display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+    background: linear-gradient(135deg, var(--pitch-dark), var(--forest));
+  }
+  .promo-popup-placeholder h3 { font-size: 2.2rem; letter-spacing: 0.03em; color: var(--gold-bright); margin: 0; }
+  .promo-popup-placeholder p { font-size: 0.9rem; opacity: 0.8; margin: 0; max-width: 350px; line-height: 1.4; }
+
+  /* ---------- Top Promo Marquee ---------- */
+  .top-marquee-container {
+    background: #dc2626; color: #ffffff; padding: 0.45rem 0; overflow: hidden;
+    white-space: nowrap; display: flex; align-items: center; position: relative; z-index: 1100;
+  }
+  .top-marquee-container[hidden] { display: none; }
+  .top-marquee-wrapper { display: flex; width: max-content; animation: scrollTopMarquee 35s linear infinite; }
+  .top-marquee-text {
+    font-family: 'Roboto Mono', monospace; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em;
+    display: flex; align-items: center; gap: 3rem; padding-right: 3rem;
+  }
+  .top-marquee-text span { display: flex; align-items: center; gap: 0.5rem; }
+  @keyframes scrollTopMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .top-promo-close {
+    position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%);
+    background: #991b1b; border: 1px solid #ef4444; color: #fff;
+    width: 26px; height: 26px; border-radius: 50%; font-size: 1.1rem; line-height: 1;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 20;
+    transition: background 0.2s;
+  }
+  .top-promo-close:hover { background: #7f1d1d; }
+
+  /* ---------- Background Doodles Layer ---------- */
+  .bg-doodles { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
+  .bg-doodles img, .bg-doodles .d-icon { 
+    position: absolute; opacity: 0.06; filter: grayscale(100%) contrast(120%); 
+    font-size: 4rem; user-select: none; 
+  }
+  .d1 { top: 12%; left: 8%; transform: rotate(-15deg); width: 90px; }
+  .d2 { top: 45%; right: 10%; transform: rotate(25deg); width: 100px; }
+  .d3 { bottom: 15%; left: 15%; transform: rotate(-10deg); width: 110px; }
+  .d4 { top: 25%; right: 25%; transform: rotate(-30deg); width: 80px; }
+  .d5 { bottom: 30%; right: 30%; transform: rotate(15deg); width: 95px; }
+  .d6 { top: 60%; left: 25%; transform: rotate(10deg); width: 120px; }
+
   .bg-blobs{ position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none; }
   .bg-blobs span{ position:absolute; border-radius:50%; filter:blur(90px); opacity:0.28; }
   .bg-blobs .b1{ width:440px; height:440px; background:var(--gold); top:-120px; left:-140px; }
@@ -72,7 +141,6 @@
   }
   .brand-mark{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:0; margin-bottom:-0.4rem; }
 
-  /* Clean Un-bordered Logo Container (180x180 Desktop) */
   .brand-mark .crest{
     width:180px; height:180px; display:flex; align-items:center; justify-content:center;
     margin: 0 auto;
@@ -154,45 +222,29 @@
   }
   .mega-col a:hover{ color:var(--forest-bright); }
 
-  .banner-carousel{ position:relative; max-width:1200px; margin:2rem auto 0; padding:0 1.25rem; }
-  .banner-logo-slot{
-    position:absolute; top:14px; left:14px; z-index:5; width:84px; height:84px;
-    border:2px dashed rgba(255,255,255,0.55); border-radius:10px; background:rgba(20,24,27,0.4);
-    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.2rem;
-    font-family:'Inter',sans-serif; font-size:0.62rem; color:var(--chalk-dim); text-align:center; padding:0.3rem;
-    overflow:hidden;
-  }
-  .banner-logo-slot img{ width:100%; height:100%; object-fit:contain; }
-  .banner-logo-slot:empty::before{ content:'🖼️ Logo'; }
-  
+  /* Edge-to-Edge Banners */
+  .banner-carousel{ position:relative; width: 100%; max-width: 100%; margin: 0; padding: 0; }
   .carousel-track{
-    position:relative; height:220px; border-radius:16px; overflow:hidden;
-    border:1px solid rgba(255,255,255,0.12); box-shadow:var(--shadow);
+    position:relative; width: 100%; aspect-ratio: 2 / 1; border-radius: 0; overflow:hidden;
+    border: none; box-shadow: none;
   }
   .carousel-slide{
     position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; padding:1.5rem; opacity:0; transition:opacity 0.6s ease; color:var(--chalk); overflow:hidden;
+    text-align:center; opacity:0; transition:opacity 0.6s ease; color:var(--chalk); overflow:hidden;
   }
   .carousel-slide.active{ opacity:1; }
-  .banner-bg-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1; opacity:0.85; }
-  .carousel-slide h3{ font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.02em; margin:0.3rem 0 0.3rem; position:relative; z-index:2; text-shadow:0 2px 4px rgba(0,0,0,0.6); }
-  .carousel-slide p{ font-size:0.85rem; color:var(--chalk-dim); max-width:420px; position:relative; z-index:2; text-shadow:0 1px 3px rgba(0,0,0,0.6); }
-  .slide-kicker{
-    font-family:'Roboto Mono',monospace; font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase;
-    color:var(--gold-bright); border:1px solid rgba(94,234,212,0.4); padding:0.25rem 0.7rem; border-radius:999px; position:relative; z-index:2; background:rgba(0,0,0,0.4);
-  }
-  .slide-a{ background:linear-gradient(135deg, var(--pitch-dark), var(--pitch-mid) 60%, var(--gold) 140%); }
-  .slide-b{ background:linear-gradient(135deg, var(--pitch-dark), var(--forest) 70%); }
-  .slide-c{ background:linear-gradient(135deg, var(--forest), var(--pitch-dark) 55%, var(--gold) 150%); }
+  .banner-bg-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1; opacity:1; transition:transform 0.3s ease; }
+  .carousel-slide:hover .banner-bg-img{ transform: scale(1.02); }
+  
   .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%); width:38px; height:38px; border-radius:50%;
     background:rgba(20,24,27,0.55); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.25);
     color:var(--chalk); font-size:0.9rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
-    transition:background 0.2s;
+    transition:background 0.2s; z-index: 10;
   }
   .carousel-arrow:hover{ background:var(--gold); color:var(--pitch-dark); }
   .carousel-arrow.prev{ left:12px; } .carousel-arrow.next{ right:12px; }
+  
   .carousel-dots{ display:flex; justify-content:center; gap:0.5rem; margin-top:0.9rem; }
   .carousel-dots button{
     width:9px; height:9px; border-radius:50%; border:none; background:rgba(20,24,27,0.25); cursor:pointer; padding:0;
@@ -333,10 +385,10 @@
   .league-badge img{ width:100%; height:100%; object-fit:contain; position:absolute; inset:0; z-index:2; background:rgba(240,245,246,0.95); }
 
   .club-badge-slot{
-    display:inline-flex; align-items:center; justify-content:center; border-radius:50%; flex-shrink:0; overflow:hidden;
+    display:inline-flex; align-items:center; justify-content:center; border-radius:12px; flex-shrink:0; overflow:hidden;
     background:rgba(240,245,246,0.9); border:1.5px solid #e2ddd0; transition:transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .club-badge-slot img{ width:100%; height:100%; object-fit:contain; }
+  .club-badge-slot img{ width:100%; height:100%; object-fit:contain; padding:4px; }
   .club-badge-slot.badge-missing::before{ content:'🛡️'; line-height:1; opacity:0.55; }
 
   .shop-by-club{ padding:2.5rem 0 1rem; }
@@ -386,7 +438,7 @@
     backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   }
 
-  .kit-photo{ width:100%; height:100%; object-fit:cover; border-radius:8px; }
+  .kit-photo{ width:100%; height:100%; object-fit:contain; padding:0.5rem; }
 
   .photo-placeholder{
     width:calc(100% - 24px); height:calc(100% - 24px); margin:12px; display:flex; flex-direction:column;
@@ -404,6 +456,23 @@
 
   .card-btn{ display:inline-flex; align-items:center; justify-content:center; width:100%; text-align:center; background:linear-gradient(135deg, var(--pitch-dark), var(--forest)); color:var(--chalk); padding:0.7rem 1rem; border-radius:8px; text-decoration:none; font-family:'Bebas Neue',sans-serif; letter-spacing:0.04em; font-size:0.95rem; border:none; cursor:pointer; transition:background 0.2s, transform 0.2s; min-height:42px; }
   .card-btn:hover{ background:linear-gradient(135deg, var(--pitch-dark), var(--gold)); transform:translateY(-1px); }
+
+  /* ---------- Marquee Ticker ---------- */
+  .marquee-container {
+    background: #111111; color: var(--chalk-dim); padding: 1.2rem 0; overflow: hidden;
+    white-space: nowrap; display: flex; align-items: center; border-top: 1px solid rgba(255,255,255,0.08);
+    position: relative; z-index: 10;
+  }
+  .marquee-wrapper { display: flex; width: max-content; animation: scrollMarquee 40s linear infinite; }
+  .marquee-text {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.06em;
+    display: flex; align-items: center; gap: 2.5rem; padding-right: 2.5rem;
+  }
+  .marquee-circle { width: 14px; height: 14px; border: 1.5px solid var(--chalk-dim); border-radius: 50%; display: inline-block; }
+  @keyframes scrollMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
   .contact-section{ background:var(--pitch-dark); padding:3.5rem 0; margin-top:4.5rem; position:relative; overflow:hidden; }
   .contact-form{ max-width:540px; margin:0 auto; position:relative; z-index:2; background:rgba(255,255,255,0.92); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); padding:2rem 1.5rem; border-radius:var(--radius); box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,0.8); border:1px solid rgba(255,255,255,0.6); }
@@ -438,7 +507,7 @@
   .modal-grid{ display:grid; grid-template-columns:200px 1fr; gap:1.5rem; margin-top:0.4rem; }
   .modal-visual{ background:linear-gradient(160deg, rgba(255,255,255,0.6), rgba(232,228,215,0.6)); border-radius:16px; display:flex; align-items:center; justify-content:center; padding:1rem; min-height:200px; height:fit-content; }
   .modal-visual svg{ width:140px; filter:drop-shadow(0 10px 14px rgba(0,0,0,0.18)); }
-  .modal-visual .kit-photo{ width:100%; height:auto; max-height:240px; object-fit:cover; border-radius:12px; }
+  .modal-visual .kit-photo{ width:100%; height:auto; max-height:240px; object-fit:contain; border-radius:12px; }
   .modal-title{ font-size:1.4rem; color:var(--pitch-dark); margin-bottom:0.15rem; line-height:1.1; }
   .modal-price{ font-family:'Roboto Mono',monospace; color:var(--crimson); font-size:1.15rem; margin-bottom:1rem; font-weight:600; }
   .modal-note{ font-size:0.8rem; color:var(--ink-soft); margin:-0.7rem 0 1.1rem; }
@@ -491,7 +560,7 @@
   }
   .photo-slot span{ font-family:'Bebas Neue',sans-serif; letter-spacing:0.03em; font-size:1.05rem; color:var(--ink); }
   .photo-slot small{ font-size:0.72rem; }
-  .photo-slot img{ width:100%; height:100%; object-fit:cover; border-radius:12px; }
+  .photo-slot img{ width:100%; height:100%; object-fit:contain; padding:0.5rem; }
   .name-preview-slot{ width:150px; margin:0.9rem 0 1.1rem; }
   @media (max-width:760px){
     .product-page-grid{ grid-template-columns:1fr; gap:1.4rem; }
@@ -538,7 +607,8 @@
     .tab{ font-size:0.95rem; padding:0.45rem 0.85rem; flex-shrink:0; }
     .sbc-row{ padding:0.5rem 0.75rem 1.2rem; }
 
-    .modal-overlay{ padding:0; align-items:flex-end; }
+    .modal-overlay, .promo-popup-overlay{ padding:0; align-items:flex-end; }
+    .promo-popup-content{ max-height:85vh; border-radius:20px 20px 0 0; }
     .modal-panel{ padding:1.8rem 1rem calc(1.5rem + env(safe-area-inset-bottom)); max-height:90vh; width:100%; border-radius:20px 20px 0 0; overflow-y:auto; overflow-x:hidden; }
     .modal-close{ top:0.7rem; right:0.7rem; width:32px; height:32px; font-size:1.2rem; }
     .modal-grid{ grid-template-columns:1fr; gap:1rem; }
@@ -573,6 +643,8 @@
     .sort-control select{ flex:1; }
     .pp-title-row{ flex-direction:column; align-items:stretch; }
     .pp-add-btn-top{ width:100%; margin-top:0.5rem; }
+    
+    .carousel-track{ aspect-ratio: 2 / 1; }
 
     main > .container{ padding-top:5rem; }
     .section-heading{ padding-top:1rem; margin-bottom:1rem; }
@@ -590,6 +662,55 @@
 </style>
 </head>
 <body>
+
+<!-- Centered Promo Popup Banner on Load -->
+<div class="promo-popup-overlay" id="promoPopup" onclick="if(event.target===this) closePromoPopup()">
+  <div class="promo-popup-content">
+    <button class="promo-popup-close" onclick="closePromoPopup()" aria-label="Close promo popup">&times;</button>
+    <div style="cursor:pointer;" onclick="closePromoPopup(); showPage('products', event); document.getElementById('tab-international').click();">
+      <img src="promos/popup-offer.jpg" alt="Special Offer" class="promo-popup-img" 
+           onerror="this.outerHTML='<div class=\\'promo-popup-placeholder\\'><span style=\\'font-size:3.5rem;\\'>🎁</span><h3>Special Offer</h3><p>Upload an image named <strong>popup-offer.jpg</strong> in your promos folder.</p></div>'">
+    </div>
+  </div>
+</div>
+
+<script>
+  function closePromoPopup() { document.getElementById('promoPopup').hidden = true; }
+</script>
+
+<!-- Top Welcome Sale Offer Marquee -->
+<div class="top-marquee-container" id="topPromoMarquee">
+  <div class="top-marquee-wrapper">
+    <div class="top-marquee-text">
+      <span>🔥 BUY 2 KITS, SAVE ₹100</span>
+      <span>🔥 BUY 3 KITS, SAVE ₹150</span>
+      <span>🔥 BUY 4+ KITS, GET 15% OFF ENTIRE CART</span>
+      <span>🔥 BUY 2 KITS, SAVE ₹100</span>
+      <span>🔥 BUY 3 KITS, SAVE ₹150</span>
+      <span>🔥 BUY 4+ KITS, GET 15% OFF ENTIRE CART</span>
+    </div>
+    <div class="top-marquee-text">
+      <span>🔥 BUY 2 KITS, SAVE ₹100</span>
+      <span>🔥 BUY 3 KITS, SAVE ₹150</span>
+      <span>🔥 BUY 4+ KITS, GET 15% OFF ENTIRE CART</span>
+      <span>🔥 BUY 2 KITS, SAVE ₹100</span>
+      <span>🔥 BUY 3 KITS, SAVE ₹150</span>
+      <span>🔥 BUY 4+ KITS, GET 15% OFF ENTIRE CART</span>
+    </div>
+  </div>
+  <button class="top-promo-close" onclick="document.getElementById('topPromoMarquee').hidden=true" aria-label="Close offer banner">&times;</button>
+</div>
+
+<!-- Background Doodles Layer -->
+<div class="bg-doodles" aria-hidden="true">
+  <img src="doodles/boot.png" class="d1" alt="" onerror="this.outerHTML='<span class=\\'d-icon d1\\'>⚽</span>'">
+  <img src="doodles/whistle.png" class="d2" alt="" onerror="this.outerHTML='<span class=\\'d-icon d2\\'>🥅</span>'">
+  <img src="doodles/trophy.png" class="d3" alt="" onerror="this.outerHTML='<span class=\\'d-icon d3\\'>🏆</span>'">
+  <img src="doodles/card.png" class="d4" alt="" onerror="this.outerHTML='<span class=\\'d-icon d4\\'>🟨</span>'">
+  <img src="doodles/flag.png" class="d5" alt="" onerror="this.outerHTML='<span class=\\'d-icon d5\\'>🚩</span>'">
+  <img src="doodles/pitch.png" class="d6" alt="" onerror="this.outerHTML='<span class=\\'d-icon d6\\'>🏟️</span>'">
+</div>
+
 <div class="bg-blobs" aria-hidden="true"><span class="b1"></span><span class="b2"></span></div>
 <a class="skip-link" href="#main">Skip to content</a>
 
@@ -664,24 +785,17 @@
 
 <section class="banner-carousel" aria-label="Promotions">
   <div class="carousel-track" id="carouselTrack">
-    <div class="banner-logo-slot" aria-hidden="true"><img src="logo/logo.png" alt="Logo" onerror="this.remove()"></div>
-    <div class="carousel-slide slide-a active">
-      <img src="banners/banner-1.jpg" alt="Promo Banner 1" class="banner-bg-img" onerror="this.remove()">
-      <span class="slide-kicker">Slide 1 · Replace me</span>
-      <h3>Drop your banner artwork here</h3>
-      <p>1600×500 recommended — this space cycles automatically.</p>
+    <!-- Banner 1: International Section -->
+    <div class="carousel-slide active" style="cursor:pointer;" onclick="showPage('products', event); document.getElementById('tab-international').click();">
+      <img src="banners/banner-1.jpg" alt="International Jerseys" class="banner-bg-img" onerror="this.parentElement.remove(); initCarousel();">
     </div>
-    <div class="carousel-slide slide-b">
-      <img src="banners/banner-2.jpg" alt="Promo Banner 2" class="banner-bg-img" onerror="this.remove()">
-      <span class="slide-kicker">Slide 2 · Replace me</span>
-      <h3>Seasonal launches, offers, drops</h3>
-      <p>Swap this block's background for a promo image anytime.</p>
+    <!-- Banner 2: Current Season Section -->
+    <div class="carousel-slide" style="cursor:pointer;" onclick="showPage('products', event); document.getElementById('tab-current').click();">
+      <img src="banners/banner-2.jpg" alt="Current Season Jerseys" class="banner-bg-img" onerror="this.parentElement.remove(); initCarousel();">
     </div>
-    <div class="carousel-slide slide-c">
-      <img src="banners/banner-3.jpg" alt="Promo Banner 3" class="banner-bg-img" onerror="this.remove()">
-      <span class="slide-kicker">Slide 3 · Replace me</span>
-      <h3>New collection teasers</h3>
-      <p>Add as many slides as you like — the carousel loops.</p>
+    <!-- Banner 3: Retro Club Section -->
+    <div class="carousel-slide" style="cursor:pointer;" onclick="showPage('products', event); document.getElementById('tab-retro-club').click();">
+      <img src="banners/banner-3.jpg" alt="Retro Club Jerseys" class="banner-bg-img" onerror="this.parentElement.remove(); initCarousel();">
     </div>
   </div>
   <button class="carousel-arrow prev" onclick="carouselMove(-1)" aria-label="Previous banner">&#10094;</button>
@@ -735,6 +849,18 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- Dynamic Trending Matchday Kits Section -->
+<section class="trending-section" style="max-width:1200px; margin: 4.5rem auto 2rem; padding: 0 1.25rem;">
+  <h2 class="section-heading">
+    <span class="kicker">Fan Favorites</span>
+    <span>Trending Matchday Kits</span>
+  </h2>
+  <div class="products" id="home-trending-grid"></div>
+  <div style="text-align:center; margin-top:2rem;">
+    <button class="btn btn-ghost" onclick="showPage('products', event)" style="color:var(--pitch-dark); border-color:#ccc; background:#fff;">Explore All Kits &rarr;</button>
   </div>
 </section>
 
@@ -865,6 +991,97 @@
 </main>
 </div>
 
+<div id="page-returns" class="page">
+<main>
+  <div class="care-container">
+    <div class="care-hero">
+      <span class="care-eyebrow" style="margin-bottom:0.6rem;">Store Policy</span>
+      <h2>Returns &amp; Exchanges</h2>
+      <p style="color:var(--ink-soft); max-width:540px; margin:0.5rem auto 0; font-weight:500;">We want you to love your matchday fit. Here is exactly how we handle returns, exchanges, and custom kits.</p>
+    </div>
+
+    <div class="care-grid">
+      <div class="care-card">
+        <span class="icon">🔄</span>
+        <h3>7-Day Exchange</h3>
+        <p>If the size isn't right, you have 7 days from delivery to request an exchange. The jersey must be unwashed, unworn, and have all original tags attached.</p>
+      </div>
+      <div class="care-card">
+        <span class="icon">🚫</span>
+        <h3>Custom Kits</h3>
+        <p>Jerseys with custom names, numbers, or specific sleeve patches are strictly non-exchangeable for sizing issues—please check the size chart carefully! However, we will gladly replace them if they arrive damaged.</p>
+      </div>
+      <div class="care-card">
+        <span class="icon">📦</span>
+        <h3>Defects &amp; Damages</h3>
+        <p>Every kit is thoroughly checked before dispatch. If you receive a damaged item (custom or standard), send us an unboxing video within 48 hours of delivery for a replacement. Items must remain unwashed with all original tags attached.</p>
+      </div>
+      
+      <!-- WhatsApp Support Card -->
+      <div class="care-card" style="grid-column: 1 / -1; align-items: center; text-align: center; background: rgba(20,184,166,0.1); border-color: var(--gold);">
+        <span class="icon">💬</span>
+        <h3>Need to process a return?</h3>
+        <p>Message us directly on WhatsApp with your order number, and our support team will guide you through the process quickly.</p>
+        <a href="https://wa.me/919876543210?text=Hi! I need help with a return/exchange for my recent order." target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top: 0.8rem; text-decoration: none;">Chat with Support</a>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+
+<div id="page-care" class="page">
+<main>
+  <div class="care-container">
+    <div class="care-hero">
+      <span class="care-eyebrow" style="margin-bottom:0.6rem;">Match-Fit Maintenance</span>
+      <h2>How To Wash &amp; Care For Your Kits</h2>
+      <p style="color:var(--ink-soft); max-width:540px; margin:0.5rem auto 0; font-weight:500;">Football kits are high-performance synthetic garments. Follow these 6 golden rules to keep your badges, heat-pressed names, and fabric sheen looking brand new for years.</p>
+    </div>
+
+    <div class="care-grid">
+      <div class="care-card">
+        <span class="icon">🔄</span>
+        <h3>Always Wash Inside Out</h3>
+        <p>Turn your jersey inside out before dropping it in the washing machine. This protects the printed sponsors, custom names, and crests from friction against other clothes.</p>
+      </div>
+      <div class="care-card">
+        <span class="icon">❄️</span>
+        <h3>Cold Water Only (Max 30°C)</h3>
+        <p>Hot water breaks down the heat-activated adhesives used on rubberized badges and sleeve patches. Stick to cold water cycles to prevent peeling.</p>
+      </div>
+      <div class="care-card">
+        <span class="icon">🚫</span>
+        <h3>Strictly No Tumble Dry</h3>
+        <p>Never put your football jerseys in a clothes dryer. Extreme machine heat will warp micro-mesh fabrics and crack vinyl prints. Hang them to air dry in the shade.</p>
+      </div>
+      <div class="care-card">
+        <span class="icon">⚠️</span>
+        <h3>Never Iron Over Badges</h3>
+        <p>Do not apply direct heat from an iron over heat-pressed sponsors, names, or rubberized crests. If you must iron creases, do it inside out on a low setting.</p>
+      </div>
+      <div class="care-card">
+        <span class="icon">🧴</span>
+        <h3>Avoid Fabric Softeners</h3>
+        <p>Fabric softeners strip away the sweat-wicking properties of 130gsm player-version mesh fabrics. Use a gentle liquid detergent instead.</p>
+      </div>
+      <div class="care-card">
+        <span class="icon">🖐️</span>
+        <h3>Hand Wash Custom Kits</h3>
+        <p>For custom name &amp; number prints or multi-patch international kits, a quick 10-minute hand wash in cold water will maximize the lifespan of your prints.</p>
+      </div>
+    </div>
+
+    <div class="care-alert">
+      <span style="font-size:2.8rem; line-height:1;">💡</span>
+      <div style="flex:1; min-width:240px;">
+        <h3 style="color:var(--gold-bright); font-size:1.3rem; margin-bottom:0.3rem;">A Note on Heat-Pressed Vinyl (Sponsors &amp; Names)</h3>
+        <p style="font-size:0.88rem; color:var(--chalk-dim); margin:0;">Both our Player and Fan versions use match-accurate heat-pressed rubberized badges for sponsors and custom names. High heat from tumble dryers or washing machines will dissolve the vinyl adhesive over time. Treat them gently, air dry in the shade, and they will survive hundreds of matchdays.</p>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+
 <div id="page-product" class="page">
 <main>
 <div class="container product-page-container">
@@ -963,7 +1180,7 @@
       </div>
 
       <div class="field">
-        <label id="ppPatchLabel">Sleeve patch (+₹40 each)</label>
+        <label id="ppPatchLabel">Sleeve patch</label>
         <div class="patch-photo-row" id="ppPatchRow"></div>
       </div>
 
@@ -974,61 +1191,35 @@
 </main>
 </div>
 
-<div id="page-care" class="page">
-<main>
-  <div class="care-container">
-    <div class="care-hero">
-      <span class="care-eyebrow" style="margin-bottom:0.6rem;">Match-Fit Maintenance</span>
-      <h2>How To Wash &amp; Care For Your Kits</h2>
-      <p style="color:var(--ink-soft); max-width:540px; margin:0.5rem auto 0; font-weight:500;">Football kits are high-performance synthetic garments. Follow these 6 golden rules to keep your badges, heat-pressed names, and fabric sheen looking brand new for years.</p>
+<!-- Continuous Scrolling Ticker (Marquee) -->
+<div class="marquee-container" aria-hidden="true">
+  <div class="marquee-wrapper">
+    <div class="marquee-text">
+      <span>CORNER FLAG JERSEYS</span><span class="marquee-circle"></span>
+      <span>AUTHENTIC MATCHDAY KITS</span><span class="marquee-circle"></span>
+      <span>PAN-INDIA DELIVERY</span><span class="marquee-circle"></span>
+      <span>PREMIUM FABRICS</span><span class="marquee-circle"></span>
+      <span>CORNER FLAG JERSEYS</span><span class="marquee-circle"></span>
+      <span>AUTHENTIC MATCHDAY KITS</span><span class="marquee-circle"></span>
+      <span>PAN-INDIA DELIVERY</span><span class="marquee-circle"></span>
+      <span>PREMIUM FABRICS</span><span class="marquee-circle"></span>
     </div>
-
-    <div class="care-grid">
-      <div class="care-card">
-        <span class="icon">🔄</span>
-        <h3>Always Wash Inside Out</h3>
-        <p>Turn your jersey inside out before dropping it in the washing machine. This protects the printed sponsors, custom names, and crests from friction against other clothes.</p>
-      </div>
-      <div class="care-card">
-        <span class="icon">❄️</span>
-        <h3>Cold Water Only (Max 30°C)</h3>
-        <p>Hot water breaks down the heat-activated adhesives used on rubberized badges and sleeve patches. Stick to cold water cycles to prevent peeling.</p>
-      </div>
-      <div class="care-card">
-        <span class="icon">🚫</span>
-        <h3>Strictly No Tumble Dry</h3>
-        <p>Never put your football jerseys in a clothes dryer. Extreme machine heat will warp micro-mesh fabrics and crack vinyl prints. Hang them to air dry in the shade.</p>
-      </div>
-      <div class="care-card">
-        <span class="icon">⚠️</span>
-        <h3>Never Iron Over Badges</h3>
-        <p>Do not apply direct heat from an iron over heat-pressed sponsors, names, or rubberized crests. If you must iron creases, do it inside out on a low setting.</p>
-      </div>
-      <div class="care-card">
-        <span class="icon">🧴</span>
-        <h3>Avoid Fabric Softeners</h3>
-        <p>Fabric softeners strip away the sweat-wicking properties of 130gsm player-version mesh fabrics. Use a gentle liquid detergent instead.</p>
-      </div>
-      <div class="care-card">
-        <span class="icon">🖐️</span>
-        <h3>Hand Wash Custom Kits</h3>
-        <p>For custom name &amp; number prints or multi-patch international kits, a quick 10-minute hand wash in cold water will maximize the lifespan of your prints.</p>
-      </div>
-    </div>
-
-    <div class="care-alert">
-      <span style="font-size:2.8rem; line-height:1;">💡</span>
-      <div style="flex:1; min-width:240px;">
-        <h3 style="color:var(--gold-bright); font-size:1.3rem; margin-bottom:0.3rem;">A Note on Heat-Pressed Vinyl (Sponsors &amp; Names)</h3>
-        <p style="font-size:0.88rem; color:var(--chalk-dim); margin:0;">Both our Player and Fan versions use match-accurate heat-pressed rubberized badges for sponsors and custom names. High heat from tumble dryers or washing machines will dissolve the vinyl adhesive over time. Treat them gently, air dry in the shade, and they will survive hundreds of matchdays.</p>
-      </div>
+    <div class="marquee-text">
+      <span>CORNER FLAG JERSEYS</span><span class="marquee-circle"></span>
+      <span>AUTHENTIC MATCHDAY KITS</span><span class="marquee-circle"></span>
+      <span>PAN-INDIA DELIVERY</span><span class="marquee-circle"></span>
+      <span>PREMIUM FABRICS</span><span class="marquee-circle"></span>
+      <span>CORNER FLAG JERSEYS</span><span class="marquee-circle"></span>
+      <span>AUTHENTIC MATCHDAY KITS</span><span class="marquee-circle"></span>
+      <span>PAN-INDIA DELIVERY</span><span class="marquee-circle"></span>
+      <span>PREMIUM FABRICS</span><span class="marquee-circle"></span>
     </div>
   </div>
-</main>
 </div>
 
 <footer>
   <div class="footer-links">
+    <a href="#" onclick="showPage('returns', event)">Returns Policy</a>
     <a href="#" onclick="showPage('care', event)">Jersey Care</a>
     <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -1119,7 +1310,7 @@
         </div>
         
         <div class="field">
-          <label id="customPatchLabel">Sleeve patch (+₹40 each)</label>
+          <label id="customPatchLabel">Sleeve patch</label>
           <div class="patch-photo-row" id="customPatchRow"></div>
         </div>
         
@@ -1150,6 +1341,7 @@
     const navHome = document.getElementById('nav-home');
     const navProducts = document.getElementById('nav-products');
     const navCare = document.getElementById('nav-care');
+    // We don't have a direct nav item for returns, so this is safe
     if (navHome) navHome.classList.toggle('active-link', name === 'home');
     if (navProducts) navProducts.classList.toggle('active-link', name === 'products');
     if (navCare) navCare.classList.toggle('active-link', name === 'care');
@@ -1188,7 +1380,17 @@
     const statusBox = document.getElementById('searchStatus');
     if (!q){ statusBox.hidden = true; return false; }
 
-    const match = PRODUCTS.find(p => p.name.toLowerCase().includes(q) || p.league.toLowerCase().includes(q));
+    const activeTabEl = document.querySelector('.tab-content.active');
+    const currentTabId = activeTabEl ? activeTabEl.id : null;
+
+    let match = PRODUCTS.find(p => 
+      (p.name.toLowerCase().includes(q) || (p.league && p.league.toLowerCase().includes(q)) || (p.club && p.club.toLowerCase().includes(q))) && 
+      p.tabContentId === currentTabId
+    );
+
+    if (!match) {
+      match = PRODUCTS.find(p => p.name.toLowerCase().includes(q) || (p.league && p.league.toLowerCase().includes(q)) || (p.club && p.club.toLowerCase().includes(q)));
+    }
 
     if (!match){
       statusBox.textContent = `No jerseys found for "${input.value.trim()}" — try a club or league name.`;
@@ -1267,6 +1469,7 @@
 
   function carouselShow(i){
     const slides = document.querySelectorAll('.carousel-slide');
+    if(slides.length === 0) return;
     const dots = document.querySelectorAll('.carousel-dots button');
     carouselIndex = (i + slides.length) % slides.length;
     slides.forEach((s, idx) => s.classList.toggle('active', idx === carouselIndex));
@@ -1285,6 +1488,11 @@
 
   function initCarousel(){
     const slides = document.querySelectorAll('.carousel-slide');
+    if(slides.length <= 1) {
+      document.querySelector('.carousel-arrow.prev').style.display = 'none';
+      document.querySelector('.carousel-arrow.next').style.display = 'none';
+      return;
+    }
     const dotsWrap = document.getElementById('carouselDots');
     dotsWrap.innerHTML = Array.from(slides).map((_, i) =>
       `<button aria-label="Go to slide ${i + 1}" onclick="carouselShow(${i}); resetCarouselTimer();"></button>`
@@ -1309,7 +1517,6 @@
     return [{ name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, imageBack:home.imgBack, popular:popular||[] }];
   }
 
-  /* Dedicated Helper for International Sale Kits */
   function intlPair(clubName, home, away, popular, price){
     const basePrice = price || 550;
     return [
@@ -1413,13 +1620,14 @@
     ]},
   ];
 
-  /* Updated Retro Clubs: Cleaned Arsenal Popular Names by Era & Added Rice #41 */
   const retroClub = [
     { league:"Retro Clubs", teams:[
       { name:"1998-99 Manchester United Treble Home Jersey", club:"Manchester United", type:"Retro", primary:"#da020e", secondary:"#111111", number:7, img:"jerseys/retro/man-utd-1999-treble-home.jpg",
         popular:[{name:"Giggs", number:11}, {name:"Scholes", number:18}] },
       { name:"2002-03 Sporting CP Home Jersey", club:"Sporting CP", type:"Retro", primary:"#1a7a3c", secondary:"#f5f5f5", number:28, img:"jerseys/retro/sporting-2002-home.jpg",
         popular:[{name:"Ronaldo", number:28}] },
+      { name:"2011-12 Santos Home Jersey", club:"Santos", type:"Retro", primary:"#ffffff", secondary:"#111111", number:11, img:"jerseys/retro/santos-2011-home.jpg",
+        popular:[{name:"Neymar", number:11}] },
       { name:"2008-09 Barcelona Home Jersey", club:"Barcelona", type:"Retro", primary:"#a50044", secondary:"#004d98", number:10, img:"jerseys/retro/barca-2008-home.jpg",
         popular:[{name:"Messi", number:10}] },
       { name:"2014-15 Barcelona Home Jersey", club:"Barcelona", type:"Retro", primary:"#a50044", secondary:"#004d98", number:10, img:"jerseys/retro/barca-2014-home.jpg",
@@ -1482,6 +1690,8 @@
         popular:[{name:"Shevchenko", number:7}] },
       { name:"2006-07 AC Milan Home Jersey", club:"AC Milan", type:"Retro", primary:"#fb090b", secondary:"#111111", number:22, img:"jerseys/retro/milan-2006-home.jpg",
         popular:[{name:"Kaka", number:22}, {name:"Pirlo", number:21}] },
+      { name:"2006-07 AC Milan Away Jersey", club:"AC Milan", type:"Retro", primary:"#f5f5f5", secondary:"#fb090b", number:22, img:"jerseys/retro/milan-2006-away.jpg",
+        popular:[{name:"Kaka", number:22}] },
       { name:"2022-23 PSG Third Jersey", club:"PSG", type:"Retro", primary:"#f5f5f5", secondary:"#04225c", number:30, img:"jerseys/retro/psg-2022-third.jpg",
         popular:[{name:"Messi", number:30}] },
       { name:"2025-26 PSG Fourth Jersey", club:"PSG", type:"Retro", primary:"#111111", secondary:"#c9a227", number:30, img:"jerseys/retro/psg-2025-fourth.jpg",
@@ -1491,9 +1701,10 @@
     ]},
   ];
 
-  /* Updated Retro International: Added Germany 125th Anniversary Shirt (No Popular Names) */
   const retroIntl = [
     { league:"Retro International", teams:[
+      { name:"2022 Argentina World Cup Home Jersey", club:"Argentina", type:"Retro", primary:"#75aadb", secondary:"#f5f5f5", number:10, img:"jerseys/retro-intl/argentina-2022-wc-home.jpg",
+        popular:[{name:"Messi", number:10}], basePrice:600, originalPrice:700, onSale:true },
       { name:"1970 Brazil World Cup Home Jersey", club:"Brazil", type:"Retro", primary:"#ffdf00", secondary:"#009739", number:10, img:"jerseys/retro-intl/brazil-1970-home.jpg",
         popular:[{name:"Pelé", number:10}, {name:"Jairzinho", number:7}, {name:"Rivelino", number:11}], basePrice:600, originalPrice:700, onSale:true },
       { name:"2002 Brazil World Cup Home Jersey (Re-issue)", club:"Brazil", type:"Retro", primary:"#ffdf00", secondary:"#009739", number:9, img:"jerseys/retro-intl/brazil-2002-home.jpg",
@@ -1521,7 +1732,7 @@
     ].map(t => ({ ...t, multiPatch:true })) },
   ];
 
-  /* Updated International Section: Popular ones (Argentina, Spain, Portugal, France, England, Brazil, Germany) = ₹600, rest = ₹550 */
+  /* International Teams */
   const international = [
     { league:"International Teams", teams:[
       ...intlPair("Argentina", 
@@ -1571,6 +1782,10 @@
         {p:"#f5f5f5",s:"#111111",n:10,img:"jerseys/intl/germany-home.jpg",imgBack:"jerseys/intl/germany-home-back.jpg"}, 
         {p:"#043927",s:"#f5f5f5",n:10,img:"jerseys/intl/germany-away.jpg",imgBack:"jerseys/intl/germany-away-back.jpg"},
         [{name:"Musiala", number:10}, {name:"Wirtz", number:17}], 600),
+      ...intlPair("Japan", 
+        {p:"#002561",s:"#ffffff",n:10,img:"jerseys/intl/japan-home.jpg",imgBack:"jerseys/intl/japan-home-back.jpg"}, 
+        {p:"#ffffff",s:"#002561",n:10,img:"jerseys/intl/japan-away.jpg",imgBack:"jerseys/intl/japan-away-back.jpg"},
+        [], 550),
       ...intlHomeOnly("Netherlands", 
         {p:"#ff6c00",s:"#12305e",n:7,img:"jerseys/intl/netherlands-home.jpg",imgBack:"jerseys/intl/netherlands-home-back.jpg"}, [], 550),
       ...intlPair("Portugal", 
@@ -1580,6 +1795,7 @@
     ].map(t => ({ ...t, multiPatch:true })) },
   ];
 
+  /* Full Sleeves */
   const fullSleeves = [
     { league:"Full Sleeve Jerseys", teams:[
       { name:"Real Madrid Full Sleeve Jersey 2026-27", club:"Real Madrid", type:"Home", primary:"#f5f5f5", secondary:"#5a2d8c", number:9, img:"jerseys/full-sleeves/madrid-fs-2026.jpg",
@@ -1596,6 +1812,8 @@
         popular:[{name:"Shevchenko", number:7}] },
       { name:"AC Milan 2006-07 Home Full Sleeve Jersey", club:"AC Milan", type:"Retro", primary:"#fb090b", secondary:"#111111", number:22, img:"jerseys/full-sleeves/milan-2006-home-fs.jpg",
         popular:[{name:"Kaka", number:22}, {name:"Pirlo", number:21}] },
+      { name:"AC Milan 2006-07 Away Full Sleeve Jersey", club:"AC Milan", type:"Retro", primary:"#f5f5f5", secondary:"#fb090b", number:22, img:"jerseys/full-sleeves/milan-2006-away-fs.jpg",
+        popular:[{name:"Kaka", number:22}] },
       { name:"Real Madrid 2016-17 Away Full Sleeve Jersey", club:"Real Madrid", type:"Retro", primary:"#00c2b2", secondary:"#111111", number:7, img:"jerseys/full-sleeves/madrid-2016-away-fs.jpg",
         popular:[{name:"Ronaldo", number:7}] },
       { name:"Real Madrid 2012-13 Full Sleeve Jersey", club:"Real Madrid", type:"Retro", primary:"#f5f5f5", secondary:"#5a2d8c", number:7, img:"jerseys/full-sleeves/madrid-2012-home-fs.jpg",
@@ -1608,8 +1826,8 @@
   const POPULARITY = {
     "Real Madrid":99, "Barcelona":98, "Manchester United":96, "Liverpool":95, "Brazil":95, "Argentina":94,
     "Bayern Munich":90, "Chelsea":88, "Manchester City":88, "Juventus":87, "PSG":87, "France":89, "Germany":86, "Italy":86, "Croatia":82, "Uruguay":81, "Arsenal":85,
-    "Inter Milan":80, "AC Milan":80, "Borussia Dortmund":78, "Tottenham Hotspur":77, "Portugal":83, "Netherlands":79, "Spain":82, "England":84,
-    "Atletico Madrid":74, "Napoli":72, "Ajax":73, "Al Nassr":76, "Inter Miami":75, "Bayer Leverkusen":68, "Belgium":70,
+    "Inter Milan":80, "AC Milan":80, "Borussia Dortmund":78, "Tottenham Hotspur":77, "Portugal":83, "Netherlands":79, "Spain":82, "England":84, "Japan":78,
+    "Atletico Madrid":74, "Napoli":72, "Ajax":73, "Al Nassr":76, "Inter Miami":75, "Bayer Leverkusen":68, "Belgium":70, "Santos": 65,
     "Mexico":62, "Norway":60, "Sporting CP":58
   };
   function popularityOf(team){ return POPULARITY[team.club] ?? 50; }
@@ -1637,7 +1855,7 @@
   }
 
   function clubBadgeHTML(clubName, size, extraClass){
-    size = size || 26;
+    size = size || 28;
     const slug = slugify(clubName);
     const fontSize = Math.round(size * 0.5);
     return `<span class="club-badge-slot ${extraClass || ''}" style="width:${size}px;height:${size}px;font-size:${fontSize}px;" data-club-slug="${slug}" title="${clubName}">` +
@@ -1722,7 +1940,7 @@
           ${team.image ? `<img src="${team.image}" alt="${team.name}, ${team.type}" class="kit-photo" onerror="this.outerHTML='<div class=\\'photo-placeholder\\'><span class=\\'upload-icon\\'>📁</span><span class=\\'ph-label\\' style=\\'font-size:0.6rem;word-break:break-all;\\'>${team.image}</span></div>'">` : `<div class="photo-placeholder"><span class="upload-icon">📷</span><span class="ph-label">Add kit photo</span></div>`}
         </div>
         <div class="product-info">
-          <h4 class="product-title">${clubBadgeHTML(clubLabel, 22)}<span>${team.name}</span></h4>
+          <h4 class="product-title">${clubBadgeHTML(clubLabel, 28)}<span>${team.name}</span></h4>
           <p class="product-meta">${team.league} · ${team.type} kit</p>
           <p class="product-price">${priceHTML}<span class="ship-note">Shipping included</span></p>
           <button class="card-btn" onclick="event.stopPropagation(); openCustomize(${id})">Customize &amp; add</button>
@@ -1797,6 +2015,30 @@
   }
   renderShopByNation();
 
+  // ---------- Trending Matchday Kits (home page) ----------
+  function renderTrendingHome(){
+    const grid = document.getElementById('home-trending-grid');
+    if (!grid) return;
+    
+    const seenClubs = new Set();
+    const trending = [];
+    
+    // Sort all standard current season & international kits by highest popularity
+    const sorted = [...PRODUCTS].filter(p => !p.name.includes('Full Sleeve') && p.type !== 'Retro')
+                                .sort((a, b) => popularityOf(b) - popularityOf(a));
+                                
+    for(const p of sorted) {
+      if(!seenClubs.has(p.club)) {
+        seenClubs.add(p.club);
+        trending.push(p);
+      }
+      if(trending.length >= 8) break; // Display top 8 unique kits
+    }
+    
+    grid.innerHTML = trending.map(team => cardHTML(team, team.id)).join('');
+  }
+  renderTrendingHome();
+
   function goToNation(clubSlug){
     showPage('products');
     const btn = document.getElementById('tab-international');
@@ -1822,7 +2064,22 @@
 
   const POPULAR_NAME_PRICE = 120;
   const CUSTOM_NAME_PRICE = 220;
-  const PATCH_PRICE = 40;
+
+  /* Helper: Get dynamic patch price per item based on kit type */
+  function getPatchPrice(product){
+    if (!product) return 40;
+    const league = product.league || '';
+    const isRetroIntl = product.tabContentId === 'retro-intl' || (product.type === 'Retro' && (league.includes('International') || product.multiPatch));
+    const isRetroClub = product.tabContentId === 'retro-club' || (product.type === 'Retro' && !isRetroIntl);
+    
+    if (isRetroIntl || product.multiPatch || product.tabContentId === 'international') {
+      return 35; // WC & International patches = ₹35
+    }
+    if (isRetroClub) {
+      return 45; // Retro Club & Retro Full Sleeves = ₹45
+    }
+    return 40;   // Current season regular club kits = ₹40
+  }
 
   function getVersionPrices(product){
     const base = (product && product.basePrice) ? product.basePrice : 600;
@@ -1848,9 +2105,30 @@
     
     const club = product.club || product.name || '';
     const league = product.league || '';
-    const isIntl = product.multiPatch || product.tabContentId === 'international' || product.tabContentId === 'retro-intl';
-    
-    if (isIntl) {
+    const isRetroIntl = product.tabContentId === 'retro-intl' || (product.type === 'Retro' && (league.includes('International') || product.multiPatch));
+    const isRetroClub = product.tabContentId === 'retro-club' || (product.type === 'Retro' && !isRetroIntl);
+
+    /* 1. Retro International Kits: Strictly no patches EXCEPT specified kits (Argentina WC 22) */
+    if (isRetroIntl) {
+      if (product.name.includes("2022 Argentina") || (club === "Argentina" && product.name.includes("2022"))) {
+        return [
+          { key: "wc-gold", label: "World Cup 2022 Patch" },
+          { key: "football-unites", label: "Football Unites The World" }
+        ];
+      }
+      return [];
+    }
+
+    /* 2. Retro Club & Retro Full Sleeves: Simply League Patch + UCL Patch */
+    if (isRetroClub) {
+      return [
+        { key: "league-normal", label: `${league} Patch` },
+        { key: "ucl-normal", label: "UCL Patch" }
+      ];
+    }
+
+    /* 3. Current Season International Teams */
+    if (product.multiPatch || product.tabContentId === 'international') {
       const wcWinners = ["Argentina", "Brazil", "France", "England", "Spain", "Germany", "Italy", "Uruguay"];
       const isWinner = wcWinners.some(w => club.toLowerCase().includes(w.toLowerCase()) || product.name.toLowerCase().includes(w.toLowerCase()));
       
@@ -1867,35 +2145,36 @@
           { key: "unite-peace", label: "Unite For Peace" }
         ];
       }
-    } else {
-      let options = [];
-      if (league === "La Liga") {
-        options.push({ key: "laliga-normal", label: "La Liga Normal Patch" });
-        options.push({ key: "laliga-winners", label: "La Liga Winners Patch" });
-      } else if (league === "Premier League") {
-        options.push({ key: "pl-normal", label: "Premier League Normal Patch" });
-        options.push({ key: "pl-winners", label: "Premier League Winners Patch" });
-      } else {
-        options.push({ key: "league-normal", label: `${league} Normal Patch` });
-        options.push({ key: "league-winners", label: `${league} Winners Patch` });
-      }
-      
-      options.push({ key: "ucl-normal", label: "UCL Normal Patch" });
-      
-      if (club.includes("Real Madrid")) {
-        options.push({ key: "ucl-15", label: "UCL 15 Winners Patch" });
-      } else if (club.includes("Liverpool") || club.includes("Bayern Munich")) {
-        options.push({ key: "ucl-6", label: "UCL 6 Winners Patch" });
-      } else if (club.includes("Barcelona")) {
-        options.push({ key: "ucl-5", label: "UCL 5 Winners Patch" });
-      } else if (club.includes("AC Milan")) {
-        options.push({ key: "ucl-7", label: "UCL 7 Winners Patch" });
-      } else {
-        options.push({ key: "ucl-winners", label: "UCL Winners Patch" });
-      }
-      
-      return options;
     }
+
+    /* 4. Current Season Club Kits */
+    let options = [];
+    if (league === "La Liga") {
+      options.push({ key: "laliga-normal", label: "La Liga Normal Patch" });
+      options.push({ key: "laliga-winners", label: "La Liga Winners Patch" });
+    } else if (league === "Premier League") {
+      options.push({ key: "pl-normal", label: "Premier League Normal Patch" });
+      options.push({ key: "pl-winners", label: "Premier League Winners Patch" });
+    } else {
+      options.push({ key: "league-normal", label: `${league} Normal Patch` });
+      options.push({ key: "league-winners", label: `${league} Winners Patch` });
+    }
+    
+    options.push({ key: "ucl-normal", label: "UCL Normal Patch" });
+    
+    if (club.includes("Real Madrid")) {
+      options.push({ key: "ucl-15", label: "UCL 15 Winners Patch" });
+    } else if (club.includes("Liverpool") || club.includes("Bayern Munich")) {
+      options.push({ key: "ucl-6", label: "UCL 6 Winners Patch" });
+    } else if (club.includes("Barcelona")) {
+      options.push({ key: "ucl-5", label: "UCL 5 Winners Patch" });
+    } else if (club.includes("AC Milan")) {
+      options.push({ key: "ucl-7", label: "UCL 7 Winners Patch" });
+    } else {
+      options.push({ key: "ucl-winners", label: "UCL Winners Patch" });
+    }
+    
+    return options;
   }
 
   function renderPatchUI(rowId, product){
@@ -1961,8 +2240,9 @@
   }
 
   function patchLabelText(product){
+    const price = getPatchPrice(product);
     const isMulti = product && (product.multiPatch || product.tabContentId === 'international' || product.tabContentId === 'retro-intl');
-    return isMulti ? "Sleeve patch — choose up to 2 (+₹40 each)" : "Sleeve patch (+₹40)";
+    return isMulti ? `Sleeve patch — choose up to 2 (+₹${price} each)` : `Sleeve patch (+₹${price})`;
   }
 
   function openCustomize(id){
@@ -2014,13 +2294,18 @@
     
     const nameChoice = document.getElementById('custom-nameselect').value;
     const patchItems = selectedPatchItems('customPatchRow');
+    const itemPatchPrice = getPatchPrice(activeProduct);
+
     if (nameChoice === 'custom'){
       total += CUSTOM_NAME_PRICE; parts.push(`Custom name +₹${CUSTOM_NAME_PRICE}`);
     } else if (nameChoice.startsWith('popular:')){
       const p = activeProduct.popular[+nameChoice.split(':')[1]];
       total += POPULAR_NAME_PRICE; parts.push(`${p.name} name +₹${POPULAR_NAME_PRICE}`);
     }
-    if (patchItems.length){ total += PATCH_PRICE * patchItems.length; parts.push(`${patchItems.length} patch${patchItems.length > 1 ? 'es' : ''} +₹${PATCH_PRICE * patchItems.length}`); }
+    if (patchItems.length){ 
+      total += itemPatchPrice * patchItems.length; 
+      parts.push(`${patchItems.length} patch${patchItems.length > 1 ? 'es' : ''} +₹${itemPatchPrice * patchItems.length}`); 
+    }
     
     if (activeProduct && activeProduct.originalPrice) {
       document.getElementById('modalPrice').innerHTML = `<span style="text-decoration:line-through; color:var(--ink-soft); opacity:0.75; font-size:0.85em; margin-right:6px;">₹${activeProduct.originalPrice}</span>₹${total}`;
@@ -2055,6 +2340,7 @@
     const priceEl = document.getElementById('modalPrice');
     const totalText = priceEl.lastChild ? priceEl.lastChild.textContent.trim() : priceEl.textContent.trim();
     const versionLabel = selectedVersion === 'master' ? 'Master / Fan Version (Standard Fit)' : 'Player Version (Athletic Slim Fit)';
+    const itemPatchPrice = getPatchPrice(activeProduct);
 
     let printDetail = "No Name & Number";
     if (nameChoice === 'custom'){
@@ -2069,7 +2355,7 @@
     let patchDetail = "No Patches";
     if (patchItems.length > 0){
       const patchNames = patchItems.map(p => p.label).join(', ');
-      patchDetail = `${patchItems.length}x Sleeve Patch (${patchNames}) (+₹${patchItems.length * 40})`;
+      patchDetail = `${patchItems.length}x Sleeve Patch (${patchNames}) (+₹${patchItems.length * itemPatchPrice})`;
     }
 
     const message = `⚽ *NEW JERSEY ORDER* ⚽\n` +
@@ -2080,7 +2366,8 @@
       `🏷️ *Printing:* ${printDetail}\n` +
       `🏅 *Patches:* ${patchDetail}\n` +
       `----------------------------\n` +
-      `💰 *Total Price:* ${totalText} (Shipping Included)\n\n` +
+      `💰 *Total Price:* ${totalText}\n\n` +
+      `*Note: Bulk discounts (₹100/₹150/15% OFF) will be applied directly during billing if eligible!*\n\n` +
       `Hi! I'd like to place an order for this football kit. Please let me know how to proceed with payment and delivery!`;
 
     const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
@@ -2153,13 +2440,18 @@
     
     const nameChoice = document.getElementById('pp-nameselect').value;
     const patchItems = selectedPatchItems('ppPatchRow');
+    const itemPatchPrice = getPatchPrice(ppProduct);
+
     if (nameChoice === 'custom'){
       total += CUSTOM_NAME_PRICE; parts.push(`Custom name +₹${CUSTOM_NAME_PRICE}`);
     } else if (nameChoice.startsWith('popular:')){
       const p = ppProduct.popular[+nameChoice.split(':')[1]];
       total += POPULAR_NAME_PRICE; parts.push(`${p.name} name +₹${POPULAR_NAME_PRICE}`);
     }
-    if (patchItems.length){ total += PATCH_PRICE * patchItems.length; parts.push(`${patchItems.length} patch${patchItems.length > 1 ? 'es' : ''} +₹${PATCH_PRICE * patchItems.length}`); }
+    if (patchItems.length){ 
+      total += itemPatchPrice * patchItems.length; 
+      parts.push(`${patchItems.length} patch${patchItems.length > 1 ? 'es' : ''} +₹${itemPatchPrice * patchItems.length}`); 
+    }
     
     if (ppProduct && ppProduct.originalPrice) {
       document.getElementById('ppPrice').innerHTML = `<span style="text-decoration:line-through; color:var(--ink-soft); opacity:0.75; font-size:0.85em; margin-right:6px;">₹${ppProduct.originalPrice}</span>₹${total}`;
@@ -2182,6 +2474,7 @@
     const priceEl = document.getElementById('ppPrice');
     const totalText = priceEl.lastChild ? priceEl.lastChild.textContent.trim() : priceEl.textContent.trim();
     const versionLabel = ppVersion === 'master' ? 'Master / Fan Version (Standard Fit)' : 'Player Version (Athletic Slim Fit)';
+    const itemPatchPrice = getPatchPrice(ppProduct);
 
     let printDetail = "No Name & Number";
     if (nameChoice === 'custom'){
@@ -2196,7 +2489,7 @@
     let patchDetail = "No Patches";
     if (patchItems.length > 0){
       const patchNames = patchItems.map(p => p.label).join(', ');
-      patchDetail = `${patchItems.length}x Sleeve Patch (${patchNames}) (+₹${patchItems.length * 40})`;
+      patchDetail = `${patchItems.length}x Sleeve Patch (${patchNames}) (+₹${patchItems.length * itemPatchPrice})`;
     }
 
     const message = `⚽ *NEW JERSEY ORDER* ⚽\n` +
@@ -2207,7 +2500,8 @@
       `🏷️ *Printing:* ${printDetail}\n` +
       `🏅 *Patches:* ${patchDetail}\n` +
       `----------------------------\n` +
-      `💰 *Total Price:* ${totalText} (Shipping Included)\n\n` +
+      `💰 *Total Price:* ${totalText}\n\n` +
+      `*Note: Bulk discounts (₹100/₹150/15% OFF) will be applied directly during billing if eligible!*\n\n` +
       `Hi! I'd like to place an order for this football kit. Please let me know how to proceed with payment and delivery!`;
 
     const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
