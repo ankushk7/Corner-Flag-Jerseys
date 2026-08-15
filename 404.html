@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 Offside | Corner Flag Jerseys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-outside: #111518;
+    --var-purple: #8b5cf6;
+    --var-banner: #1c1524;
+    --var-text-light: #eabfff;
+    --var-text-white: #ffffff;
+    --gold: #14b8a6;
+    --gold-bright: #5eead4;
+    --pitch-dark: #232b30;
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-outside);
+    color: #f2fafb;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Subtle pitch grid lines on the actual webpage */
+  .bg-lines {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.05; pointer-events: none;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .content-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ---------- The Stadium Screen Container ---------- */
+  .jumbotron {
+    width: 100%;
+    max-width: 850px;
+    background: var(--var-purple);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 14px solid #1a1e22;
+    border-radius: 12px;
+    border-bottom-width: 24px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 40px rgba(0,0,0,0.4);
+    overflow: hidden;
+    margin-bottom: 2rem;
+    aspect-ratio: 16 / 9;
+    max-height: 60vh;
+  }
+
+  /* The LED Pixel Overlay */
+  .led-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(0,0,0,0.25) 1px, transparent 1px);
+    background-size: 4px 4px;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Glowing screen effect */
+  .screen-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  /* ---------- The Jagged Dark Banner ---------- */
+  .var-banner {
+    position: absolute;
+    top: 50%;
+    left: -2%;
+    right: -2%;
+    transform: translateY(-50%);
+    height: 60%;
+    background: var(--var-banner);
+    clip-path: polygon(
+      0% 5%, 
+      100% 15%, 
+      92% 45%, 
+      100% 65%, 
+      85% 100%, 
+      0% 90%, 
+      12% 60%, 
+      0% 40%
+    );
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  /* ---------- Screen Typography ---------- */
+  .var-text {
+    position: relative;
+    z-index: 6;
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .var-decision {
+    color: var(--var-text-light);
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin-bottom: -0.2rem;
+  }
+
+  .var-result {
+    color: var(--var-text-white);
+    font-size: clamp(4rem, 12vw, 8.5rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  /* ---------- Bottom Content ---------- */
+  .desc {
+    color: #e6eef0;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    text-align: center;
+    max-width: 400px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gold);
+    color: var(--pitch-dark);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+
+  .btn:hover {
+    background: var(--gold-bright);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px -10px rgba(20, 184, 166, 0.4);
+  }
+
+  /* ---------- The Floating Graphic Slot ---------- */
+  .page-graphic-slot {
+    position: absolute;
+    top: 50%;
+    /* Pulled slightly left (closer to the screen) from -6vw */
+    right: 2vw; 
+    transform: translateY(-50%);
+    width: clamp(250px, 25vw, 450px); 
+    z-index: 15; 
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .page-graphic-slot img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
+  }
+
+  .placeholder-graphic {
+    aspect-ratio: 1;
+    border: 4px dashed rgba(255,255,255,0.15);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.2);
+    color: rgba(255,255,255,0.4);
+    font-size: 1rem;
+    font-family: 'Inter', monospace;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(-50%); }
+    50% { transform: translateY(calc(-50% - 20px)); }
+  }
+
+  /* ---------- Strict Mobile Adjustments ---------- */
+  @media (max-width: 850px) {
+    .jumbotron {
+      aspect-ratio: 4 / 3;
+      border-width: 8px;
+      border-bottom-width: 16px;
+      margin-bottom: 1.5rem;
+    }
+    .var-banner { height: 50%; }
+    .led-grid { background-size: 3px 3px; }
+    
+    .var-decision { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+    .var-result { font-size: clamp(3.5rem, 16vw, 6rem); }
+    .desc { font-size: 1rem; padding: 0 1rem; }
+    
+    /* Center the graphic beautifully on mobile */
+    .page-graphic-slot {
+      position: relative;
+      top: auto;
+      right: auto;
+      transform: none;
+      margin: 2.5rem auto 0;
+      width: clamp(200px, 65vw, 350px);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+  }
+
+  /* Extra adjustments for very small phones */
+  @media (max-width: 480px) {
+    .jumbotron {
+      aspect-ratio: 1 / 1; /* More square to fit text better */
+      border-width: 6px;
+      border-bottom-width: 12px;
+    }
+    .var-banner { height: 45%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-lines"></div>
+
+<div class="content-wrapper">
+  <!-- The "Stadium TV Screen" -->
+  <div class="jumbotron">
+    <div class="led-grid"></div>
+    <div class="screen-glow"></div>
+    
+    <div class="var-banner">
+      <div class="var-text">
+        <div class="var-decision">404 Error</div>
+        <div class="var-result">OFFSIDE</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="desc">The page you're looking for was caught past the last defender or doesn't exist anymore.</p>
+
+  <a href="/" class="btn">Back to the Pitch ⚽</a>
+</div>
+
+<!-- UPLOAD YOUR VAR/404 PNG HERE -->
+<div class="page-graphic-slot">
+  <img src="var-logo.png" alt="VAR Graphic" onerror="this.outerHTML='<div class=\\'placeholder-graphic\\'><span>📷 Graphic Slot</span></div>'">
+</div>
+
+</body>
+</html>
