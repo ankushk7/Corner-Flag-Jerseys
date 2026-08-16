@@ -639,7 +639,7 @@
 
   @media (max-width: 600px){
     :root {
-      --marquee-height: 38px;
+      --marquee-height: 42px; /* Slightly taller for mobile readability */
     }
 
     /* Responsive Logo (150x150 Phones) & Tighter Header Padding */
@@ -862,7 +862,7 @@
           </div>
         </div>
       </li>
-      <li><a href="#" onclick="goToReviews(event)" id="nav-reviews">Reviews</a></li>
+      <li><a href="#" onclick="showPage('reviews', event)" id="nav-reviews">Reviews</a></li>
       <li><a href="#" onclick="goToContact(event)">Contact</a></li>
       <li><a href="#" onclick="showPage('care', event)" id="nav-care">Jersey Care</a></li>
     </ul>
@@ -979,7 +979,7 @@
 <section class="fan-zone-section" id="fanzone">
   <h2 class="section-heading">
     <span class="kicker">#CornerFlagKits</span>
-    <span>Fan Zone · Real Reviews</span>
+    <span>Fan Zone Wall</span>
   </h2>
   <!-- Corrected margin so the underline doesn't overlap the text -->
   <p style="text-align:center; color:var(--ink-soft); font-size:0.9rem; max-width:520px; margin: 1.8rem auto 2.5rem; font-weight:500;">Tag us on Instagram wearing your matchday fit to get featured on our community wall.</p>
@@ -988,47 +988,81 @@
     <div class="fan-card">
       <div class="fan-photo-slot"><span>📷 Customer Fit 1</span></div>
       <span class="fan-tag">#MadridDerby</span>
+      <div style="text-align:center; margin-top:0.4rem; color:var(--gold); font-size:0.85rem; letter-spacing:0.1em;">★★★★★</div>
     </div>
     <div class="fan-card">
       <div class="fan-photo-slot"><span>📷 Customer Fit 2</span></div>
       <span class="fan-tag">#Retro90s</span>
+      <div style="text-align:center; margin-top:0.4rem; color:var(--gold); font-size:0.85rem; letter-spacing:0.1em;">★★★★★</div>
     </div>
     <div class="fan-card">
       <div class="fan-photo-slot"><span>📷 Customer Fit 3</span></div>
       <span class="fan-tag">#PremierLeague</span>
+      <div style="text-align:center; margin-top:0.4rem; color:var(--gold); font-size:0.85rem; letter-spacing:0.1em;">★★★★★</div>
     </div>
     <div class="fan-card">
       <div class="fan-photo-slot"><span>📷 Customer Fit 4</span></div>
       <span class="fan-tag">#Messi10</span>
+      <div style="text-align:center; margin-top:0.4rem; color:var(--gold); font-size:0.85rem; letter-spacing:0.1em;">★★★★★</div>
     </div>
     <div class="fan-card">
       <div class="fan-photo-slot"><span>📷 Customer Fit 5</span></div>
       <span class="fan-tag">#MatchdayVibes</span>
-    </div>
-  </div>
-  
-  <!-- New Detailed Reviews Section -->
-  <div style="margin-top: 4rem;">
-    <h3 style="text-align:center; font-family:'Outfit',sans-serif; font-size:1.8rem; margin-bottom: 2rem; color:var(--pitch-dark);">Customer Reviews</h3>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem;">
-      <div class="care-card">
-        <div style="color:var(--gold); font-size:1rem; margin-bottom:0.5rem; letter-spacing:0.1em;">★★★★★</div>
-        <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:0.95rem; color:var(--ink); line-height:1.6; margin-bottom:1rem; font-style:italic;">"Absolutely brilliant quality. The player version fits exactly like my original match worn shirts. Fast delivery to Mumbai too."</p>
-        <span style="font-size:0.8rem; color:var(--ink-soft); font-weight:600;">— Rahul M. (Real Madrid Home Player Version)</span>
-      </div>
-      <div class="care-card">
-        <div style="color:var(--gold); font-size:1rem; margin-bottom:0.5rem; letter-spacing:0.1em;">★★★★★</div>
-        <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:0.95rem; color:var(--ink); line-height:1.6; margin-bottom:1rem; font-style:italic;">"The retro fabric feels exactly like the original 90s kits. The Arsenal bruised banana is incredible in person."</p>
-        <span style="font-size:0.8rem; color:var(--ink-soft); font-weight:600;">— Aditya S. (Arsenal 1990 Retro)</span>
-      </div>
-      <div class="care-card">
-        <div style="color:var(--gold); font-size:1rem; margin-bottom:0.5rem; letter-spacing:0.1em;">★★★★★</div>
-        <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:0.95rem; color:var(--ink); line-height:1.6; margin-bottom:1rem; font-style:italic;">"Got the custom name print for my brother's birthday. It looks 100% official and the WhatsApp support team was super helpful."</p>
-        <span style="font-size:0.8rem; color:var(--ink-soft); font-weight:600;">— Priya K. (Argentina Away Custom)</span>
-      </div>
+      <div style="text-align:center; margin-top:0.4rem; color:var(--gold); font-size:0.85rem; letter-spacing:0.1em;">★★★★★</div>
     </div>
   </div>
 </section>
+</div>
+
+<!-- DEDICATED REVIEWS PAGE -->
+<div id="page-reviews" class="page">
+<main>
+  <div class="care-container" style="max-width:800px;">
+    <div class="care-hero">
+      <span class="care-eyebrow" style="margin-bottom:0.6rem;">Community Voice</span>
+      <h2>Customer Reviews</h2>
+      <p style="color:var(--ink-soft); max-width:540px; margin:0.5rem auto 0; font-weight:500;">Hear what other fans have to say about our matchday kits.</p>
+    </div>
+
+    <!-- Empty State -->
+    <div style="text-align:center; padding: 4rem 2rem; background:rgba(255,255,255,0.5); border:1px dashed var(--glass-border); border-radius:14px; margin-bottom: 3rem;">
+      <span style="font-size:3rem; display:block; margin-bottom:1rem;">⭐</span>
+      <h3 style="font-family:'Outfit',sans-serif; font-size:1.5rem; color:var(--pitch-dark); margin-bottom:0.5rem;">No written reviews yet</h3>
+      <p style="color:var(--ink-soft); font-size:0.95rem;">Be the first to leave a detailed review and help other fans find their perfect fit!</p>
+    </div>
+
+    <!-- Leave a Review Form -->
+    <div class="contact-form" style="max-width:100%; box-shadow:none; border-color:rgba(34,197,94,0.3);">
+      <span class="kicker">Share your thoughts</span>
+      <h2 style="font-size:1.6rem; margin-bottom:1.5rem;">Leave a Review</h2>
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <div class="field">
+          <label for="rev-name">Your Name</label>
+          <input type="text" id="rev-name" name="name" placeholder="e.g. Rahul M." required>
+        </div>
+        <div class="field">
+          <label for="rev-kit">Which kit did you buy?</label>
+          <input type="text" id="rev-kit" name="kit" placeholder="e.g. Real Madrid Home Player Version" required>
+        </div>
+        <div class="field">
+          <label for="rev-rating">Rating</label>
+          <select id="rev-rating" name="rating" required>
+            <option value="5">★★★★★ (5/5) - Perfect Match</option>
+            <option value="4">★★★★☆ (4/5) - Great Quality</option>
+            <option value="3">★★★☆☆ (3/5) - Good</option>
+            <option value="2">★★☆☆☆ (2/5) - Just Okay</option>
+            <option value="1">★☆☆☆☆ (1/5) - Disappointing</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="rev-text">Your Review</label>
+          <textarea id="rev-text" name="review" rows="4" placeholder="Tell us about the fabric, sizing, stitching..." required></textarea>
+        </div>
+        <button type="submit">Submit Review</button>
+      </form>
+    </div>
+  </div>
+</main>
 </div>
 
 <div id="page-products" class="page">
@@ -1461,6 +1495,7 @@
     const target = document.getElementById('page-' + name);
     if (target) target.classList.add('active');
     if (name !== 'product') sessionStorage.setItem('cfj_page', name);
+    
     const navHome = document.getElementById('nav-home');
     const navProducts = document.getElementById('nav-products');
     const navCare = document.getElementById('nav-care');
@@ -1472,6 +1507,7 @@
     if (navHome && name === 'home') navHome.classList.add('active-link');
     if (navProducts && name === 'products') navProducts.classList.add('active-link');
     if (navCare && name === 'care') navCare.classList.add('active-link');
+    if (navReviews && name === 'reviews') navReviews.classList.add('active-link');
     
     // Dynamic Page Titles
     if (name !== 'product') {
@@ -1479,7 +1515,8 @@
         'home': 'Corner Flag Jerseys — Football Jerseys, Delivered Across India',
         'products': 'Shop Jerseys | Corner Flag Jerseys',
         'care': 'Kit Maintenance | Corner Flag Jerseys',
-        'returns': 'Returns Policy | Corner Flag Jerseys'
+        'returns': 'Returns Policy | Corner Flag Jerseys',
+        'reviews': 'Customer Reviews | Corner Flag Jerseys'
       };
       document.title = titles[name] || 'Corner Flag Jerseys';
     }
@@ -1487,19 +1524,6 @@
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
   
-  function goToReviews(evt){
-    if (evt) evt.preventDefault();
-    showPage('home');
-    document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active-link'));
-    const rev = document.getElementById('nav-reviews');
-    if(rev) rev.classList.add('active-link');
-    
-    setTimeout(() => {
-      const el = document.getElementById('fanzone');
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 60);
-  }
-
   function goToContact(evt){
     if (evt) evt.preventDefault();
     showPage('products');
