@@ -287,20 +287,22 @@
 
   .hero{ position:relative; background:linear-gradient(160deg, var(--pitch-mid), var(--pitch-dark)); color:var(--chalk); overflow:hidden; padding:4rem 0 4.5rem; }
   
-  /* Prominent, right-aligned halfway pitch line */
-  .hero-pitch-lines{ position:absolute; right:-12%; top:50%; transform:translateY(-50%); width:720px; height:720px; opacity:0.4; pointer-events:none; z-index:0; }
-  .hero-pitch-lines svg{ width:100%; height:100%; }
+  /* Horizontal pitch line perfectly framing the left side */
+  .hero-pitch-lines{ position:absolute; inset:0; opacity:0.45; pointer-events:none; z-index:0; }
+  .hero-pitch-lines svg{ width:100%; height:100%; display:block; }
+  .pitch-circle, .pitch-dot { cx: 22%; transition: cx 0.3s ease, cy 0.3s ease; }
 
   /* Hero Inner compressed left via padding-right and grid columns */
   .hero-inner{ position:relative; z-index:2; display:grid; grid-template-columns:1.2fr 0.8fr; gap:3rem; align-items:center; max-width:1200px; margin:0 auto; padding:0 5rem 0 1.5rem; }
 
+  /* Cleaner, solid hero-eyebrow styling */
   .hero-eyebrow{
-    display:inline-block; font-family:'JetBrains Mono', monospace; font-size:0.75rem; letter-spacing:0.12em;
-    text-transform:uppercase; color:var(--gold-bright); background:rgba(255,255,255,0.08);
-    backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur);
-    border:1px solid rgba(34,197,94,0.4); padding:0.4rem 0.9rem; border-radius:999px; margin-bottom:1.1rem;
-    font-weight: 500;
+    display:inline-block; font-family:'JetBrains Mono', monospace; font-size:0.75rem; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--gold-bright); background:transparent;
+    border:1.5px solid var(--gold); padding:0.35rem 0.8rem; border-radius:6px; margin-bottom:1.5rem;
+    font-weight: 700;
   }
+  
   .hero h2{ font-size:clamp(2.4rem, 6vw, 4rem); line-height:1.1; margin-bottom:1.1rem; }
   .hero h2 em{ font-style:normal; color:var(--gold-bright); }
   .hero p.lede{ font-size:clamp(1rem, 3vw, 1.1rem); color:var(--chalk-dim); max-width:480px; margin-bottom:1.8rem; font-weight:400; line-height: 1.6; }
@@ -384,7 +386,7 @@
     display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; box-shadow:var(--shadow);
   }
 
-  /* Redesigned, perfectly symmetrical dashed penalty box */
+  /* Mathematically perfect symmetrical dashed penalty box */
   .penalty-box-top { position:absolute; top:0; left:50%; transform:translateX(-50%); width:100%; max-width:400px; height:auto; opacity:0.35; pointer-events:none; z-index:0; color:rgba(34,197,94,0.8); }
 
   .section-heading{ text-align:center; margin-bottom:1.4rem; font-size:clamp(1.8rem, 5vw, 2.2rem); color:var(--pitch-dark); position:relative; z-index:2; padding-top:1.25rem; font-weight: 700; letter-spacing: -0.02em;}
@@ -628,10 +630,11 @@
 
   /* ---------- STRICT MOBILE PHONE OPTIMIZATIONS ---------- */
   @media (max-width: 860px){
-    .hero-inner{ grid-template-columns:1fr; gap:2.2rem; padding: 0 1.25rem; }
+    /* Adjusted the horizontal halfway line for mobile perfectly to frame the screen */
+    .hero-pitch-lines{ opacity: 0.45; display: block !important; }
+    .pitch-circle, .pitch-dot { cx: 50% !important; cy: 22% !important; transition: all 0.3s ease; }
     
-    /* Ensure halfway line shows on mobile and is appropriately shifted right */
-    .hero-pitch-lines{ right:-20%; width:450px; height:450px; opacity:0.25; display:block !important; }
+    .hero-inner{ grid-template-columns:1fr; gap:2.2rem; padding: 0 1.25rem; }
     
     nav ul li a{ padding:0.75rem 0.9rem; font-size:0.95rem; }
     .floating-socials{ right:0.75rem; bottom:1rem; }
@@ -718,12 +721,13 @@
     
     .carousel-track{ aspect-ratio: 2 / 1; max-height: 250px; }
 
-    main > .container{ padding-top:2.8rem; } /* Tightened mobile spacing */
+    main > .container{ padding-top:4.5rem; } /* Tightened mobile spacing */
     .section-heading{ padding-top:1rem; margin-bottom:1rem; }
     .product-page-container{ padding-top:1.2rem; padding-bottom:calc(2.5rem + env(safe-area-inset-bottom)); }
     
+    /* Stronger mobile doodles */
     .bg-doodles { padding: 0 2vw; }
-    .doodle-col img, .doodle-col .d-icon { width: 38px; opacity: 0.25; }
+    .doodle-col img, .doodle-col .d-icon { width: 40px; opacity: 0.15; }
   }
 
   @media (max-width: 360px){
@@ -762,7 +766,7 @@
     .container, .banner-carousel, .hero-inner, .products, .product-page-grid,
     .care-container, .contact-form, .fan-zone-section{ max-width:100%; }
     .search-suggestions{ width:calc(100vw - 1.5rem); max-width:calc(100vw - 1.5rem); }
-    .mega-menu{ width:calc(100vw - 1.5rem); max-width:340px; }
+    .mega-menu{ width:calc(100vw - 1.5rem); max-width:340px; margin:0 auto; left:0; right:0; }
   }
 </style>
 </head>
@@ -939,17 +943,17 @@
 </section>
 
 <section class="hero" id="home">
-  <!-- Prominent, right-aligned halfway pitch line -->
+  <!-- Horizontal pitch line perfectly framing the left side -->
   <div class="hero-pitch-lines" aria-hidden="true">
-    <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="320" cy="320" r="210" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-dasharray="10 8"/>
-      <circle cx="320" cy="320" r="7" fill="var(--gold-bright)"/>
-      <line x1="320" y1="0" x2="320" y2="640" stroke="var(--gold)" stroke-width="2" stroke-dasharray="14 10"/>
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute; inset:0;">
+      <line x1="0" y1="50%" x2="100%" y2="50%" stroke="var(--gold)" stroke-width="3" stroke-dasharray="18 14"/>
+      <circle class="pitch-circle" cx="22%" cy="50%" r="180" fill="none" stroke="var(--gold)" stroke-width="3" stroke-dasharray="14 10"/>
+      <circle class="pitch-dot" cx="22%" cy="50%" r="8" fill="var(--gold-bright)"/>
     </svg>
   </div>
+
   <div class="hero-inner">
-    <div>
-      <span class="hero-eyebrow">Pan-India Delivery · Fast Shipping</span>
+    <div style="position:relative; z-index:2;">
       <h2>Wear the crest.<br><em>Feel</em> the match.</h2>
       <p class="lede">Fabric-accurate replicas from La Liga to the Premier League, plus a retro rail that goes back to the '70s. Every kit checked before it ships.</p>
       <div class="hero-ctas">
@@ -958,7 +962,8 @@
       </div>
     </div>
     
-    <div>
+    <div style="position:relative; z-index:2;">
+      <span class="hero-eyebrow">Pan-India Delivery · Fast Shipping</span>
       <div class="hero-stats-grid">
         <div class="stat-card"><span class="num">50+</span><span class="label">Kits in Stock</span></div>
         <div class="stat-card"><span class="num">7</span><span class="label">Leagues Covered</span></div>
@@ -1209,12 +1214,12 @@
       <div class="care-card">
         <span class="icon">🔄</span>
         <h3>7-Day Exchange</h3>
-        <p>If the size isn't right, you have 7 days from delivery to request an exchange. The jersey must be unwashed, unworn, and have all original tags attached. (only for uncustomised jersey)</p>
+        <p>If the size isn't right, you have 7 days from delivery to request an exchange. The jersey must be unwashed, unworn, and have all original tags attached. <br><strong style="color:var(--ink)">(Applicable only for uncustomised jerseys)</strong></p>
       </div>
       <div class="care-card">
         <span class="icon">🚫</span>
         <h3>Custom Kits</h3>
-        <p>Jerseys with custom names, numbers, or specific sleeve patches are strictly non-exchangeable for sizing issues—please check the size chart carefully! However, we will gladly replace them if they arrive damaged. (with unboxing video proof)</p>
+        <p>Jerseys with custom names, numbers, or specific sleeve patches are strictly non-exchangeable for sizing issues—please check the size chart carefully! However, we will gladly replace them if they arrive damaged. <br><strong style="color:var(--ink)">(Requires unboxing video proof)</strong></p>
       </div>
       <div class="care-card">
         <span class="icon">📦</span>
