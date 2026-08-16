@@ -15,29 +15,29 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --pitch-dark:#232b30;
-    --pitch-mid:#333e44;
-    --pitch-line: rgba(110,231,207,0.18);
-    --chalk:#f2fafb;
-    --chalk-dim:#e6eef0;
-    --gold:#14b8a6;
-    --gold-bright:#5eead4;
-    --crimson:#0f766e;
-    --ink:#181c1f;
-    --ink-soft:#4c5a5f;
+    --pitch-dark:#0a0a0a;
+    --pitch-mid:#171717;
+    --pitch-line: rgba(34,197,94,0.18);
+    --chalk:#f7f4ec;
+    --chalk-dim:#ece5d3;
+    --gold:#22c55e;
+    --gold-bright:#4ade80;
+    --crimson:#15803d;
+    --ink:#141414;
+    --ink-soft:#5c5c5c;
     --card:#ffffff;
-    --forest:#0e4d38;
-    --forest-bright:#1c8f66;
+    --forest:#0d1f14;
+    --forest-bright:#16a34a;
     --radius:14px;
-    --shadow: 0 18px 40px -18px rgba(20,24,27,0.32);
-    --shadow-hover: 0 26px 54px -18px rgba(20,24,27,0.42);
+    --shadow: 0 18px 40px -18px rgba(10,10,10,0.35);
+    --shadow-hover: 0 26px 54px -18px rgba(10,10,10,0.45);
     --glass-bg: rgba(255,255,255,0.55);
     --glass-border: rgba(255,255,255,0.65);
     --glass-blur: blur(20px) saturate(180%);
-    --marquee-height: 38px;
+    --marquee-height: 40px;
   }
 
   /* Strict Viewport Reset & Mobile Overflow Safeguards */
@@ -46,7 +46,7 @@
   img, svg, video{max-width:100%;height:auto;display:block;}
 
   body{
-    font-family:'Inter',sans-serif;
+    font-family:'Plus Jakarta Sans',sans-serif;
     background:var(--chalk);
     color:var(--ink);
     line-height:1.6;
@@ -61,7 +61,7 @@
 
   /* ---------- Popup Promo Banner ---------- */
   .promo-popup-overlay {
-    position: fixed; inset: 0; background: rgba(10,20,15,0.8);
+    position: fixed; inset: 0; background: rgba(10,15,26,0.8);
     backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
     display: flex; align-items: center; justify-content: center;
     z-index: 2000; padding: 1rem; animation: fadeIn 0.4s ease;
@@ -90,10 +90,12 @@
   .promo-popup-placeholder h3 { font-size: 2.2rem; letter-spacing: -0.02em; color: var(--gold-bright); margin: 0; }
   .promo-popup-placeholder p { font-size: 0.9rem; opacity: 0.8; margin: 0; max-width: 350px; line-height: 1.4; }
 
-  /* ---------- Top Promo Marquee ---------- */
+  /* ---------- Top Promo Marquee (Inverted & High Contrast) ---------- */
   .top-marquee-container {
-    background: #dc2626; color: #ffffff; height: var(--marquee-height); overflow: hidden;
+    background: var(--gold-bright); color: var(--pitch-dark); height: var(--marquee-height); overflow: hidden;
     white-space: nowrap; display: flex; align-items: center; position: fixed; top: 0; left: 0; right: 0; z-index: 1100;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(34,197,94,0.15);
   }
   .top-marquee-container[hidden] { display: none; }
   .top-marquee-wrapper { 
@@ -104,8 +106,8 @@
     animation: scrollTopMarquee 35s linear infinite; 
   }
   .top-marquee-text {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.02em;
-    display: flex; align-items: center; gap: 3rem; padding-right: 3rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.03em;
+    display: flex; align-items: center; gap: 3rem; padding-right: 3rem; text-transform: uppercase;
   }
   .top-marquee-text span { display: flex; align-items: center; gap: 0.5rem; }
   
@@ -119,13 +121,13 @@
   }
   
   .top-promo-close {
-    position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%);
-    background: #991b1b; border: 1px solid #ef4444; color: #fff;
-    width: 26px; height: 26px; border-radius: 50%; font-size: 1.1rem; line-height: 1;
+    position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%);
+    background: rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.15); color: var(--pitch-dark);
+    width: 28px; height: 28px; border-radius: 50%; font-size: 1.1rem; line-height: 1;
     display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 20;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
   }
-  .top-promo-close:hover { background: #7f1d1d; }
+  .top-promo-close:hover { background: var(--pitch-dark); color: var(--gold-bright); transform: translateY(-50%) scale(1.05); }
 
   /* ---------- Background Doodles Layer (Left & Right Flanks) ---------- */
   .bg-doodles { 
@@ -151,10 +153,11 @@
     .doodle-col img, .doodle-col .d-icon { width: 35px; opacity: 0.05; }
   }
 
+  /* Refined, Softer Pastel Blobs for the Background */
   .bg-blobs{ position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none; }
-  .bg-blobs span{ position:absolute; border-radius:50%; filter:blur(90px); opacity:0.28; }
-  .bg-blobs .b1{ width:440px; height:440px; background:var(--gold); top:-120px; left:-140px; }
-  .bg-blobs .b2{ width:420px; height:420px; background:var(--forest); top:32%; right:-160px; }
+  .bg-blobs span{ position:absolute; border-radius:50%; filter:blur(140px); opacity:0.45; }
+  .bg-blobs .b1{ width:500px; height:500px; background:#a7f3d0; top:-100px; left:-150px; }
+  .bg-blobs .b2{ width:600px; height:600px; background:#bbf7d0; bottom:-150px; right:-150px; }
 
   .skip-link{ position:absolute; left:-999px; top:0; background:var(--gold); color:var(--ink); padding:0.75rem 1.25rem; z-index:1000; font-weight:600; }
   .skip-link:focus{ left:1rem; top:1rem; }
@@ -162,14 +165,14 @@
 
   header.site-header{
     background:
-      radial-gradient(ellipse 70% 140% at 15% -20%, rgba(212,175,55,0.20), transparent 60%),
-      radial-gradient(ellipse 60% 120% at 85% -30%, rgba(212,175,55,0.14), transparent 55%),
-      linear-gradient(180deg, #0e4d38, #0a2e21);
+      radial-gradient(ellipse 70% 140% at 15% -20%, rgba(34,197,94,0.20), transparent 60%),
+      radial-gradient(ellipse 60% 120% at 85% -30%, rgba(34,197,94,0.10), transparent 55%),
+      linear-gradient(180deg, #171717, #0a0a0a);
     color:var(--chalk); padding:0.4rem 1rem 1.1rem; position:relative; overflow:hidden; text-align:center;
   }
   header.site-header::after{
     content:''; position:absolute; inset:0;
-    background-image: repeating-linear-gradient(90deg, rgba(212,175,55,0.16) 0 1px, transparent 1px 90px);
+    background-image: repeating-linear-gradient(90deg, rgba(34,197,94,0.14) 0 1px, transparent 1px 90px);
     opacity:0.5; pointer-events:none;
   }
   .brand-mark{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:0; margin-bottom:-0.4rem; }
@@ -183,8 +186,8 @@
     border:2px dashed rgba(255,255,255,0.4); background:rgba(255,255,255,0.06); border-radius:12px; width:180px; height:180px;
   }
   
-  header.site-header h1{ font-size:clamp(2.8rem, 7vw, 4rem); position:relative; z-index:1; line-height:1.1; margin-top:0.2rem; color:#e8c766; text-shadow: 0 4px 12px rgba(0,0,0,0.4); }
-  header.site-header p{ font-size:clamp(0.95rem, 3vw, 1.05rem); font-weight:400; color:#c9a94f; position:relative; z-index:1; max-width:520px; margin:0.4rem auto 0; padding:0 0.5rem; }
+  header.site-header h1{ font-size:clamp(2.8rem, 7vw, 4rem); position:relative; z-index:1; line-height:1.1; margin-top:0.2rem; color:#4ade80; text-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+  header.site-header p{ font-size:clamp(0.95rem, 3vw, 1.05rem); font-weight:400; color:#a8b0a8; position:relative; z-index:1; max-width:520px; margin:0.4rem auto 0; padding:0 0.5rem; }
 
   nav{
     background:var(--forest);
@@ -204,7 +207,7 @@
 
   .search-wrapper{ position:relative; display:flex; align-items:center; }
   .nav-search{ display:flex; align-items:center; gap:0.3rem; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25); border-radius:999px; padding:0.3rem 0.3rem 0.3rem 0.9rem; margin:0.5rem 0; }
-  .nav-search input{ background:transparent; border:none; outline:none; color:var(--chalk); font-family:'Inter',sans-serif; font-size:0.85rem; width:150px; }
+  .nav-search input{ background:transparent; border:none; outline:none; color:var(--chalk); font-family:'Plus Jakarta Sans',sans-serif; font-size:0.85rem; width:150px; }
   .nav-search input::placeholder{ color:rgba(247,245,239,0.65); }
   .nav-search button{ background:var(--gold); color:var(--pitch-dark); border:none; width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:0.85rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background 0.2s; }
   .nav-search button:hover{ background:var(--gold-bright); }
@@ -226,8 +229,8 @@
   .suggestion-info{ display:flex; flex-direction:column; line-height:1.2; overflow:hidden; }
   .suggestion-title{ font-size:0.82rem; font-weight:600; color:var(--chalk); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .suggestion-meta{ font-size:0.7rem; color:var(--gold-bright); margin-top:0.15rem; }
-  .search-status{ text-align:center; font-family:'Inter',sans-serif; font-size:0.78rem; color:var(--chalk-dim); background:rgba(0,0,0,0.2); padding:0.4rem; }
-  @keyframes searchFlash{ 0%,100%{ box-shadow:0 0 0 0 rgba(20,184,166,0); } 20%,60%{ box-shadow:0 0 0 6px rgba(20,184,166,0.45); } }
+  .search-status{ text-align:center; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.78rem; color:var(--chalk-dim); background:rgba(0,0,0,0.2); padding:0.4rem; }
+  @keyframes searchFlash{ 0%,100%{ box-shadow:0 0 0 0 rgba(34,197,94,0); } 20%,60%{ box-shadow:0 0 0 6px rgba(34,197,94,0.45); } }
   .search-highlight{ animation:searchFlash 1.4s ease; border-radius:14px; }
 
   .page{ display:none; }
@@ -251,7 +254,7 @@
     margin-bottom:0.25rem; border-bottom:1px solid rgba(255,255,255,0.12); padding-bottom:0.35rem;
   }
   .mega-col a{
-    font-family:'Inter',sans-serif; font-weight:500; font-size:0.85rem; color:var(--chalk-dim);
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:500; font-size:0.85rem; color:var(--chalk-dim);
     text-decoration:none; padding:0.15rem 0; transition:color 0.15s; cursor:pointer;
   }
   .mega-col a:hover{ color:var(--forest-bright); }
@@ -272,7 +275,7 @@
   
   .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%); width:38px; height:38px; border-radius:50%;
-    background:rgba(20,24,27,0.55); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.25);
+    background:rgba(10,10,10,0.55); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.25);
     color:var(--chalk); font-size:0.9rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
     transition:background 0.2s; z-index: 10;
   }
@@ -281,7 +284,7 @@
   
   .carousel-dots{ display:flex; justify-content:center; gap:0.5rem; position: absolute; bottom: 1.5rem; left: 0; right: 0; z-index: 10; }
   .carousel-dots button{
-    width:10px; height:10px; border-radius:50%; border:1px solid rgba(255,255,255,0.5); background:rgba(20,24,27,0.4); cursor:pointer; padding:0;
+    width:10px; height:10px; border-radius:50%; border:1px solid rgba(255,255,255,0.5); background:rgba(10,10,10,0.4); cursor:pointer; padding:0;
     transition:background 0.2s, transform 0.2s;
   }
   .carousel-dots button.active{ background:var(--gold); border-color:var(--gold); transform:scale(1.2); }
@@ -296,7 +299,7 @@
     display:inline-block; font-family:'JetBrains Mono', monospace; font-size:0.75rem; letter-spacing:0.12em;
     text-transform:uppercase; color:var(--gold-bright); background:rgba(255,255,255,0.08);
     backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur);
-    border:1px solid rgba(94,234,212,0.4); padding:0.4rem 0.9rem; border-radius:999px; margin-bottom:1.1rem;
+    border:1px solid rgba(34,197,94,0.4); padding:0.4rem 0.9rem; border-radius:999px; margin-bottom:1.1rem;
     font-weight: 500;
   }
   .hero h2{ font-size:clamp(2.4rem, 6vw, 4rem); line-height:1.1; margin-bottom:1.1rem; }
@@ -304,16 +307,16 @@
   .hero p.lede{ font-size:clamp(1rem, 3vw, 1.1rem); color:var(--chalk-dim); max-width:480px; margin-bottom:1.8rem; font-weight:400; line-height: 1.6; }
   .hero-ctas{ display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:2rem; }
 
-  .btn{ display:inline-flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:600; letter-spacing:0.02em; font-size:1.05rem; padding:0.85rem 1.5rem; border-radius:8px; text-decoration:none; border:none; cursor:pointer; transition:transform 0.2s, box-shadow 0.2s, background 0.2s; min-height:44px; }
-  .btn-primary{ background:var(--gold); color:var(--pitch-dark); }
-  .btn-primary:hover{ background:var(--gold-bright); transform:translateY(-2px); box-shadow:0 12px 24px -8px rgba(20,184,166,0.5); }
+  .btn{ display:inline-flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:600; letter-spacing:0.02em; font-size:1.05rem; padding:0.85rem 1.5rem; border-radius:999px; text-decoration:none; border:none; cursor:pointer; transition:transform 0.2s, box-shadow 0.2s, background 0.2s; min-height:44px; }
+  .btn-primary{ background:linear-gradient(135deg, var(--gold), var(--forest-bright)); color:var(--chalk); box-shadow:0 10px 22px -8px rgba(34,197,94,0.45); }
+  .btn-primary:hover{ background:linear-gradient(135deg, var(--gold-bright), var(--forest-bright)); transform:translateY(-2px); box-shadow:0 14px 28px -8px rgba(34,197,94,0.55); }
   .btn-ghost{ background:rgba(255,255,255,0.06); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); color:var(--chalk); border:1.5px solid rgba(247,245,239,0.35); }
   .btn-ghost:hover{ border-color:var(--gold-bright); color:var(--gold-bright); transform:translateY(-2px); }
 
   .hero-stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; margin-bottom:1.2rem; }
   .stat-card{
     background:rgba(255,255,255,0.035); backdrop-filter:blur(8px) saturate(160%); -webkit-backdrop-filter:blur(8px) saturate(160%);
-    border:1px solid rgba(94,234,212,0.3); border-radius:14px; padding:1.2rem 1rem;
+    border:1px solid rgba(34,197,94,0.3); border-radius:14px; padding:1.2rem 1rem;
     box-shadow: 0 12px 30px -10px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
     transition:transform 0.2s, border-color 0.2s;
   }
@@ -327,7 +330,7 @@
     padding:0.8rem 0.85rem; display:flex; align-items:center; gap:0.6rem;
   }
   .tb-icon { font-size:1.25rem; line-height:1; }
-  .tb-title { font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:600; color:var(--chalk); display:block; line-height:1.2; }
+  .tb-title { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.8rem; font-weight:600; color:var(--chalk); display:block; line-height:1.2; }
 
   /* Dynamic Trending Matchday Kits Section */
   .trending-section{ max-width:1200px; margin: 4.5rem auto 2rem; padding: 0 1.25rem; }
@@ -337,7 +340,7 @@
   .sbc-sub{ text-align:center; font-size:0.9rem; color:var(--ink-soft); margin-bottom:1.3rem; }
   .sbc-row{ display:flex; gap:1.4rem; overflow-x:auto; padding:0.5rem 1.25rem 1.2rem; scrollbar-width:thin; }
   .club-chip{ display:flex; flex-direction:column; align-items:center; gap:0.6rem; background:none; border:none; cursor:pointer; flex-shrink:0; width:84px; }
-  .club-chip span{ font-size:0.8rem; font-weight:600; color:var(--ink); text-align:center; line-height:1.2; font-family: 'Inter', sans-serif;}
+  .club-chip span{ font-size:0.8rem; font-weight:600; color:var(--ink); text-align:center; line-height:1.2; font-family: 'Plus Jakarta Sans', sans-serif;}
   .club-chip:hover .club-badge-slot{ transform:translateY(-3px); box-shadow:0 6px 14px rgba(0,0,0,0.2); }
 
   .fan-zone-section{ max-width:1200px; margin:3.5rem auto 4rem; padding:0 1.25rem; }
@@ -359,8 +362,8 @@
 
   .care-eyebrow{
     display:inline-block; font-family:'JetBrains Mono', monospace; font-size:0.75rem; letter-spacing:0.12em;
-    text-transform:uppercase; color:var(--crimson); background:rgba(15,118,110,0.08);
-    border:1px solid rgba(15,118,110,0.35); padding:0.4rem 0.9rem; border-radius:999px; font-weight:600;
+    text-transform:uppercase; color:var(--crimson); background:rgba(21,128,61,0.08);
+    border:1px solid rgba(21,128,61,0.35); padding:0.4rem 0.9rem; border-radius:999px; font-weight:600;
   }
   .care-container{ max-width:960px; margin:0 auto; padding:3.5rem 1.25rem 5rem; }
   .care-hero{ text-align:center; margin-bottom:3rem; }
@@ -376,11 +379,11 @@
   .care-card p{ font-size:0.9rem; color:var(--ink-soft); line-height:1.6; }
   .care-alert{
     background:linear-gradient(135deg, var(--forest), var(--pitch-dark)); color:var(--chalk);
-    border-radius:var(--radius); padding:2rem; border:1px solid rgba(94,234,212,0.3);
+    border-radius:var(--radius); padding:2rem; border:1px solid rgba(34,197,94,0.3);
     display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; box-shadow:var(--shadow);
   }
 
-  .penalty-box-top { position:absolute; top:0; left:50%; transform:translateX(-50%); width:340px; height:auto; opacity:0.4; pointer-events:none; z-index:0; color:rgba(20,184,166,0.55); }
+  .penalty-box-top { position:absolute; top:0; left:50%; transform:translateX(-50%); width:340px; height:auto; opacity:0.4; pointer-events:none; z-index:0; color:rgba(34,197,94,0.55); }
 
   .section-heading{ text-align:center; margin-bottom:1.4rem; font-size:clamp(1.8rem, 5vw, 2.2rem); color:var(--pitch-dark); position:relative; z-index:2; padding-top:1.25rem; font-weight: 700; letter-spacing: -0.02em;}
   .section-heading .kicker{ display:block; font-family:'JetBrains Mono',monospace; font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--crimson); margin-bottom:0.4rem; font-weight:600; }
@@ -389,7 +392,7 @@
   main{ padding-top:0; position:relative; }
   main::before{
     content:''; position:absolute; top:0; left:0; right:0; height:1px;
-    background:linear-gradient(90deg, transparent, rgba(20,184,166,0.35) 20%, rgba(20,184,166,0.35) 80%, transparent);
+    background:linear-gradient(90deg, transparent, rgba(34,197,94,0.35) 20%, rgba(34,197,94,0.35) 80%, transparent);
     z-index:0;
   }
   main > .container{ position:relative; z-index:2; padding-top:7.5rem; }
@@ -398,12 +401,12 @@
   .segmented-control{
     display:inline-flex; gap:0.25rem; padding:0.35rem; border-radius:999px; background:var(--glass-bg);
     backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); border:1px solid var(--glass-border);
-    box-shadow: 0 10px 30px -14px rgba(14,42,32,0.25), inset 0 1px 0 rgba(255,255,255,0.7);
+    box-shadow: 0 10px 30px -14px rgba(10,10,10,0.25), inset 0 1px 0 rgba(255,255,255,0.7);
     flex-wrap:wrap; justify-content:center; max-width:100%;
   }
   .tab{ padding:0.55rem 1.1rem; cursor:pointer; background:transparent; border:none; border-radius:999px; font-family:'Outfit',sans-serif; font-weight:600; font-size:1.05rem; letter-spacing:0.02em; color:var(--ink-soft); transition:background 0.25s, color 0.25s, box-shadow 0.25s; min-height:40px; }
   .tab:hover{ color:var(--pitch-mid); }
-  .tab.active{ color:var(--pitch-dark); background:rgba(255,255,255,0.92); box-shadow:0 4px 14px -4px rgba(14,42,32,0.28), inset 0 1px 0 rgba(255,255,255,0.9); }
+  .tab.active{ color:var(--pitch-dark); background:rgba(255,255,255,0.92); box-shadow:0 4px 14px -4px rgba(10,10,10,0.28), inset 0 1px 0 rgba(255,255,255,0.9); }
 
   .tab-content{ display:none; animation:fadeIn 0.4s ease; }
   .tab-content.active{ display:block; }
@@ -417,7 +420,7 @@
 
   .sort-label{ display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; font-weight:600; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.03em; }
   .sort-label select{
-    font-family:'Inter',sans-serif; font-size:0.85rem; text-transform:none; letter-spacing:normal; font-weight:500;
+    font-family:'Plus Jakarta Sans',sans-serif; font-size:0.85rem; text-transform:none; letter-spacing:normal; font-weight:500;
     padding:0.4rem 0.6rem; border:1.5px solid #ddd8ca; border-radius:8px; background:rgba(255,255,255,0.95); color:var(--ink);
   }
 
@@ -430,12 +433,12 @@
   }
   .league-badge img{ 
     width:100%; height:100%; object-fit:contain; position:absolute; inset:0; z-index:2; 
-    background:rgba(240,245,246,0.95);
+    background:rgba(247,243,233,0.95);
   }
 
   .club-badge-slot{
     display:inline-flex; align-items:center; justify-content:center; border-radius:12px; flex-shrink:0; overflow:hidden;
-    background:rgba(240,245,246,0.9); border:1.5px solid #e2ddd0; transition:transform 0.15s ease, box-shadow 0.15s ease;
+    background:rgba(247,243,233,0.9); border:1.5px solid #e2ddd0; transition:transform 0.15s ease, box-shadow 0.15s ease;
   }
   .club-badge-slot img{ width:100%; height:100%; object-fit:contain; }
   .club-badge-slot.badge-missing::before{ content:'🛡️'; line-height:1; opacity:0.55; }
@@ -464,9 +467,9 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   }
-  .kit-tag.away{ background:rgba(15, 118, 110, 0.92); border-color:rgba(94, 234, 212, 0.4); color:#ffffff; }
-  .kit-tag.third{ background:rgba(20, 184, 166, 0.92); border-color:rgba(94, 234, 212, 0.4); color:#ffffff; }
-  .kit-tag.retro{ background:rgba(14, 77, 56, 0.92); border-color:rgba(212, 175, 55, 0.5); color:#ffffff; }
+  .kit-tag.away{ background:rgba(34,197,94, 0.92); border-color:rgba(34,197,94, 0.5); color:#0a0a0a; }
+  .kit-tag.third{ background:rgba(10,10,10, 0.92); border-color:rgba(34,197,94, 0.6); color:#4ade80; }
+  .kit-tag.retro{ background:rgba(22,163,74, 0.88); border-color:rgba(255,255,255, 0.35); color:#ffffff; }
   
   /* Red Sale Tag Badge for Discounted International Kits */
   .kit-tag.sale{
@@ -485,7 +488,7 @@
   .photo-placeholder{
     width:calc(100% - 24px); height:calc(100% - 24px); margin:12px; display:flex; flex-direction:column;
     align-items:center; justify-content:center; gap:0.3rem; border:2px dashed rgba(255,255,255,0.4);
-    border-radius:8px; background:rgba(255,255,255,0.05); font-family:'Inter',sans-serif; font-size:0.75rem;
+    border-radius:8px; background:rgba(255,255,255,0.05); font-family:'Plus Jakarta Sans',sans-serif; font-size:0.75rem;
     font-weight:500; color:var(--chalk-dim); text-align:center;
   }
   .photo-placeholder .upload-icon{ font-size:1.5rem; line-height:1; opacity:0.85; }
@@ -494,10 +497,10 @@
   .product-title{ font-size:1.05rem; font-family: 'Outfit', sans-serif; font-weight:700; letter-spacing: -0.01em; margin-bottom:0.25rem; color:var(--ink); display:flex; align-items:center; gap:0.4rem; overflow-wrap:anywhere; word-break:break-word; }
   .product-meta{ font-size:0.8rem; color:var(--ink-soft); margin-bottom:0.8rem; }
   .product-price{ font-family:'JetBrains Mono',monospace; font-weight:600; color:var(--crimson); font-size:1.1rem; margin-bottom:1rem; margin-top:auto; }
-  .ship-note{ font-size:0.75rem; color:var(--ink-soft); font-family:'Inter',sans-serif; font-weight:400; display:block; margin-top:0.2rem; }
+  .ship-note{ font-size:0.75rem; color:var(--ink-soft); font-family:'Plus Jakarta Sans',sans-serif; font-weight:400; display:block; margin-top:0.2rem; }
 
-  .card-btn{ display:inline-flex; align-items:center; justify-content:center; width:100%; text-align:center; background:linear-gradient(135deg, var(--pitch-dark), var(--forest)); color:var(--chalk); padding:0.7rem 1rem; border-radius:8px; text-decoration:none; font-family:'Outfit',sans-serif; font-weight:600; letter-spacing:0.02em; font-size:1rem; border:none; cursor:pointer; transition:background 0.2s, transform 0.2s; min-height:42px; }
-  .card-btn:hover{ background:linear-gradient(135deg, var(--pitch-dark), var(--gold)); transform:translateY(-1px); }
+  .card-btn{ display:inline-flex; align-items:center; justify-content:center; width:100%; text-align:center; background:linear-gradient(135deg, var(--forest), var(--pitch-dark)); color:var(--chalk); padding:0.7rem 1rem; border-radius:999px; text-decoration:none; font-family:'Outfit',sans-serif; font-weight:600; letter-spacing:0.02em; font-size:1rem; border:1px solid rgba(34,197,94,0.35); cursor:pointer; transition:background 0.2s, transform 0.2s, box-shadow 0.2s; min-height:42px; box-shadow:0 8px 18px -8px rgba(0,0,0,0.4); }
+  .card-btn:hover{ background:linear-gradient(135deg, var(--forest-bright), var(--pitch-dark)); transform:translateY(-2px); box-shadow:0 12px 22px -8px rgba(34,197,94,0.35); }
 
   /* ---------- Marquee Ticker ---------- */
   .marquee-container {
@@ -546,12 +549,12 @@
 
   /* ---------- Floating Right-Side Socials ---------- */
   .floating-socials{ position:fixed; right:1rem; bottom:1.5rem; z-index:90; display:flex; flex-direction:column; gap:0.75rem; pointer-events:none; }
-  .floating-socials a{ pointer-events:auto; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(20,24,27,0.85); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); border:1px solid rgba(94,234,212,0.4); color:var(--chalk); box-shadow:0 8px 20px rgba(0,0,0,0.3); transition:transform 0.2s, background 0.2s, border-color:0.2s; text-decoration:none; }
+  .floating-socials a{ pointer-events:auto; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(10,10,10,0.85); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); border:1px solid rgba(34,197,94,0.4); color:var(--chalk); box-shadow:0 8px 20px rgba(0,0,0,0.3); transition:transform 0.2s, background 0.2s, border-color:0.2s; text-decoration:none; }
   .floating-socials a:hover{ transform:scale(1.1) translateX(-2px); background:var(--pitch-dark); border-color:var(--gold-bright); color:var(--gold-bright); }
   .floating-socials svg{ width:24px; height:24px; }
 
   /* ---------- Customize modal ---------- */
-  .modal-overlay{ position:fixed; inset:0; background:rgba(10,20,15,0.65); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; z-index:1000; padding:1rem; }
+  .modal-overlay{ position:fixed; inset:0; background:rgba(10,15,26,0.65); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; z-index:1000; padding:1rem; }
   .modal-overlay[hidden]{ display:none; }
   .modal-panel{ position:relative; max-width:680px; width:100%; max-height:92vh; overflow-y:auto; background:rgba(255,255,255,0.95); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); border-radius:20px; border:1px solid rgba(255,255,255,0.8); box-shadow:0 30px 80px -20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.9); padding:1.75rem; }
   .modal-close{ position:absolute; top:1rem; right:1rem; background:rgba(0,0,0,0.06); border:none; width:36px; height:36px; border-radius:50%; font-size:1.4rem; line-height:1; cursor:pointer; color:var(--ink); display:flex; align-items:center; justify-content:center; z-index:10; }
@@ -564,17 +567,17 @@
   .modal-title{ font-size:1.6rem; color:var(--pitch-dark); margin-bottom:0.2rem; line-height:1.2; font-family: 'Outfit', sans-serif; font-weight: 700; letter-spacing: -0.02em;}
   .modal-price{ font-family:'JetBrains Mono',monospace; color:var(--crimson); font-size:1.2rem; margin-bottom:1rem; font-weight:600; }
   .modal-note{ font-size:0.85rem; color:var(--ink-soft); margin:-0.7rem 0 1.2rem; }
-  .fabric-note{ font-size:0.85rem; color:var(--ink-soft); background:rgba(240,245,246,0.7); border:1px solid #e2ddd0; border-radius:8px; padding:0.8rem; margin-top:1.1rem; margin-bottom:1.1rem; line-height:1.5; }
+  .fabric-note{ font-size:0.85rem; color:var(--ink-soft); background:rgba(247,243,233,0.7); border:1px solid #e2ddd0; border-radius:8px; padding:0.8rem; margin-top:1.1rem; margin-bottom:1.1rem; line-height:1.5; }
   .fabric-note strong{ color:var(--ink); font-weight: 600;}
   .pp-title-row{ display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
   .pp-title-row .modal-title{ margin:0; flex:1; min-width:200px; }
   .pp-add-btn-top{ width:auto; flex-shrink:0; padding:1rem 2rem; font-size:1.15rem; min-height:56px; margin-top:0.2rem; }
   .modal-row{ display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; }
   .version-toggle{ display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; }
-  .version-btn{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.2rem; padding:0.75rem 0.5rem; border-radius:8px; border:1.5px solid #ddd8ca; background:rgba(255,255,255,0.8); cursor:pointer; font-family:'Outfit',sans-serif; font-weight:600; font-size:1.05rem; letter-spacing:0.01em; color:var(--ink); transition:all 0.2s; min-height:50px; }
-  .version-btn span{ font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:400; letter-spacing:0; color:var(--ink-soft); }
+  .version-btn{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.2rem; padding:0.75rem 0.5rem; border-radius:12px; border:1.5px solid #ddd8ca; background:rgba(255,255,255,0.8); cursor:pointer; font-family:'Outfit',sans-serif; font-weight:600; font-size:1.05rem; letter-spacing:0.01em; color:var(--ink); transition:all 0.2s; min-height:50px; }
+  .version-btn span{ font-family:'Plus Jakarta Sans',sans-serif; font-size:0.75rem; font-weight:400; letter-spacing:0; color:var(--ink-soft); }
   .version-btn:hover{ border-color:var(--gold); }
-  .version-btn.active{ border-color:var(--gold); background:var(--pitch-dark); color:var(--chalk); }
+  .version-btn.active{ border-color:var(--gold-bright); background:linear-gradient(135deg, var(--forest), var(--pitch-dark)); color:var(--chalk); box-shadow:0 8px 18px -8px rgba(34,197,94,0.35); }
   .version-btn.active span{ color:var(--chalk-dim); }
 
   .nowrap-label { white-space: nowrap; display: block; font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.04em; }
@@ -583,12 +586,12 @@
   .patch-photo-row{ display:flex; gap:0.6rem; margin-top:0.5rem; flex-wrap:wrap; }
   .patch-photo-item{ flex:1; min-width:65px; text-align:center; cursor:pointer; }
   .patch-photo-thumb{
-    aspect-ratio:1; border-radius:10px; border:2px dashed #ddd8ca; background:rgba(240,245,246,0.6);
+    aspect-ratio:1; border-radius:10px; border:2px dashed #ddd8ca; background:rgba(247,243,233,0.6);
     display:flex; align-items:center; justify-content:center; margin-bottom:0.3rem;
     font-size:0.75rem; color:var(--ink-soft); padding:0.2rem; position:relative; overflow:hidden;
   }
   .patch-photo-thumb img{ width:100%; height:100%; object-fit:cover; border-radius:7px; }
-  .patch-photo-item.active .patch-photo-thumb{ border-style:solid; border-color:var(--gold); background:rgba(20,184,166,0.1); }
+  .patch-photo-item.active .patch-photo-thumb{ border-style:solid; border-color:var(--gold); background:rgba(34,197,94,0.1); }
   .patch-sublabel{ font-size:0.75rem; color:var(--ink-soft); line-height:1.3; display:block; white-space:normal; overflow-wrap:anywhere; word-break:break-word; max-width:100%; margin:0.25rem auto 0; font-weight: 500;}
 
   .size-chart-box { display:none; margin:1rem 0; padding:1rem; background:rgba(255,255,255,0.95); border:1.5px solid #ddd8ca; border-radius:10px; font-size:0.92rem; animation:fadeIn 0.3s ease; overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%; }
@@ -596,7 +599,7 @@
   .size-chart-table { width:100%; min-width:360px; border-collapse:collapse; text-align:center; }
   .size-chart-table th { background:var(--pitch-dark); color:var(--chalk); padding:0.6rem 0.4rem; font-weight:600; font-size:0.88rem; letter-spacing:0.02em; border:1px solid var(--pitch-mid); }
   .size-chart-table td { padding:0.55rem 0.4rem; border:1px solid #ddd8ca; font-family:'JetBrains Mono',monospace; font-size:0.92rem; color:var(--ink); }
-  .size-chart-table tr:nth-child(even) { background:rgba(240,245,246,0.6); }
+  .size-chart-table tr:nth-child(even) { background:rgba(247,243,233,0.6); }
   .size-chart-btn { background:none; border:none; color:var(--crimson); font-size:0.8rem; font-weight:600; cursor:pointer; text-decoration:underline; padding:0; margin-left:auto; display:inline-block; }
 
   /* ---------- Dedicated product page ---------- */
@@ -606,7 +609,7 @@
   .product-page-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; }
   .product-photo-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0.9rem; }
   .photo-slot{
-    aspect-ratio:1; border-radius:14px; border:2px dashed rgba(20,24,27,0.25);
+    aspect-ratio:1; border-radius:14px; border:2px dashed rgba(10,10,10,0.25);
     background:linear-gradient(160deg, rgba(255,255,255,0.7), rgba(232,228,215,0.6));
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.4rem;
     text-align:center; padding:1.2rem; color:var(--ink-soft);
@@ -636,13 +639,13 @@
 
   @media (max-width: 600px){
     :root {
-      --marquee-height: 34px;
+      --marquee-height: 38px;
     }
 
     /* Responsive Logo (150x150 Phones) & Tighter Header Padding */
     .brand-mark .crest{ width:150px; height:150px; }
     header.site-header{ padding:0.3rem 1rem 0.8rem; }
-    .top-marquee-text { font-size: 0.72rem; gap: 2rem; padding-right: 2rem; }
+    .top-marquee-text { font-size: 0.75rem; gap: 2rem; padding-right: 2rem; }
     
     .banner-logo-slot{ width:70px; height:70px; }
     .products{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.75rem; }
@@ -679,7 +682,7 @@
       position: sticky;
       bottom: -1.25rem;
       z-index: 50;
-      box-shadow: 0 -12px 25px rgba(20,24,27,0.35);
+      box-shadow: 0 -12px 25px rgba(10,10,10,0.35);
       margin-top: 1.5rem;
       border: 1px solid rgba(255,255,255,0.2);
     }
@@ -727,7 +730,7 @@
 <body>
 
 <!-- Centered Promo Popup Banner on Load -->
-<div class="promo-popup-overlay" id="promoPopup" onclick="if(event.target===this) closePromoPopup()">
+<div class="promo-popup-overlay" id="promoPopup" hidden onclick="if(event.target===this) closePromoPopup()">
   <div class="promo-popup-content">
     <button class="promo-popup-close" onclick="closePromoPopup()" aria-label="Close promo popup">&times;</button>
     <div style="cursor:pointer;" onclick="closePromoPopup(); showPage('products', event); document.getElementById('tab-international').click();">
@@ -738,7 +741,10 @@
 </div>
 
 <script>
-  function closePromoPopup() { document.getElementById('promoPopup').hidden = true; }
+  function closePromoPopup() {
+    document.getElementById('promoPopup').hidden = true;
+    sessionStorage.setItem('cfj_popup_seen', '1');
+  }
 </script>
 
 <!-- Top Welcome Sale Offer Marquee -->
@@ -856,6 +862,7 @@
           </div>
         </div>
       </li>
+      <li><a href="#" onclick="goToReviews(event)" id="nav-reviews">Reviews</a></li>
       <li><a href="#" onclick="goToContact(event)">Contact</a></li>
       <li><a href="#" onclick="showPage('care', event)" id="nav-care">Jersey Care</a></li>
     </ul>
@@ -895,9 +902,9 @@
 <section class="hero" id="home">
   <div class="hero-pitch-lines" aria-hidden="true">
     <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="320" cy="320" r="200" fill="none" stroke="rgba(94,234,212,0.55)" stroke-width="2.5"/>
-      <circle cx="320" cy="320" r="6" fill="var(--forest-bright)"/>
-      <line x1="320" y1="0" x2="320" y2="640" stroke="rgba(94,234,212,0.4)" stroke-width="2"/>
+      <circle cx="320" cy="320" r="210" fill="none" stroke="rgba(34,197,94,0.55)" stroke-width="2.5" stroke-dasharray="10 8"/>
+      <circle cx="320" cy="320" r="7" fill="var(--forest-bright)"/>
+      <line x1="320" y1="0" x2="320" y2="640" stroke="rgba(34,197,94,0.35)" stroke-width="2" stroke-dasharray="14 10"/>
     </svg>
   </div>
   <div class="hero-inner">
@@ -974,47 +981,50 @@
     <span class="kicker">#CornerFlagKits</span>
     <span>Fan Zone · Real Reviews</span>
   </h2>
-  <p style="text-align:center; color:var(--ink-soft); font-size:0.9rem; max-width:520px; margin:-0.8rem auto 1.8rem; font-weight:500;">Tag us on Instagram wearing your matchday fit to get featured on our community wall.</p>
+  <!-- Corrected margin so the underline doesn't overlap the text -->
+  <p style="text-align:center; color:var(--ink-soft); font-size:0.9rem; max-width:520px; margin: 1.8rem auto 2.5rem; font-weight:500;">Tag us on Instagram wearing your matchday fit to get featured on our community wall.</p>
 
   <div class="fan-zone-grid">
     <div class="fan-card">
       <div class="fan-photo-slot"><span>📷 Customer Fit 1</span></div>
       <span class="fan-tag">#MadridDerby</span>
-      <div style="text-align:center; margin-top:0.6rem;">
-        <span style="color:var(--gold); font-size:0.85rem; letter-spacing:0.1em;">★★★★★</span>
-        <p style="font-size:0.75rem; color:var(--ink-soft); line-height:1.3; margin:0.2rem 0 0; font-style:italic;">"Stitching is flawless, delivery took just 4 days."</p>
-      </div>
     </div>
     <div class="fan-card">
       <div class="fan-photo-slot"><span>📷 Customer Fit 2</span></div>
       <span class="fan-tag">#Retro90s</span>
-      <div style="text-align:center; margin-top:0.6rem;">
-        <span style="color:var(--gold); font-size:0.85rem; letter-spacing:0.1em;">★★★★★</span>
-        <p style="font-size:0.75rem; color:var(--ink-soft); line-height:1.3; margin:0.2rem 0 0; font-style:italic;">"The retro fabric feels exactly like the original. Unreal quality."</p>
-      </div>
     </div>
     <div class="fan-card">
       <div class="fan-photo-slot"><span>📷 Customer Fit 3</span></div>
       <span class="fan-tag">#PremierLeague</span>
-      <div style="text-align:center; margin-top:0.6rem;">
-        <span style="color:var(--gold); font-size:0.85rem; letter-spacing:0.1em;">★★★★★</span>
-        <p style="font-size:0.75rem; color:var(--ink-soft); line-height:1.3; margin:0.2rem 0 0; font-style:italic;">"Fits perfectly. Will definitely be ordering my away kits from here."</p>
-      </div>
     </div>
     <div class="fan-card">
       <div class="fan-photo-slot"><span>📷 Customer Fit 4</span></div>
       <span class="fan-tag">#Messi10</span>
-      <div style="text-align:center; margin-top:0.6rem;">
-        <span style="color:var(--gold); font-size:0.85rem; letter-spacing:0.1em;">★★★★★</span>
-        <p style="font-size:0.75rem; color:var(--ink-soft); line-height:1.3; margin:0.2rem 0 0; font-style:italic;">"Got the custom name print and it looks 100% official."</p>
-      </div>
     </div>
     <div class="fan-card">
       <div class="fan-photo-slot"><span>📷 Customer Fit 5</span></div>
       <span class="fan-tag">#MatchdayVibes</span>
-      <div style="text-align:center; margin-top:0.6rem;">
-        <span style="color:var(--gold); font-size:0.85rem; letter-spacing:0.1em;">★★★★★</span>
-        <p style="font-size:0.75rem; color:var(--ink-soft); line-height:1.3; margin:0.2rem 0 0; font-style:italic;">"Customer service on WhatsApp was super helpful with sizing."</p>
+    </div>
+  </div>
+  
+  <!-- New Detailed Reviews Section -->
+  <div style="margin-top: 4rem;">
+    <h3 style="text-align:center; font-family:'Outfit',sans-serif; font-size:1.8rem; margin-bottom: 2rem; color:var(--pitch-dark);">Customer Reviews</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem;">
+      <div class="care-card">
+        <div style="color:var(--gold); font-size:1rem; margin-bottom:0.5rem; letter-spacing:0.1em;">★★★★★</div>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:0.95rem; color:var(--ink); line-height:1.6; margin-bottom:1rem; font-style:italic;">"Absolutely brilliant quality. The player version fits exactly like my original match worn shirts. Fast delivery to Mumbai too."</p>
+        <span style="font-size:0.8rem; color:var(--ink-soft); font-weight:600;">— Rahul M. (Real Madrid Home Player Version)</span>
+      </div>
+      <div class="care-card">
+        <div style="color:var(--gold); font-size:1rem; margin-bottom:0.5rem; letter-spacing:0.1em;">★★★★★</div>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:0.95rem; color:var(--ink); line-height:1.6; margin-bottom:1rem; font-style:italic;">"The retro fabric feels exactly like the original 90s kits. The Arsenal bruised banana is incredible in person."</p>
+        <span style="font-size:0.8rem; color:var(--ink-soft); font-weight:600;">— Aditya S. (Arsenal 1990 Retro)</span>
+      </div>
+      <div class="care-card">
+        <div style="color:var(--gold); font-size:1rem; margin-bottom:0.5rem; letter-spacing:0.1em;">★★★★★</div>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:0.95rem; color:var(--ink); line-height:1.6; margin-bottom:1rem; font-style:italic;">"Got the custom name print for my brother's birthday. It looks 100% official and the WhatsApp support team was super helpful."</p>
+        <span style="font-size:0.8rem; color:var(--ink-soft); font-weight:600;">— Priya K. (Argentina Away Custom)</span>
       </div>
     </div>
   </div>
@@ -1024,11 +1034,11 @@
 <div id="page-products" class="page">
 <main id="main">
 <svg class="penalty-box-top" viewBox="0 0 220 90" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-  <line x1="20" y1="2" x2="200" y2="2" stroke-width="2.5"/>
-  <path d="M40,2 L40,74 L180,74 L180,2" stroke-width="2"/>
-  <path d="M80,2 L80,26 L140,26 L140,2" stroke-width="1.6"/>
-  <path d="M95,74 Q110,92 125,74" stroke-width="1.6"/>
-  <circle cx="110" cy="50" r="1.8" fill="currentColor" stroke="none"/>
+  <line x1="20" y1="2" x2="200" y2="2" stroke-width="3"/>
+  <path d="M40,2 L40,74 L180,74 L180,2" stroke-width="2.2" stroke-dasharray="9 6"/>
+  <path d="M80,2 L80,26 L140,26 L140,2" stroke-width="1.8" stroke-dasharray="9 6"/>
+  <path d="M95,74 Q110,92 125,74" stroke-width="1.8"/>
+  <circle cx="110" cy="50" r="2.2" fill="var(--forest-bright)" stroke="none"/>
 </svg>
 
 <div class="container">
@@ -1127,7 +1137,7 @@
       </div>
       
       <!-- WhatsApp Support Card -->
-      <div class="care-card" style="grid-column: 1 / -1; align-items: center; text-align: center; background: rgba(20,184,166,0.1); border-color: var(--gold);">
+      <div class="care-card" style="grid-column: 1 / -1; align-items: center; text-align: center; background: rgba(34,197,94,0.1); border-color: var(--gold);">
         <span class="icon">💬</span>
         <h3>Need to process a return?</h3>
         <p>Message us directly on WhatsApp with your order number, and our support team will guide you through the process quickly.</p>
@@ -1450,13 +1460,18 @@
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const target = document.getElementById('page-' + name);
     if (target) target.classList.add('active');
+    if (name !== 'product') sessionStorage.setItem('cfj_page', name);
     const navHome = document.getElementById('nav-home');
     const navProducts = document.getElementById('nav-products');
     const navCare = document.getElementById('nav-care');
+    const navReviews = document.getElementById('nav-reviews');
     
-    if (navHome) navHome.classList.toggle('active-link', name === 'home');
-    if (navProducts) navProducts.classList.toggle('active-link', name === 'products');
-    if (navCare) navCare.classList.toggle('active-link', name === 'care');
+    // Clear existing active links
+    document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active-link'));
+    
+    if (navHome && name === 'home') navHome.classList.add('active-link');
+    if (navProducts && name === 'products') navProducts.classList.add('active-link');
+    if (navCare && name === 'care') navCare.classList.add('active-link');
     
     // Dynamic Page Titles
     if (name !== 'product') {
@@ -1470,6 +1485,19 @@
     }
     
     window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+  
+  function goToReviews(evt){
+    if (evt) evt.preventDefault();
+    showPage('home');
+    document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active-link'));
+    const rev = document.getElementById('nav-reviews');
+    if(rev) rev.classList.add('active-link');
+    
+    setTimeout(() => {
+      const el = document.getElementById('fanzone');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
   }
 
   function goToContact(evt){
@@ -1644,13 +1672,13 @@
   function intlPair(clubName, home, away, popular, price){
     const basePrice = price || 550;
     return [
-      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, imageBack:home.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:700, onSale:true },
-      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Away", primary:away.p, secondary:away.s, number:away.n, image:away.img, imageBack:away.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:700, onSale:true },
+      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, imageBack:home.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:600, onSale:true },
+      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Away", primary:away.p, secondary:away.s, number:away.n, image:away.img, imageBack:away.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:600, onSale:true },
     ];
   }
   function intlHomeOnly(clubName, home, popular, price){
     const basePrice = price || 550;
-    return [{ name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, imageBack:home.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:700, onSale:true }];
+    return [{ name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, imageBack:home.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:600, onSale:true }];
   }
 
   const currentSeason = [
@@ -1718,10 +1746,8 @@
       ...kitPair("Borussia Dortmund", 
         {p:"#fde100",s:"#111111",n:11,img:"jerseys/current/dortmund-home.jpg",imgBack:"jerseys/current/dortmund-home-back.jpg"}, 
         {p:"#111111",s:"#fde100",n:11,img:"jerseys/current/dortmund-away.jpg",imgBack:"jerseys/current/dortmund-away-back.jpg"}, []),
-      ...kitPair("Bayer Leverkusen", 
-        {p:"#e2001a",s:"#111111",n:14,img:"jerseys/current/leverkusen-home.jpg",imgBack:"jerseys/current/leverkusen-home-back.jpg"}, 
-        {p:"#f5f5f5",s:"#e2001a",n:14,img:"jerseys/current/leverkusen-away.jpg",imgBack:"jerseys/current/leverkusen-away-back.jpg"},
-        [{name:"Wirtz", number:10}, {name:"Boniface", number:19}]),
+      // Leverkusen Home removed, leaving just the away kit
+      { name:"Bayer Leverkusen Jersey 2026-27", club:"Bayer Leverkusen", type:"Away", primary:"#f5f5f5", secondary:"#e2001a", number:14, image:"jerseys/current/leverkusen-away.jpg", imageBack:"jerseys/current/leverkusen-away-back.jpg", popular:[{name:"Wirtz", number:10}, {name:"Boniface", number:19}] },
     ]},
     { league:"Ligue 1", teams:[
       ...kitPair("PSG", 
@@ -1865,19 +1891,19 @@
       ...intlPair("Argentina", 
         {p:"#75aadb",s:"#f5f5f5",n:10,img:"jerseys/intl/argentina-home.jpg",imgBack:"jerseys/intl/argentina-home-back.jpg"}, 
         {p:"#1a2b4c",s:"#75aadb",n:10,img:"jerseys/intl/argentina-away.jpg",imgBack:"jerseys/intl/argentina-away-back.jpg"},
-        [{name:"Messi", number:10}, {name:"Alvarez", number:9}], 600),
+        [{name:"Messi", number:10}, {name:"Alvarez", number:9}], 550),
       ...intlPair("Spain", 
         {p:"#c60b1e",s:"#f5c400",n:19,img:"jerseys/intl/spain-home.jpg",imgBack:"jerseys/intl/spain-home-back.jpg"}, 
         {p:"#0b1f4a",s:"#c60b1e",n:19,img:"jerseys/intl/spain-away.jpg",imgBack:"jerseys/intl/spain-away-back.jpg"},
-        [{name:"Yamal", number:19}, {name:"Pedri", number:20}, {name:"Ferran", number:7}], 600),
+        [{name:"Yamal", number:19}, {name:"Pedri", number:20}, {name:"Ferran", number:7}], 550),
       ...intlPair("France", 
         {p:"#002654",s:"#ed2939",n:7,img:"jerseys/intl/france-home.jpg",imgBack:"jerseys/intl/france-home-back.jpg"}, 
         {p:"#f5f5f5",s:"#002654",n:7,img:"jerseys/intl/france-away.jpg",imgBack:"jerseys/intl/france-away-back.jpg"},
-        [{name:"Mbappe", number:10}, {name:"Dembele", number:7}, {name:"Olise", number:11}], 600),
+        [{name:"Mbappe", number:10}, {name:"Dembele", number:7}, {name:"Olise", number:11}], 550),
       ...intlPair("England", 
         {p:"#f5f5f5",s:"#0b1f4a",n:9,img:"jerseys/intl/england-home.jpg",imgBack:"jerseys/intl/england-home-back.jpg"}, 
         {p:"#c8102e",s:"#0b1f4a",n:9,img:"jerseys/intl/england-away.jpg",imgBack:"jerseys/intl/england-away-back.jpg"},
-        [{name:"Kane", number:9}, {name:"Bellingham", number:5}, {name:"Saka", number:7}], 600),
+        [{name:"Kane", number:9}, {name:"Bellingham", number:5}, {name:"Saka", number:7}], 550),
       ...intlPair("Italy", 
         {p:"#00468b",s:"#ffffff",n:10,img:"jerseys/intl/italy-home.jpg",imgBack:"jerseys/intl/italy-home-back.jpg"}, 
         {p:"#ffffff",s:"#00468b",n:10,img:"jerseys/intl/italy-away.jpg",imgBack:"jerseys/intl/italy-away-back.jpg"}, [], 550),
@@ -1900,7 +1926,7 @@
       ...intlPair("Brazil", 
         {p:"#ffdf00",s:"#009739",n:9,img:"jerseys/intl/brazil-home.jpg",imgBack:"jerseys/intl/brazil-home-back.jpg"}, 
         {p:"#002776",s:"#ffdf00",n:9,img:"jerseys/intl/brazil-away.jpg",imgBack:"jerseys/intl/brazil-away-back.jpg"},
-        [{name:"Vinicius Jr", number:7}, {name:"Neymar", number:10}], 600),
+        [{name:"Vinicius Jr", number:7}, {name:"Neymar", number:10}], 550),
       ...intlPair("Mexico", 
         {p:"#006847",s:"#f5f5f5",n:20,img:"jerseys/intl/mexico-home.jpg",imgBack:"jerseys/intl/mexico-home-back.jpg"}, 
         {p:"#f5f5f5",s:"#006847",n:20,img:"jerseys/intl/mexico-away.jpg",imgBack:"jerseys/intl/mexico-away-back.jpg"},
@@ -1908,7 +1934,7 @@
       ...intlPair("Germany", 
         {p:"#f5f5f5",s:"#111111",n:10,img:"jerseys/intl/germany-home.jpg",imgBack:"jerseys/intl/germany-home-back.jpg"}, 
         {p:"#043927",s:"#f5f5f5",n:10,img:"jerseys/intl/germany-away.jpg",imgBack:"jerseys/intl/germany-away-back.jpg"},
-        [{name:"Musiala", number:10}, {name:"Wirtz", number:17}], 600),
+        [{name:"Musiala", number:10}, {name:"Wirtz", number:17}], 550),
       ...intlPair("Japan", 
         {p:"#002561",s:"#ffffff",n:10,img:"jerseys/intl/japan-home.jpg",imgBack:"jerseys/intl/japan-home-back.jpg"}, 
         {p:"#ffffff",s:"#002561",n:10,img:"jerseys/intl/japan-away.jpg",imgBack:"jerseys/intl/japan-away-back.jpg"},
@@ -1918,7 +1944,7 @@
       ...intlPair("Portugal", 
         {p:"#c8102e",s:"#046a38",n:7,img:"jerseys/intl/portugal-home.jpg",imgBack:"jerseys/intl/portugal-home-back.jpg"}, 
         {p:"#f5f5f5",s:"#046a38",n:7,img:"jerseys/intl/portugal-away.jpg",imgBack:"jerseys/intl/portugal-away-back.jpg"},
-        [{name:"Ronaldo", number:7}], 600),
+        [{name:"Ronaldo", number:7}], 550),
     ].map(t => ({ ...t, multiPatch:true })) },
   ];
 
@@ -1968,11 +1994,11 @@
     "Serie A": {abbr:"SA", primary:"#0068a8", secondary:"#0a1a2a"},
     "Bundesliga": {abbr:"BL", primary:"#d3010c", secondary:"#1a1a1a"},
     "Ligue 1": {abbr:"L1", primary:"#0a1e63", secondary:"#dae036"},
-    "Rest of the World": {abbr:"RoW", primary:"#14b8a6", secondary:"#0e4d38"},
+    "Rest of the World": {abbr:"RoW", primary:"#22c55e", secondary:"#0a0a0a"},
     "Retro Clubs": {abbr:"RC", primary:"#8c6d1f", secondary:"#3a2e0d"},
     "Retro International": {abbr:"RI", primary:"#8c6d1f", secondary:"#3a2e0d"},
-    "International Teams": {abbr:"INT", primary:"#0e4d38", secondary:"#d4af37"},
-    "Full Sleeve Jerseys": {abbr:"FS", primary:"#0e4d38", secondary:"#14b8a6"},
+    "International Teams": {abbr:"INT", primary:"#0a0a0a", secondary:"#22c55e"},
+    "Full Sleeve Jerseys": {abbr:"FS", primary:"#0a0a0a", secondary:"#22c55e"},
   };
 
   function initials(name){
@@ -1993,7 +2019,7 @@
   function leagueBadgeHTML(leagueName, size){
     size = size || 28;
     const slug = slugify(leagueName);
-    const meta = LEAGUE_META[leagueName] || { abbr: initials(leagueName), primary: '#0e4d38', secondary: '#14b8a6' };
+    const meta = LEAGUE_META[leagueName] || { abbr: initials(leagueName), primary: '#0a0a0a', secondary: '#22c55e' };
     const fontSize = Math.round(size * 0.34);
     
     // Only load images for the big 5 leagues
@@ -2046,7 +2072,6 @@
           }
         }
         
-        // BUG FIX: Look for both 'image' and 'img' keys
         let image = team.image || team.img;
         let imageBack = team.imageBack || team.imgBack || (image ? image.replace('.jpg', '-back.jpg') : null);
         
@@ -2152,7 +2177,7 @@
   }
   renderShopByNation();
 
-  // ---------- Trending Matchday Kits (home page) ----------
+  // ---------- Trending Matchday Kits (home page) Update ----------
   function renderTrendingHome(){
     const grid = document.getElementById('home-trending-grid');
     if (!grid) return;
@@ -2160,16 +2185,29 @@
     const seenClubs = new Set();
     const trending = [];
     
-    // Sort all standard current season & international kits by highest popularity
-    const sorted = [...PRODUCTS].filter(p => !p.name.includes('Full Sleeve') && p.type !== 'Retro')
-                                .sort((a, b) => popularityOf(b) - popularityOf(a));
-                                
-    for(const p of sorted) {
-      if(!seenClubs.has(p.club)) {
-        seenClubs.add(p.club);
-        trending.push(p);
-      }
-      if(trending.length >= 8) break; // Display top 8 unique kits
+    const currentKits = PRODUCTS.filter(p => p.tabContentId === 'current-season').sort((a,b) => popularityOf(b) - popularityOf(a));
+    const intlKits = PRODUCTS.filter(p => p.tabContentId === 'international').sort((a,b) => popularityOf(b) - popularityOf(a));
+    const retroKits = PRODUCTS.filter(p => p.tabContentId === 'retro-club' || p.tabContentId === 'retro-intl').sort((a,b) => popularityOf(b) - popularityOf(a));
+
+    // Get 4 Current Season Kits
+    let currentCount = 0;
+    for(const p of currentKits) {
+      if(!seenClubs.has(p.club)) { seenClubs.add(p.club); trending.push(p); currentCount++; }
+      if(currentCount >= 4) break;
+    }
+    
+    // Get 2 International Kits
+    let intlCount = 0;
+    for(const p of intlKits) {
+      if(!seenClubs.has(p.club)) { seenClubs.add(p.club); trending.push(p); intlCount++; }
+      if(intlCount >= 2) break;
+    }
+    
+    // Get 2 Retro Kits
+    let retroCount = 0;
+    for(const p of retroKits) {
+      if(!seenClubs.has(p.club)) { seenClubs.add(p.club); trending.push(p); retroCount++; }
+      if(retroCount >= 2) break;
     }
     
     grid.innerHTML = trending.map(team => cardHTML(team, team.id)).join('');
@@ -2202,7 +2240,6 @@
   const POPULAR_NAME_PRICE = 120;
   const CUSTOM_NAME_PRICE = 220;
 
-  /* Helper: Get dynamic patch price per item based on kit type */
   function getPatchPrice(product){
     if (!product) return 40;
     const league = product.league || '';
@@ -2243,7 +2280,6 @@
     const club = product.club || product.name || '';
     const league = product.league || '';
     
-    // NEW STRICT FILTER: No patches for non-UEFA/specific clubs
     const noPatchClubs = ["al nassr", "inter miami", "santos"];
     if (noPatchClubs.some(c => club.toLowerCase().includes(c))) {
       return [];
@@ -2252,7 +2288,6 @@
     const isRetroIntl = product.tabContentId === 'retro-intl' || (product.type === 'Retro' && (league.includes('International') || product.multiPatch));
     const isRetroClub = product.tabContentId === 'retro-club' || (product.type === 'Retro' && !isRetroIntl);
 
-    /* 1. Retro International Kits: Strictly no patches EXCEPT specified kits (Argentina WC 22) */
     if (isRetroIntl) {
       if (product.name.includes("2022 Argentina") || (club === "Argentina" && product.name.includes("2022"))) {
         return [
@@ -2263,7 +2298,6 @@
       return [];
     }
 
-    /* 2. Retro Club & Retro Full Sleeves: Simply League Patch + UCL Patch */
     if (isRetroClub) {
       return [
         { key: "league-normal", label: `${league} Patch` },
@@ -2271,7 +2305,6 @@
       ];
     }
 
-    /* 3. Current Season International Teams */
     if (product.multiPatch || product.tabContentId === 'international') {
       const wcWinners = ["Argentina", "Brazil", "France", "England", "Spain", "Germany", "Italy", "Uruguay"];
       const isWinner = wcWinners.some(w => club.toLowerCase().includes(w.toLowerCase()) || product.name.toLowerCase().includes(w.toLowerCase()));
@@ -2291,7 +2324,6 @@
       }
     }
 
-    /* 4. Current Season Club Kits */
     let options = [];
     if (league === "La Liga") {
       options.push({ key: "laliga-normal", label: "La Liga Normal Patch" });
@@ -2653,6 +2685,17 @@
     const whatsappUrl = `https://wa.me/919839210353?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   }
+
+  // ---------- Restore state on refresh ----------
+  (function initPageState(){
+    const savedPage = sessionStorage.getItem('cfj_page');
+    if (savedPage && document.getElementById('page-' + savedPage)) {
+      showPage(savedPage);
+    }
+    if (!sessionStorage.getItem('cfj_popup_seen')) {
+      document.getElementById('promoPopup').hidden = false;
+    }
+  })();
 </script>
 </body>
 </html>
