@@ -130,20 +130,20 @@
   }
   .top-promo-close:hover { background: var(--pitch-dark); color: var(--gold-bright); transform: translateY(-50%) scale(1.05); }
 
-  /* ---------- Background Doodles Layer (Left & Right Flanks) ---------- */
+  /* ---------- Background Doodles Layer ---------- */
   .bg-doodles { 
     position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; 
     display: flex; justify-content: space-between; padding: 0 3vw;
   }
   .doodle-col {
     display: flex; flex-direction: column; justify-content: space-evenly; height: 110vh; margin-top: -5vh;
-    opacity: 0.08; filter: grayscale(100%) contrast(150%);
+    opacity: 0.16;
+    filter: grayscale(100%) contrast(150%);
   }
   .doodle-col img, .doodle-col .d-icon { 
     width: clamp(45px, 5vw, 85px); font-size: clamp(2rem, 4vw, 3.5rem); user-select: none;
   }
   
-  /* Pseudo-random tilts to create a messy "Doodle Art" style */
   .doodle-col.left img:nth-child(odd), .doodle-col.left .d-icon:nth-child(odd) { transform: rotate(-18deg) translateX(-8px); }
   .doodle-col.left img:nth-child(even), .doodle-col.left .d-icon:nth-child(even) { transform: rotate(24deg) translateX(12px); }
   .doodle-col.right img:nth-child(odd), .doodle-col.right .d-icon:nth-child(odd) { transform: rotate(15deg) translateX(10px); }
@@ -151,10 +151,10 @@
 
   @media (max-width: 600px){
     .bg-doodles { padding: 0 1vw; }
-    .doodle-col img, .doodle-col .d-icon { width: 35px; opacity: 0.05; }
+    .doodle-col img, .doodle-col .d-icon { width: 35px; opacity: 0.10; }
   }
 
-  /* Refined, Softer Pastel Blobs for the Background */
+  /* Refined, Softer Pastel Blobs */
   .bg-blobs{ position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none; }
   .bg-blobs span{ position:absolute; border-radius:50%; filter:blur(140px); opacity:0.45; }
   .bg-blobs .b1{ width:500px; height:500px; background:#a7f3d0; top:-100px; left:-150px; }
@@ -291,9 +291,10 @@
   .carousel-dots button.active{ background:var(--gold); border-color:var(--gold); transform:scale(1.2); }
 
   .hero{ position:relative; background:linear-gradient(160deg, var(--pitch-mid), var(--pitch-dark)); color:var(--chalk); overflow:hidden; padding:3.5rem 0 4rem; }
-  .hero-inner{ position:relative; z-index:2; display:grid; grid-template-columns:1.1fr 0.9fr; gap:2.5rem; align-items:center; max-width:1200px; margin:0 auto; padding:0 1.25rem; }
+  .hero-inner{ position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; max-width:1200px; margin:0 auto; padding:0 1.25rem; }
   
-  .hero-pitch-lines{ position:absolute; right:-14%; top:50%; transform:translateY(-50%); width:720px; height:720px; opacity:0.85; pointer-events:none; z-index:0; }
+  /* Restored right alignment and fixed mobile display */
+  .hero-pitch-lines{ position:absolute; right:-14%; top:50%; transform:translateY(-50%); width:700px; height:700px; opacity:0.35; pointer-events:none; z-index:0; }
   .hero-pitch-lines svg{ width:100%; height:100%; }
 
   .hero-eyebrow{
@@ -345,7 +346,7 @@
   .club-chip:hover .club-badge-slot{ transform:translateY(-3px); box-shadow:0 6px 14px rgba(0,0,0,0.2); }
 
   .fan-zone-section{ max-width:1200px; margin:3.5rem auto 4rem; padding:0 1.25rem; }
-  .fan-zone-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:1.4rem; }
+  .fan-zone-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:1.4rem; }
   .fan-card{
     background:#ffffff; padding:0.75rem 0.75rem 0.9rem; border-radius:12px;
     box-shadow:0 12px 25px -8px rgba(0,0,0,0.15); transform:rotate(-1.2deg);
@@ -384,7 +385,8 @@
     display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; box-shadow:var(--shadow);
   }
 
-  .penalty-box-top { position:absolute; top:0; left:50%; transform:translateX(-50%); width:340px; height:auto; opacity:0.4; pointer-events:none; z-index:0; color:rgba(34,197,94,0.55); }
+  /* Redesigned, bolder and wider penalty box */
+  .penalty-box-top { position:absolute; top:0; left:50%; transform:translateX(-50%); width:100%; max-width:400px; height:auto; opacity:0.35; pointer-events:none; z-index:0; color:rgba(34,197,94,0.8); }
 
   .section-heading{ text-align:center; margin-bottom:1.4rem; font-size:clamp(1.8rem, 5vw, 2.2rem); color:var(--pitch-dark); position:relative; z-index:2; padding-top:1.25rem; font-weight: 700; letter-spacing: -0.02em;}
   .section-heading .kicker{ display:block; font-family:'JetBrains Mono',monospace; font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--crimson); margin-bottom:0.4rem; font-weight:600; }
@@ -396,7 +398,9 @@
     background:linear-gradient(90deg, transparent, rgba(34,197,94,0.35) 20%, rgba(34,197,94,0.35) 80%, transparent);
     z-index:0;
   }
-  main > .container{ position:relative; z-index:2; padding-top:7.5rem; }
+  
+  /* Reduced padding to tighten the gap between penalty box and products heading */
+  main > .container{ position:relative; z-index:2; padding-top:3.8rem; }
 
   .segmented-wrap{ display:flex; justify-content:center; margin-bottom:1.8rem; position:relative; z-index:3; }
   .segmented-control{
@@ -626,7 +630,10 @@
   /* ---------- STRICT MOBILE PHONE OPTIMIZATIONS ---------- */
   @media (max-width: 860px){
     .hero-inner{ grid-template-columns:1fr; gap:2.2rem; }
-    .hero-pitch-lines{ display:none; }
+    
+    /* Ensure halfway line shows on mobile */
+    .hero-pitch-lines{ right:-25%; width:450px; height:450px; opacity:0.25; display:block !important; }
+    
     nav ul li a{ padding:0.75rem 0.9rem; font-size:0.95rem; }
     .floating-socials{ right:0.75rem; bottom:1rem; }
     
@@ -699,7 +706,7 @@
     .product-info{ padding:0.85rem 0.75rem 1rem; }
     .product-title{ font-size:0.95rem; }
     .contact-form{ padding:1.5rem 1.1rem; }
-    .penalty-box-top{ width:220px; }
+    .penalty-box-top{ width:260px; } /* Scaled down for mobile */
     .league-header{ flex-direction:column; align-items:flex-start; gap:0.5rem; }
     .sort-control{ width:100%; justify-content:space-between; }
     .sort-control select{ flex:1; }
@@ -708,7 +715,7 @@
     
     .carousel-track{ aspect-ratio: 2 / 1; max-height: 250px; }
 
-    main > .container{ padding-top:5rem; }
+    main > .container{ padding-top:2.8rem; } /* Tightened mobile spacing */
     .section-heading{ padding-top:1rem; margin-bottom:1rem; }
     .product-page-container{ padding-top:1.2rem; padding-bottom:calc(2.5rem + env(safe-area-inset-bottom)); }
   }
@@ -725,6 +732,31 @@
       transition-duration:0.01ms !important; 
       scroll-behavior:auto !important; 
     }
+  }
+
+  /* ---------- Final mobile hardening pass (wins over earlier rules) ---------- */
+  @media (max-width: 700px){
+    html, body{ overflow-x:clip; }
+
+    /* Nav: stack into two clean full-width rows instead of overflowing sideways */
+    .nav-inner{ flex-direction:column; align-items:stretch; gap:0.4rem; padding:0.5rem 0.75rem; }
+    nav ul{ width:100%; justify-content:center; flex-wrap:wrap; gap:0.15rem 0.3rem; }
+    nav ul li{ flex-shrink:1; }
+    nav ul li a{ padding:0.45rem 0.55rem; font-size:0.82rem; white-space:nowrap; }
+    .search-wrapper{ width:100%; max-width:100%; margin:0; }
+    .nav-search{ width:100%; }
+    .nav-search input{ width:100%; min-width:0; }
+
+    /* Logo: previous 150px was disproportionate on a phone header */
+    .brand-mark .crest{ width:72px; height:72px; }
+    header.site-header h1{ font-size:clamp(1.4rem, 7vw, 1.9rem); }
+    header.site-header p{ font-size:0.8rem; padding:0 0.5rem; }
+
+    /* Prevent any wide fixed-width element from forcing horizontal scroll */
+    .container, .banner-carousel, .hero-inner, .products, .product-page-grid,
+    .care-container, .contact-form, .fan-zone-section{ max-width:100%; }
+    .search-suggestions{ width:calc(100vw - 1.5rem); max-width:calc(100vw - 1.5rem); }
+    .mega-menu{ width:calc(100vw - 1.5rem); max-width:340px; }
   }
 </style>
 </head>
@@ -832,7 +864,7 @@
 
 <header class="site-header">
   <div class="brand-mark">
-    <span class="crest" aria-hidden="true"><img src="logo/logo.png" alt="Corner Flag Logo" onerror="this.remove(); this.parentElement.classList.add('logo-missing')"></span>
+    <span class="crest" aria-hidden="true"><img src="logo/logo.png?v=2" alt="Corner Flag Logo" onerror="this.remove(); this.parentElement.classList.add('logo-missing')"></span>
   </div>
   <h1>Corner Flag Jerseys</h1>
   <p>Club and country jerseys, current season and retro — sourced, checked, and shipped across India.</p>
@@ -901,11 +933,12 @@
 </section>
 
 <section class="hero" id="home">
+  <!-- Symmetrical, highly visible halfway pitch lines matching reference -->
   <div class="hero-pitch-lines" aria-hidden="true">
     <svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="320" cy="320" r="210" fill="none" stroke="rgba(34,197,94,0.55)" stroke-width="2.5" stroke-dasharray="10 8"/>
-      <circle cx="320" cy="320" r="7" fill="var(--forest-bright)"/>
-      <line x1="320" y1="0" x2="320" y2="640" stroke="rgba(34,197,94,0.35)" stroke-width="2" stroke-dasharray="14 10"/>
+      <circle cx="320" cy="320" r="210" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-dasharray="10 8"/>
+      <circle cx="320" cy="320" r="7" fill="var(--gold-bright)"/>
+      <line x1="320" y1="0" x2="320" y2="640" stroke="var(--gold)" stroke-width="2" stroke-dasharray="14 10"/>
     </svg>
   </div>
   <div class="hero-inner">
@@ -982,7 +1015,6 @@
     <span class="kicker">#CornerFlagKits</span>
     <span>Fan Zone Wall</span>
   </h2>
-  <!-- Corrected margin so the underline doesn't overlap the text -->
   <p style="text-align:center; color:var(--ink-soft); font-size:0.9rem; max-width:520px; margin: 1.8rem auto 2.5rem; font-weight:500;">Tag us on Instagram wearing your matchday fit to get featured on our community wall.</p>
 
   <div class="fan-zone-grid">
@@ -1011,6 +1043,11 @@
       <span class="fan-tag">#MatchdayVibes</span>
       <div style="text-align:center; margin-top:0.4rem; color:var(--gold); font-size:0.85rem; letter-spacing:0.1em;">★★★★★</div>
     </div>
+    <div class="fan-card">
+      <div class="fan-photo-slot"><span>📷 Customer Fit 6</span></div>
+      <span class="fan-tag">#AwayDays</span>
+      <div style="text-align:center; margin-top:0.4rem; color:var(--gold); font-size:0.85rem; letter-spacing:0.1em;">★★★★★</div>
+    </div>
   </div>
 </section>
 </div>
@@ -1036,7 +1073,7 @@
     <div class="contact-form" style="max-width:100%; box-shadow:none; border-color:rgba(34,197,94,0.3);">
       <span class="kicker">Share your thoughts</span>
       <h2 style="font-size:1.6rem; margin-bottom:1.5rem;">Leave a Review</h2>
-      <form action="https://formspree.io/f/your-form-id" method="POST">
+      <form onsubmit="sendReview(event)">
         <div class="field">
           <label for="rev-name">Your Name</label>
           <input type="text" id="rev-name" name="name" placeholder="e.g. Rahul M." required>
@@ -1059,7 +1096,7 @@
           <label for="rev-text">Your Review</label>
           <textarea id="rev-text" name="review" rows="4" placeholder="Tell us about the fabric, sizing, stitching..." required></textarea>
         </div>
-        <button type="submit">Submit Review</button>
+        <button type="submit">Submit Review via WhatsApp</button>
       </form>
     </div>
   </div>
@@ -1068,12 +1105,14 @@
 
 <div id="page-products" class="page">
 <main id="main">
-<svg class="penalty-box-top" viewBox="0 0 220 90" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-  <line x1="20" y1="2" x2="200" y2="2" stroke-width="3"/>
-  <path d="M40,2 L40,74 L180,74 L180,2" stroke-width="2.2" stroke-dasharray="9 6"/>
-  <path d="M80,2 L80,26 L140,26 L140,2" stroke-width="1.8" stroke-dasharray="9 6"/>
-  <path d="M95,74 Q110,92 125,74" stroke-width="1.8"/>
-  <circle cx="110" cy="50" r="2.2" fill="var(--forest-bright)" stroke="none"/>
+
+<!-- Thicker, highly visible penalty box graphic -->
+<svg class="penalty-box-top" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <line x1="0" y1="2" x2="320" y2="2" stroke-width="4"/>
+  <path d="M60,2 L60,55 L260,55 L260,2" stroke-width="3" stroke-dasharray="8 6"/>
+  <path d="M110,2 L110,20 L210,20 L210,2" stroke-width="2.5" stroke-dasharray="8 6"/>
+  <path d="M130,55 Q160,80 190,55" stroke-width="2.5"/>
+  <circle cx="160" cy="40" r="3.5" fill="var(--forest-bright)" stroke="none"/>
 </svg>
 
 <div class="container">
@@ -1119,24 +1158,20 @@
     <div class="contact-form">
       <span class="kicker">Matchday Enquiries</span>
       <h2>Get in Touch</h2>
-      <form action="https://formspree.io/f/your-form-id" method="POST">
+      <form onsubmit="sendEmail(event)">
         <div class="field">
           <label for="name">Your name</label>
           <input type="text" id="name" name="name" placeholder="e.g. Rohan Mehta" required>
         </div>
         <div class="field">
-          <label for="email">Your email</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required>
-        </div>
-        <div class="field">
           <label for="phone">Phone number</label>
-          <input type="tel" id="phone" name="phone" placeholder="e.g. 98765 43210">
+          <input type="tel" id="phone" name="phone" placeholder="e.g. 98765 43210" required>
         </div>
         <div class="field">
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="4" placeholder="Tell us which kit and size you're after" required></textarea>
         </div>
-        <button type="submit">Send message</button>
+        <button type="submit">Send via Email</button>
       </form>
     </div>
   </div>
@@ -1377,7 +1412,7 @@
     <a href="#" onclick="showPage('care', event)">Jersey Care</a>
     <a href="https://wa.me/919839210353" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     <a href="https://www.instagram.com/cornerflagjerseys/" target="_blank" rel="noopener noreferrer">Instagram</a>
-    <a href="mailto:hello@cornerflagjerseys.com">Email</a>
+    <a href="mailto:cornerflagjerseys@gmail.com">Email</a>
   </div>
   <p style="font-size:0.75rem; color:var(--chalk-dim); opacity:0.65; max-width:550px; margin:0 auto 0.8rem; line-height:1.4;">
     <strong>Privacy Policy:</strong> We only use your details to process your matchday orders. We will never share your number anywhere else.
@@ -1525,6 +1560,11 @@
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
   
+  function goToReviews(evt){
+    if (evt) evt.preventDefault();
+    showPage('reviews', event);
+  }
+
   function goToContact(evt){
     if (evt) evt.preventDefault();
     showPage('products');
@@ -1890,9 +1930,9 @@
       { name:"1986 Argentina World Cup Home Jersey", club:"Argentina", type:"Retro", primary:"#75aadb", secondary:"#f5f5f5", number:10, img:"jerseys/retro-intl/argentina-1986-home.jpg",
         popular:[{name:"Maradona", number:10}], basePrice:600, originalPrice:700, onSale:true },
       { name:"1998 France World Cup Home Jersey", club:"France", type:"Retro", primary:"#002654", secondary:"#f5f5f5", number:10, img:"jerseys/retro-intl/france-1998-home.jpg",
-        popular:[{name:"Zidane", number:10}], basePrice:600, originalPrice:700, onSale:true },
+        popular:[{name:"Zidane", number:10}], basePrice:700, originalPrice:800, onSale:true },
       { name:"1998 France World Cup Away Jersey", club:"France", type:"Retro", primary:"#f5f5f5", secondary:"#002654", number:10, img:"jerseys/retro-intl/france-1998-away.jpg",
-        popular:[{name:"Zidane", number:10}], basePrice:600, originalPrice:700, onSale:true },
+        popular:[{name:"Zidane", number:10}], basePrice:700, originalPrice:800, onSale:true },
       { name:"1998-99 England Home Jersey", club:"England", type:"Retro", primary:"#f5f5f5", secondary:"#0b1f4a", number:7, img:"jerseys/retro-intl/england-1998-home.jpg",
         popular:[], basePrice:600, originalPrice:700, onSale:true },
       { name:"1996 Germany Away Jersey (Re-released)", club:"Germany", type:"Retro", primary:"#0b6e4f", secondary:"#f5f5f5", number:9, img:"jerseys/retro-intl/germany-1996-away.jpg",
@@ -2709,6 +2749,48 @@
 
     const whatsappUrl = `https://wa.me/919839210353?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
+  }
+
+  // ---------- Send Review to WhatsApp ----------
+  function sendReview(evt) {
+    evt.preventDefault();
+    const name = document.getElementById('rev-name').value;
+    const kit = document.getElementById('rev-kit').value;
+    const rating = document.getElementById('rev-rating').value;
+    const reviewText = document.getElementById('rev-text').value;
+
+    const msg = `⭐ *NEW CUSTOMER REVIEW* ⭐\n` +
+                `----------------------------\n` +
+                `👤 *Name:* ${name}\n` +
+                `👕 *Kit:* ${kit}\n` +
+                `🌟 *Rating:* ${rating}/5\n` +
+                `📝 *Review:* "${reviewText}"\n` +
+                `----------------------------\n` +
+                `Please add this to the website!`;
+
+    const whatsappUrl = `https://wa.me/919839210353?text=${encodeURIComponent(msg)}`;
+    window.open(whatsappUrl, '_blank');
+    
+    // Clear form
+    document.getElementById('rev-name').value = '';
+    document.getElementById('rev-kit').value = '';
+    document.getElementById('rev-rating').value = '5';
+    document.getElementById('rev-text').value = '';
+    
+    alert("Thank you! Your review has been sent via WhatsApp to the Corner Flag team.");
+  }
+  
+  // ---------- Send Contact Form to Email ----------
+  function sendEmail(evt) {
+    evt.preventDefault();
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const message = document.getElementById('message').value;
+
+    const subject = encodeURIComponent(`Matchday Enquiry from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\n\nMessage:\n${message}`);
+
+    window.location.href = `mailto:cornerflagjerseys@gmail.com?subject=${subject}&body=${body}`;
   }
 
   // ---------- Restore state on refresh ----------
