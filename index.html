@@ -82,7 +82,7 @@
     cursor: pointer; transition: background 0.2s; z-index: 10;
   }
   .promo-popup-close:hover { background: rgba(0,0,0,0.8); }
-  .promo-popup-img { width: 100%; height: auto; display: block; object-fit: cover; max-height: 85vh; }
+  .promo-popup-img { width: 100%; height: auto; display: block; object-fit: contain; max-height: 85vh; }
   .promo-popup-placeholder {
     padding: 6rem 2rem; text-align: center; color: var(--chalk-dim);
     display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
@@ -191,7 +191,7 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
     transition: top 0.3s ease;
   }
-  .nav-inner{ display:flex; align-items:center; justify-content:center; gap:1.5rem; max-width:1200px; margin:0 auto; flex-wrap:wrap; padding:0 1rem; }
+  .nav-inner{ display:flex; align-items:center; justify-content:center; gap:1.5rem; max-width:1200px; margin:0 auto; flex-wrap:wrap; padding:0 1rem; position:relative; }
   nav ul{ display:flex; justify-content:center; list-style:none; flex-wrap:wrap; margin:0; padding:0; }
   nav ul li a{
     display:block; color:var(--chalk-dim); text-decoration:none; font-family:'Outfit',sans-serif;
@@ -255,19 +255,12 @@
   }
   .mega-col a:hover{ color:var(--forest-bright); }
 
-  /* Restored Edge-to-Edge Banners with strict 2:1 ratio to prevent ANY cutting */
-  .banner-carousel{ position:relative; width: 100vw; max-width: 100vw; margin: 0; padding: 0; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; overflow: hidden; }
-  .carousel-track{
-    position:relative; width: 100%; aspect-ratio: 2 / 1; border-radius: 0; overflow:hidden;
-    border: none; box-shadow: none; max-height: none;
-  }
-  .carousel-slide{
-    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; opacity:0; transition:opacity 0.6s ease; color:var(--chalk); overflow:hidden;
-  }
-  .carousel-slide.active{ opacity:1; }
-  .banner-bg-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1; opacity:1; transition:transform 0.3s ease; }
-  .carousel-slide:hover .banner-bg-img{ transform: scale(1.02); }
+  /* Fully Responsive Banner Carousel (Never Cuts!) */
+  .banner-carousel{ position:relative; width: 100vw; max-width: 100vw; margin: 0; padding: 0; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; overflow: hidden; background: var(--pitch-dark); display: flex; align-items: center; justify-content: center;}
+  .carousel-track{ position:relative; width: 100%; max-width: 100vw; display: block; height: auto; }
+  .carousel-slide{ position:absolute; top:0; left:0; width:100%; opacity:0; transition:opacity 0.6s ease; pointer-events: none; }
+  .carousel-slide.active{ position:relative; opacity:1; z-index:2; pointer-events: auto; }
+  .banner-bg-img{ width:100%; height:auto; display:block; margin: 0 auto; object-fit: contain; }
   
   .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%); width:38px; height:38px; border-radius:50%;
@@ -287,20 +280,29 @@
 
   .hero{ position:relative; background:linear-gradient(160deg, var(--pitch-mid), var(--pitch-dark)); color:var(--chalk); overflow:hidden; padding:4rem 0 4.5rem; }
   
-  /* Horizontal pitch line perfectly framing the left side */
-  .hero-pitch-lines{ position:absolute; inset:0; opacity:0.45; pointer-events:none; z-index:0; }
-  .hero-pitch-lines svg{ width:100%; height:100%; display:block; }
-  .pitch-circle, .pitch-dot { cx: 22%; transition: cx 0.3s ease, cy 0.3s ease; }
+  /* Browser-safe SVG Pitch Line implementation */
+  .hero-pitch-lines {
+    position: absolute;
+    top: 50%;
+    left: 20%; /* Anchors the center of the SVG directly behind the left text */
+    transform: translate(-50%, -50%);
+    width: 3000px; /* Guarantees the line hits both edges of any screen */
+    height: 800px;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-pitch-lines svg { width: 100%; height: 100%; display: block; }
 
-  /* Hero Inner compressed left via padding-right and grid columns */
+  /* Hero Inner styling */
   .hero-inner{ position:relative; z-index:2; display:grid; grid-template-columns:1.2fr 0.8fr; gap:3rem; align-items:center; max-width:1200px; margin:0 auto; padding:0 5rem 0 1.5rem; }
 
-  /* Cleaner, solid hero-eyebrow styling */
+  /* Fully redesigned, sleek, solid hero-eyebrow pill */
   .hero-eyebrow{
-    display:inline-block; font-family:'JetBrains Mono', monospace; font-size:0.75rem; letter-spacing:0.08em;
-    text-transform:uppercase; color:var(--gold-bright); background:transparent;
-    border:1.5px solid var(--gold); padding:0.35rem 0.8rem; border-radius:6px; margin-bottom:1.5rem;
-    font-weight: 700;
+    display:inline-block; font-family:'JetBrains Mono', monospace; font-size:0.75rem; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--pitch-dark); background:var(--gold-bright);
+    padding:0.45rem 1rem; border-radius:999px; margin-bottom:1.5rem;
+    font-weight: 800; box-shadow: 0 4px 14px rgba(34,197,94,0.25);
   }
   
   .hero h2{ font-size:clamp(2.4rem, 6vw, 4rem); line-height:1.1; margin-bottom:1.1rem; }
@@ -368,7 +370,7 @@
     text-transform:uppercase; color:var(--crimson); background:rgba(21,128,61,0.08);
     border:1px solid rgba(21,128,61,0.35); padding:0.4rem 0.9rem; border-radius:999px; font-weight:600;
   }
-  .care-container{ max-width:960px; margin:0 auto; padding:3.5rem 1.25rem 5rem; }
+  .care-container{ max-width:960px; margin:0 auto; padding:3.5rem 1.25rem 5rem; overflow:hidden; }
   .care-hero{ text-align:center; margin-bottom:3rem; }
   .care-hero h2{ font-size:clamp(2.2rem, 5vw, 3.6rem); color:var(--pitch-dark); margin-bottom:0.4rem; letter-spacing: -0.02em; }
   .care-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1.5rem; margin-bottom:3rem; }
@@ -376,6 +378,7 @@
     background:var(--glass-bg); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur);
     border:1px solid var(--glass-border); border-radius:var(--radius); padding:1.8rem 1.5rem;
     box-shadow:var(--shadow); display:flex; flex-direction:column; gap:0.4rem;
+    box-sizing:border-box; word-break:break-word; overflow-wrap:break-word;
   }
   .care-card .icon{ font-size:2.2rem; margin-bottom:0.4rem; display:block; }
   .care-card h3{ font-size:1.3rem; color:var(--pitch-dark); line-height:1.2; font-family: 'Outfit', sans-serif; font-weight: 700; letter-spacing: -0.01em;}
@@ -403,6 +406,7 @@
   /* Adjusted padding to perfectly clear the redesigned penalty box */
   main > .container{ position:relative; z-index:2; padding-top:3.8rem; }
 
+  /* Segmented Controls container and wrapper logic */
   .segmented-wrap{ display:flex; justify-content:center; margin-bottom:1.8rem; position:relative; z-index:3; }
   .segmented-control{
     display:inline-flex; gap:0.25rem; padding:0.35rem; border-radius:999px; background:var(--glass-bg);
@@ -630,19 +634,27 @@
 
   /* ---------- STRICT MOBILE PHONE OPTIMIZATIONS ---------- */
   @media (max-width: 860px){
-    /* Adjusted the horizontal halfway line for mobile perfectly to frame the screen */
-    .hero-pitch-lines{ opacity: 0.45; display: block !important; }
-    .pitch-circle, .pitch-dot { cx: 50% !important; cy: 22% !important; transition: all 0.3s ease; }
+    /* Ensure halfway line snaps to center on mobile to beautifully frame stacking text */
+    .hero-pitch-lines { left: 50%; transform: translate(-50%, -50%) scale(0.65); }
     
     .hero-inner{ grid-template-columns:1fr; gap:2.2rem; padding: 0 1.25rem; }
     
     nav ul li a{ padding:0.75rem 0.9rem; font-size:0.95rem; }
     .floating-socials{ right:0.75rem; bottom:1rem; }
     
+    /* Bulletproof Mobile Dropdown Centering */
     .mega-menu{
-      flex-direction:column; gap:1rem; width:calc(100vw - 2rem);
-      max-width:320px; white-space:normal; left:50%;
-      transform:translateX(-50%) translateY(8px); padding:1rem;
+      position: absolute !important;
+      left: 0 !important;
+      right: 0 !important;
+      margin: 0 auto !important;
+      width: 90vw !important;
+      max-width: 350px !important;
+      transform: translateY(8px) !important;
+      flex-direction: column; 
+      gap: 1rem;
+      padding: 1.2rem;
+      white-space: normal;
     }
     .mega-col{ min-width:auto; width:100%; }
   }
@@ -660,6 +672,8 @@
     .banner-logo-slot{ width:70px; height:70px; }
     .products{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.75rem; }
     .fan-zone-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.75rem; }
+    
+    /* Prevent cutting off on cards */
     .hero-stats-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.6rem; }
     .home-trust-grid{ grid-template-columns:1fr; gap:0.6rem; }
 
@@ -671,10 +685,10 @@
     .nav-search input{ width:100%; flex:1; }
     .search-suggestions{ width:calc(100% - 1rem); left:0.5rem; right:0.5rem; top:calc(100% + 4px); max-height:280px; }
 
-    .segmented-wrap{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; justify-content:flex-start; padding:0.2rem 0.75rem 0.6rem; margin-bottom:1rem; }
-    .segmented-wrap::-webkit-scrollbar{ height:4px; }
-    .segmented-wrap::-webkit-scrollbar-thumb{ background:var(--gold); border-radius:4px; }
-    .segmented-control{ flex-wrap:nowrap; width:max-content; margin:0; }
+    /* UNCONSTRAINED TABS FIX */
+    .segmented-wrap{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; justify-content:flex-start; padding:0.2rem 1.25rem 1rem; margin-bottom:0.5rem; }
+    .segmented-wrap::-webkit-scrollbar{ display:none; }
+    .segmented-control{ flex-wrap:nowrap; width:max-content; flex-shrink:0; margin:0; }
     .tab{ font-size:0.95rem; padding:0.45rem 0.85rem; flex-shrink:0; }
     .sbc-row{ padding:0.5rem 0.75rem 1.2rem; }
 
@@ -718,16 +732,14 @@
     .sort-control select{ flex:1; }
     .pp-title-row{ flex-direction:column; align-items:stretch; }
     .pp-add-btn-top{ width:100%; margin-top:0.5rem; }
-    
-    .carousel-track{ aspect-ratio: 2 / 1; max-height: 250px; }
 
-    main > .container{ padding-top:4.5rem; } /* Tightened mobile spacing */
+    main > .container{ padding-top:2.8rem; } /* Tightened mobile spacing */
     .section-heading{ padding-top:1rem; margin-bottom:1rem; }
     .product-page-container{ padding-top:1.2rem; padding-bottom:calc(2.5rem + env(safe-area-inset-bottom)); }
     
     /* Stronger mobile doodles */
     .bg-doodles { padding: 0 2vw; }
-    .doodle-col img, .doodle-col .d-icon { width: 40px; opacity: 0.15; }
+    .doodle-col img, .doodle-col .d-icon { width: 40px; opacity: 0.22; }
   }
 
   @media (max-width: 360px){
@@ -749,7 +761,7 @@
     html, body{ overflow-x:clip; }
 
     /* Nav: stack into two clean full-width rows instead of overflowing sideways */
-    .nav-inner{ flex-direction:column; align-items:stretch; gap:0.4rem; padding:0.5rem 0.75rem; }
+    .nav-inner{ flex-direction:column; align-items:stretch; gap:0.4rem; padding:0.5rem 0.75rem; position: static !important; }
     nav ul{ width:100%; justify-content:center; flex-wrap:wrap; gap:0.15rem 0.3rem; }
     nav ul li{ flex-shrink:1; }
     nav ul li a{ padding:0.45rem 0.55rem; font-size:0.82rem; white-space:nowrap; }
@@ -766,7 +778,25 @@
     .container, .banner-carousel, .hero-inner, .products, .product-page-grid,
     .care-container, .contact-form, .fan-zone-section{ max-width:100%; }
     .search-suggestions{ width:calc(100vw - 1.5rem); max-width:calc(100vw - 1.5rem); }
-    .mega-menu{ width:calc(100vw - 1.5rem); max-width:340px; margin:0 auto; left:0; right:0; }
+    
+    /* Bulletproof Mega Menu Centering */
+    .has-dropdown{ position:static !important; }
+    nav { position: sticky; }
+    .mega-menu{
+      position: absolute !important;
+      left: 0 !important;
+      right: 0 !important;
+      margin: 0 auto !important;
+      width: 90vw !important;
+      max-width: 350px !important;
+      transform: translateY(8px) !important;
+    }
+
+    /* Force unconstrained width on the tabs background strictly */
+    .segmented-control { max-width: none !important; flex-shrink: 0 !important; }
+    
+    /* Bulletproof returns text wrap */
+    .care-card { width: 100%; overflow: hidden; }
   }
 </style>
 </head>
@@ -776,7 +806,7 @@
 <div class="promo-popup-overlay" id="promoPopup" hidden onclick="if(event.target===this) closePromoPopup()">
   <div class="promo-popup-content">
     <button class="promo-popup-close" onclick="closePromoPopup()" aria-label="Close promo popup">&times;</button>
-    <div style="cursor:pointer;" onclick="closePromoPopup(); showPage('products', event); document.getElementById('tab-international').click();">
+    <div style="cursor:pointer; display: flex; align-items: center; justify-content: center; height: 100%;" onclick="closePromoPopup(); showPage('products', event); document.getElementById('tab-international').click();">
       <img src="promos/popup-offer.jpg" alt="Special Offer" class="promo-popup-img" 
            onerror="this.outerHTML='<div class=\\'promo-popup-placeholder\\'><span style=\\'font-size:3.5rem;\\'>🎁</span><h3>Special Offer</h3><p>Upload an image named <strong>popup-offer.jpg</strong> in your promos folder.</p></div>'">
     </div>
@@ -943,12 +973,12 @@
 </section>
 
 <section class="hero" id="home">
-  <!-- Horizontal pitch line perfectly framing the left side -->
+  <!-- Foolproof SVG structure: Hardcoded viewbox guarantees everything scales identically in every browser -->
   <div class="hero-pitch-lines" aria-hidden="true">
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute; inset:0;">
-      <line x1="0" y1="50%" x2="100%" y2="50%" stroke="var(--gold)" stroke-width="3" stroke-dasharray="18 14"/>
-      <circle class="pitch-circle" cx="22%" cy="50%" r="180" fill="none" stroke="var(--gold)" stroke-width="3" stroke-dasharray="14 10"/>
-      <circle class="pitch-dot" cx="22%" cy="50%" r="8" fill="var(--gold-bright)"/>
+    <svg viewBox="0 0 3000 800" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="400" x2="3000" y2="400" stroke="var(--gold)" stroke-width="4" stroke-dasharray="24 16"/>
+      <circle cx="1500" cy="400" r="240" fill="none" stroke="var(--gold)" stroke-width="4" stroke-dasharray="16 12"/>
+      <circle cx="1500" cy="400" r="10" fill="var(--gold-bright)"/>
     </svg>
   </div>
 
