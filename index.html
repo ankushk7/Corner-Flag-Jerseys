@@ -512,6 +512,18 @@
   .card-btn{ display:inline-flex; align-items:center; justify-content:center; width:100%; text-align:center; background:linear-gradient(135deg, var(--forest), var(--pitch-dark)); color:var(--chalk); padding:0.7rem 1rem; border-radius:999px; text-decoration:none; font-family:'Outfit',sans-serif; font-weight:600; letter-spacing:0.02em; font-size:1rem; border:1px solid rgba(34,197,94,0.35); cursor:pointer; transition:background 0.2s, transform 0.2s, box-shadow 0.2s; min-height:42px; box-shadow:0 8px 18px -8px rgba(0,0,0,0.4); }
   .card-btn:hover{ background:linear-gradient(135deg, var(--forest-bright), var(--pitch-dark)); transform:translateY(-2px); box-shadow:0 12px 22px -8px rgba(34,197,94,0.35); }
 
+  /* Desktop/Universal Add to Cart Buttons - Unified Sticky Logic */
+  #modalAddBtn, #ppAddBtn {
+    position: sticky;
+    bottom: 1.5rem;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    margin-top: 1rem;
+    font-size: 1.15rem;
+    padding: 1rem 2rem;
+    min-height: 56px;
+  }
+
   /* ---------- Marquee Ticker ---------- */
   .marquee-container {
     background: #111111; color: var(--chalk-dim); padding: 1.2rem 0; overflow: hidden;
@@ -581,7 +593,6 @@
   .fabric-note strong{ color:var(--ink); font-weight: 600;}
   .pp-title-row{ display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
   .pp-title-row .modal-title{ margin:0; flex:1; min-width:200px; }
-  .pp-add-btn-top{ width:auto; flex-shrink:0; padding:1rem 2rem; font-size:1.15rem; min-height:56px; margin-top:0.2rem; }
   .modal-row{ display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; }
   .version-toggle{ display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; }
   .version-btn{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.2rem; padding:0.75rem 0.5rem; border-radius:12px; border:1.5px solid #ddd8ca; background:rgba(255,255,255,0.8); cursor:pointer; font-family:'Outfit',sans-serif; font-weight:600; font-size:1.05rem; letter-spacing:0.01em; color:var(--ink); transition:all 0.2s; min-height:50px; }
@@ -616,7 +627,9 @@
   .product-page-container{ padding-top:2rem; padding-bottom:3rem; }
   .back-link{ display:inline-block; font-family:'Outfit',sans-serif; font-weight:600; letter-spacing:0.02em; font-size:1.05rem; color:var(--crimson); text-decoration:none; margin-bottom:1.4rem; }
   .back-link:hover{ text-decoration:underline; }
+  
   .product-page-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; }
+
   .product-photo-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0.9rem; }
   .photo-slot{
     aspect-ratio:1; border-radius:14px; border:2px dashed rgba(10,10,10,0.25);
@@ -628,11 +641,12 @@
   .photo-slot small{ font-size:0.75rem; font-weight: 500;}
   .photo-slot img{ width:100%; height:100%; object-fit:contain; padding:0.5rem; }
   .name-preview-slot{ width:150px; margin:0.9rem 0 1.1rem; }
+  
   @media (max-width:760px){
     .product-page-grid{ grid-template-columns:1fr; gap:1.4rem; }
   }
 
-  /* ---------- STRICT MOBILE PHONE OPTIMIZATIONS ---------- */
+  /* ---------- STRICT MOBILE PHONE & TABLET OPTIMIZATIONS ---------- */
   @media (max-width: 860px){
     /* Ensure halfway line snaps to center on mobile to beautifully frame stacking text */
     .hero-pitch-lines { left: 50%; transform: translate(-50%, -50%) scale(0.65); }
@@ -657,6 +671,28 @@
       white-space: normal;
     }
     .mega-col{ min-width:auto; width:100%; }
+
+    /* --- BULLETPROOF MOBILE ADD-TO-CART BUTTONS --- */
+    /* Pull them out completely and glue them to the bottom of the glass */
+    #ppAddBtn, #modalAddBtn {
+      position: fixed !important;
+      top: auto !important;
+      bottom: 1.25rem !important;
+      left: 1.25rem !important;
+      right: 1.25rem !important;
+      width: calc(100vw - 2.5rem) !important;
+      margin: 0 !important;
+      z-index: 9999 !important;
+      box-shadow: 0 12px 35px rgba(10,10,10,0.5), 0 0 0 1px rgba(34,197,94,0.4) !important;
+    }
+
+    /* Add extra padding to the bottom of pages so the fixed button never hides text */
+    .product-page-container {
+      padding-bottom: 7rem !important;
+    }
+    .modal-panel {
+      padding-bottom: 6rem !important;
+    }
   }
 
   @media (max-width: 600px){
@@ -697,22 +733,13 @@
     .promo-popup-overlay{ padding:1.5rem; align-items:center; }
     .promo-popup-content{ max-height:85vh; border-radius:16px; overflow-y:auto; }
     
-    .modal-panel{ padding:1.8rem 1rem calc(1.5rem + env(safe-area-inset-bottom)); max-height:90vh; width:100%; border-radius:20px 20px 0 0; overflow-y:auto; overflow-x:hidden; }
+    .modal-panel{ padding:1.8rem 1rem calc(6.5rem + env(safe-area-inset-bottom)) !important; max-height:90vh; width:100%; border-radius:20px 20px 0 0; overflow-y:auto; overflow-x:hidden; }
     .modal-close{ top:0.7rem; right:0.7rem; width:32px; height:32px; font-size:1.2rem; }
     .modal-grid{ grid-template-columns:1fr; gap:1rem; }
     .modal-visual{ min-height:150px; padding:0.75rem; }
     .modal-visual svg{ width:110px; }
     .version-toggle{ grid-template-columns:1fr; gap:0.5rem; }
     .patch-photo-row{ display:grid; grid-template-columns:repeat(2, 1fr); gap:0.5rem; }
-
-    #modalAddBtn, #ppAddBtn {
-      position: sticky;
-      bottom: -1.25rem;
-      z-index: 50;
-      box-shadow: 0 -12px 25px rgba(10,10,10,0.35);
-      margin-top: 1.5rem;
-      border: 1px solid rgba(255,255,255,0.2);
-    }
 
     .hero-ctas{ flex-direction:column; width:100%; }
     .hero-ctas .btn{ width:100%; text-align:center; }
@@ -731,11 +758,9 @@
     .sort-control{ width:100%; justify-content:space-between; }
     .sort-control select{ flex:1; }
     .pp-title-row{ flex-direction:column; align-items:stretch; }
-    .pp-add-btn-top{ width:100%; margin-top:0.5rem; }
-
+    
     main > .container{ padding-top:2.8rem; } /* Tightened mobile spacing */
     .section-heading{ padding-top:1rem; margin-bottom:1rem; }
-    .product-page-container{ padding-top:1.2rem; padding-bottom:calc(2.5rem + env(safe-area-inset-bottom)); }
     
     /* Stronger mobile doodles */
     .bg-doodles { padding: 0 2vw; }
@@ -1343,11 +1368,10 @@
     </div>
 
     <div>
-      <span class="modal-eyebrow" id="ppEyebrow">Product</span>
       <div class="pp-title-row">
         <h2 class="modal-title" id="ppTitle" style="font-size:2rem;"></h2>
-        <button class="card-btn pp-add-btn-top" id="ppAddBtn" onclick="ppAddToCart()">Add to cart — ₹600</button>
       </div>
+      <span class="modal-eyebrow" id="ppEyebrow" style="margin-top: 0.5rem;">Product</span>
       <p class="product-meta" id="ppMeta"></p>
 
       <div class="field">
@@ -1425,6 +1449,9 @@
       </div>
 
       <p class="modal-note">Most used names come pre-set with that player's number. Custom kits ship 2–3 days later than stock kits.</p>
+      
+      <!-- Moved to the bottom to match the popup structure -->
+      <button class="card-btn" id="ppAddBtn" onclick="ppAddToCart()">Add to cart — ₹600</button>
     </div>
   </div>
 </div>
