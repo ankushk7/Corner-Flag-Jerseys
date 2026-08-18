@@ -6,9 +6,9 @@
 <title>Corner Flag Jerseys — Football Jerseys, Delivered Across India</title>
 <meta name="description" content="Authentic-fit club and country football jerseys, current season and retro, shipped across India.">
 
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="logo/logo.png">
-<link rel="apple-touch-icon" href="logo/logo.png">
+<!-- Favicon (Dedicated square image for Google Search and browser tabs) -->
+<link rel="icon" type="image/png" href="logo/favicon.png">
+<link rel="apple-touch-icon" href="logo/favicon.png">
 
 <!-- Open Graph / Social Share Meta Tags -->
 <meta property="og:title" content="Corner Flag Jerseys">
@@ -1443,8 +1443,8 @@
         <label for="pp-nameselect">Name on jersey</label>
         <select id="pp-nameselect" onchange="onPpNameSelectChange()">
           <option value="none">No name</option>
-          <optgroup label="Most used names — ₹120" id="pp-popular-group"></optgroup>
-          <option value="custom">Custom name &amp; number — ₹220</option>
+          <optgroup label="Most used names — ₹140" id="pp-popular-group"></optgroup>
+          <option value="custom">Custom name &amp; number — ₹230</option>
         </select>
       </div>
 
@@ -1584,8 +1584,8 @@
           <label for="custom-nameselect">Name on jersey</label>
           <select id="custom-nameselect" onchange="onNameSelectChange()">
             <option value="none">No name</option>
-            <optgroup label="Most used names — ₹120" id="custom-popular-group"></optgroup>
-            <option value="custom">Custom name &amp; number — ₹220</option>
+            <optgroup label="Most used names — ₹140" id="custom-popular-group"></optgroup>
+            <option value="custom">Custom name &amp; number — ₹230</option>
           </select>
         </div>
 
@@ -1938,6 +1938,8 @@
     { league:"Retro Clubs", teams:[
       { name:"1998-99 Manchester United Treble Home Jersey", club:"Manchester United", type:"Retro", primary:"#da020e", secondary:"#111111", number:7, img:"jerseys/retro/man-utd-1999-treble-home.jpg",
         popular:[{name:"Giggs", number:11}, {name:"Scholes", number:18}] },
+      { name:"2008-09 Manchester United Away Jersey", club:"Manchester United", type:"Retro", primary:"#ffffff", secondary:"#005bb5", number:7, img:"jerseys/retro/man-utd-2008-away.jpg",
+        popular:[{name:"Ronaldo", number:7}] },
       { name:"2002-03 Sporting CP Home Jersey", club:"Sporting CP", type:"Retro", primary:"#1a7a3c", secondary:"#f5f5f5", number:28, img:"jerseys/retro/sporting-2002-home.jpg",
         popular:[{name:"Ronaldo", number:28}] },
       { name:"2011-12 Santos Home Jersey", club:"Santos", type:"Retro", primary:"#ffffff", secondary:"#111111", number:11, img:"jerseys/retro/santos-2011-home.jpg",
@@ -2401,8 +2403,8 @@
   let activeProduct = null;
   let selectedVersion = 'master';
 
-  const POPULAR_NAME_PRICE = 120;
-  const CUSTOM_NAME_PRICE = 220;
+  const POPULAR_NAME_PRICE = 140;
+  const CUSTOM_NAME_PRICE = 230;
 
   function getPatchPrice(product){
     if (!product) return 40;
@@ -2686,10 +2688,10 @@
     if (nameChoice === 'custom'){
       const cName = (document.getElementById('custom-name').value || '').trim() || 'CUSTOM';
       const cNum = document.getElementById('custom-number').value || activeProduct.number;
-      printDetail = `Custom Print: ${cName.toUpperCase()} #${cNum} (+₹220)`;
+      printDetail = `Custom Print: ${cName.toUpperCase()} #${cNum} (+₹230)`;
     } else if (nameChoice.startsWith('popular:')){
       const p = activeProduct.popular[+nameChoice.split(':')[1]];
-      printDetail = `Player Print: ${p.name} #${p.number} (+₹120)`;
+      printDetail = `Player Print: ${p.name} #${p.number} (+₹140)`;
     }
 
     let patchDetail = "No Patches";
@@ -2822,10 +2824,10 @@
     if (nameChoice === 'custom'){
       const cName = (document.getElementById('pp-name').value || '').trim() || 'CUSTOM';
       const cNum = document.getElementById('pp-number').value || ppProduct.number;
-      printDetail = `Custom Print: ${cName.toUpperCase()} #${cNum} (+₹220)`;
+      printDetail = `Custom Print: ${cName.toUpperCase()} #${cNum} (+₹230)`;
     } else if (nameChoice.startsWith('popular:')){
       const p = ppProduct.popular[+nameChoice.split(':')[1]];
-      printDetail = `Player Print: ${p.name} #${p.number} (+₹120)`;
+      printDetail = `Player Print: ${p.name} #${p.number} (+₹140)`;
     }
 
     let patchDetail = "No Patches";
