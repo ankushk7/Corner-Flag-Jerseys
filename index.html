@@ -259,7 +259,7 @@
   }
   .mega-col a:hover{ color:var(--forest-bright); }
 
-  /* Fully Responsive Banner Carousel (Never Cuts!) */
+  /* Fully Responsive Banner Carousel */
   .banner-carousel{ position:relative; width: 100vw; max-width: 100vw; margin: 0; padding: 0; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; overflow: hidden; background: var(--pitch-dark); display: flex; align-items: center; justify-content: center;}
   .carousel-track{ position:relative; width: 100%; max-width: 100vw; display: block; height: auto; }
   .carousel-slide{ position:absolute; top:0; left:0; width:100%; opacity:0; transition:opacity 0.6s ease; pointer-events: none; }
@@ -284,13 +284,12 @@
 
   .hero{ position:relative; background:linear-gradient(160deg, var(--pitch-mid), var(--pitch-dark)); color:var(--chalk); overflow:hidden; padding:4rem 0 4.5rem; }
   
-  /* Browser-safe SVG Pitch Line implementation */
   .hero-pitch-lines {
     position: absolute;
     top: 50%;
-    left: 20%; /* Anchors the center of the SVG directly behind the left text */
+    left: 20%;
     transform: translate(-50%, -50%);
-    width: 3000px; /* Guarantees the line hits both edges of any screen */
+    width: 3000px;
     height: 800px;
     opacity: 0.45;
     pointer-events: none;
@@ -298,10 +297,8 @@
   }
   .hero-pitch-lines svg { width: 100%; height: 100%; display: block; }
 
-  /* Hero Inner styling */
   .hero-inner{ position:relative; z-index:2; display:grid; grid-template-columns:1.2fr 0.8fr; gap:3rem; align-items:center; max-width:1200px; margin:0 auto; padding:0 5rem 0 1.5rem; }
 
-  /* Fully redesigned, sleek, solid hero-eyebrow pill */
   .hero-eyebrow{
     display:inline-block; font-family:'JetBrains Mono', monospace; font-size:0.75rem; letter-spacing:0.12em;
     text-transform:uppercase; color:var(--pitch-dark); background:var(--gold-bright);
@@ -322,7 +319,6 @@
 
   .hero-stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; margin-bottom:1.2rem; }
   
-  /* Extremely translucent stat cards */
   .stat-card{
     background:rgba(255,255,255,0.015); backdrop-filter:blur(8px) saturate(160%); -webkit-backdrop-filter:blur(8px) saturate(160%);
     border:1px solid rgba(34,197,94,0.15); border-radius:14px; padding:1.2rem 1rem;
@@ -341,7 +337,6 @@
   .tb-icon { font-size:1.25rem; line-height:1; }
   .tb-title { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.8rem; font-weight:600; color:var(--chalk); display:block; line-height:1.2; }
 
-  /* Dynamic Trending Matchday Kits Section */
   .trending-section{ max-width:1200px; margin: 4.5rem auto 2rem; padding: 0 1.25rem; }
 
   .shop-by-club{ padding:2.5rem 0 1rem; }
@@ -393,7 +388,6 @@
     display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; box-shadow:var(--shadow);
   }
 
-  /* Mathematically perfect symmetrical dashed penalty box */
   .penalty-box-top { position:absolute; top:0; left:50%; transform:translateX(-50%); width:100%; max-width:400px; height:auto; opacity:0.35; pointer-events:none; z-index:0; color:rgba(34,197,94,0.8); }
 
   .section-heading{ text-align:center; margin-bottom:1.4rem; font-size:clamp(1.8rem, 5vw, 2.2rem); color:var(--pitch-dark); position:relative; z-index:2; padding-top:1.25rem; font-weight: 700; letter-spacing: -0.02em;}
@@ -407,10 +401,8 @@
     z-index:0;
   }
   
-  /* Adjusted padding to perfectly clear the redesigned penalty box */
   main > .container{ position:relative; z-index:2; padding-top:3.8rem; }
 
-  /* Segmented Controls container and wrapper logic */
   .segmented-wrap{ display:flex; justify-content:center; margin-bottom:1.8rem; position:relative; z-index:3; }
   .segmented-control{
     display:inline-flex; gap:0.25rem; padding:0.35rem; border-radius:999px; background:var(--glass-bg);
@@ -438,7 +430,6 @@
     padding:0.4rem 0.6rem; border:1.5px solid #ddd8ca; border-radius:8px; background:rgba(255,255,255,0.95); color:var(--ink);
   }
 
-  /* Upgraded League Badge */
   .league-badge{
     display:inline-flex; align-items:center; justify-content:center; border-radius:8px; flex-shrink:0;
     color:#fff; font-family:'Outfit',sans-serif; font-weight:700; letter-spacing:0.02em;
@@ -470,7 +461,6 @@
   .kit-visual{ position:relative; height:190px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, var(--pitch-dark), var(--forest)); }
   .kit-visual svg{ width:112px; filter:drop-shadow(0 10px 14px rgba(0,0,0,0.18)); }
 
-  /* High Contrast Universal Kit Tag Overlay */
   .kit-tag{
     position:absolute; top:10px; left:10px; z-index:10;
     font-family:'JetBrains Mono',monospace; font-size:0.7rem; font-weight:600;
@@ -485,7 +475,6 @@
   .kit-tag.third{ background:rgba(10,10,10, 0.92); border-color:rgba(34,197,94, 0.6); color:#4ade80; }
   .kit-tag.retro{ background:rgba(22,163,74, 0.88); border-color:rgba(255,255,255, 0.35); color:#ffffff; }
   
-  /* Red Sale Tag Badge for Discounted International Kits */
   .kit-tag.sale{
     position:absolute; top:10px; right:10px; left:auto; z-index:10;
     font-family:'JetBrains Mono',monospace; font-size:0.7rem; font-weight:700;
@@ -516,7 +505,6 @@
   .card-btn{ display:inline-flex; align-items:center; justify-content:center; width:100%; text-align:center; background:linear-gradient(135deg, var(--forest), var(--pitch-dark)); color:var(--chalk); padding:0.7rem 1rem; border-radius:999px; text-decoration:none; font-family:'Outfit',sans-serif; font-weight:600; letter-spacing:0.02em; font-size:1rem; border:1px solid rgba(34,197,94,0.35); cursor:pointer; transition:background 0.2s, transform 0.2s, box-shadow 0.2s; min-height:42px; box-shadow:0 8px 18px -8px rgba(0,0,0,0.4); }
   .card-btn:hover{ background:linear-gradient(135deg, var(--forest-bright), var(--pitch-dark)); transform:translateY(-2px); box-shadow:0 12px 22px -8px rgba(34,197,94,0.35); }
 
-  /* Desktop/Universal Add to Cart Buttons - Unified Sticky Logic */
   #modalAddBtn, #ppAddBtn {
     position: sticky;
     bottom: 1.5rem;
@@ -528,7 +516,6 @@
     min-height: 56px;
   }
 
-  /* ---------- Marquee Ticker ---------- */
   .marquee-container {
     background: #111111; color: var(--chalk-dim); padding: 1.2rem 0; overflow: hidden;
     white-space: nowrap; display: flex; align-items: center; border-top: 1px solid rgba(255,255,255,0.08);
@@ -573,13 +560,11 @@
   .footer-links a:hover{ color:var(--gold-bright); }
   .copyright{ font-size:0.8rem; opacity:0.7; font-family:'JetBrains Mono',monospace; position:relative; z-index:2; }
 
-  /* ---------- Floating Right-Side Socials ---------- */
   .floating-socials{ position:fixed; right:1rem; bottom:1.5rem; z-index:90; display:flex; flex-direction:column; gap:0.75rem; pointer-events:none; }
   .floating-socials a{ pointer-events:auto; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(10,10,10,0.85); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); border:1px solid rgba(34,197,94,0.4); color:var(--chalk); box-shadow:0 8px 20px rgba(0,0,0,0.3); transition:transform 0.2s, background 0.2s, border-color:0.2s; text-decoration:none; }
   .floating-socials a:hover{ transform:scale(1.1) translateX(-2px); background:var(--pitch-dark); border-color:var(--gold-bright); color:var(--gold-bright); }
   .floating-socials svg{ width:24px; height:24px; }
 
-  /* ---------- Customize modal ---------- */
   .modal-overlay{ position:fixed; inset:0; background:rgba(10,15,26,0.65); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; z-index:1000; padding:1rem; }
   .modal-overlay[hidden]{ display:none; }
   .modal-panel{ position:relative; max-width:680px; width:100%; max-height:92vh; overflow-y:auto; background:rgba(255,255,255,0.95); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur); border-radius:20px; border:1px solid rgba(255,255,255,0.8); box-shadow:0 30px 80px -20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.9); padding:1.75rem; }
@@ -607,7 +592,6 @@
 
   .nowrap-label { white-space: nowrap; display: block; font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.04em; }
 
-  /* ---------- Clean Photo Spot Patch System ---------- */
   .patch-photo-row{ display:flex; gap:0.6rem; margin-top:0.5rem; flex-wrap:wrap; }
   .patch-photo-item{ flex:1; min-width:65px; text-align:center; cursor:pointer; }
   .patch-photo-thumb{
@@ -627,12 +611,10 @@
   .size-chart-table tr:nth-child(even) { background:rgba(247,243,233,0.6); }
   .size-chart-btn { background:none; border:none; color:var(--crimson); font-size:0.8rem; font-weight:600; cursor:pointer; text-decoration:underline; padding:0; margin-left:auto; display:inline-block; }
 
-  /* ---------- Dedicated product page ---------- */
   .product-page-container{ padding-top:2rem; padding-bottom:3rem; }
   .back-link{ display:inline-block; font-family:'Outfit',sans-serif; font-weight:600; letter-spacing:0.02em; font-size:1.05rem; color:var(--crimson); text-decoration:none; margin-bottom:1.4rem; }
   .back-link:hover{ text-decoration:underline; }
   
-  /* Desktop Layout: Make the entire right column stick! */
   .product-page-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; }
   
   @media (min-width: 861px) {
@@ -641,14 +623,6 @@
       top: 100px; 
       height: fit-content;
     }
-  }
-
-  /* Make Modal Popup Button sticky at the bottom for Desktop */
-  #modalAddBtn {
-    position: sticky;
-    bottom: 1rem;
-    z-index: 100;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
 
   .product-photo-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0.9rem; }
@@ -667,17 +641,12 @@
     .product-page-grid{ grid-template-columns:1fr; gap:1.4rem; }
   }
 
-  /* ---------- STRICT MOBILE PHONE & TABLET OPTIMIZATIONS ---------- */
   @media (max-width: 860px){
-    /* Ensure halfway line snaps to center on mobile to beautifully frame stacking text */
     .hero-pitch-lines { left: 50%; transform: translate(-50%, -50%) scale(0.65); }
-    
     .hero-inner{ grid-template-columns:1fr; gap:2.2rem; padding: 0 1.25rem; }
-    
     nav ul li a{ padding:0.75rem 0.9rem; font-size:0.95rem; }
     .floating-socials{ right:0.75rem; bottom:1rem; }
     
-    /* Bulletproof Mobile Dropdown Centering */
     .mega-menu{
       position: absolute !important;
       left: 0 !important;
@@ -693,8 +662,6 @@
     }
     .mega-col{ min-width:auto; width:100%; }
 
-    /* --- BULLETPROOF MOBILE ADD-TO-CART BUTTONS --- */
-    /* Pull them out completely and glue them to the bottom of the glass */
     #ppAddBtn, #modalAddBtn {
       position: fixed !important;
       top: auto !important;
@@ -707,7 +674,6 @@
       box-shadow: 0 12px 35px rgba(10,10,10,0.5), 0 0 0 1px rgba(34,197,94,0.4) !important;
     }
 
-    /* Add extra padding to the bottom of pages so the fixed button never hides text */
     .product-page-container {
       padding-bottom: 7rem !important;
     }
@@ -718,10 +684,9 @@
 
   @media (max-width: 600px){
     :root {
-      --marquee-height: 42px; /* Slightly taller for mobile readability */
+      --marquee-height: 42px;
     }
 
-    /* Responsive Logo (150x150 Phones) & Tighter Header Padding */
     .brand-mark .crest{ width:150px; height:150px; }
     header.site-header{ padding:0.3rem 1rem 0.8rem; }
     .top-marquee-text { font-size: 0.75rem; gap: 2rem; padding-right: 2rem; }
@@ -730,7 +695,6 @@
     .products{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.75rem; }
     .fan-zone-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.75rem; }
     
-    /* Prevent cutting off on cards */
     .hero-stats-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0.6rem; }
     .home-trust-grid{ grid-template-columns:1fr; gap:0.6rem; }
 
@@ -742,14 +706,12 @@
     .nav-search input{ width:100%; flex:1; }
     .search-suggestions{ width:calc(100% - 1rem); left:0.5rem; right:0.5rem; top:calc(100% + 4px); max-height:280px; }
 
-    /* UNCONSTRAINED TABS FIX */
     .segmented-wrap{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; justify-content:flex-start; padding:0.2rem 1.25rem 1rem; margin-bottom:0.5rem; }
     .segmented-wrap::-webkit-scrollbar{ display:none; }
     .segmented-control{ flex-wrap:nowrap; width:max-content; flex-shrink:0; margin:0; }
     .tab{ font-size:0.95rem; padding:0.45rem 0.85rem; flex-shrink:0; }
     .sbc-row{ padding:0.5rem 0.75rem 1.2rem; }
 
-    /* Center mobile popup correctly */
     .modal-overlay{ padding:0; align-items:flex-end; }
     .promo-popup-overlay{ padding:1.5rem; align-items:center; }
     .promo-popup-content{ max-height:85vh; border-radius:16px; overflow-y:auto; }
@@ -774,16 +736,15 @@
     .product-info{ padding:0.85rem 0.75rem 1rem; }
     .product-title{ font-size:0.95rem; }
     .contact-form{ padding:1.5rem 1.1rem; }
-    .penalty-box-top{ width:260px; } /* Scaled down for mobile */
+    .penalty-box-top{ width:260px; }
     .league-header{ flex-direction:column; align-items:flex-start; gap:0.5rem; }
     .sort-control{ width:100%; justify-content:space-between; }
     .sort-control select{ flex:1; }
     .pp-title-row{ flex-direction:column; align-items:stretch; }
     
-    main > .container{ padding-top:2.8rem; } /* Tightened mobile spacing */
+    main > .container{ padding-top:2.8rem; }
     .section-heading{ padding-top:1rem; margin-bottom:1rem; }
     
-    /* Stronger mobile doodles */
     .bg-doodles { padding: 0 2vw; }
     .doodle-col img, .doodle-col .d-icon { width: 40px; opacity: 0.22; }
   }
@@ -793,7 +754,6 @@
     .fan-zone-grid{ grid-template-columns:1fr; }
   }
 
-  /* Exclude Marquees from battery saver animation freeze */
   @media (prefers-reduced-motion: reduce){
     *:not(.marquee-wrapper):not(.top-marquee-wrapper):not(.marquee-text):not(.top-marquee-text) { 
       animation-duration:0.01ms !important; 
@@ -802,11 +762,8 @@
     }
   }
 
-  /* ---------- Final mobile hardening pass (wins over earlier rules) ---------- */
   @media (max-width: 700px){
     html, body{ overflow-x:clip; }
-
-    /* Nav: stack into two clean full-width rows instead of overflowing sideways */
     .nav-inner{ flex-direction:column; align-items:stretch; gap:0.4rem; padding:0.5rem 0.75rem; position: static !important; }
     nav ul{ width:100%; justify-content:center; flex-wrap:wrap; gap:0.15rem 0.3rem; }
     nav ul li{ flex-shrink:1; }
@@ -815,17 +772,14 @@
     .nav-search{ width:100%; }
     .nav-search input{ width:100%; min-width:0; }
 
-    /* Logo: previous 150px was disproportionate on a phone header */
     .brand-mark .crest{ width:72px; height:72px; }
     header.site-header h1{ font-size:clamp(1.4rem, 7vw, 1.9rem); }
     header.site-header p{ font-size:0.8rem; padding:0 0.5rem; }
 
-    /* Prevent any wide fixed-width element from forcing horizontal scroll */
     .container, .banner-carousel, .hero-inner, .products, .product-page-grid,
     .care-container, .contact-form, .fan-zone-section{ max-width:100%; }
     .search-suggestions{ width:calc(100vw - 1.5rem); max-width:calc(100vw - 1.5rem); }
     
-    /* Bulletproof Mega Menu Centering */
     .has-dropdown{ position:static !important; }
     nav { position: sticky; }
     .mega-menu{
@@ -838,10 +792,7 @@
       transform: translateY(8px) !important;
     }
 
-    /* Force unconstrained width on the tabs background strictly */
     .segmented-control { max-width: none !important; flex-shrink: 0 !important; }
-    
-    /* Bulletproof returns text wrap */
     .care-card { width: 100%; overflow: hidden; }
   }
 </style>
@@ -1019,7 +970,6 @@
 </section>
 
 <section class="hero" id="home">
-  <!-- Foolproof SVG structure: Hardcoded viewbox guarantees everything scales identically in every browser -->
   <div class="hero-pitch-lines" aria-hidden="true">
     <svg viewBox="0 0 3000 800" xmlns="http://www.w3.org/2000/svg">
       <line x1="0" y1="400" x2="3000" y2="400" stroke="var(--gold)" stroke-width="4" stroke-dasharray="24 16"/>
@@ -1149,14 +1099,12 @@
       <p style="color:var(--ink-soft); max-width:540px; margin:0.5rem auto 0; font-weight:500;">Hear what other fans have to say about our matchday kits.</p>
     </div>
 
-    <!-- Empty State -->
     <div style="text-align:center; padding: 4rem 2rem; background:rgba(255,255,255,0.5); border:1px dashed var(--glass-border); border-radius:14px; margin-bottom: 3rem;">
       <span style="font-size:3rem; display:block; margin-bottom:1rem;">⭐</span>
       <h3 style="font-family:'Outfit',sans-serif; font-size:1.5rem; color:var(--pitch-dark); margin-bottom:0.5rem;">No written reviews yet</h3>
       <p style="color:var(--ink-soft); font-size:0.95rem;">Be the first to leave a detailed review and help other fans find their perfect fit!</p>
     </div>
 
-    <!-- Leave a Review Form (Sends to WhatsApp) -->
     <div class="contact-form" style="max-width:100%; box-shadow:none; border-color:rgba(34,197,94,0.3);">
       <span class="kicker">Share your thoughts</span>
       <h2 style="font-size:1.6rem; margin-bottom:1.5rem;">Leave a Review</h2>
@@ -1193,21 +1141,14 @@
 <div id="page-products" class="page">
 <main id="main">
 
-<!-- Split path lines to ensure perfectly symmetrical dash patterns on the box corners -->
 <svg class="penalty-box-top" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
   <line x1="0" y1="2" x2="320" y2="2" stroke-width="4"/>
-  
-  <!-- Outer Box (Symmetrical Lines) -->
   <line x1="60" y1="2" x2="60" y2="55" stroke-width="3" stroke-dasharray="8 6"/>
   <line x1="60" y1="55" x2="260" y2="55" stroke-width="3" stroke-dasharray="8 6"/>
   <line x1="260" y1="2" x2="260" y2="55" stroke-width="3" stroke-dasharray="8 6"/>
-  
-  <!-- Inner Box (Symmetrical Lines) -->
   <line x1="110" y1="2" x2="110" y2="20" stroke-width="2.5" stroke-dasharray="8 6"/>
   <line x1="110" y1="20" x2="210" y2="20" stroke-width="2.5" stroke-dasharray="8 6"/>
   <line x1="210" y1="2" x2="210" y2="20" stroke-width="2.5" stroke-dasharray="8 6"/>
-  
-  <!-- The D -->
   <path d="M130,55 Q160,80 190,55" stroke-width="2.5"/>
   <circle cx="160" cy="40" r="3.5" fill="var(--forest-bright)" stroke="none"/>
 </svg>
@@ -1303,7 +1244,6 @@
         <p>Every kit is thoroughly checked before dispatch. If you receive a damaged item (custom or standard), send us an unboxing video within 48 hours of delivery for a replacement. Items must remain unwashed with all original tags attached.</p>
       </div>
       
-      <!-- WhatsApp Support Card -->
       <div class="care-card" style="grid-column: 1 / -1; align-items: center; text-align: center; background: rgba(34,197,94,0.1); border-color: var(--gold);">
         <span class="icon">💬</span>
         <h3>Need to process a return?</h3>
@@ -1399,8 +1339,8 @@
       <div class="field" id="pp-version-field">
         <label>Version</label>
         <div class="version-toggle" role="radiogroup" aria-label="Kit version">
-          <button type="button" class="version-btn active" id="pp-version-master" onclick="ppSelectVersion('master')">Master / Fan version<span id="pp-version-master-note">₹600, shipping included</span></button>
-          <button type="button" class="version-btn" id="pp-version-player" onclick="ppSelectVersion('player')">Player version<span id="pp-version-player-note">₹650, athletic slim fit</span></button>
+          <button type="button" class="version-btn active" id="pp-version-master" onclick="ppSelectVersion('master')">Master / Fan version<span id="pp-version-master-note">₹625, shipping included</span></button>
+          <button type="button" class="version-btn" id="pp-version-player" onclick="ppSelectVersion('player')">Player version<span id="pp-version-player-note">₹700, athletic slim fit</span></button>
         </div>
       </div>
 
@@ -1437,8 +1377,8 @@
         </table>
       </div>
 
-      <p class="modal-price" id="ppPrice">₹600</p>
-      <p class="modal-note" id="ppBreakdown" style="margin-top:-0.9rem;">Master kit ₹600 · shipping included</p>
+      <p class="modal-price" id="ppPrice">₹625</p>
+      <p class="modal-note" id="ppBreakdown" style="margin-top:-0.9rem;">Master kit ₹625 · shipping included</p>
 
       <div class="field">
         <label for="pp-nameselect">Name on jersey</label>
@@ -1472,8 +1412,7 @@
 
       <p class="modal-note">Most used names come pre-set with that player's number. Custom kits ship 2–3 days later than stock kits.</p>
       
-      <!-- Moved to the bottom to match the popup structure -->
-      <button class="card-btn" id="ppAddBtn" onclick="ppAddToCart()">Add to cart — ₹600</button>
+      <button class="card-btn" id="ppAddBtn" onclick="ppAddToCart()">Add to cart — ₹625</button>
     </div>
   </div>
 </div>
@@ -1534,8 +1473,8 @@
         <div class="field" id="version-field">
           <label>Version</label>
           <div class="version-toggle" role="radiogroup" aria-label="Kit version">
-            <button type="button" class="version-btn active" id="version-master" data-price="600" data-label="Master" onclick="selectVersion('master')">Master / Fan version<span id="version-master-note">₹600, shipping included</span></button>
-            <button type="button" class="version-btn" id="version-player" data-price="650" data-label="Player" onclick="selectVersion('player')">Player version<span id="version-player-note">₹650, athletic slim fit</span></button>
+            <button type="button" class="version-btn active" id="version-master" data-price="625" data-label="Master" onclick="selectVersion('master')">Master / Fan version<span id="version-master-note">₹625, shipping included</span></button>
+            <button type="button" class="version-btn" id="version-player" data-price="700" data-label="Player" onclick="selectVersion('player')">Player version<span id="version-player-note">₹700, athletic slim fit</span></button>
           </div>
         </div>
 
@@ -1579,8 +1518,8 @@
           </table>
         </div>
 
-        <p class="modal-price" id="modalPrice">₹600</p>
-        <p class="modal-note" id="modalBreakdown" style="margin-top:-0.9rem;">Master kit ₹600 · shipping included</p>
+        <p class="modal-price" id="modalPrice">₹625</p>
+        <p class="modal-note" id="modalBreakdown" style="margin-top:-0.9rem;">Master kit ₹625 · shipping included</p>
         
         <div class="field">
           <label for="custom-nameselect">Name on jersey</label>
@@ -1608,7 +1547,7 @@
         </div>
         
         <p class="modal-note">Most used names come pre-set with that player's number. Custom kits ship 2–3 days later than stock kits.</p>
-        <button class="card-btn" id="modalAddBtn" onclick="addCustomizedToCart()">Add to cart — ₹600</button>
+        <button class="card-btn" id="modalAddBtn" onclick="addCustomizedToCart()">Add to cart — ₹625</button>
       </div>
     </div>
   </div>
@@ -1638,7 +1577,6 @@
     const navCare = document.getElementById('nav-care');
     const navReviews = document.getElementById('nav-reviews');
     
-    // Clear existing active links
     document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active-link'));
     
     if (navHome && name === 'home') navHome.classList.add('active-link');
@@ -1646,7 +1584,6 @@
     if (navCare && name === 'care') navCare.classList.add('active-link');
     if (navReviews && name === 'reviews') navReviews.classList.add('active-link');
     
-    // Dynamic Page Titles
     if (name !== 'product') {
       const titles = {
         'home': 'Corner Flag Jerseys — Football Jerseys, Delivered Across India',
@@ -1761,7 +1698,7 @@
         <div class="suggestion-thumb">${thumb}</div>
         <div class="suggestion-info">
           <span class="suggestion-title">${p.name}</span>
-          <span class="suggestion-meta">${p.league} · ${p.type} kit · ₹${p.basePrice || 600}</span>
+          <span class="suggestion-meta">${p.league} · ${p.type} kit · ₹${p.basePrice || 625}</span>
         </div>
       </div>`;
     }).join('');
@@ -1836,15 +1773,17 @@
   }
 
   function intlPair(clubName, home, away, popular, price){
-    const basePrice = price || 550;
+    const basePrice = price || 600;
+    const originalPrice = basePrice + 50;
     return [
-      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, imageBack:home.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:600, onSale:true },
-      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Away", primary:away.p, secondary:away.s, number:away.n, image:away.img, imageBack:away.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:600, onSale:true },
+      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, imageBack:home.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:originalPrice, onSale:true },
+      { name:`${clubName} Jersey 2026-27`, club:clubName, type:"Away", primary:away.p, secondary:away.s, number:away.n, image:away.img, imageBack:away.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:originalPrice, onSale:true },
     ];
   }
   function intlHomeOnly(clubName, home, popular, price){
-    const basePrice = price || 550;
-    return [{ name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, imageBack:home.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:600, onSale:true }];
+    const basePrice = price || 600;
+    const originalPrice = basePrice + 50;
+    return [{ name:`${clubName} Jersey 2026-27`, club:clubName, type:"Home", primary:home.p, secondary:home.s, number:home.n, image:home.img, imageBack:home.imgBack, popular:popular||[], basePrice:basePrice, originalPrice:originalPrice, onSale:true }];
   }
 
   const currentSeason = [
@@ -1912,7 +1851,6 @@
       ...kitPair("Borussia Dortmund", 
         {p:"#fde100",s:"#111111",n:11,img:"jerseys/current/dortmund-home.jpg",imgBack:"jerseys/current/dortmund-home-back.jpg"}, 
         {p:"#111111",s:"#fde100",n:11,img:"jerseys/current/dortmund-away.jpg",imgBack:"jerseys/current/dortmund-away-back.jpg"}, []),
-      // Leverkusen Home removed, leaving just the away kit
       { name:"Bayer Leverkusen Jersey 2026-27", club:"Bayer Leverkusen", type:"Away", primary:"#f5f5f5", secondary:"#e2001a", number:14, image:"jerseys/current/leverkusen-away.jpg", imageBack:"jerseys/current/leverkusen-away-back.jpg", popular:[{name:"Wirtz", number:10}, {name:"Boniface", number:19}] },
     ]},
     { league:"Ligue 1", teams:[
@@ -1939,7 +1877,7 @@
   const retroClub = [
     { league:"Retro Clubs", teams:[
       { name:"1998-99 Manchester United Treble Home Jersey", club:"Manchester United", type:"Retro", primary:"#da020e", secondary:"#111111", number:7, img:"jerseys/retro/man-utd-1999-treble-home.jpg",
-        popular:[{name:"Giggs", number:11}, {name:"Scholes", number:18}] },
+        popular:[{name:"Giggs", number:11}, {name:"Scholes", number:18}], basePrice:850 },
       { name:"2008-09 Manchester United Away Jersey", club:"Manchester United", type:"Retro", primary:"#ffffff", secondary:"#005bb5", number:7, img:"jerseys/retro/man-utd-2008-away.jpg",
         popular:[{name:"Ronaldo", number:7}] },
       { name:"2002-03 Sporting CP Home Jersey", club:"Sporting CP", type:"Retro", primary:"#1a7a3c", secondary:"#f5f5f5", number:28, img:"jerseys/retro/sporting-2002-home.jpg",
@@ -1951,7 +1889,7 @@
       { name:"2014-15 Barcelona Home Jersey", club:"Barcelona", type:"Retro", primary:"#a50044", secondary:"#004d98", number:10, img:"jerseys/retro/barca-2014-home.jpg",
         popular:[{name:"Messi", number:10}, {name:"Suarez", number:9}, {name:"Neymar", number:11}] },
       { name:"1996-97 Barcelona Away Jersey", club:"Barcelona", type:"Retro", primary:"#00a99d", secondary:"#1a1a1a", number:9, img:"jerseys/retro/barca-1996-away.jpg",
-        popular:[{name:"R9", number:9}] },
+        popular:[{name:"R9", number:9}], basePrice:850 },
       { name:"2015-16 Barcelona Home Jersey", club:"Barcelona", type:"Retro", primary:"#a50044", secondary:"#004d98", number:11, img:"jerseys/retro/barca-2015-home.jpg",
         popular:[{name:"Neymar", number:11}] },
       { name:"2025-26 Barcelona Away Jersey", club:"Barcelona", type:"Retro", primary:"#f5f5f5", secondary:"#a50044", number:19, img:"jerseys/retro/barca-2025-away.jpg",
@@ -1965,7 +1903,7 @@
       { name:"1995-96 Arsenal Away Jersey", club:"Arsenal", type:"Retro", primary:"#1b2a4a", secondary:"#c8102e", number:10, img:"jerseys/retro/arsenal-1995-away.jpg",
         popular:[{name:"Bergkamp", number:10}, {name:"Wright", number:8}] },
       { name:"1990-92 Arsenal Jersey (Re-released)", club:"Arsenal", type:"Retro", primary:"#0f9b8e", secondary:"#ffe500", number:8, img:"jerseys/retro/arsenal-1990-home.jpg",
-        popular:[{name:"Wright", number:8}] },
+        popular:[{name:"Wright", number:8}], basePrice:850 },
       { name:"2024-25 Arsenal Away Jersey", club:"Arsenal", type:"Retro", primary:"#f0e6d2", secondary:"#0b1f4a", number:7, img:"jerseys/retro/arsenal-2024-away.jpg",
         popular:[{name:"Rice", number:41}] },
       { name:"2003-04 Arsenal Away Jersey", club:"Arsenal", type:"Retro", primary:"#4a5568", secondary:"#c8102e", number:14, img:"jerseys/retro/arsenal-2003-away.jpg",
@@ -2005,7 +1943,7 @@
       { name:"1998-99 Bayern Munich Home Jersey", club:"Bayern Munich", type:"Retro", primary:"#dc052d", secondary:"#f5f5f5", number:11, img:"jerseys/retro/bayern-1998-home.jpg",
         popular:[{name:"Effenberg", number:11}] },
       { name:"1987-88 Napoli Home Jersey", club:"Napoli", type:"Retro", primary:"#12a0d7", secondary:"#f5f5f5", number:10, img:"jerseys/retro/napoli-1987-home.jpg",
-        popular:[{name:"Maradona", number:10}] },
+        popular:[{name:"Maradona", number:10}], basePrice:850 },
       { name:"2000-01 AC Milan Away Jersey", club:"AC Milan", type:"Retro", primary:"#f5f5f5", secondary:"#fb090b", number:7, img:"jerseys/retro/milan-2000-away.jpg",
         popular:[{name:"Shevchenko", number:7}] },
       { name:"2006-07 AC Milan Home Jersey", club:"AC Milan", type:"Retro", primary:"#fb090b", secondary:"#111111", number:22, img:"jerseys/retro/milan-2006-home.jpg",
@@ -2025,31 +1963,31 @@
   const retroIntl = [
     { league:"Retro International", teams:[
       { name:"2022 Argentina World Cup Home Jersey", club:"Argentina", type:"Retro", primary:"#75aadb", secondary:"#f5f5f5", number:10, img:"jerseys/retro-intl/argentina-2022-wc-home.jpg",
-        popular:[{name:"Messi", number:10}], basePrice:600, originalPrice:700, onSale:true },
+        popular:[{name:"Messi", number:10}], basePrice:800 },
       { name:"1970 Brazil World Cup Home Jersey", club:"Brazil", type:"Retro", primary:"#ffdf00", secondary:"#009739", number:10, img:"jerseys/retro-intl/brazil-1970-home.jpg",
-        popular:[{name:"Pelé", number:10}, {name:"Jairzinho", number:7}, {name:"Rivelino", number:11}], basePrice:600, originalPrice:700, onSale:true },
+        popular:[{name:"Pelé", number:10}, {name:"Jairzinho", number:7}, {name:"Rivelino", number:11}], basePrice:850 },
       { name:"2002 Brazil World Cup Home Jersey (Re-issue)", club:"Brazil", type:"Retro", primary:"#ffdf00", secondary:"#009739", number:9, img:"jerseys/retro-intl/brazil-2002-home.jpg",
-        popular:[{name:"R9", number:9}, {name:"Ronaldinho", number:11}], basePrice:600, originalPrice:700, onSale:true },
+        popular:[{name:"R9", number:9}, {name:"Ronaldinho", number:11}], basePrice:800 },
       { name:"1986 Argentina World Cup Home Jersey", club:"Argentina", type:"Retro", primary:"#75aadb", secondary:"#f5f5f5", number:10, img:"jerseys/retro-intl/argentina-1986-home.jpg",
-        popular:[{name:"Maradona", number:10}], basePrice:600, originalPrice:700, onSale:true },
+        popular:[{name:"Maradona", number:10}], basePrice:850 },
       { name:"1998 France World Cup Home Jersey", club:"France", type:"Retro", primary:"#002654", secondary:"#f5f5f5", number:10, img:"jerseys/retro-intl/france-1998-home.jpg",
-        popular:[{name:"Zidane", number:10}], basePrice:700, originalPrice:800, onSale:true },
+        popular:[{name:"Zidane", number:10}], basePrice:850 },
       { name:"1998 France World Cup Away Jersey", club:"France", type:"Retro", primary:"#f5f5f5", secondary:"#002654", number:10, img:"jerseys/retro-intl/france-1998-away.jpg",
-        popular:[{name:"Zidane", number:10}], basePrice:700, originalPrice:800, onSale:true },
+        popular:[{name:"Zidane", number:10}], basePrice:850 },
       { name:"1998-99 England Home Jersey", club:"England", type:"Retro", primary:"#f5f5f5", secondary:"#0b1f4a", number:7, img:"jerseys/retro-intl/england-1998-home.jpg",
-        popular:[], basePrice:600, originalPrice:700, onSale:true },
+        popular:[], basePrice:800 },
       { name:"1996 Germany Away Jersey (Re-released)", club:"Germany", type:"Retro", primary:"#0b6e4f", secondary:"#f5f5f5", number:9, img:"jerseys/retro-intl/germany-1996-away.jpg",
-        popular:[], basePrice:600, originalPrice:700, onSale:true },
+        popular:[], basePrice:800 },
       { name:"Germany 125th Anniversary Shirt", club:"Germany", type:"Retro", primary:"#f5f5f5", secondary:"#111111", number:10, img:"jerseys/retro-intl/germany-125th-anniversary.jpg",
-        popular:[], basePrice:600, originalPrice:700, onSale:true },
+        popular:[], basePrice:800 },
       { name:"1994 Argentina Away Jersey", club:"Argentina", type:"Retro", primary:"#1a2b4c", secondary:"#75aadb", number:10, img:"jerseys/retro-intl/argentina-1994-away.jpg",
-        popular:[{name:"Maradona", number:10}], basePrice:600, originalPrice:700, onSale:true },
+        popular:[{name:"Maradona", number:10}], basePrice:800 },
       { name:"2006 Argentina Home Jersey", club:"Argentina", type:"Retro", primary:"#75aadb", secondary:"#f5f5f5", number:19, img:"jerseys/retro-intl/argentina-2006-home.jpg",
-        popular:[{name:"Messi", number:19}], basePrice:600, originalPrice:700, onSale:true },
+        popular:[{name:"Messi", number:19}], basePrice:800 },
       { name:"2016 Portugal Home Jersey", club:"Portugal", type:"Retro", primary:"#c8102e", secondary:"#046a38", number:7, img:"jerseys/retro-intl/portugal-2016-home.jpg",
-        popular:[{name:"Cristiano", number:7}], basePrice:600, originalPrice:700, onSale:true },
+        popular:[{name:"Cristiano", number:7}], basePrice:800 },
       { name:"1994 Spain Jersey (Re-released)", club:"Spain", type:"Retro", primary:"#c60b1e", secondary:"#f5c400", number:9, img:"jerseys/retro-intl/spain-1994-home.jpg",
-        popular:[], basePrice:600, originalPrice:700, onSale:true },
+        popular:[], basePrice:800 },
     ].map(t => ({ ...t, multiPatch:true })) },
   ];
 
@@ -2059,60 +1997,60 @@
       ...intlPair("Argentina", 
         {p:"#75aadb",s:"#f5f5f5",n:10,img:"jerseys/intl/argentina-home.jpg",imgBack:"jerseys/intl/argentina-home-back.jpg"}, 
         {p:"#1a2b4c",s:"#75aadb",n:10,img:"jerseys/intl/argentina-away.jpg",imgBack:"jerseys/intl/argentina-away-back.jpg"},
-        [{name:"Messi", number:10}, {name:"Alvarez", number:9}], 550),
+        [{name:"Messi", number:10}, {name:"Alvarez", number:9}], 600),
       ...intlPair("Spain", 
         {p:"#c60b1e",s:"#f5c400",n:19,img:"jerseys/intl/spain-home.jpg",imgBack:"jerseys/intl/spain-home-back.jpg"}, 
         {p:"#0b1f4a",s:"#c60b1e",n:19,img:"jerseys/intl/spain-away.jpg",imgBack:"jerseys/intl/spain-away-back.jpg"},
-        [{name:"Yamal", number:19}, {name:"Pedri", number:20}, {name:"Ferran", number:7}], 550),
+        [{name:"Yamal", number:19}, {name:"Pedri", number:20}, {name:"Ferran", number:7}], 600),
       ...intlPair("France", 
         {p:"#002654",s:"#ed2939",n:7,img:"jerseys/intl/france-home.jpg",imgBack:"jerseys/intl/france-home-back.jpg"}, 
         {p:"#f5f5f5",s:"#002654",n:7,img:"jerseys/intl/france-away.jpg",imgBack:"jerseys/intl/france-away-back.jpg"},
-        [{name:"Mbappe", number:10}, {name:"Dembele", number:7}, {name:"Olise", number:11}], 550),
+        [{name:"Mbappe", number:10}, {name:"Dembele", number:7}, {name:"Olise", number:11}], 600),
       ...intlPair("England", 
         {p:"#f5f5f5",s:"#0b1f4a",n:9,img:"jerseys/intl/england-home.jpg",imgBack:"jerseys/intl/england-home-back.jpg"}, 
         {p:"#c8102e",s:"#0b1f4a",n:9,img:"jerseys/intl/england-away.jpg",imgBack:"jerseys/intl/england-away-back.jpg"},
-        [{name:"Kane", number:9}, {name:"Bellingham", number:5}, {name:"Saka", number:7}], 550),
+        [{name:"Kane", number:9}, {name:"Bellingham", number:5}, {name:"Saka", number:7}], 600),
       ...intlPair("Italy", 
         {p:"#00468b",s:"#ffffff",n:10,img:"jerseys/intl/italy-home.jpg",imgBack:"jerseys/intl/italy-home-back.jpg"}, 
-        {p:"#ffffff",s:"#00468b",n:10,img:"jerseys/intl/italy-away.jpg",imgBack:"jerseys/intl/italy-away-back.jpg"}, [], 550),
+        {p:"#ffffff",s:"#00468b",n:10,img:"jerseys/intl/italy-away.jpg",imgBack:"jerseys/intl/italy-away-back.jpg"}, [], 600),
       ...intlPair("Croatia", 
         {p:"#ffffff",s:"#ff0000",n:10,img:"jerseys/intl/croatia-home.jpg",imgBack:"jerseys/intl/croatia-home-back.jpg"}, 
         {p:"#1a2b4c",s:"#ff0000",n:10,img:"jerseys/intl/croatia-away.jpg",imgBack:"jerseys/intl/croatia-away-back.jpg"},
-        [{name:"Modric", number:10}, {name:"Gvardiol", number:4}, {name:"Kovacic", number:8}], 550),
+        [{name:"Modric", number:10}, {name:"Gvardiol", number:4}, {name:"Kovacic", number:8}], 600),
       ...intlPair("Uruguay", 
         {p:"#55b5e5",s:"#111111",n:8,img:"jerseys/intl/uruguay-home.jpg",imgBack:"jerseys/intl/uruguay-home-back.jpg"}, 
         {p:"#ffffff",s:"#55b5e5",n:8,img:"jerseys/intl/uruguay-away.jpg",imgBack:"jerseys/intl/uruguay-away-back.jpg"},
-        [{name:"Valverde", number:8}], 550),
+        [{name:"Valverde", number:8}], 600),
       ...intlPair("Belgium", 
         {p:"#e30613",s:"#111111",n:7,img:"jerseys/intl/belgium-home.jpg",imgBack:"jerseys/intl/belgium-home-back.jpg"}, 
         {p:"#111111",s:"#e30613",n:7,img:"jerseys/intl/belgium-away.jpg",imgBack:"jerseys/intl/belgium-away-back.jpg"},
-        [{name:"De Bruyne", number:7}], 550),
+        [{name:"De Bruyne", number:7}], 600),
       ...intlPair("Norway", 
         {p:"#ba0c2f",s:"#00205b",n:9,img:"jerseys/intl/norway-home.jpg",imgBack:"jerseys/intl/norway-home-back.jpg"}, 
         {p:"#f5f5f5",s:"#ba0c2f",n:9,img:"jerseys/intl/norway-away.jpg",imgBack:"jerseys/intl/norway-away-back.jpg"},
-        [{name:"Haaland", number:9}], 550),
+        [{name:"Haaland", number:9}], 600),
       ...intlPair("Brazil", 
         {p:"#ffdf00",s:"#009739",n:9,img:"jerseys/intl/brazil-home.jpg",imgBack:"jerseys/intl/brazil-home-back.jpg"}, 
         {p:"#002776",s:"#ffdf00",n:9,img:"jerseys/intl/brazil-away.jpg",imgBack:"jerseys/intl/brazil-away-back.jpg"},
-        [{name:"Vinicius Jr", number:7}, {name:"Neymar", number:10}], 550),
+        [{name:"Vinicius Jr", number:7}, {name:"Neymar", number:10}], 600),
       ...intlPair("Mexico", 
         {p:"#006847",s:"#f5f5f5",n:20,img:"jerseys/intl/mexico-home.jpg",imgBack:"jerseys/intl/mexico-home-back.jpg"}, 
         {p:"#f5f5f5",s:"#006847",n:20,img:"jerseys/intl/mexico-away.jpg",imgBack:"jerseys/intl/mexico-away-back.jpg"},
-        [{name:"Gimenez", number:20}], 550),
+        [{name:"Gimenez", number:20}], 600),
       ...intlPair("Germany", 
         {p:"#f5f5f5",s:"#111111",n:10,img:"jerseys/intl/germany-home.jpg",imgBack:"jerseys/intl/germany-home-back.jpg"}, 
         {p:"#043927",s:"#f5f5f5",n:10,img:"jerseys/intl/germany-away.jpg",imgBack:"jerseys/intl/germany-away-back.jpg"},
-        [{name:"Musiala", number:10}, {name:"Wirtz", number:17}], 550),
+        [{name:"Musiala", number:10}, {name:"Wirtz", number:17}], 600),
       ...intlPair("Japan", 
         {p:"#002561",s:"#ffffff",n:10,img:"jerseys/intl/japan-home.jpg",imgBack:"jerseys/intl/japan-home-back.jpg"}, 
         {p:"#ffffff",s:"#002561",n:10,img:"jerseys/intl/japan-away.jpg",imgBack:"jerseys/intl/japan-away-back.jpg"},
-        [], 550),
+        [], 600),
       ...intlHomeOnly("Netherlands", 
-        {p:"#ff6c00",s:"#12305e",n:7,img:"jerseys/intl/netherlands-home.jpg",imgBack:"jerseys/intl/netherlands-home-back.jpg"}, [], 550),
+        {p:"#ff6c00",s:"#12305e",n:7,img:"jerseys/intl/netherlands-home.jpg",imgBack:"jerseys/intl/netherlands-home-back.jpg"}, [], 600),
       ...intlPair("Portugal", 
         {p:"#c8102e",s:"#046a38",n:7,img:"jerseys/intl/portugal-home.jpg",imgBack:"jerseys/intl/portugal-home-back.jpg"}, 
         {p:"#f5f5f5",s:"#046a38",n:7,img:"jerseys/intl/portugal-away.jpg",imgBack:"jerseys/intl/portugal-away-back.jpg"},
-        [{name:"Ronaldo", number:7}], 550),
+        [{name:"Ronaldo", number:7}], 600),
     ].map(t => ({ ...t, multiPatch:true })) },
   ];
 
@@ -2153,10 +2091,7 @@
   };
   function popularityOf(team){ return POPULARITY[team.club] ?? 50; }
 
-  // ---------- Photo-priority helper ----------
-  // Kits with a real, loadable photo should surface above photo-less placeholder
-  // kits when sorting by Popularity, so the shop looks its best by default.
-  const IMAGE_STATUS = new Map(); // image src -> true (loads fine) | false (missing/broken)
+  const IMAGE_STATUS = new Map();
   function checkImage(src){
     if (!src) return Promise.resolve(false);
     if (IMAGE_STATUS.has(src)) return Promise.resolve(IMAGE_STATUS.get(src));
@@ -2211,7 +2146,6 @@
     const meta = LEAGUE_META[leagueName] || { abbr: initials(leagueName), primary: '#0a0a0a', secondary: '#22c55e' };
     const fontSize = Math.round(size * 0.34);
     
-    // Only load images for the big 5 leagues
     const big5 = ['la-liga', 'premier-league', 'serie-a', 'bundesliga', 'ligue-1'];
     const imgHTML = big5.includes(slug)
       ? `<img src="league-badges/${slug}.png" alt="${leagueName} badge" loading="lazy" onerror="this.remove()">`
@@ -2254,10 +2188,9 @@
         let basePrice = team.basePrice;
         if (!basePrice) {
           if (team.type === 'Retro') {
-            const pop = popularityOf(team);
-            basePrice = pop >= 80 ? 800 : 750;
+            basePrice = 800;
           } else {
-            basePrice = 600;
+            basePrice = 625;
           }
         }
         
@@ -2277,7 +2210,7 @@
     const tagClass = team.type === 'Away' ? 'kit-tag away' : team.type === 'Third' ? 'kit-tag third' : team.type === 'Retro' ? 'kit-tag retro' : 'kit-tag';
     const saleTag = team.onSale ? `<span class="kit-tag sale">SALE</span>` : '';
     const clubLabel = team.club || team.name;
-    const priceDisplay = team.basePrice || 600;
+    const priceDisplay = team.basePrice || 625;
     const priceHTML = team.originalPrice
       ? `<span style="text-decoration:line-through; color:var(--ink-soft); opacity:0.75; font-size:0.88em; margin-right:5px;">₹${team.originalPrice}</span>₹${priceDisplay}`
       : `₹${priceDisplay}`;
@@ -2305,7 +2238,7 @@
     const sortVal = sortSelect ? sortSelect.value : 'popularity';
     const sortName = (t) => (t.club || t.name);
     const sorted = items.slice().sort((a, b) => {
-      const priceA = a.basePrice || 600, priceB = b.basePrice || 600;
+      const priceA = a.basePrice || 625, priceB = b.basePrice || 625;
       if (sortVal === 'price-asc') return (priceA - priceB) || sortName(a).localeCompare(sortName(b));
       if (sortVal === 'price-desc') return (priceB - priceA) || sortName(a).localeCompare(sortName(b));
       if (sortVal === 'alpha') return sortName(a).localeCompare(sortName(b));
@@ -2324,7 +2257,6 @@
   buildCollection(retroIntl, 'retro-intl', 'tab-retro-intl', 'retro-intl');
   buildCollection(international, 'international', 'tab-international', 'international');
 
-  // ---------- Shop by Club (home page) ----------
   function renderShopByClub(){
     const seen = new Set();
     const clubs = [];
@@ -2345,7 +2277,6 @@
   }
   renderShopByClub();
 
-  // ---------- Shop by National Team (home page) ----------
   function renderShopByNation(){
     const seen = new Set();
     const nations = [];
@@ -2366,7 +2297,6 @@
   }
   renderShopByNation();
 
-  // ---------- Trending Matchday Kits (home page) Update ----------
   function renderTrendingHome(){
     const grid = document.getElementById('home-trending-grid');
     if (!grid) return;
@@ -2378,21 +2308,18 @@
     const intlKits = PRODUCTS.filter(p => p.tabContentId === 'international').sort(photoPopularitySort);
     const retroKits = PRODUCTS.filter(p => p.tabContentId === 'retro-club' || p.tabContentId === 'retro-intl').sort(photoPopularitySort);
 
-    // Get 4 Current Season Kits
     let currentCount = 0;
     for(const p of currentKits) {
       if(!seenClubs.has(p.club)) { seenClubs.add(p.club); trending.push(p); currentCount++; }
       if(currentCount >= 4) break;
     }
     
-    // Get 2 International Kits
     let intlCount = 0;
     for(const p of intlKits) {
       if(!seenClubs.has(p.club)) { seenClubs.add(p.club); trending.push(p); intlCount++; }
       if(intlCount >= 2) break;
     }
     
-    // Get 2 Retro Kits
     let retroCount = 0;
     for(const p of retroKits) {
       if(!seenClubs.has(p.club)) { seenClubs.add(p.club); trending.push(p); retroCount++; }
@@ -2403,8 +2330,6 @@
   }
   renderTrendingHome();
 
-  // Once we know which kits actually have loadable photos, re-sort every
-  // Popularity-sorted view so kits with real photos float to the top.
   function refreshPhotoPrioritySort(){
     Object.keys(COLLECTIONS).forEach(groupId => {
       const sel = document.getElementById(`sort-${groupId}`);
@@ -2447,17 +2372,23 @@
     const isRetroClub = product.tabContentId === 'retro-club' || (product.type === 'Retro' && !isRetroIntl);
     
     if (isRetroIntl || product.multiPatch || product.tabContentId === 'international') {
-      return 35; // WC & International patches = ₹35
+      return 35;
     }
     if (isRetroClub) {
-      return 45; // Retro Club & Retro Full Sleeves = ₹45
+      return 45;
     }
-    return 40;   // Current season regular club kits = ₹40
+    return 40;
   }
 
   function getVersionPrices(product){
-    const base = (product && product.basePrice) ? product.basePrice : 600;
-    return { master: base, player: base + 50 };
+    if (!product) return { master: 625, player: 700 };
+    if (product.type === 'Retro') {
+      const base = product.basePrice || 800;
+      return { master: base, player: base };
+    }
+    const base = product.basePrice || 625;
+    const playerDiff = (product.tabContentId === 'international' || base === 600) ? 50 : 75;
+    return { master: base, player: base + playerDiff };
   }
 
   function selectVersion(version){
@@ -2473,7 +2404,6 @@
     group.innerHTML = (popularList || []).map((p, i) => `<option value="popular:${i}">${p.name} #${p.number}</option>`).join('');
   }
 
-  /* Dynamic Patch Generator */
   function getPatchOptions(product) {
     if (!product) return [];
     
@@ -2689,7 +2619,9 @@
     }
     
     if (activeProduct && activeProduct.originalPrice) {
-      document.getElementById('modalPrice').innerHTML = `<span style="text-decoration:line-through; color:var(--ink-soft); opacity:0.75; font-size:0.85em; margin-right:6px;">₹${activeProduct.originalPrice}</span>₹${total}`;
+      const origDiff = versionPrice - prices.master;
+      const origTotal = activeProduct.originalPrice + origDiff;
+      document.getElementById('modalPrice').innerHTML = `<span style="text-decoration:line-through; color:var(--ink-soft); opacity:0.75; font-size:0.85em; margin-right:6px;">₹${origTotal}</span>₹${total}`;
     } else {
       document.getElementById('modalPrice').textContent = `₹${total}`;
     }
@@ -2712,7 +2644,6 @@
     if (e.key === 'Escape') closeCustomize();
   });
 
-  /* Direct WhatsApp Order Link (Fixed to grab exact discounted total) */
   function addCustomizedToCart(){
     if (!activeProduct) return;
     const nameChoice = document.getElementById('custom-nameselect').value;
@@ -2756,7 +2687,6 @@
     closeCustomize();
   }
 
-  // ---------- Dedicated product page ----------
   let ppProduct = null;
   let ppVersion = 'master';
 
@@ -2771,8 +2701,8 @@
     ppProduct = PRODUCTS[id];
     ppVersion = 'master';
 
-    showPage('product'); // This resets the tab active states
-    document.title = `${ppProduct.name} | Corner Flag Jerseys`; // Set dynamic title for the specific kit
+    showPage('product');
+    document.title = `${ppProduct.name} | Corner Flag Jerseys`;
 
     document.getElementById('ppEyebrow').textContent = ppProduct.league;
     document.getElementById('ppTitle').textContent = `${ppProduct.name} — ${ppProduct.type}`;
@@ -2862,7 +2792,9 @@
     }
     
     if (ppProduct && ppProduct.originalPrice) {
-      document.getElementById('ppPrice').innerHTML = `<span style="text-decoration:line-through; color:var(--ink-soft); opacity:0.75; font-size:0.85em; margin-right:6px;">₹${ppProduct.originalPrice}</span>₹${total}`;
+      const origDiff = versionPrice - prices.master;
+      const origTotal = ppProduct.originalPrice + origDiff;
+      document.getElementById('ppPrice').innerHTML = `<span style="text-decoration:line-through; color:var(--ink-soft); opacity:0.75; font-size:0.85em; margin-right:6px;">₹${origTotal}</span>₹${total}`;
     } else {
       document.getElementById('ppPrice').textContent = `₹${total}`;
     }
@@ -2873,7 +2805,6 @@
 
   document.getElementById('pp-name').addEventListener('input', ppUpdatePricing);
 
-  /* Direct WhatsApp order generator from Dedicated Product Page (Fixed to grab exact discounted total) */
   function ppAddToCart(){
     if (!ppProduct) return;
     const nameChoice = document.getElementById('pp-nameselect').value;
@@ -2916,7 +2847,6 @@
     window.open(whatsappUrl, '_blank');
   }
 
-  // ---------- Send Review to WhatsApp ----------
   function sendReview(evt) {
     evt.preventDefault();
     const name = document.getElementById('rev-name').value;
@@ -2936,7 +2866,6 @@
     const whatsappUrl = `https://wa.me/916290763626?text=${encodeURIComponent(msg)}`;
     window.open(whatsappUrl, '_blank');
     
-    // Clear form
     document.getElementById('rev-name').value = '';
     document.getElementById('rev-kit').value = '';
     document.getElementById('rev-rating').value = '5';
@@ -2945,7 +2874,6 @@
     alert("Thank you! Your review has been sent via WhatsApp to the Corner Flag team.");
   }
   
-  // ---------- Send Contact Form to Email ----------
   function sendEmail(evt) {
     evt.preventDefault();
     const name = document.getElementById('name').value;
@@ -2958,7 +2886,6 @@
     window.location.href = `mailto:cornerflagjerseys@gmail.com?subject=${subject}&body=${body}`;
   }
 
-  // ---------- Restore state on refresh ----------
   (function initPageState(){
     const savedPage = sessionStorage.getItem('cfj_page');
     if (savedPage && document.getElementById('page-' + savedPage)) {
