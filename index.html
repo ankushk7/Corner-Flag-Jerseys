@@ -1385,7 +1385,8 @@
           <small>Upload jersey back here</small>
         </div>
       </div>
-      <p class="fabric-note"><strong>Master/Fan version:</strong> 150gsm brushed polyester, breathable and durable for everyday wear — embroidered club crest and embroidered manufacturer logo; sponsor badges are rubberized (heat-pressed).<br><strong>Player version:</strong> 130gsm micro-mesh, a lighter athletic-fit fabric with a sweat-wicking finish — crest, manufacturer logo, and sponsor badges are all rubberized (heat-pressed).</p>
+      <p class="fabric-note" id="pp-fabric-note-standard"><strong>Master/Fan version:</strong> 150gsm brushed polyester, breathable and durable for everyday wear — embroidered club crest and embroidered manufacturer logo; sponsor badges are rubberized (heat-pressed).<br><strong>Player version:</strong> 130gsm micro-mesh, a lighter athletic-fit fabric with a sweat-wicking finish — crest, manufacturer logo, and sponsor badges are all rubberized (heat-pressed).</p>
+      <p class="fabric-note" id="pp-fabric-note-retro" style="display:none;"><strong>Retro kit:</strong> 150gsm brushed polyester, breathable and durable for everyday wear — embroidered club crest and embroidered manufacturer logo; sponsor badges are rubberized (heat-pressed). Retro kits come in a single standard quality/fit only.</p>
     </div>
 
     <div>
@@ -1395,7 +1396,7 @@
       <span class="modal-eyebrow" id="ppEyebrow" style="margin-top: 0.5rem;">Product</span>
       <p class="product-meta" id="ppMeta"></p>
 
-      <div class="field">
+      <div class="field" id="pp-version-field">
         <label>Version</label>
         <div class="version-toggle" role="radiogroup" aria-label="Kit version">
           <button type="button" class="version-btn active" id="pp-version-master" onclick="ppSelectVersion('master')">Master / Fan version<span id="pp-version-master-note">₹600, shipping included</span></button>
@@ -1530,7 +1531,7 @@
         <h3 class="modal-title" id="modalTitle"></h3>
         <p class="product-meta" id="modalMeta"></p>
         
-        <div class="field">
+        <div class="field" id="version-field">
           <label>Version</label>
           <div class="version-toggle" role="radiogroup" aria-label="Kit version">
             <button type="button" class="version-btn active" id="version-master" data-price="600" data-label="Master" onclick="selectVersion('master')">Master / Fan version<span id="version-master-note">₹600, shipping included</span></button>
@@ -1538,7 +1539,8 @@
           </div>
         </div>
 
-        <p class="fabric-note"><strong>Master/Fan version:</strong> 150gsm brushed polyester, breathable and durable for everyday wear — embroidered club crest and embroidered manufacturer logo; sponsor badges are rubberized (heat-pressed).<br><strong>Player version:</strong> 130gsm micro-mesh, a lighter athletic-fit fabric with a sweat-wicking finish — crest, manufacturer logo, and sponsor badges are all rubberized (heat-pressed).</p>
+        <p class="fabric-note" id="fabric-note-standard"><strong>Master/Fan version:</strong> 150gsm brushed polyester, breathable and durable for everyday wear — embroidered club crest and embroidered manufacturer logo; sponsor badges are rubberized (heat-pressed).<br><strong>Player version:</strong> 130gsm micro-mesh, a lighter athletic-fit fabric with a sweat-wicking finish — crest, manufacturer logo, and sponsor badges are all rubberized (heat-pressed).</p>
+        <p class="fabric-note" id="fabric-note-retro" style="display:none;"><strong>Retro kit:</strong> 150gsm brushed polyester, breathable and durable for everyday wear — embroidered club crest and embroidered manufacturer logo; sponsor badges are rubberized (heat-pressed). Retro kits come in a single standard quality/fit only.</p>
 
         <div class="field">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.35rem;">
@@ -2151,6 +2153,27 @@
   };
   function popularityOf(team){ return POPULARITY[team.club] ?? 50; }
 
+  // ---------- Photo-priority helper ----------
+  // Kits with a real, loadable photo should surface above photo-less placeholder
+  // kits when sorting by Popularity, so the shop looks its best by default.
+  const IMAGE_STATUS = new Map(); // image src -> true (loads fine) | false (missing/broken)
+  function checkImage(src){
+    if (!src) return Promise.resolve(false);
+    if (IMAGE_STATUS.has(src)) return Promise.resolve(IMAGE_STATUS.get(src));
+    return new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => { IMAGE_STATUS.set(src, true); resolve(true); };
+      img.onerror = () => { IMAGE_STATUS.set(src, false); resolve(false); };
+      img.src = src;
+    });
+  }
+  function hasConfirmedPhoto(team){
+    return !!(team && team.image && IMAGE_STATUS.get(team.image) === true);
+  }
+  function photoPopularitySort(a, b){
+    return (Number(hasConfirmedPhoto(b)) - Number(hasConfirmedPhoto(a))) || (popularityOf(b) - popularityOf(a));
+  }
+
   const PRODUCTS = [];
   const COLLECTIONS = {};
 
@@ -2286,7 +2309,7 @@
       if (sortVal === 'price-asc') return (priceA - priceB) || sortName(a).localeCompare(sortName(b));
       if (sortVal === 'price-desc') return (priceB - priceA) || sortName(a).localeCompare(sortName(b));
       if (sortVal === 'alpha') return sortName(a).localeCompare(sortName(b));
-      return (popularityOf(b) - popularityOf(a)) || sortName(a).localeCompare(sortName(b));
+      return photoPopularitySort(a, b) || sortName(a).localeCompare(sortName(b));
     });
     const grid = document.getElementById(`${groupId}-grid`);
     if (!grid) return;
@@ -2351,9 +2374,9 @@
     const seenClubs = new Set();
     const trending = [];
     
-    const currentKits = PRODUCTS.filter(p => p.tabContentId === 'current-season').sort((a,b) => popularityOf(b) - popularityOf(a));
-    const intlKits = PRODUCTS.filter(p => p.tabContentId === 'international').sort((a,b) => popularityOf(b) - popularityOf(a));
-    const retroKits = PRODUCTS.filter(p => p.tabContentId === 'retro-club' || p.tabContentId === 'retro-intl').sort((a,b) => popularityOf(b) - popularityOf(a));
+    const currentKits = PRODUCTS.filter(p => p.tabContentId === 'current-season').sort(photoPopularitySort);
+    const intlKits = PRODUCTS.filter(p => p.tabContentId === 'international').sort(photoPopularitySort);
+    const retroKits = PRODUCTS.filter(p => p.tabContentId === 'retro-club' || p.tabContentId === 'retro-intl').sort(photoPopularitySort);
 
     // Get 4 Current Season Kits
     let currentCount = 0;
@@ -2379,6 +2402,17 @@
     grid.innerHTML = trending.map(team => cardHTML(team, team.id)).join('');
   }
   renderTrendingHome();
+
+  // Once we know which kits actually have loadable photos, re-sort every
+  // Popularity-sorted view so kits with real photos float to the top.
+  function refreshPhotoPrioritySort(){
+    Object.keys(COLLECTIONS).forEach(groupId => {
+      const sel = document.getElementById(`sort-${groupId}`);
+      if (!sel || sel.value === 'popularity') renderGroupSorted(groupId);
+    });
+    renderTrendingHome();
+  }
+  Promise.allSettled(PRODUCTS.filter(p => p.image).map(p => checkImage(p.image))).then(refreshPhotoPrioritySort);
 
   function goToNation(clubSlug){
     showPage('products');
@@ -2605,6 +2639,11 @@
     document.getElementById('version-master-note').textContent = `₹${prices.master}, shipping included`;
     document.getElementById('version-player-note').textContent = `₹${prices.player}, athletic slim fit`;
 
+    const isRetro = activeProduct.type === 'Retro';
+    document.getElementById('version-field').style.display = isRetro ? 'none' : '';
+    document.getElementById('fabric-note-standard').style.display = isRetro ? 'none' : '';
+    document.getElementById('fabric-note-retro').style.display = isRetro ? '' : 'none';
+
     selectVersion('master');
     renderModalVisual();
     updatePricing();
@@ -2630,7 +2669,7 @@
   function updatePricing(){
     const prices = getVersionPrices(activeProduct);
     const versionPrice = prices[selectedVersion];
-    const versionLabel = selectedVersion === 'master' ? 'Master / Fan' : 'Player';
+    const versionLabel = activeProduct && activeProduct.type === 'Retro' ? 'Retro' : (selectedVersion === 'master' ? 'Master / Fan' : 'Player');
     let total = versionPrice;
     let parts = [`${versionLabel} kit ₹${versionPrice}`];
     
@@ -2681,7 +2720,7 @@
     const sizeVal = document.getElementById('custom-size').value;
     const priceEl = document.getElementById('modalPrice');
     const totalText = priceEl.lastChild ? priceEl.lastChild.textContent.trim() : priceEl.textContent.trim();
-    const versionLabel = selectedVersion === 'master' ? 'Master / Fan Version (Standard Fit)' : 'Player Version (Athletic Slim Fit)';
+    const versionLabel = activeProduct.type === 'Retro' ? 'Retro Version (Standard Fit)' : (selectedVersion === 'master' ? 'Master / Fan Version (Standard Fit)' : 'Player Version (Athletic Slim Fit)');
     const itemPatchPrice = getPatchPrice(activeProduct);
 
     let printDetail = "No Name & Number";
@@ -2721,6 +2760,13 @@
   let ppProduct = null;
   let ppVersion = 'master';
 
+  const RETRO_KEEP_BACK_PHOTO = new Set([
+    "1990-92 Arsenal Jersey (Re-released)",
+    "2005-06 Arsenal Home Jersey",
+    "2013-14 Bayern Munich Home Jersey",
+    "2025-26 Inter Miami Third Jersey"
+  ]);
+
   function openProductPage(id){
     ppProduct = PRODUCTS[id];
     ppVersion = 'master';
@@ -2742,10 +2788,23 @@
     frontSlot.innerHTML = ppProduct.image
       ? `<img src="${ppProduct.image}" alt="${ppProduct.name} front" onerror="this.outerHTML='<span>Front photo</span><small style=\\'word-break:break-all;\\'>Missing: ${ppProduct.image}</small>'">`
       : `<span>Front photo</span><small>Upload jersey front here</small>`;
+
+    const isRetro = ppProduct.tabContentId === 'retro-club' || ppProduct.tabContentId === 'retro-intl';
+    const showBackPhoto = !isRetro || RETRO_KEEP_BACK_PHOTO.has(ppProduct.name);
+
     const backSlot = document.getElementById('pp-photo-back');
-    backSlot.innerHTML = ppProduct.imageBack
-      ? `<img src="${ppProduct.imageBack}" alt="${ppProduct.name} back" onerror="this.outerHTML='<span>Back photo</span><small style=\\'word-break:break-all;\\'>Missing: ${ppProduct.imageBack}</small>'">`
-      : `<span>Back photo</span><small>Upload jersey back here</small>`;
+    const photoGrid = frontSlot.closest('.product-photo-grid');
+    if (showBackPhoto) {
+      backSlot.style.display = '';
+      if (photoGrid) photoGrid.style.gridTemplateColumns = '1fr 1fr';
+      backSlot.innerHTML = ppProduct.imageBack
+        ? `<img src="${ppProduct.imageBack}" alt="${ppProduct.name} back" onerror="this.outerHTML='<span>Back photo</span><small style=\\'word-break:break-all;\\'>Missing: ${ppProduct.imageBack}</small>'">`
+        : `<span>Back photo</span><small>Upload jersey back here</small>`;
+    } else {
+      backSlot.style.display = 'none';
+      backSlot.innerHTML = '';
+      if (photoGrid) photoGrid.style.gridTemplateColumns = '1fr';
+    }
     document.getElementById('pp-name-preview').innerHTML = `<span>Name &amp; number preview</span><small>Photo of the printed name/number will appear here</small>`;
 
     document.getElementById('ppPatchLabel').textContent = patchLabelText(ppProduct);
@@ -2754,7 +2813,12 @@
     const prices = getVersionPrices(ppProduct);
     document.getElementById('pp-version-master-note').textContent = `₹${prices.master}, shipping included`;
     document.getElementById('pp-version-player-note').textContent = `₹${prices.player}, athletic slim fit`;
-    
+
+    const ppIsRetro = ppProduct.type === 'Retro';
+    document.getElementById('pp-version-field').style.display = ppIsRetro ? 'none' : '';
+    document.getElementById('pp-fabric-note-standard').style.display = ppIsRetro ? 'none' : '';
+    document.getElementById('pp-fabric-note-retro').style.display = ppIsRetro ? '' : 'none';
+
     ppSelectVersion('master');
   }
 
@@ -2778,7 +2842,7 @@
   function ppUpdatePricing(){
     const prices = getVersionPrices(ppProduct);
     const versionPrice = prices[ppVersion];
-    const versionLabel = ppVersion === 'master' ? 'Master / Fan' : 'Player';
+    const versionLabel = ppProduct && ppProduct.type === 'Retro' ? 'Retro' : (ppVersion === 'master' ? 'Master / Fan' : 'Player');
     let total = versionPrice;
     let parts = [`${versionLabel} kit ₹${versionPrice}`];
     
@@ -2817,7 +2881,7 @@
     const sizeVal = document.getElementById('pp-size').value;
     const priceEl = document.getElementById('ppPrice');
     const totalText = priceEl.lastChild ? priceEl.lastChild.textContent.trim() : priceEl.textContent.trim();
-    const versionLabel = ppVersion === 'master' ? 'Master / Fan Version (Standard Fit)' : 'Player Version (Athletic Slim Fit)';
+    const versionLabel = ppProduct.type === 'Retro' ? 'Retro Version (Standard Fit)' : (ppVersion === 'master' ? 'Master / Fan Version (Standard Fit)' : 'Player Version (Athletic Slim Fit)');
     const itemPatchPrice = getPatchPrice(ppProduct);
 
     let printDetail = "No Name & Number";
